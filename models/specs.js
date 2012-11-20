@@ -17,7 +17,7 @@ Spec = can.Model({
 },{
     mastery_factor: 2.5,
     fint: function() { 
-        return (Math.round((this.attr('buffs.buff_stats') ? 1.1 : 1)*
+        return (Math.round((this.attr('buffs.buff_stats') ? 1.05 : 1)*
                             this.attr('stats.bint')));
     },
     fcrit: function() {
