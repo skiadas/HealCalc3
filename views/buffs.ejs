@@ -1,0 +1,9 @@
+<div <%= (el) -> can.data(el, 'buffs', buffs[0]) %>>
+<img id="buff_stats" src= "images/spell_magic_greaterblessingofkings_medium.jpg" alt="+5% to stats"  class="buff <%= buffs[0].attr('buff_stats') ? 'active' : 'inactive'  %>" />
+<img id="buff_mastery" src="images/spell_holy_greaterblessingofkings_medium.jpg" alt="+5 to mastery" class="buff <%= buffs[0].attr('buff_mastery') ? 'active' : 'inactive'  %>" />
+<img id="buff_haste" src="images/spell_nature_forceofnature_medium.jpg" alt= "+5% haste"  class="buff <%= buffs[0].attr('buff_haste') ? 'active' : 'inactive'  %>" />
+<img id="buff_crit" src="images/spell_nature_unyeildingstamina_medium.jpg" alt= "+5% crit chance" class="buff <%= buffs[0].attr('buff_crit') ? 'active' : 'inactive'  %>" />
+<img id="buff_sp" src="images/spell_fire_totemofwrath_medium.jpg" alt= "+10% spellpower" class="buff <%= buffs[0].attr('buff_sp') ? 'active' : 'inactive'  %>" />
+<img id="buff_armor" src="images/ability_warrior_sunder_medium.jpg" alt= "-12% armor" class="buff <%= buffs[0].attr('buff_armor') ? 'active' : 'inactive'  %>" />
+<img id="buff_spelldam" src="images/warlock_curse_shadow_medium.jpg" alt= "+5% spell dam" class="buff <%= buffs[0].attr('buff_spelldam') ? 'active' : 'inactive'  %>" />
+</div>

@@ -1,0 +1,8 @@
+[
+    {"id": 1, "name": "Disc",   "icon": "spell_holy_powerwordshield_large.jpg",      "active": true},
+    {"id": 2, "name": "Holy",   "icon": "spell_holy_guardianspirit_large.jpg",       "active": true},
+    {"id": 3, "name": "Pally",  "icon": "spell_holy_holybolt_large.jpg",             "active": false},
+    {"id": 4, "name": "Druid",  "icon": "spell_nature_healingtouch_large.jpg",       "active": false},
+    {"id": 5, "name": "Shaman", "icon": "spell_nature_healingwavegreater_large.jpg", "active": false},
+    {"id": 6, "name": "Monk",   "icon": "spell_monk_mistweaver_spec_large.jpg",      "active": false}
+]

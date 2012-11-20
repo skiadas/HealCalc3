@@ -1,0 +1,29 @@
+<h4>Spells</h4>
+<table id="spellTable">
+  <thead>
+    <th <%= (el) -> can.data(el, 'sort_attr','spec') %>>Spec</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','name') %>>Name</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','ct') %>>Cast Time</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','mana') %>>Mana</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','base') %>>Base Heal</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','heal') %>>Average Heal</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','hps') %> class="sort_asc">HPS</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','hpm') %>>HPM</th>
+    <th <%= (el) -> can.data(el, 'sort_attr','mps') %>>MPS</th>
+  </thead>
+  <tbody>
+<% spells.each(function(spell) { %>
+  <tr class="spell" <%= (el) -> can.data(el, 'spell', spell) %> >
+    <td class="spec"><img src=<%== '"images/'+spell.spec.icon+'"' %> /></td>
+    <td class="name"><img src=<%== ['"images/',spell.img, '_large.jpg"'].join('') %> /><%= spell.name %></td>
+    <td><%= spell.attr('ct') %></td>
+    <td><%= spell.attr('mana') %></td>
+    <td><%= spell.attr('base_heal') %></td>
+    <td><%= spell.attr('heal') %></td>
+    <td><%= spell.attr('hps') %></td>
+    <td><%= spell.attr('hpm') %></td>
+    <td><%= spell.attr('mps') %></td>
+  </tr>
+<% }) %>
+  </tbody>
+</table>
