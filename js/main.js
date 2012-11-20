@@ -30,9 +30,6 @@ $(document).ready(function() {
             'glyph_coh': false, 'glyph_pom_holy': true, 'glyph_renew_holy': false}
         ).save();
         // PALLY
-        //
-        // Need to add: 10% casting speed, 5% Healing improvement
-        // 25% healing improvement from being holy
         specs[2].mastery_factor = 1.5;
         specs[2].fhaste = function() {
             return (Math.round( (((1+ this.attr('stats.bhaste') /425 / 100) *
