@@ -1,11 +1,11 @@
 (function() {
 SPECS = [
-    {id: 1 , name: 'Disc', icon: 'spell_holy_powerwordshield_large.jpg', active: true},
-    {id: 2 , name: 'Holy', icon: 'spell_holy_guardianspirit_large.jpg', active: false},
-    {id: 3 , name: 'Pally', icon: 'spell_holy_holybolt_large.jpg', active: false },
-    {id: 4 , name: 'Druid', icon: 'spell_nature_healingtouch_large.jpg', active: false},
-    {id: 5 , name: 'Shaman', icon: 'spell_nature_healingwavegreater_large.jpg', active: false},
-    {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec_large.jpg', active: false}
+    {id: 1 , name: 'Disc', icon: 'spell_holy_powerwordshield_large.jpg', active: true, bcrit: 1.235},
+    {id: 2 , name: 'Holy', icon: 'spell_holy_guardianspirit_large.jpg', active: false, bcrit: 1.235},
+    {id: 3 , name: 'Pally', icon: 'spell_holy_holybolt_large.jpg', active: false, bcrit: 3.335 },
+    {id: 4 , name: 'Druid', icon: 'spell_nature_healingtouch_large.jpg', active: false, bcrit: 1.85},
+    {id: 5 , name: 'Shaman', icon: 'spell_nature_healingwavegreater_large.jpg', active: false, bcrit: 1.235},
+    {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec_large.jpg', active: false, bcrit: 2.19}
 ];
 
 Spec = can.Model({
@@ -22,8 +22,9 @@ Spec = can.Model({
     },
     fcrit: function() {
         return (Math.round(((this.attr('stats.bcrit') /600 +
-                 this.attr('int') / 1760) +
-                 (this.attr('buffs.buff_crit') ? 5 : 0))*100 )/100  )
+                 this.attr('int') * 0.0003951) +
+                 + this.attr('bcrit') +
+                 (this.attr('buffs.buff_crit') ? 5 : 0))*100 )/100  );
     },
     fmast: function() {
         return (Math.round((((1* this.attr('stats.bmast') +
