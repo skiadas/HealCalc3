@@ -69,6 +69,8 @@ Spell = can.Model({
     fbase_disc_no_archangel: function() {return((this.nticks ? this.fhot() : this.fdirect())*(this.spec.grace ? 1.3 : 1)); },
     fbase_holy_sth: function() { return((this.nticks ? this.fhot() : this.fdirect()) * (this.spec.serenity ? 1.15 : 1)); },
     fbase_holy_aoe: function() { return((this.nticks ? this.fhot() : this.fdirect()) * (this.spec.sanctuary ? 1.15 : 1)); },
+    fbase_pally: function() {return((this.nticks ? this.fhot() : this.fdirect()) *
+        1.05 * 1.25); },
     fheal: function() {
         // The average heal amount, including crits and mastery.
         return(this.fbase()*(1+this.spec.critp)*(1+this.spec.mastp));
@@ -146,6 +148,9 @@ Spells = can.Control({
                 // General Disc spell setup
                 sp.fbase = sp.fbase_disc;   // To account for Grace choice
                 sp.fheal = sp.fheal_disc;   // To account for DA formula
+            } else if (sp.specid == 3) {
+                // General Pally spell setup
+                sp.fbase = sp.fbase_pally;
             }
         });
         // DISC Spells setup

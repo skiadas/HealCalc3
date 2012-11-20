@@ -30,8 +30,17 @@ $(document).ready(function() {
             'glyph_coh': false, 'glyph_pom_holy': true, 'glyph_renew_holy': false}
         ).save();
         // PALLY
+        //
         // Need to add: 10% casting speed, 5% Healing improvement
         // 25% healing improvement from being holy
+        specs[2].mastery_factor = 1.5;
+        specs[2].fhaste = function() {
+            return (Math.round( (((1+ this.attr('stats.bhaste') /425 / 100) *
+                                1.1 *     // Seal of Insight
+                                (this.attr('buffs.buff_haste') ? 1.05 : 1)) -1) * 100 * 100
+                    )/ 100);
+        }
+        specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false}).save();
         // DRUID
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function() {
