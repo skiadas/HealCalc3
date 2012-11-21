@@ -75,6 +75,7 @@ SPELLS = [
     { code: 'HTT', name: 'Healing Tide Totem', specid: 5, base_ct: 1.5, base_mana: 4800, Btick: 4932, ctick: 0.484, targets: 5, nticks: 11/2, time_tick: 2, duration: 11, img: 'ability_shaman_healingtide', aoe: true, instant: true },
     { code: 'HealingRain', name: 'Healing Rain', specid: 5, base_ct: 2, base_mana: 25860, Btick:  (1983 + 2358)/2, ctick: 0.197, targets: 6, nticks: 10/2, time_tick: 2, duration: 10, img: 'spell_nature_giftofthewaterspirit', aoe: true, instant: false },
     { code: 'Earthliving', name: 'Earthliving', specid: 5, base_ct: 1.5, base_mana: 0, Btick:  3648, ctick: 0.083, nticks: 4, time_tick: 3, img: 'spell_shaman_giftearthmother', aoe: false, instant: true },
+    { code: 'EarthShield', name: 'Earth Shield', specid: 5, base_ct: 1.5, base_mana: 11400, B: 2043, c: 0.13, targets: 9, img: 'spell_nature_skinofearth', aoe: false, instant: true },
 ];
 
 Spell = can.Model({
