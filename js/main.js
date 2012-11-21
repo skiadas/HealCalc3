@@ -46,7 +46,24 @@ $(document).ready(function() {
         };
         specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false}).save();
         // Lifebloom option for 1 or 3 stacks
-        
+        // SHAMAN
+        specs[4].mastery_factor = 3;
+        specs[4].fhaste = function() {
+            return (Math.round( (((1+ this.attr('stats.bhaste') /425 / 100) *
+                                (this.attr('ancestral_swiftness') ? 1.05 : 1) *
+                                (this.attr('buffs.buff_haste') ? 1.05 : 1)) -1) * 100 * 100
+                    )/ 100);
+        };
+        specs[4].fsp = function() {
+            return (Math.round(((this.attr('int')-10 + this.attr('stats.bweapon') + 2873) * 
+                                (this.attr('buffs.buff_sp') ? 1.05 : 1)) 
+            ));
+        };
+        specs[4].fmast_factor = function() {
+            return((1+(this.attr('health_deficit')/100)*this.mastp));
+        }
+        specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true}).save();
+        //
         $.when(new Stats('#stats', {stats: stats}),
         new Buffs('#buffs', {buffs: buffs}),
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs}), 

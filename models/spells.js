@@ -64,8 +64,18 @@ SPELLS = [
     { code: 'Execution', name: 'Execution Sentence', specid: 3, base_ct: 1.5, base_mana: 0, B: 12989.4, c: 5.936, img: 'spell_paladin_executionsentence' , aoe: false, instant: true },
     { code: 'EternalFlame', name: 'Eternal Flame', specid: 3, base_ct: 1.5, base_mana: 0, B: 3*(5240+5837)/2, c: 3*0.49, Btick: 3*508, ctick: 3*0.0585, nticks: 10, time_tick: 3, img: 'inv_torch_thrown' , aoe: false, instant: true }, 
     { code: 'SacredShield', name: 'Sacred Shield', specid: 3, base_ct: 1.5, base_mana: 0, Btick: 30, ctick: 1.17, nticks: 5, time_tick: 6, img: 'ability_paladin_blessedmending' , aoe: false, instant: true }, 
+    // SHAMAN
+    { code: 'HW', name: 'Healing Wave', specid: 5, base_ct: 2.5, base_mana: 5940, B: (7790 + 8899)/2, c: 0.756, res_factor: 1, img: 'spell_nature_magicimmunity' , aoe: false, instant: false },
+    { code: 'GHW', name: 'Greater Healing Wave', specid: 5, base_ct: 2.5, base_mana: 16140, B: (14172 + 16190)/2, c: 1.377, res_factor: 1, img: 'spell_nature_healingwavelesser' , aoe: false, instant: false },
+    { code: 'HSurge', name: 'Healing Surge', specid: 5, base_ct: 1.5, base_mana: 20580, B: (11687 + 13351)/2, c: 1.135, res_factor: 0.6, img: 'spell_nature_healingway' , aoe: false, instant: false },
+    { code: 'ChainHeal', name: 'Chain Heal', specid: 5, base_ct: 2.5, base_mana: 13500, B: (5905 + 6745 )/2, c: 0.573, targets: 1+0.3*(1+0.3*(1+0.3)), res_factor: 0.333*4, img: 'spell_nature_healingway' , aoe: true, instant: false },
+    { code: 'Riptide', name: 'Riptide', specid: 5, base_ct: 1.5, base_mana: 9600, B: 3735, c: 0.339, Btick: 1764, ctick: 0.16, nticks: 6, time_tick: 3, res_factor: 0.6, img: 'spell_nature_riptide' , aoe: false, instant: true }, 
+    { code: 'UnleashLife', name: 'Unleash Life', specid: 5, base_ct: 1.5, base_mana: 4920, B: (3028 + 3280)/2, c: 0.286, res_factor: 0.6, img: 'spell_shaman_unleashweapon_life' , aoe: false, instant: true },
+    { code: 'HST', name: 'Healing Stream Totem', specid: 5, base_ct: 1.5, base_mana: 4100, Btick: 31, ctick: 0.0827+0.3124, nticks: 15/2, time_tick: 2, duration: 15, img: 'inv_spear_04' , aoe: false, instant: true },
+    { code: 'HTT', name: 'Healing Tide Totem', specid: 5, base_ct: 1.5, base_mana: 4800, Btick: 4932, ctick: 0.484, targets: 5, nticks: 11/2, time_tick: 2, duration: 11, img: 'ability_shaman_healingtide', aoe: true, instant: true },
+    { code: 'HealingRain', name: 'Healing Rain', specid: 5, base_ct: 2, base_mana: 25860, Btick:  (1983 + 2358)/2, ctick: 0.197, targets: 6, nticks: 10/2, time_tick: 2, duration: 10, img: 'spell_nature_giftofthewaterspirit', aoe: true, instant: false },
+    { code: 'Earthliving', name: 'Earthliving', specid: 5, base_ct: 1.5, base_mana: 0, Btick:  3648, ctick: 0.083, nticks: 4, time_tick: 3, img: 'spell_shaman_giftearthmother', aoe: false, instant: true },
 ];
-
 
 Spell = can.Model({
     findAll: 'GET /spells',
@@ -77,8 +87,12 @@ Spell = can.Model({
     fct: function() { return(this.base_ct/(1+this.spec.hastep)); },
     fmana: function() { return(this.base_mana); },
     fmana_instant_priest: function() { return(this.base_mana * (this.spec.inner_fire ? 1 : 0.85)) },
+    fmana_shaman_resurgence: function() {
+        return(Math.round(this.base_mana - (8849*this.spec.critp*this.res_factor * (this.spec.resurgence ? 1 : 0))));
+    },
     fdirect: function() { return((this.B+this.c*this.spec.sp) * (this.targets || 1) ); },
     fnticks: function() { return(Math.round((this.nticks)*(1+this.spec.hastep))); },
+    fnticks_shaman_aoe: function() {return(1+Math.ceil(this.duration*(1+this.spec.hastep)/this.time_tick));},
     fhot: function() { return((this.Btick+this.ctick*this.spec.sp) * (this.targets || 1) * this.fnticks() ); },
     fbase: function() { return((this.nticks ? this.fhot() : this.fdirect())); },
     fbase_disc: function() {return((this.nticks ? this.fhot() : this.fdirect())*(this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1)); },
@@ -87,10 +101,18 @@ Spell = can.Model({
     fbase_holy_aoe: function() { return((this.nticks ? this.fhot() : this.fdirect()) * (this.spec.sanctuary ? 1.15 : 1)); },
     fbase_pally: function() {return((this.nticks ? this.fhot() : this.fdirect()) *
         1.05 * 1.25); },
+    fbase_shaman: function() { return((this.nticks ? this.fhot() : this.fdirect()) * 1.25); },
     fheal: function() {
         // The average heal amount, including crits and mastery.
         return(this.fbase()*(1+this.spec.critp)*(1+this.spec.mastp));
     },
+    fheal_shaman: function() {
+        return(this.fbase()*(1+this.spec.critp)*this.spec.fmast_factor());
+    },
+    fheal_shaman_aa: function(crit) {
+        return(this.fbase()*(1+this.spec.fmast_factor()) *
+            (1+(crit || this.spec.critp)+0.6*(crit || this.spec.critp)*this.spec.fmast_factor())
+    );},
     fheal_disc: function() {
         var da = 0.5;
         return(this.fbase()*(1+this.spec.critp*(1+2*da+2*da*this.spec.mastp)));
@@ -168,6 +190,9 @@ Spells = can.Control({
             } else if (sp.specid == 3) {
                 // General Pally spell setup
                 sp.fbase = sp.fbase_pally;
+            } else if (sp.specid == 5) {
+                // General Shaman spell setup
+                sp.fheal = sp.fheal_shaman;
             }
         });
         // DISC Spells setup
@@ -329,6 +354,53 @@ Spells = can.Control({
             sp.fbase = sp.fhot;
         // END PALLY Spells setup
         //
+        // SHAMAN Spells setup
+        sp = spells.find('HW');
+            sp.fmana = sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fheal = sp.fheal_shaman_aa;
+            sp.fct = can.proxy(function() {
+                return(this.base_ct/(1+this.spec.hastep) * (this.spec.attr('tidal_waves') ? 0.7 : 1));
+            }, sp);
+        sp = spells.find('GHW');
+            sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fheal = sp.fheal_shaman_aa;
+            sp.fct = can.proxy(function() {
+            return(this.base_ct/(1+this.spec.hastep) * (this.spec.attr('tidal_waves') ? 0.7 : 1));
+            }, sp);
+        sp = spells.find('HSurge');
+            sp.fmana = can.proxy(function() {
+                var crit = this.spec.critp + (this.spec.attr('tidal_waves') ? 0.3 : 0);
+                return(Math.round(this.base_mana-(crit*8849*0.6 *
+                        (this.spec.attr('resurgence') ? 1 : 0)))); }, sp);
+            sp.fheal = can.proxy(function() {
+                return(this.fheal_shaman_aa(this.spec.critp + (this.spec.attr('tidal_waves') ? 0.3 : 0)));
+            }, sp);
+        sp = spells.find('ChainHeal');
+            sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fbase = can.proxy(function() { 
+                return((this.nticks ? this.fhot() : this.fdirect()) * 1.25 *
+                (this.spec.attr('chain_heal_riptide') ? 1.25 : 1)); 
+            }, sp);
+        sp = spells.find('Riptide');
+            sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fdirect = can.proxy(function() { return((this.B+this.c*this.spec.sp)*
+                        (this.spec.attr('glyph_riptide') ? 0.1 : 1));
+            }, sp);
+            sp.fbase = can.proxy(function() { return(this.fhot() + this.fdirect()); }, sp);
+            sp.fheal = sp.fheal_shaman_aa;
+        sp = spells.find('UnleashLife');
+            sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fheal = sp.fheal_shaman_aa;
+        sp = spells.find('HST');
+            sp.fnticks = sp.fnticks_shaman_aoe;
+        sp = spells.find('HTT');
+            sp.fnticks = sp.fnticks_shaman_aoe;
+        sp = spells.find('HealingRain');
+            sp.fnticks = can.proxy(function() {
+                return(1+Math.round((this.nticks)*(1+this.spec.hastep)));
+            }, sp);
+        sp = spells.find('Earthliving');
+            sp.fhpm = sp.fhpm_nomana;
         //
         // Call View
         self.element.html(can.view('views/spells.ejs', {spells: spells}));
