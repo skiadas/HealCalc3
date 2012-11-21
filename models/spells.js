@@ -106,6 +106,7 @@ return(this.fbase()*(1+this.spec.mastp)*(1+this.spec.critp)*(1+ 0.3*this.spec.cr
     },
     fhps: function() { return(this.fheal()/this.ct); },
     fhpm: function() { return(this.fheal()/this.mana); },
+    fhpm_nomana: function() { return(0); },
     fmps: function() { return(this.mana/this.ct); },
     val_update: function() {
         this.attr('ct', Math.round(this.fct()*100)/100);
@@ -306,25 +307,25 @@ Spells = can.Control({
                         (this.spec.attr('daybreak') ? 2 : 1)); 
             }, sp);
         sp = spells.find('WoG');
-            sp.fhpm = function() { return(0); };
+            sp.fhpm = sp.fhpm_nomana;
         sp = spells.find('LoD');
-            sp.fhpm = function() { return(0); };
+            sp.fhpm = sp.fhpm_nomana;
             sp.fdirect = can.proxy(function() { return((this.B+this.c*this.spec.sp) *
                  (this.targets - (this.spec.attr('glyph_lod') ? 2 : 0)) *
                  (this.spec.attr('glyph_lod') ? 1 : 1.25)); }, sp);
         sp = spells.find('LightsHammer');
-            sp.fhpm = function() { return(0); };
+            sp.fhpm = sp.fhpm_nomana;
             sp.fheal = can.proxy(function() {
                 return(this.fbase()*(1+this.spec.critp));
             }, sp);
         sp = spells.find('Execution');
-            sp.fhpm = function() { return(0); };
+            sp.fhpm = sp.fhpm_nomana;
         sp = spells.find('EternalFlame');
-            sp.fhpm = function() { return(0); };
+            sp.fhpm = sp.fhpm_nomana;
             sp.fbase = can.proxy(function() {return((this.fhot() + this.fdirect()) *
                 1.05 * 1.25); }, sp);   
         sp = spells.find('SacredShield');
-            sp.fhpm = function() { return(0); };
+            sp.fhpm = sp.fhpm_nomana;
             sp.fbase = sp.fhot;
         // END PALLY Spells setup
         //
