@@ -31,11 +31,8 @@ $(document).ready(function() {
         ).save();
         // PALLY
         specs[2].mastery_factor = 1.5;
-        specs[2].fhaste = function() {
-            return (Math.round( (((1+ this.attr('stats.bhaste') /425 / 100) *
-                                1.1 *     // Seal of Insight
-                                (this.attr('buffs.buff_haste') ? 1.05 : 1)) -1) * 100 * 100
-                    )/ 100);
+        specs[2].fhaste_mul = function() {
+            return (1.1* (this.attr('buffs.buff_haste') ? 1.05 : 1));
         }
         specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false}).save();
         // DRUID
@@ -48,11 +45,9 @@ $(document).ready(function() {
         // Lifebloom option for 1 or 3 stacks
         // SHAMAN
         specs[4].mastery_factor = 3;
-        specs[4].fhaste = function() {
-            return (Math.round( (((1+ this.attr('stats.bhaste') /425 / 100) *
-                                (this.attr('ancestral_swiftness') ? 1.05 : 1) *
-                                (this.attr('buffs.buff_haste') ? 1.05 : 1)) -1) * 100 * 100
-                    )/ 100);
+        specs[4].fhaste_mul = function() {
+            return ((this.attr('ancestral_swiftness') ? 1.05 : 1) *
+                    (this.attr('buffs.buff_haste') ? 1.05 : 1));
         };
         specs[4].fsp = function() {
             return (Math.round(((this.attr('int')-10 + this.attr('stats.bweapon') + 2873) * 

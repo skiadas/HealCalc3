@@ -31,9 +31,12 @@ Spec = can.Model({
                             (this.attr('buffs.buff_mastery') ? 3000 : 0) )/600 +8)  *
                     this.mastery_factor) * 100) /100);
     },
+    fhaste_mul: function() {
+        return((this.attr('buffs.buff_haste') ? 1.05 : 1));
+    },
     fhaste: function() {
         return (Math.round( (((1+ this.attr('stats.bhaste') /425 / 100) *
-                            (this.attr('buffs.buff_haste') ? 1.05 : 1)) -1) * 100 * 100
+                            (this.fhaste_mul())) -1) * 100 * 100
                 )/ 100);
     },
     fsp: function() {
