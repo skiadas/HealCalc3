@@ -14,7 +14,14 @@ Filtering = can.Control({
     'input click': function(el, ev) {
         var input = el.closest('input');
         var settings = $(input).data('filter');
-        var imask = 1 << settings.shift;
+        if (settings.attr == 'allspecs') {
+            // Need to enable or disable all 6 specs;
+            var newsetting = ($(input).attr('checked') || false);
+            $(input).siblings('input').slice(0,6).attr('checked', newsetting);
+            var imask = (1<< 6) -1;
+        } else {
+            var imask = 1 << settings.shift;
+        }
         if ($(input).attr('checked')) {
             this.options.mask = this.options.mask | imask;
         } else {

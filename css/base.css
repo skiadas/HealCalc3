@@ -147,3 +147,18 @@ img { width: 20px; height: 20px; }
 
 td { text-align: right; }
 .name { text-align: left; }
+
+#filters {
+	margin-bottom: 1em;
+    background-color: #618C8B;
+	border: 1px solid #3F5C5B;
+}
+#filters > a { display: block; background-color: #374F4E;}
+#filters label { margin-left: 8px; }
+#filters img { width: 14px; height: 14px; }
+#filters div {
+	width: 95%;
+	margin: 0 2%;
+	padding: 0.2em 0.2em;
+	background-color: #618C8B;
+}

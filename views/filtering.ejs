@@ -1,4 +1,5 @@
 <div>
+  <label for="filter_all_specs">All Specs</label><input <%= (el) -> can.data(el, 'filter', {attr: 'allspecs'}) %> id="filter_all_specs" type="checkbox" checked="checked" />
   <label for="filter_disc"><img src="images/spell_holy_powerwordshield_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 0, attr: 'specid', val: 1}) %> id="filter_disc" type="checkbox" checked="checked" />
   <label for="filter_holy"><img src="images/spell_holy_guardianspirit_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 1, attr: 'specid', val: 2}) %> id="filter_holy" type="checkbox" checked="checked" />
   <label for="filter_pally"><img src="images/spell_holy_holybolt_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 2, attr: 'specid', val: 3}) %> id="filter_pally" type="checkbox" checked="checked" />
