@@ -76,7 +76,16 @@ SPELLS = [
     { code: 'HealingRain', name: 'Healing Rain', specid: 5, base_ct: 2, base_mana: 25860, Btick:  (1983 + 2358)/2, ctick: 0.197, targets: 6, nticks: 10/2, time_tick: 2, duration: 10, img: 'spell_nature_giftofthewaterspirit', aoe: true, instant: false },
     { code: 'Earthliving', name: 'Earthliving', specid: 5, base_ct: 1.5, base_mana: 0, Btick:  3648, ctick: 0.083, nticks: 4, time_tick: 3, img: 'spell_shaman_giftearthmother', aoe: false, instant: true },
     { code: 'EarthShield', name: 'Earth Shield', specid: 5, base_ct: 1.5, base_mana: 11400, B: 2043, c: 0.13, targets: 9, img: 'spell_nature_skinofearth', aoe: false, instant: true },
-];
+    // MONK
+    //
+    { code: 'SoothingMist', name: 'Soothing Mist', specid: 6, base_ct: 1, base_mana: 3000, B: (20552 + 23872)/2/8, c: 0.1792, targets: 2, img: 'ability_monk_soothingmists', aoe: false, instant: true },
+    { code: 'SurgingMist', name: 'Surging Mist', specid: 6, base_ct: 1.5, base_mana: 24000, B: (15949 + 18535)/2 , c: 1.8, img: 'ability_monk_surgingmist', aoe: false, instant: true },
+    { code: 'EnvelopingMist', name: 'Enveloping Mist', specid: 6, base_ct: 1.5, base_mana: 0, Btick: (10128 + 11769)/2 , ctick: 0.665, nticks: 6, time_ticks: 1, img: 'spell_shaman_spiritlink', aoe: false, instant: true },
+    { code: 'RenewingMist', name: 'Renewing Mist', specid: 6, base_ct: 1.5, base_mana: 13800, Btick: 3236, ctick: 0.16, nticks: 6, time_ticks: 3, targets: 4, img: 'ability_monk_renewingmists', aoe: true, instant: true },
+    { code: 'LifeCocoon', name: 'Life Cocoon', specid: 6, base_ct: 1.5, base_mana: 13500, B: 39958, c: 5.5, img: 'ability_monk_chicocoon', aoe: false, instant: true },
+    { code: 'Uplift', name: 'Uplift', specid: 6, base_ct: 1.5, base_mana: 0, B: (7210 + 8379)/2, c: 0.68, img: 'ability_monk_uplift', targets: 8, aoe: true, instant: true },
+    { code: 'Revival', name: 'Revival', specid: 6, base_ct: 1.5, base_mana: 21000, B: 13684, c: 5, img: 'spell_shaman_blessingofeternals', targets: 10, aoe: true, instant: true },
+ ];
 
 Spell = can.Model({
     findAll: 'GET /spells',
@@ -402,7 +411,13 @@ Spells = can.Control({
             }, sp);
         sp = spells.find('Earthliving');
             sp.fhpm = sp.fhpm_nomana;
+        //  END SHAMAN Spells setup
         //
+        // MONK Spells setup
+        sp = spells.find('EnvelopingMist');
+            sp.fhpm = sp.fhpm_nomana;
+        sp = spells.find('Uplift');
+            sp.fhpm = sp.fhpm_nomana;
         // Call View
         self.element.html(can.view('views/spells.ejs', {spells: spells}));
     },

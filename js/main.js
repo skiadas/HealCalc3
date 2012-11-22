@@ -63,6 +63,10 @@ $(document).ready(function() {
             return((1+(this.attr('health_deficit')/100)*this.mastp));
         }
         specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true}).save();
+        // MONK
+        //
+        specs[5].mastery_factor = 0;
+        specs[5].attr({'uplift_targets': 8, 'revival_targets': 10}).save();
         //
         $.when(new Stats('#stats', {stats: stats}),
         new Buffs('#buffs', {buffs: buffs}),
