@@ -92,7 +92,8 @@ em { font-weight: bold; }
 #character > div input, #character > div label {
     float: left;
     margin: 0.2em 1%;
-    height: 1.3em;
+    height: auto;
+/*    height: 1.3em;*/
 }
 #character > div input {
     width: 34%;
@@ -103,7 +104,7 @@ em { font-weight: bold; }
     border-left: 1px solid #323232;
 }
 #character > div label { width: 60%; clear: left; }
-#spec_specific label { width: auto; }
+#spec_specific label { width: auto; font-size: 0.8em; }
 #character > div input[disabled] {
     border: 1px solid #697C6A;
 }
