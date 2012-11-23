@@ -40,7 +40,7 @@ Spec = can.Model({
                 )/ 100);
     },
     fsp: function() {
-        return (Math.round(((this.attr('int')-10 + this.attr('stats.bweapon')) * 
+        return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon')) * 
                             (this.attr('buffs.buff_sp') ? 1.05 : 1))
         ));
     },
