@@ -8,7 +8,7 @@ $(document).ready(function() {
         // DISC
         specs[0].mastery_factor = 2.5;
         specs[0].fsp = function() {
-            return (Math.round(((this.attr('int')-10 + this.attr('stats.bweapon')) * 
+            return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon')) * 
                                 (this.attr('buffs.buff_sp') ? 1.05 : 1)) *
                                 (this.attr('inner_fire') ? 1.1 : 1)
             ));
@@ -20,7 +20,7 @@ $(document).ready(function() {
         // HOLY
         specs[1].mastery_factor = 1.25;
         specs[1].fsp = function() {
-            return (Math.round(((this.attr('int')-10 + this.attr('stats.bweapon')) * 
+            return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon')) * 
                                 (this.attr('buffs.buff_sp') ? 1.05 : 1)) *
                                 (this.attr('inner_fire') ? 1.1 : 1)
             ));
@@ -50,7 +50,7 @@ $(document).ready(function() {
                     (this.attr('buffs.buff_haste') ? 1.05 : 1));
         };
         specs[4].fsp = function() {
-            return (Math.round(((this.attr('int')-10 + this.attr('stats.bweapon') + 2873) * 
+            return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon') + 2873) * 
                                 (this.attr('buffs.buff_sp') ? 1.05 : 1)) 
             ));
         };
