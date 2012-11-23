@@ -14,5 +14,6 @@
       <label>Spellpower</label><input type="input" id="sp" value="<%= spec.attr('sp'); %>"/ >
     </div>
     </ul>
+    <%== can.view.render('views/haste_bar.ejs', {spec: spec}) %>
   </div>
 <% }) %>
