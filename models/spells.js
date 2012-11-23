@@ -38,6 +38,7 @@ SPELLS = [
     // DRUID
     //
     { code: 'HealingTouch', name: 'Healing Touch', specid: 4, base_ct: 2.5, base_mana: 17340, B: 20130, c: 1.86, img: 'spell_nature_healingtouch' , aoe: false, instant: false },
+    { code: 'ForceOfNature', name: 'Force of Nature', specid: 4, base_ct: 1.5, base_mana: 0, Btick: 0.1*20130, ctick: 0.1*1.86, nticks: 6, time_tick: 2.5, duration: 15, targets: 3, img: 'ability_druid_forceofnature' , aoe: true, instant: true },
     { code: 'Nourish', name: 'Nourish', specid: 4, base_ct: 2.5, base_mana: 6120, B: 6649.5, c: 0.614, img: 'ability_druid_nourish' , aoe: false, instant: false },
     { code: 'Regrowth', name: 'Regrowth', specid: 4, base_ct: 1.5, base_mana: 17820, B: 10383.5, c: 0.958, Btick: 787, ctick: 0.073, nticks: 3, time_tick: 2, img: 'spell_nature_resistnature' , aoe: false, instant: false }, 
     { code: 'Rejuv', name: 'Rejuvenation', specid: 4, base_ct: 1.5, base_mana: 9600, Btick: 4234, ctick: 0.392, nticks: 4, time_tick: 3, img: 'spell_nature_rejuvenation' , aoe: false, instant: true },
@@ -332,6 +333,9 @@ Spells = can.Control({
                         ) * (1+this.spec.mastp) * (1+this.spec.critp)
                 );
             }, sp);
+        sp = spells.find('ForceOfNature');
+            sp.fnticks = sp.fnticks_shaman_aoe;
+            sp.fhpm = sp.fhpm_nomana;
         //END DRUID Spells setup
         // PALLY Spells setup
         sp = spells.find('HolyShock');
