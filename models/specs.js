@@ -8,6 +8,52 @@ SPECS = [
     {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec_large.jpg', active: false, bcrit: 2.19}
 ];
 
+SPECS[0].bpoints_info = [
+    { name: 'Renew', img: 'spell_holy_renew', nticks: 4, hfactor: 1 },
+    { name: 'Renew under Borrowed Time', img: 'spell_holy_renew', nticks: 4, hfactor: 1.15 },
+    { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, hfactor: 1 },
+    { name: 'Glyphed Renew under Borrowed Time', img: 'spell_holy_renew', nticks: 3, hfactor: 1.15 },
+    { name: 'Holy Fire', img: 'spell_holy_searinglight', nticks: 7, hfactor: 1 },
+    { name: 'Holy Fire under Borrowed Time', img: 'spell_holy_searinglight', nticks: 7, hfactor: 1.15 },
+];
+SPECS[1].bpoints_info = [
+    { name: 'Renew', img: 'spell_holy_renew', nticks: 4, hfactor: 1 },
+    { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, hfactor: 1 },
+    { name: 'Holy Word: Sanctuary', img: 'spell_holy_divineprovidence', nticks: 15, hfactor: 1},
+];
+SPECS[2].bpoints_info = [
+    { name: 'Eternal Flame', img: 'inv_torch_thrown', nticks: 10, hfactor: 1 },
+    { name: 'Sacred Shield', img: 'ability_paladin_blessedmending', nticks: 5, hfactor: 1 },
+];
+SPECS[3].bpoints_info = [
+    { name: 'Lifebloom', img: 'inv_misc_herb_felblossom', nticks: 15 },
+    { name: 'Glyphed Lifebloom', img: 'inv_misc_herb_felblossom', nticks: 10 },
+    { name: 'Wild Growth and Swiftmend', img: 'ability_druid_flourish', nticks: 7 },
+    { name: 'Rejuvenation and Tranquility', img: 'spell_nature_rejuvenation', nticks: 4 },
+    { name: 'Regrowth', img: 'spell_nature_resistnature', nticks: 3 },
+];
+SPECS[4].bpoints_info = [
+    { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6 },
+    { name: 'Healing Rain', img: 'spell_nature_giftofthewaterspirit', nticks: 5 },
+    { name: 'Earthliving', img: 'spell_shaman_giftearthmother', nticks: 4 },
+    { name: 'Healing Tide Totem', img: 'ability_shaman_healingtide', nticks: 11/2 },
+    { name: 'Healing Stream Totem', img: 'inv_spear_04', nticks: 15/2 },
+];
+SPECS[5].bpoints_info = [
+    { name: 'Surging Mist and Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 },
+];
+$.each(SPECS, function(_, spec) {
+   spec.breakpoints = [];
+   $.each(spec.bpoints_info, function(_, bpoint) {
+       var max_haste_p = 0.5;
+       var max_new_points = Math.ceil(bpoint.nticks*max_haste_p-0.5);
+       for (i=1; i<max_new_points; i++) {
+           var count = [i, ['st','nd','rd','th','th','th'][i-1]].join('');
+           spec.breakpoints.push({name: bpoint.name, img: bpoint.img, no: count, hastep: (1+(i+0.5)/bpoint.nticks)/(bpoint.hfactor || 1) });
+       }
+   });
+});
+
 Spec = can.Model({
     findAll : "GET /specs",
     findOne : "GET /spec/{id}",
