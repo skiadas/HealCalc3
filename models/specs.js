@@ -49,7 +49,7 @@ $.each(SPECS, function(_, spec) {
        var max_new_points = Math.ceil(bpoint.nticks*max_haste_p-0.5);
        for (i=1; i<max_new_points; i++) {
            var count = [i, ['st','nd','rd','th','th','th'][i-1]].join('');
-           spec.breakpoints.push({name: bpoint.name, img: bpoint.img, no: count, hastep: (1+(i+0.5)/bpoint.nticks)/(bpoint.hfactor || 1) });
+           spec.breakpoints.push({name: bpoint.name, img: bpoint.img, no: count, hastep: Math.round((1+(i-0.5)/bpoint.nticks)/(bpoint.hfactor || 1) * 1000)/1000 });
        }
    });
 });
@@ -127,9 +127,9 @@ can.fixture('DELETE /spec/{id}', specStore.destroy);
 Specs = can.Control({
     init: function(element, options) {
         var self = this;
-        specs = options.specs;
-        buffs = options.buffs[0];
-        stats = options.stats[0];
+        var specs = options.specs;
+        var buffs = options.buffs[0];
+        var stats = options.stats[0];
         specs.each(function(spec) {
             spec.attr('buffs', buffs);
             spec.attr('stats', stats);
@@ -160,6 +160,39 @@ Specs = can.Control({
     // '{Spec} updated': function() { this.options.specs.val_update(); },
     '{Buff} updated': function() { this.options.specs.val_update(); },
     '{Stat} updated': function() { this.options.specs.val_update(); }
+});
+
+
+HasteBar = can.Control({
+    init: function(element, options) {
+        var self = this;
+        var spec = options.spec;
+        self.element.html(can.view('views/haste_bar.ejs', {spec: spec}));
+        self.update_bar();
+    },
+    '{Spec} updated': function() {
+        this.update_bar();
+    },
+    update_bar: function() {
+        var spec = this.options.spec;
+        var haste_mul = spec.fhaste_mul();
+        var hastep = Math.round(spec.hastep*1000)/1000;
+        var haste_rat = spec.stats.bhaste;
+        var bpoints = spec.breakpoints;
+        var rating_scale = 3000;
+        bpoints.each(function(bpoint) {
+            bpoint.rating = Math.ceil((bpoint.hastep/haste_mul -1) * 425 * 100);
+            bpoint.rel_rating = bpoint.rating - haste_rat;
+            bpoint.percent = Math.round(0.5*(1+bpoint.rel_rating/rating_scale * 0.9) * 100) + "%";
+            bpoint.text = can.sub("You gain the {no} extra tick of {name} at {rating} rating.\nNeed {rel_rating} rating to reach that point.\n{hastep}", bpoint);
+        });
+        $('.breakpoint', this.element).hide().filter(function(_) {
+            var rating = $(this).data('breakpoint').rel_rating;
+            return((rating < rating_scale) && (rating > -rating_scale));
+        }).show().css('left', function() {return($(this).data('breakpoint').percent);}).
+        attr('title', function() { return($(this).data('breakpoint').text);});
+        $('.haste_current').attr('title', can.sub('You have {haste_rat} rating.\nHaste factor: {hastep}', {haste_rat: haste_rat, hastep: hastep}));
+    },
 });
 
 })();
