@@ -159,7 +159,6 @@ Spell.List = can.Model.List({
                 spell.val_update();
             }
         })
-        console.log(['In Spell.List.val_update:', spec.name].join(' '));
         $(this).trigger('ready');
     },
     find: function(code) {

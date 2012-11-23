@@ -70,5 +70,9 @@ $(document).ready(function() {
             new Sorter('#spellTable', {spells: spells});
             new Filtering('#filters', {table: $('#spellTable'), view: 'views/filtering.ejs'});
         });
+        specs.each(function(spec) {
+            var name = "haste_bar_" + spec.name;
+            new HasteBar("#"+name, {spec: spec});
+        });
     });
 });

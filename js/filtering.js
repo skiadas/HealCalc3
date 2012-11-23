@@ -6,7 +6,6 @@ Filtering = can.Control({
         self.options.fullmask = (1 << 10) -1;
         self.options.mask = self.options.fullmask;
         var view = options.view;
-        console.log('filtering called');
         $.when(self.element.append(can.view(view))).then(function() {
             $('input', self.element).attr('checked', true);
         });

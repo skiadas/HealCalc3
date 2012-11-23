@@ -7,7 +7,6 @@ PERFORM_SORT = function(dom, sort_attr, dir) {
         var flag = 0;
         var doms = $('tr', dom).toArray();
         doms.shift();
-        console.log('Starting sort by: ', sort_attr, ', dir:', dir);
         for (var i=0; i < doms.length-1; i++) {
             val1 = $(doms[i]).data('spell').attr(sort_attr);
             val2 = $(doms[i+1]).data('spell').attr(sort_attr);
@@ -17,7 +16,6 @@ PERFORM_SORT = function(dom, sort_attr, dir) {
                 flag = 1;
                 var ith = doms[i];
                 var next = doms[i+1];
-                console.log([i, $(ith).data('spell').name, $(next).data('spell').name].join())
                 $(next).after(ith);
             }
         }
@@ -39,7 +37,6 @@ Sorter = can.Control({
         PERFORM_SORT(this.element, this.options.sort.attr, this.options.sort.dir);
     },
     'thead th click': function(el, ev) {
-        console.log('clicked', el.data('sort_attr'));
         var newAttr = el.data('sort_attr');
         if (newAttr == this.options.sort.attr) {
             // Simply toggle direction
