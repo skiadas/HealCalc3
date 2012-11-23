@@ -300,7 +300,7 @@ Spells = can.Control({
         sp = spells.find('Lifebloom');
             sp.fnticks = can.proxy(function() {return(Math.round((this.nticks-(this.spec.attr('glyph_blooming') ? 5 : 0))*(1+this.spec.hastep)));}, sp);
             sp.fdirect = can.proxy(function() {return((this.B+this.c*this.spec.sp)*(this.spec.attr('glyph_blooming') ? 1.5 : 1));}, sp);
-            sp.fheal = can.proxy(function() {return(this.fdirect() + this.fhot());}, sp);
+            sp.fbase = can.proxy(function() {return(this.fdirect() + this.fhot());}, sp);
         sp = spells.find('WildGrowth');
             sp.fhot = can.proxy(function() {
                 return((this.Btick+this.ctick*this.spec.sp) * 
