@@ -7,11 +7,11 @@
     </div>
     <li><a>Stats</a></li>
     <div class="stats">
-      <label>Intellect</label><input type="input" id="int" value="<%= spec.attr('int'); %>"/ >
-      <label>Crit Percent</label><input type="input" id="crit" value="<%= spec.attr('crit'); %>"/ >
-      <label>Haste Percent</label><input type="input" id="haste" value="<%= spec.attr('haste'); %>"/ >
-      <label>Mastery Percent</label><input type="input" id="mast" value="<%= spec.attr('mast'); %>"/ >
-      <label>Spellpower</label><input type="input" id="sp" value="<%= spec.attr('sp'); %>"/ >
+      <label>Intellect</label><input type="input" id="int" value="<%= spec.attr('int'); %>" readonly />
+      <label>Crit Percent</label><input type="input" id="crit" value="<%= spec.attr('crit'); %>" readonly />
+      <label>Haste Percent</label><input type="input" id="haste" value="<%= spec.attr('haste'); %>" readonly />
+      <label>Mastery Percent</label><input type="input" id="mast" value="<%= spec.attr('mast'); %>" readonly />
+      <label>Spellpower</label><input type="input" id="sp" value="<%= spec.attr('sp'); %>" readonly />
     </div>
     </ul>
     <div <%= (el) -> can.data(el, 'spec', spec) %> class="haste_bar_cont" id="haste_bar_<%= spec.attr('name'); %>" >

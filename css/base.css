@@ -146,6 +146,12 @@ div.spec li a:hover {
     margin: 0;
 }
 
+#character div.spec .stats input {
+    border: 1px solid #888;
+    color: #888;
+    background-color: #C5C3A2;
+}
+
 .inactive img, img.inactive { opacity: 0.4; }
 table { 
   border-spacing: 0;
