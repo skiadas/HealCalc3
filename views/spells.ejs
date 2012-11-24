@@ -15,7 +15,7 @@
 <% spells.each(function(spell) { %>
   <tr class="spell spell_<%= spell.spec.name %>" <%= (el) -> can.data(el, 'spell', spell) %> >
     <td class="spec"><img src=<%== '"images/'+spell.spec.icon+'"' %> /></td>
-    <td class="name"><img src=<%== ['"images/',spell.img, '_large.jpg"'].join('') %> /><%= spell.name %></td>
+    <td class="name"><img src=<%== ['"images/',spell.img, '_large.jpg"'].join('') %> /><a href="http://www.wowhead.com/spell=<%= spell.item %>" target="_blank"><%= spell.name %></a></td>
     <td><%= spell.attr('ct') %></td>
     <td><%= spell.attr('mana') %></td>
     <td><%= spell.attr('base_heal') %></td>
