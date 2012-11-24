@@ -10,37 +10,37 @@ SPECS = [
 
 SPECS[0].bpoints_info = [
     { name: 'Renew', img: 'spell_holy_renew', nticks: 4, hfactor: 1 },
-    { name: 'Renew under Borrowed Time', img: 'spell_holy_renew', nticks: 4, hfactor: 1.15 },
+    { name: 'Renew BT', img: 'spell_holy_renew', nticks: 4, hfactor: 1.15 },
     { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, hfactor: 1 },
-    { name: 'Glyphed Renew under Borrowed Time', img: 'spell_holy_renew', nticks: 3, hfactor: 1.15 },
+    { name: 'Glyphed Renew BT', img: 'spell_holy_renew', nticks: 3, hfactor: 1.15 },
     { name: 'Holy Fire', img: 'spell_holy_searinglight', nticks: 7, hfactor: 1 },
-    { name: 'Holy Fire under Borrowed Time', img: 'spell_holy_searinglight', nticks: 7, hfactor: 1.15 },
+    { name: 'Holy Fire BT', img: 'spell_holy_searinglight', nticks: 7, hfactor: 1.15 },
 ];
 SPECS[1].bpoints_info = [
     { name: 'Renew', img: 'spell_holy_renew', nticks: 4, hfactor: 1 },
     { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, hfactor: 1 },
-    { name: 'Holy Word: Sanctuary', img: 'spell_holy_divineprovidence', nticks: 15, hfactor: 1},
+    { name: 'HW: Sanc', img: 'spell_holy_divineprovidence', nticks: 15, hfactor: 1},
 ];
 SPECS[2].bpoints_info = [
-    { name: 'Eternal Flame', img: 'inv_torch_thrown', nticks: 10, hfactor: 1 },
-    { name: 'Sacred Shield', img: 'ability_paladin_blessedmending', nticks: 5, hfactor: 1 },
+    { name: 'EF', img: 'inv_torch_thrown', nticks: 10, hfactor: 1 },
+    { name: 'SS', img: 'ability_paladin_blessedmending', nticks: 5, hfactor: 1 },
 ];
 SPECS[3].bpoints_info = [
-    { name: 'Lifebloom', img: 'inv_misc_herb_felblossom', nticks: 15 },
-    { name: 'Glyphed Lifebloom', img: 'inv_misc_herb_felblossom', nticks: 10 },
-    { name: 'Wild Growth and Swiftmend', img: 'ability_druid_flourish', nticks: 7 },
-    { name: 'Rejuvenation and Tranquility', img: 'spell_nature_rejuvenation', nticks: 4 },
+    { name: 'LB', img: 'inv_misc_herb_felblossom', nticks: 15 },
+    { name: 'Glyphed LB', img: 'inv_misc_herb_felblossom', nticks: 10 },
+    { name: 'WG/SM', img: 'ability_druid_flourish', nticks: 7 },
+    { name: 'Rej/Tranq', img: 'spell_nature_rejuvenation', nticks: 4 },
     { name: 'Regrowth', img: 'spell_nature_resistnature', nticks: 3 },
 ];
 SPECS[4].bpoints_info = [
     { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6 },
     { name: 'Healing Rain', img: 'spell_nature_giftofthewaterspirit', nticks: 5 },
     { name: 'Earthliving', img: 'spell_shaman_giftearthmother', nticks: 4 },
-    { name: 'Healing Tide Totem', img: 'ability_shaman_healingtide', nticks: 11/2 },
-    { name: 'Healing Stream Totem', img: 'inv_spear_04', nticks: 15/2 },
+    { name: 'HTT', img: 'ability_shaman_healingtide', nticks: 11/2 },
+    { name: 'HST', img: 'inv_spear_04', nticks: 15/2 },
 ];
 SPECS[5].bpoints_info = [
-    { name: 'Surging Mist and Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 },
+    { name: 'Surging Mist, Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 },
 ];
 $.each(SPECS, function(_, spec) {
    spec.breakpoints = [];
@@ -52,7 +52,27 @@ $.each(SPECS, function(_, spec) {
            spec.breakpoints.push({name: bpoint.name, img: bpoint.img, no: count, hastep: Math.round((1+(i-0.5)/bpoint.nticks)/(bpoint.hfactor || 1) * 1000)/1000 });
        }
    });
+   // Sort the breakpoints
+   var flag;
+   var n=0;
+   var l = spec.breakpoints.length;
+   do {
+       n++;
+       flag = 0;
+       for (var i=0; i < l-1; i++) {
+           val1 = spec.breakpoints[i].hastep;
+           val2 = spec.breakpoints[i+1].hastep;
+               // alert("here")
+           if (val1 > val2) {
+               flag = 1;
+               var temp = spec.breakpoints[i];
+               spec.breakpoints[i] = spec.breakpoints[i+1];
+               spec.breakpoints[i+1] = temp;
+           }
+       }
+   } while (flag == 1 && n<200);
 });
+
 
 Spec = can.Model({
     findAll : "GET /specs",
@@ -168,6 +188,7 @@ HasteBar = can.Control({
         var self = this;
         var spec = options.spec;
         self.element.html(can.view('views/haste_bar.ejs', {spec: spec}));
+        $('.haste_bar', self.element).click();
         self.update_bar();
     },
     '{Spec} updated': function() {
@@ -186,13 +207,19 @@ HasteBar = can.Control({
             bpoint.percent = Math.round(0.5*(1+bpoint.rel_rating/rating_scale * 0.9) * 100) + "%";
             bpoint.text = can.sub("You gain the {no} extra tick of {name} at {rating} rating.\nNeed {rel_rating} rating to reach that point.\n{hastep}", bpoint);
         });
-        $('.breakpoint', this.element).hide().filter(function(_) {
+         $('.breakpoint', this.element).hide().filter(function(_) {
             var rating = $(this).data('breakpoint').rel_rating;
             return((rating < rating_scale) && (rating > -rating_scale));
         }).show().css('left', function() {return($(this).data('breakpoint').percent);}).
         attr('title', function() { return($(this).data('breakpoint').text);});
         $('.haste_current').attr('title', can.sub('You have {haste_rat} rating.\nHaste factor: {hastep}', {haste_rat: haste_rat, hastep: hastep}));
+        $('table', this.element).html(can.view('views/bpoint_rows.ejs', {breakpoints: bpoints}));
     },
+    '.haste_bar click': function(bar) {
+        el = this.element;
+        $(bar).toggleClass('collapse expand');
+        $('.haste_list', el).toggle();
+    }
 });
 
 })();
