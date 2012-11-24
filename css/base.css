@@ -144,6 +144,7 @@ th {
     background-color: #3F5C5B;
     border: 1px solid #484848;
 }
+th.sort_asc, th.sort_desc { background-color: #233534; }
 img { width: 20px; height: 20px; }
 
 td { text-align: right; }
