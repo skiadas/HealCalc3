@@ -48,9 +48,6 @@ SPELLS = [
     { code: 'Mushrooms', name: 'Wild Mushrooms', specid: 4, base_ct: 4.5, base_mana: 6120, B: 2233, c: 0.207, targets: 3*7, img: 'druid_ability_wildmushroom_b' , aoe: true, instant: true, item: 102792 },
     { code: 'Tranquility', name: 'Tranquility', specid: 4, base_ct: 8, base_mana: 16260, B: 9037, c: 0.835, Btick: 1542, ctick: 0.142, nticks: 4, time_tick: 2, targets: 5, img: 'spell_nature_tranquility' , aoe: true, instant: false, item: 740 },
     //
-    // ADD TREANTS!!!
-    //
-    //
     // PALLY
     { code: 'HolyLight', name: 'Holy Light', specid: 3, base_ct: 2.5, base_mana: 7560, B: 8868.5, c: 0.785, img: 'spell_holy_holybolt' , aoe: false, instant: false, item: 635 },
     { code: 'DivineLight', name: 'Divine Light', specid: 3, base_ct: 2.5, base_mana: 21600, B: 16817.5, c: 1.49, img: 'spell_holy_surgeoflight' , aoe: false, instant: false, item: 82326 },
