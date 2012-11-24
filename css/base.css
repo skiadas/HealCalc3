@@ -119,13 +119,25 @@ div.spec div {
     overflow: auto;
 }
 
+div.spec li.collapse a {
+    background-image: url("../images/arrow-right.png");
+    background-position: 5px 3px;
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+}
+div.spec li.expand a {
+    background-image: url("../images/arrow-down.png");
+    background-position: 5px 3px;
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+}
 div.spec li a {
-    background-color: #517574;
+    padding-left: 20px;
     display: block;
     clear: both;
 }
 div.spec li a:hover {
-    background-color: #3F5C5B;
+    background-color: #537A78;
 }
 #character div.spec img {
     width: 24px;
