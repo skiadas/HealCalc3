@@ -5,7 +5,7 @@ BUFFS = [
    {id: 2, name: 'buff_mastery', val: true, img: 'images/spell_holy_greaterblessingofkings_medium.jpg', txt: '+5 to mastery' },
    {id: 3, name: 'buff_haste', val: true, img: 'spell_nature_forceofnature_medium', alt: '+5% haste' },
    {id: 4, name: 'buff_crit', val: true, img: 'spell_nature_unyeildingstamina_medium', alt: '+5% crit chance'},
-   {id: 5, name: 'buff_sp', val: false, img: 'spell_fire_totemofwrath_medium', alt: '+10% spellpower'},
+   {id: 5, name: 'buff_sp', val: true, img: 'spell_fire_totemofwrath_medium', alt: '+10% spellpower'},
    {id: 6, name: 'buff_armor', val: true, img: 'ability_warrior_sunder_medium', alt: '-12% armor'},
    {id: 7, name: 'buff_spelldam', val: false, img: 'warlock_curse_shadow_medium', alt: '+5% spell dam'}
 ];
