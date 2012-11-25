@@ -77,5 +77,6 @@ $(document).ready(function() {
             var name = "haste_bar_" + spec.name;
             new HasteBar("#"+name, {spec: spec});
         });
+        new DeltaViewer("#deltaView", {source: $("#spellTable")});
     });
 });

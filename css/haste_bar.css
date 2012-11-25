@@ -62,3 +62,24 @@
 #character div.spec .haste_list tr.after {
     background-color: #76ABA9;
 }
+
+div#deltaView {
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    width: 18%;
+}
+#deltaView table * {
+    font-size: 0.9em;
+}
+#deltaView span {
+    float: left;
+}
+#deltaView input {
+    width: 20%;
+    text-align: right;
+    background-color: #FFFCD1;
+    border: 1px solid #5C5C5C;
+    border-top: 1px solid #323232;
+    border-left: 1px solid #323232;
+}
