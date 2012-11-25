@@ -92,10 +92,16 @@ Spec = can.Model({
                  + this.attr('bcrit') +
                  (this.attr('buffs.buff_crit') ? 5 : 0))*100 )/100  );
     },
+    fcritp: function(delta) {
+        return(0.01*this.fcrit(delta));
+    },
     fmast: function(delta) {
         return (Math.round((((1* this.attr('stats.bmast') +((delta && delta.mast) || 0) +
                             (this.attr('buffs.buff_mastery') ? 3000 : 0) )/600 +8)  *
                     this.mastery_factor) * 100) /100);
+    },
+    fmastp: function(delta) {
+        return(0.01*this.fmast(delta));
     },
     fhaste_mul: function() {
         return((this.attr('buffs.buff_haste') ? 1.05 : 1));
@@ -105,23 +111,26 @@ Spec = can.Model({
                             (this.fhaste_mul())) -1) * 100 * 100
                 )/ 100);
     },
+    fhastep: function(delta) {
+        return(0.01*this.fhaste(delta));
+    },
     fsp: function(delta) {
         return (Math.round(((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
                             ((delta && delta.sp) || 0))) * 
                             (this.attr('buffs.buff_sp') ? 1.05 : 1)));
     },
-    fmast_heal_factor: function() {
-        return(1+this.mastp);  // Specs need to override this
+    fmast_heal_factor: function(delta) {
+        return(1+0.01*this.fmast(delta));  // Specs need to override this
     },
     val_update: function() {
         this.attr('int', this.fint());
         this.attr('crit', this.fcrit());
-        this.attr('critp', 0.01*this.fcrit());
+        this.attr('critp', this.fcritp());
         this.attr('mast', this.fmast());
-        this.attr('mastp', 0.01*this.mast);
+        this.attr('mastp', this.fmastp());
         this.attr('mast_heal_factor', this.fmast_heal_factor());
         this.attr('haste', this.fhaste());
-        this.attr('hastep', 0.01*this.haste);
+        this.attr('hastep', this.fhastep());
         this.attr('sp', this.fsp()).save();
     }
 });
