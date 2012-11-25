@@ -7,11 +7,12 @@ $(document).ready(function() {
         // Need to add here the details for the specs. Lots of extra attributes to each.
         // DISC
         specs[0].mastery_factor = 2.5;
-        specs[0].fsp = function() {
-            return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon')) * 
-                                (this.attr('buffs.buff_sp') ? 1.05 : 1)) *
-                                (this.attr('inner_fire') ? 1.1 : 1)
-            ));
+        specs[0].fsp = function(delta) {
+            return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
+                                ((delta && delta.sp) || 0)) * 
+                                (this.attr('buffs.buff_sp') ? 1.05 : 1) *
+                                (this.attr('inner_fire') ? 1.1 : 1))
+            );
         };
         specs[0].attr({'inner_fire': true, 'grace': true, 'archangel': false,
             'cascade_range_disc': 25, 'poh_targets_disc': 5, 'glyph_pom_disc': true,
@@ -19,11 +20,12 @@ $(document).ready(function() {
         ).save();
         // HOLY
         specs[1].mastery_factor = 1.25;
-        specs[1].fsp = function() {
-            return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon')) * 
-                                (this.attr('buffs.buff_sp') ? 1.05 : 1)) *
-                                (this.attr('inner_fire') ? 1.1 : 1)
-            ));
+        specs[1].fsp = function(delta) {
+            return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
+                                ((delta && delta.sp) || 0)) * 
+                                (this.attr('buffs.buff_sp') ? 1.05 : 1) *
+                                (this.attr('inner_fire') ? 1.1 : 1))
+            );
         };
         specs[1].attr({'serenity': true, 'sanctuary': true, 'inner_fire': true,
             'cascade_range_holy': 25, 'poh_targets_holy': 5,
@@ -37,9 +39,10 @@ $(document).ready(function() {
         specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false }).save();
         // DRUID
         specs[3].mastery_factor = 1.25;
-        specs[3].fint = function() {
+        specs[3].fint = function(delta) {
             return (Math.round((this.attr('buffs.buff_stats') ? 1.1 : 1)*
-                                this.attr('stats.bint') * (this.attr('hotw') ? 1.06 : 1)));
+                               (this.attr('stats.bint')* 1 + ((delta && delta.sp) || 0)) *
+                               (this.attr('hotw') ? 1.06 : 1)));
         };
         specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false }).save();
         // Lifebloom option for 1 or 3 stacks
@@ -49,10 +52,9 @@ $(document).ready(function() {
             return ((this.attr('ancestral_swiftness') ? 1.05 : 1) *
                     (this.attr('buffs.buff_haste') ? 1.05 : 1));
         };
-        specs[4].fsp = function() {
-            return (Math.round((1*(this.attr('int')-10 + 1*this.attr('stats.bweapon') + 2873) * 
-                                (this.attr('buffs.buff_sp') ? 1.05 : 1)) 
-            ));
+        specs[4].fsp = function(delta) {
+            return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') + 2873) * 
+                                (this.attr('buffs.buff_sp') ? 1.05 : 1)));
         };
         specs[4].fmast_factor = function() {
             return((1+(this.attr('health_deficit')/100)*this.mastp));
