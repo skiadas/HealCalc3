@@ -134,10 +134,10 @@ return(this.fbase(delta)*(1+this.spec.fmastp(delta))*(1+this.spec.fcritp(delta))
     fheal_living_seed: function(delta) {
         return(this.fbase(delta)*(1+this.spec.fmastp(delta))*(1+1.6*this.spec.fcritp(delta)));
     },
-    fhps: function(delta) { return(this.fheal(delta)/this.ct); },
-    fhpm: function(delta) { return(this.fheal(delta)/this.mana); },
+    fhps: function(delta) { return(this.fheal(delta)/this.fct(delta)); },
+    fhpm: function(delta) { return(this.fheal(delta)/this.fmana(delta)); },
     fhpm_nomana: function(delta) { return(0); },
-    fmps: function(delta) { return(this.mana/this.ct); },
+    fmps: function(delta) { return(this.fmana(delta)/this.fct(delta)); },
     val_update: function(delta) {
         this.attr('ct', Math.round(this.fct()*100)/100);
         this.attr('mana', Math.round(this.fmana()));

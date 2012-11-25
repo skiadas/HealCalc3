@@ -53,11 +53,12 @@ $(document).ready(function() {
                     (this.attr('buffs.buff_haste') ? 1.05 : 1));
         };
         specs[4].fsp = function(delta) {
-            return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') + 2873) * 
+            return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
+                                (delta && delta.sp || 0) + 2873) * 
                                 (this.attr('buffs.buff_sp') ? 1.05 : 1)));
         };
-        specs[4].fmast_factor = function() {
-            return((1+(this.attr('health_deficit')/100)*this.mastp));
+        specs[4].fmast_factor = function(delta) {
+            return((1+(this.attr('health_deficit')/100)*this.fmastp(delta)));
         }
         specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true, 't4_2p_shaman': false }).save();
         // MONK

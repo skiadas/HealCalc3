@@ -107,9 +107,9 @@ Spec = can.Model({
         return((this.attr('buffs.buff_haste') ? 1.05 : 1));
     },
     fhaste: function(delta) {
-        return (Math.round( (((1+ (this.attr('stats.bhaste')*1 +((delta && delta.haste) || 0)) /425 / 100) *
-                            (this.fhaste_mul())) -1) * 100 * 100
-                )/ 100);
+        return ( (((1+ (this.attr('stats.bhaste')*1 +((delta && delta.haste) || 0)) /425 / 100) *
+                            (this.fhaste_mul())) -1) * 100 
+                );
     },
     fhastep: function(delta) {
         return(0.01*this.fhaste(delta));
