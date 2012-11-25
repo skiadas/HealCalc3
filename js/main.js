@@ -15,7 +15,7 @@ $(document).ready(function() {
         };
         specs[0].attr({'inner_fire': true, 'grace': true, 'archangel': false,
             'cascade_range_disc': 25, 'poh_targets_disc': 5, 'glyph_pom_disc': true,
-            'glyph_renew_disc': false, 'glyph_penance': false}
+            'glyph_renew_disc': false, 'glyph_penance': false, 't4_2p_disc': false }
         ).save();
         // HOLY
         specs[1].mastery_factor = 1.25;
@@ -27,21 +27,21 @@ $(document).ready(function() {
         };
         specs[1].attr({'serenity': true, 'sanctuary': true, 'inner_fire': true,
             'cascade_range_holy': 25, 'poh_targets_holy': 5,
-            'glyph_coh': false, 'glyph_pom_holy': true, 'glyph_renew_holy': false}
+            'glyph_coh': false, 'glyph_pom_holy': true, 'glyph_renew_holy': false, 't4_2p_holy': false }
         ).save();
         // PALLY
         specs[2].mastery_factor = 1.5;
         specs[2].fhaste_mul = function() {
             return (1.1* (this.attr('buffs.buff_haste') ? 1.05 : 1));
         }
-        specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false}).save();
+        specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false }).save();
         // DRUID
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function() {
             return (Math.round((this.attr('buffs.buff_stats') ? 1.1 : 1)*
                                 this.attr('stats.bint') * (this.attr('hotw') ? 1.06 : 1)));
         };
-        specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false}).save();
+        specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false }).save();
         // Lifebloom option for 1 or 3 stacks
         // SHAMAN
         specs[4].mastery_factor = 3;
@@ -57,11 +57,11 @@ $(document).ready(function() {
         specs[4].fmast_factor = function() {
             return((1+(this.attr('health_deficit')/100)*this.mastp));
         }
-        specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true}).save();
+        specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true, 't4_2p_shaman': false }).save();
         // MONK
         //
         specs[5].mastery_factor = 0;
-        specs[5].attr({'uplift_targets': 8, 'revival_targets': 10}).save();
+        specs[5].attr({'uplift_targets': 8, 'revival_targets': 10, 't4_2p_monk': false}).save();
         //
         $.when(new Stats('#stats', {stats: stats}),
         new Buffs('#buffs', {buffs: buffs}),

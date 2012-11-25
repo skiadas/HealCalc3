@@ -220,8 +220,11 @@ Spells = can.Control({
             sp.fheal = can.proxy(function() { var da = 0.5; return(this.fbase() * (1+this.spec.attr('critp')) * (1+da*(1+this.spec.attr('mastp'))) );}, sp);
         sp = spells.find('HealSSDisc');
             sp.fheal = sp.fheal_spirit_shell;
+        sp = spells.find('FhealDisc');
+            sp.fmana = can.proxy(function() { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_disc') ? 0.9 : 1)))}, sp);
         sp = spells.find('FhealSSDisc');
             sp.fheal = sp.fheal_spirit_shell;
+            sp.fmana = can.proxy(function() { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_disc') ? 0.9 : 1)))}, sp);
         sp = spells.find('GhealSSDisc');
             sp.fheal = sp.fheal_spirit_shell;
         sp = spells.find('PoHSSDisc');
@@ -249,6 +252,8 @@ Spells = can.Control({
             sp.fbase = sp.fbase_holy_sth;
             sp.fheal = sp.fheal_sth_holy;
         });
+        sp = spells.find('FhealHoly');
+            sp.fmana = can.proxy(function() { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_holy') ? 0.9 : 1)))}, sp);
         $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly'], function(i, spname) {
             sp = spells.find(spname);
             sp.fbase = sp.fbase_holy_aoe;
@@ -292,6 +297,7 @@ Spells = can.Control({
                 ); 
             }, sp);
         sp = spells.find('Rejuv');
+            sp.fmana = can.proxy(function() { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_druid') ? 0.9 : 1)))}, sp);
             sp.fct = can.proxy(function() {return(1);}, sp);
             sp.fnticks = can.proxy(function() {return(Math.round(1+this.nticks*(1+this.spec.hastep)));}, sp);
         sp = spells.find('Lifebloom');
@@ -343,6 +349,8 @@ Spells = can.Control({
             }, sp);
         sp = spells.find('WoG');
             sp.fhpm = sp.fhpm_nomana;
+        sp = spells.find('HolyRadiance');
+            sp.fmana = can.proxy(function() { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_pally') ? 0.9 : 1)))}, sp);
         sp = spells.find('LoD');
             sp.fhpm = sp.fhpm_nomana;
             sp.fdirect = can.proxy(function() { return((this.B+this.c*this.spec.sp) *
@@ -372,7 +380,7 @@ Spells = can.Control({
                 return(this.base_ct/(1+this.spec.hastep) * (this.spec.attr('tidal_waves') ? 0.7 : 1));
             }, sp);
         sp = spells.find('GHW');
-            sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fmana = can.proxy(function() { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_shaman') ? 0.9 : 1) - (8849*this.spec.critp*this.res_factor * (this.spec.resurgence ? 1 : 0))))}, sp);
             sp.fheal = sp.fheal_shaman_aa;
             sp.fct = can.proxy(function() {
             return(this.base_ct/(1+this.spec.hastep) * (this.spec.attr('tidal_waves') ? 0.7 : 1));
@@ -416,6 +424,8 @@ Spells = can.Control({
         // MONK Spells setup
         sp = spells.find('EnvelopingMist');
             sp.fhpm = sp.fhpm_nomana;
+        sp = spells.find('SurgingMist');
+            sp.fmana = can.proxy(function() { return(this.base_mana * (this.spec.attr('t14_2p_monk') ? 0.9 : 1))}, sp);
         sp = spells.find('Uplift');
             sp.fhpm = sp.fhpm_nomana;
         // Call View
