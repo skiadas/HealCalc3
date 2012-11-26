@@ -365,7 +365,7 @@ Spells = can.Control({
             sp.fbase = sp.fbase_pally_hp;
             sp.fdirect = can.proxy(function(delta) { return((this.B+this.c*this.spec.fsp(delta)) *
                  (this.targets - (this.spec.attr('glyph_lod') ? 2 : 0)) *
-                 (this.spec.attr('glyph_lod') ? 1 : 1.25)); }, sp);
+                 (this.spec.attr('glyph_lod') ? 1.25 : 1)); }, sp);
         sp = spells.find('LightsHammer');
             sp.fhpm = sp.fhpm_nomana;
             sp.fheal = can.proxy(function(delta) {
