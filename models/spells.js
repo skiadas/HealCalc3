@@ -93,6 +93,7 @@ Spell = can.Model({
     destroy : 'DELETE /spell/{id}'
 },{
     fct: function(delta) { return(this.base_ct/(1+this.spec.fhastep(delta))); },
+    fct_hp_pally: function(delta) {return((this.base_ct + (this.spec.cs_to_hp? 1.5 : 0) * (this.spec.one_hp ? 1 : 3) )/(1+this.spec.fhastep(delta)));},
     fmana: function(delta) { return(this.base_mana); },
     fmana_instant_priest: function(delta) { return(this.base_mana * (this.spec.inner_fire ? 1 : 0.85)) },
     fmana_shaman_resurgence: function(delta) {
@@ -354,12 +355,14 @@ Spells = can.Control({
                         (this.spec.attr('daybreak') ? 2 : 1)); 
             }, sp);
         sp = spells.find('WoG');
+            sp.fct = sp.fct_hp_pally;
             sp.fmana = sp.fmana_hp_pally;
             sp.fhpm = sp.fhpm_hp_pally_nomana;
             sp.fbase = sp.fbase_pally_hp
         sp = spells.find('HolyRadiance');
             sp.fmana = can.proxy(function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_pally') ? 0.9 : 1)))}, sp);
         sp = spells.find('LoD');
+            sp.fct = sp.fct_hp_pally;
             sp.fmana = sp.fmana_hp_pally;
             sp.fhpm = sp.fhpm_hp_pally_nomana;
             sp.fbase = sp.fbase_pally_hp;
@@ -374,6 +377,7 @@ Spells = can.Control({
         sp = spells.find('Execution');
             sp.fhpm = sp.fhpm_nomana;
         sp = spells.find('EternalFlame');
+            sp.fct = sp.fct_hp_pally;
             sp.fmana = sp.fmana_hp_pally;
             sp.fhpm = sp.fhpm_hp_pally_nomana;
             sp.fbase = can.proxy(function(delta) {return((this.fhot(delta) + this.fdirect(delta)) *
