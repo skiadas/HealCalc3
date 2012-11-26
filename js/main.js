@@ -36,7 +36,7 @@ $(document).ready(function() {
         specs[2].fhaste_mul = function() {
             return (1.1* (this.attr('buffs.buff_haste') ? 1.05 : 1));
         }
-        specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false }).save();
+        specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false , 'cs_to_hp': false, 'one_hp': false}).save();
         // DRUID
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function(delta) {
