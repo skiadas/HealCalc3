@@ -71,7 +71,7 @@ $(document).ready(function() {
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs}), 
         new Spells('#spells', {spells: spells, specs: specs})).then(function() {
             new Sorter('#spellTable', {spells: spells});
-            new Filtering('#filters', {table: $('#spellTable'), view: 'views/filtering.ejs'});
+            new Filtering('#filters', {table: $('#spellTable'), specs: $('#specs'), view: 'views/filtering.ejs'});
         });
         specs.each(function(spec) {
             var name = "haste_bar_" + spec.name;

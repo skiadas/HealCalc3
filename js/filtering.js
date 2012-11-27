@@ -3,6 +3,7 @@ Filtering = can.Control({
     init: function(element, options) {
         var self = this;
         self.options.table = options.table;
+        self.options.specs = options.specs;
         self.options.fullmask = (1 << 10) -1;
         self.options.mask = self.options.fullmask;
         var view = options.view;
@@ -31,6 +32,11 @@ Filtering = can.Control({
         $('tr.spell', tbl).each(function(i, el) {
             var m = $(el).data('spell').mask & mask;
             if (m == 0) { $(el).show(); } else { $(el).hide(); };
+        });
+        var specs = this.options.specs;
+        $('div.spec', specs).each(function(i, el) {
+            var specmask = 1 << $(el).data('spec').id >> 1;
+            if ((specmask & mask) ==0) { $(el).show(); } else { $(el).hide(); }
         });
     },
     'a click': function(el,ev) {
