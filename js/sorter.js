@@ -50,6 +50,7 @@ Sorter = can.Control({
             this.options.sort.col = el;
             this.options.sort.col.toggleClass(cname);
         }
+        can.route.attr({sort: this.options.sort.attr, dir: this.options.sort.dir});
         this.sort();
     },
     '{Spell} ready': function(ev, a, spell) {

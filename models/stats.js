@@ -30,7 +30,7 @@ Stats = can.Control({
         var attr = el.attr('id');
         var val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
         el.closest('div').data('stat').attr(attr, val).save();
+        can.route.attr(attr, val);
     },
-    
 })
 })();

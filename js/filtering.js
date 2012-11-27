@@ -29,6 +29,7 @@ Filtering = can.Control({
         };
         var tbl = this.options.table;
         var mask = ~this.options.mask & this.options.fullmask;
+        can.route.attr('filter', mask);
         $('tr.spell', tbl).each(function(i, el) {
             var m = $(el).data('spell').mask & mask;
             if (m == 0) { $(el).show(); } else { $(el).hide(); };

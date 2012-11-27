@@ -39,6 +39,7 @@ Buffs = can.Control({
         var buffs = el.closest('div').data('buffs');
         var attr = el.attr('id');
         buffs.attr(attr, buffs.attr(attr) ? false : true).save();
+        can.route.attr(attr, buffs.attr(attr));
     },
 })
 })();
