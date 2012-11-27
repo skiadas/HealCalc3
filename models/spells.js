@@ -118,7 +118,10 @@ Spell = can.Model({
     fbase_shaman: function(delta) { return((this.nticks ? this.fhot(delta) : this.fdirect(delta)) * 1.25); },
     fheal: function(delta) {
         // The average heal amount, including crits and mastery.
-        return(this.fbase(delta)*(1+this.spec.fcritp(delta))*(1+this.spec.fmastp(delta)));
+        return(this.fbase(delta)*(1+this.spec.fcritp(delta))*(1+ this.spec.fmastp(delta)));
+    },
+    fheal_pally: function(delta) {
+        return(this.fbase(delta)*(1+this.spec.fcritp(delta))*(1+ (this.spec.bol ? 0.5 : 0) + this.spec.fmastp(delta)));
     },
     fheal_shaman: function(delta) {
         return(this.fbase(delta)*(1+this.spec.fcritp(delta))*this.spec.fmast_factor(delta));
@@ -204,6 +207,7 @@ Spells = can.Control({
             } else if (sp.specid == 3) {
                 // General Pally spell setup
                 sp.fbase = sp.fbase_pally;
+                sp.fheal = sp.fheal_pally;
             } else if (sp.specid == 5) {
                 // General Shaman spell setup
                 sp.fheal = sp.fheal_shaman;
@@ -348,10 +352,15 @@ Spells = can.Control({
             sp.fhpm = sp.fhpm_nomana;
         //END DRUID Spells setup
         // PALLY Spells setup
+        sp = spells.find('HolyLight');
+            sp.fheal = can.proxy(function(delta) {
+                return(this.fbase(delta)*(1+this.spec.fcritp(delta))*
+                    (1+ (this.spec.bol ? 1 : 0) + this.spec.fmastp(delta)));
+            }, sp);
         sp = spells.find('HolyShock');
             sp.fheal = can.proxy(function(delta) { 
                 var crit = 0.25 + this.spec.fcritp(delta);
-                return((1+this.spec.fmastp(delta))*this.fbase(delta)*(1+crit) *
+                return((1+ (this.spec.bol ? 0.5 : 0) + this.spec.fmastp(delta))*this.fbase(delta)*(1+crit) *
                         (this.spec.attr('daybreak') ? 2 : 1)); 
             }, sp);
         sp = spells.find('WoG');
@@ -361,6 +370,10 @@ Spells = can.Control({
             sp.fbase = sp.fbase_pally_hp
         sp = spells.find('HolyRadiance');
             sp.fmana = can.proxy(function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_pally') ? 0.9 : 1)))}, sp);
+            sp.fheal = can.proxy(function(delta) {
+                return(this.fbase(delta)*(1+this.spec.fcritp(delta))*
+                        (1+ (this.spec.bol ? 0.15 : 0) + this.spec.fmastp(delta)));
+            }, sp);
         sp = spells.find('LoD');
             sp.fct = sp.fct_hp_pally;
             sp.fmana = sp.fmana_hp_pally;
@@ -369,10 +382,14 @@ Spells = can.Control({
             sp.fdirect = can.proxy(function(delta) { return((this.B+this.c*this.spec.fsp(delta)) *
                  (this.targets - (this.spec.attr('glyph_lod') ? 2 : 0)) *
                  (this.spec.attr('glyph_lod') ? 1.25 : 1)); }, sp);
+            sp.fheal = can.proxy(function(delta) {
+                 return(this.fbase(delta)*(1+this.spec.fcritp(delta))*
+                        (1+ (this.spec.bol ? 0.15 : 0) + this.spec.fmastp(delta)));
+            }, sp);
         sp = spells.find('LightsHammer');
             sp.fhpm = sp.fhpm_nomana;
             sp.fheal = can.proxy(function(delta) {
-                return(this.fbase(delta)*(1+this.spec.fcritp(delta)));
+                return(this.fbase(delta)*(1+this.spec.fcritp(delta)) * (1+ (this.spec.bol ? 0.15 : 0)));
             }, sp);
         sp = spells.find('Execution');
             sp.fhpm = sp.fhpm_nomana;
@@ -385,6 +402,16 @@ Spells = can.Control({
         sp = spells.find('SacredShield');
             sp.fhpm = sp.fhpm_nomana;
             sp.fbase = sp.fhot;
+        sp = spells.find('HolyPrism');
+            sp.fheal = can.proxy(function(delta) {
+                return(this.fbase(delta)*(1+this.spec.fcritp(delta))*
+                    (1+ (this.spec.bol ? 0.15 : 0) + this.spec.fmastp(delta)));
+            }, sp);
+        sp = spells.find('HolyPrismAoE');
+            sp.fheal = can.proxy(function(delta) {
+                return(this.fbase(delta)*(1+this.spec.fcritp(delta))*
+                    (1+ (this.spec.bol ? 0.15 : 0) + this.spec.fmastp(delta)));
+            }, sp);
         // END PALLY Spells setup
         //
         // SHAMAN Spells setup
