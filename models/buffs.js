@@ -38,8 +38,23 @@ Buffs = can.Control({
     'img click': function(el, ev) {
         var buffs = el.closest('div').data('buffs');
         var attr = el.attr('id');
-        buffs.attr(attr, buffs.attr(attr) ? false : true).save();
-        can.route.attr(attr, buffs.attr(attr));
+        console.log("updating route")
+        can.route.attr(attr, !buffs.attr(attr));
     },
+    '{this.name} route': function(route) {
+        var buffs = $('div',this.element).data('buffs');
+        console.log("updating from route")
+        $('img', this.element).each(function(_, img) {
+            var buff = $(img).attr('id');
+            var buffVal = can.route.attr(buff);
+            if (typeof buffVal != 'undefined') {
+                if (buffVal == "false") { buffVal = false; }
+                if (buffVal != buffs.attr(buff)) {
+                    console.log("here", buff, buffVal);
+                    buffs.attr(buff, buffVal).save();
+                }
+            }
+        });
+    }
 })
 })();
