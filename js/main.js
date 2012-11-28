@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $.when(Buff.findAll({}), Stat.findAll({}), Spell.findAll({}), Spec.findAll({})).then(function(buffsResp, statsResp, spellsResp, specsResp) {
-        var buffs = buffsResp[0];
-        var stats = statsResp[0];
-        var spells = spellsResp[0];
-        var specs = specsResp[0];
+        var buffs = buffsResp;
+        var stats = statsResp;
+        var spells = spellsResp;
+        var specs = specsResp;
         // Need to add here the details for the specs. Lots of extra attributes to each.
         // DISC
         specs[0].mastery_factor = 2.5;
@@ -41,7 +41,7 @@ $(document).ready(function() {
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function(delta) {
             return (Math.round((this.attr('buffs.buff_stats') ? 1.1 : 1)*
-                               ((this.attr('stats.bint') + ((delta && delta.int) || 0)))* 1 *
+                               (1*(this.attr('stats.bint') + ((delta && delta.int) || 0)))* 1 *
                                (this.attr('hotw') ? 1.06 : 1)));
         };
         specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false }).save();
