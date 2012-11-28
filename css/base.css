@@ -163,7 +163,7 @@ th {
     border: 1px solid #484848;
 }
 th.sort_asc, th.sort_desc { background-color: #233534; }
-img { width: 20px; height: 20px; }
+img, #character #buffs img { width: 20px; height: 20px; }
 tr.spell_Disc { background-color: #D5CDA8; }
 tr.spell_Holy { background-color: #C3BC9A; }
 tr.spell_Pally { background-color: #D5ADBA; }
