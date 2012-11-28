@@ -137,10 +137,12 @@ Spec = can.Model({
 
 Spec.List = can.Model.List({
     val_update: function() {
+        can.Observe.startBatch();
         var self = this;
         self.each(function(spec) {
             spec.val_update();
         });
+        can.Observe.stopBatch();
     }
 });
 // can.fixture("/specs", "fixtures/spec.json");
