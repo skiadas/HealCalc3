@@ -29,7 +29,8 @@ Stats = can.Control({
     'input change': function(el, ev) {
         var attr = el.attr('id');
         var val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
-        el.closest('div').data('stat').attr(attr, val).save();
+        // console.log();
+        $(this.element.children('div')[0]).data('stat').attr(attr, val).save();
     },
     'a click': function(el,ev) {
         $('div', el.closest('div')).toggle();
