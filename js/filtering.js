@@ -31,19 +31,14 @@ Filtering = can.Control({
         var imask = 0;
         var filters = this.options.filters;
         $.each(FILTERS, function(i, filter) {
-            if (filters.attr(filter)) {
-                imask += (1 << i);
-            }
+            if (filters.attr(filter)) { imask += (1 << i); }
         });
         imask = ~imask & this.options.fullmask;
         $('tr.spell', this.options.table).each(function(i, el) {
-            var m = $(el).data('spell').mask & imask;
-            if (m == 0) { $(el).show(); } else { $(el).hide(); };
+            (($(el).data('spell').mask & imask) == 0) ? $(el).show() : $(el).hide();
         });
-        var specs = this.options.specs;
-        $('div.spec', specs).each(function(i, el) {
-            var specmask = 1 << $(el).data('spec').id >> 1;
-            if ((specmask & imask) ==0) { $(el).show(); } else { $(el).hide(); }
+        $('div.spec', this.options.specs).each(function(i, el) {
+            filters[$(el).data('spec').name.toLowerCase()] ? $(el).show() : $(el).hide();
         });
     },
     'a click': function(el,ev) {
