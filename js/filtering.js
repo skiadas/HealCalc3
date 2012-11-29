@@ -1,5 +1,6 @@
 (function() {
 ALLSPECS = ['disc', 'holy', 'pally', 'druid', 'shaman', 'monk'];
+FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime']);
 Filtering = can.Control({
     init: function(element, options) {
         var self = this;
@@ -27,34 +28,22 @@ Filtering = can.Control({
         }
     },
     'change': function() {
-        console.log('A change!')
-    },
-    update_table: function() {
-        var input = el.closest('input');
-        var settings = $(input).data('filter');
-        if (settings.attr == 'allspecs') {
-            // Need to enable or disable all 6 specs;
-            var newsetting = ($(input).attr('checked') || false);
-            $(input).siblings('input').slice(0,6).attr('checked', newsetting);
-            var imask = (1<< 6) -1;
-        } else {
-            var imask = 1 << settings.shift;
-        }
-        if ($(input).attr('checked')) {
-            this.options.mask = this.options.mask | imask;
-        } else {
-            this.options.mask = this.options.mask & ~imask & this.options.fullmask;
-        };
-        var tbl = this.options.table;
-        var mask = ~this.options.mask & this.options.fullmask;
-        $('tr.spell', tbl).each(function(i, el) {
-            var m = $(el).data('spell').mask & mask;
+        var imask = 0;
+        var filters = this.options.filters;
+        $.each(FILTERS, function(i, filter) {
+            if (filters.attr(filter)) {
+                imask += (1 << i);
+            }
+        });
+        imask = ~imask & this.options.fullmask;
+        $('tr.spell', this.options.table).each(function(i, el) {
+            var m = $(el).data('spell').mask & imask;
             if (m == 0) { $(el).show(); } else { $(el).hide(); };
         });
         var specs = this.options.specs;
         $('div.spec', specs).each(function(i, el) {
             var specmask = 1 << $(el).data('spec').id >> 1;
-            if ((specmask & mask) ==0) { $(el).show(); } else { $(el).hide(); }
+            if ((specmask & imask) ==0) { $(el).show(); } else { $(el).hide(); }
         });
     },
     'a click': function(el,ev) {
