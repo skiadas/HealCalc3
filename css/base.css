@@ -89,7 +89,7 @@ em { font-weight: bold; }
 	vertical-align: baseline;
 }
 #character > div h4:hover { background-color: #374F4E; }
-#character > div input[type="input"], #character > div label {
+#character > div input[type="input"], #character > div input[type="checkbox"], #character > div label {
     float: left;
     margin: 0.2em 1%;
     height: auto;
@@ -98,7 +98,7 @@ em { font-weight: bold; }
 #character > div input[type="button"] {
     float: right;
 }
-#character > div input[type="input"] {
+#character > div input[type="input"], #character > div input[type="checkbox"] {
     width: 34%;
     text-align: right;
     background-color: #FFFCD1;
