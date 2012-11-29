@@ -42,7 +42,7 @@ $(document).ready(function() {
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function(delta) {
             return (Math.round((this.attr('buffs.buff_stats') ? 1.1 : 1)*
-                               (1*(this.attr('stats.bint') + ((delta && delta.int) || 0)))* 1 *
+                               ((1*this.attr('stats.bint') + ((delta && delta.int) || 0)))* 1 *
                                (this.attr('hotw') ? 1.06 : 1)));
         };
         specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false }).save();
