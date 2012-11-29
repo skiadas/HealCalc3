@@ -198,6 +198,7 @@ Spells = can.Control({
                 }
             });
         });
+        can.Observe.startBatch();
         spells.each(function(sp) {
             sp.mask = (1 << sp.specid >> 1) | (1 << (sp.aoe ? 6 : 7)) | (1 << (sp.instant ? 8 : 9));  // Used for filtering
             if (sp.specid == 1) {
@@ -470,6 +471,7 @@ Spells = can.Control({
             sp.fmana = can.proxy(function(delta) { return(this.base_mana * (this.spec.attr('t14_2p_monk') ? 0.9 : 1))}, sp);
         sp = spells.find('Uplift');
             sp.fhpm = sp.fhpm_nomana;
+        can.Observe.stopBatch();
         // Call View
         self.element.html(can.view('views/spells.ejs', {spells: spells}));
     },

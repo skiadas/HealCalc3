@@ -6,6 +6,7 @@ $(document).ready(function() {
         var specs = specsResp;
         // Need to add here the details for the specs. Lots of extra attributes to each.
         // DISC
+        can.Observe.startBatch();
         specs[0].mastery_factor = 2.5;
         specs[0].fsp = function(delta) {
             return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
@@ -66,6 +67,7 @@ $(document).ready(function() {
         specs[5].mastery_factor = 0;
         specs[5].attr({'uplift_targets': 8, 'revival_targets': 10, 't4_2p_monk': false}).save();
         //
+        can.Observe.stopBatch();
         $.when(new Stats('#stats', {stats: stats}),
         new Buffs('#buffs', {buffs: buffs}),
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs}), 
