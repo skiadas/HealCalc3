@@ -31,6 +31,8 @@ Stats = can.Control({
         var val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
         el.closest('div').data('stat').attr(attr, val).save();
     },
-    
+    'a click': function(el,ev) {
+        $('div', el.closest('div')).toggle();
+    }
 })
 })();
