@@ -1,13 +1,13 @@
-<div>
-  <label for="filter_all_specs">All Specs</label><input <%= (el) -> can.data(el, 'filter', {attr: 'allspecs'}) %> id="filter_all_specs" type="checkbox" checked="checked" />
-  <label for="filter_disc"><img src="images/spell_holy_powerwordshield_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 0, attr: 'specid', val: 1}) %> id="filter_disc" type="checkbox" checked="checked" />
-  <label for="filter_holy"><img src="images/spell_holy_guardianspirit_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 1, attr: 'specid', val: 2}) %> id="filter_holy" type="checkbox" checked="checked" />
-  <label for="filter_pally"><img src="images/spell_holy_holybolt_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 2, attr: 'specid', val: 3}) %> id="filter_pally" type="checkbox" checked="checked" />
-  <label for="filter_druid"><img src="images/spell_nature_healingtouch_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 3, attr: 'specid', val: 4}) %> id="filter_druid" type="checkbox" checked="checked" />
-  <label for="filter_shaman"><img src="images/spell_nature_healingwavegreater_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 4, attr: 'specid', val: 5}) %> id="filter_shaman" type="checkbox" checked="checked" />
-  <label for="filter_monk"><img src="images/spell_monk_mistweaver_spec_large.jpg" /></label><input <%= (el) -> can.data(el, 'filter', {shift: 5, attr: 'specid', val: 6}) %> id="filter_monk" type="checkbox" checked="checked" />
-  <label for="filter_aoe">AoE</label><input <%= (el) -> can.data(el, 'filter', {shift: 6, attr: 'aoe', val: true}) %> id="filter_aoe" type="checkbox" checked="checked" />
-  <label for="filter_single">Single Target</label><input <%= (el) -> can.data(el, 'filter', {shift: 7, attr: 'aoe', val: false}) %> id="filter_single" type="checkbox" checked="checked" />
-  <label for="filter_instant">Instant Cast</label><input <%= (el) -> can.data(el, 'filter', {shift: 8, attr: 'instant', val: true}) %> id="filter_instant" type="checkbox" checked="checked" />
-  <label for="filter_casttime">Cast Time</label><input <%= (el) -> can.data(el, 'filter', {shift: 9, attr: 'instant', val: false}) %> id="filter_casttime" type="checkbox" checked="checked" />
+<div <%= (el) -> can.data(el, 'filters', filters) %>>
+  <label for="filter_allspecs">All Specs</label><input id="filter_allspecs" type="checkbox" <%= filters.attr('allspecs') ? 'checked="checked"' : '' %> />
+  <label for="filter_disc"><img src="images/spell_holy_powerwordshield_large.jpg" /></label><input id="filter_disc" type="checkbox" <%= filters.attr('disc') ? 'checked="checked"' : '' %> />
+  <label for="filter_holy"><img src="images/spell_holy_guardianspirit_large.jpg" /></label><input id="filter_holy" type="checkbox" <%= filters.attr('holy') ? 'checked="checked"' : '' %> />
+  <label for="filter_pally"><img src="images/spell_holy_holybolt_large.jpg" /></label><input id="filter_pally" type="checkbox" <%= filters.attr('pally') ? 'checked="checked"' : '' %> />
+  <label for="filter_druid"><img src="images/spell_nature_healingtouch_large.jpg" /></label><input id="filter_druid" type="checkbox" <%= filters.attr('druid') ? 'checked="checked"' : '' %> />
+  <label for="filter_shaman"><img src="images/spell_nature_healingwavegreater_large.jpg" /></label><input  id="filter_shaman" type="checkbox" <%= filters.attr('shaman') ? 'checked="checked"' : '' %> />
+  <label for="filter_monk"><img src="images/spell_monk_mistweaver_spec_large.jpg" /></label><input id="filter_monk" type="checkbox" <%= filters.attr('monk') ? 'checked="checked"' : '' %> />
+  <label for="filter_aoe">AoE</label><input id="filter_aoe" type="checkbox" <%= filters.attr('aoe') ? 'checked="checked"' : '' %> />
+  <label for="filter_single">Single Target</label><input id="filter_single" type="checkbox" <%= filters.attr('single') ? 'checked="checked"' : '' %> />
+  <label for="filter_instant">Instant Cast</label><input id="filter_instant" type="checkbox" <%= filters.attr('instant') ? 'checked="checked"' : '' %> />
+  <label for="filter_casttime">Cast Time</label><input id="filter_casttime" type="checkbox" <%= filters.attr('casttime') ? 'checked="checked"' : '' %> />
 </div>
