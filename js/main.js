@@ -78,5 +78,6 @@ $(document).ready(function() {
             new HasteBar("#"+name, {spec: spec});
         });
         new DeltaViewer("#deltaView", {source: $("#spellTable")});
+        new Armory("#armory");
     });
 });

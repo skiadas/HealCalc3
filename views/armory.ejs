@@ -1,0 +1,10 @@
+<div <%= (el) -> can.data(el, 'character', character) %> ><a><h4>Armory</h4></a>
+<div <%= (el) -> el.hide() %>>
+<form>
+  <label for="armory_name">Name: </label><input id="armory_name" type="input" value="<%= character.attr('armory_name') %>" />
+  <label for="realm">Realm: </label><input id="armory_realm" type="input" value="<%= character.attr('armory_realm') %>" />
+  <label for="region">Region: </label><input id="armory_region" type="input" value="<%= character.attr('armory_region') %>" />
+  <input type="button" value="OK" />
+</form>
+</div>
+</div>
