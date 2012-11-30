@@ -16,6 +16,7 @@ Filtering = can.Control({
         self.options.fullmask = (1 << 10) -1;
         // self.options.mask = self.options.fullmask;
         // var view = options.view;
+        self.element.data('filters', self.options.filters);
         self.element.append(can.view(options.view, self.options));
     },
     'input click': function(el, ev) {
@@ -26,6 +27,15 @@ Filtering = can.Control({
         if (attr == 'allspecs') {
             $.each(ALLSPECS, function(_, sp) {filters.attr(sp, onoff)});
         }
+    },
+    setSpec: function(spec) {
+        console.log('setSpec: ', spec);
+        var filters = this.options.filters;
+        filters.attr('allspecs', false);
+        $.each(ALLSPECS, function(_, sp) {
+            filters.attr(sp, sp == spec);
+        });
+        $(['#filter', spec].join('_')).click();
     },
     'change': function() {
         var imask = 0;

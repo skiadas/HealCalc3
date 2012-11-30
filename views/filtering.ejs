@@ -1,4 +1,4 @@
-<div <%= (el) -> can.data(el, 'filters', filters) %>>
+<div>
   <label for="filter_allspecs">All Specs</label><input id="filter_allspecs" type="checkbox" <%= filters.attr('allspecs') ? 'checked="checked"' : '' %> />
   <label for="filter_disc"><img src="images/spell_holy_powerwordshield_large.jpg" /></label><input id="filter_disc" type="checkbox" <%= filters.attr('disc') ? 'checked="checked"' : '' %> />
   <label for="filter_holy"><img src="images/spell_holy_guardianspirit_large.jpg" /></label><input id="filter_holy" type="checkbox" <%= filters.attr('holy') ? 'checked="checked"' : '' %> />

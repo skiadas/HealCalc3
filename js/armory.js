@@ -35,7 +35,7 @@
                 console.log($('div', $('#stats')).data('stat'));
                 $('div', $('#stats')).data('stat').attr(armory_stats).save();
                 // Change filter to the appropriate spec
-                var all = $('#filters').data('filter').setSpec(spec);
+                var all = $('#filters').data('controls')[0].setSpec(spec);
             });
         }
     });
