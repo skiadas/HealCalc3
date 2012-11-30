@@ -12,13 +12,11 @@
             this.options.character.attr($(el).attr('id'), $(el).attr('value'));
         },
         'input[type="button"] click': function(el, ev) {
-            console.log("Fetching:", this.options.character);
             this.readArmory();
         },
         readArmory: function() {
             var character = this.options.character;
             var call = can.sub('cgi-bin/armory.cgi?region={armory_region}&server={armory_realm}&character={armory_name}', character);
-            console.log("Calling:", call);
             $.getJSON(call, function(json, a, b) { 
                 var spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 1: "monk"}[json['class']];
                 // Strictly speaking we should look to see if it is really holy
@@ -31,8 +29,6 @@
                     bhaste: json.stats.hasteRating,
                     bweapon: json.stats.spellPower - json.stats.int + 10
                 };
-                console.log("Returned: ", spec, armory_stats);
-                console.log($('div', $('#stats')).data('stat'));
                 $('div', $('#stats')).data('stat').attr(armory_stats).save();
                 // Change filter to the appropriate spec
                 var all = $('#filters').data('controls')[0].setSpec(spec);

@@ -5,8 +5,6 @@ Filtering = can.Control({
     init: function(element, options) {
         var self = this;
         self.options = options;
-        // self.options.table = options.table;
-        // self.options.specs = options.specs;
         self.options.filters = new can.Observe({
             allspecs: true,
             disc: true, holy: true, pally: true, druid: true,
@@ -14,8 +12,6 @@ Filtering = can.Control({
             instant: true, casttime: true
         });
         self.options.fullmask = (1 << 10) -1;
-        // self.options.mask = self.options.fullmask;
-        // var view = options.view;
         self.element.data('filters', self.options.filters);
         self.element.append(can.view(options.view, self.options));
     },
@@ -29,7 +25,6 @@ Filtering = can.Control({
         }
     },
     setSpec: function(spec) {
-        console.log('setSpec: ', spec);
         var filters = this.options.filters;
         filters.attr('allspecs', false);
         $.each(ALLSPECS, function(_, sp) {
