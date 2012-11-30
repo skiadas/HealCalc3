@@ -127,8 +127,9 @@ Spell = can.Model({
         return(this.fbase(delta)*(1+this.spec.fcritp(delta))*this.spec.fmast_factor(delta));
     },
     fheal_shaman_aa: function(delta, crit) {
-        return(this.fbase(delta)*(1+this.spec.fmast_factor(delta)) *
-            (1+(crit || this.spec.fcritp(delta))+0.6*(crit || this.spec.fcritp(delta))*this.spec.fmast_factor(delta))
+        // console.log(crit, 1+this.spec.fmast_factor(delta))
+        return(this.fbase(delta)*this.spec.fmast_factor(delta) *
+            (1+1*(crit || this.spec.fcritp(delta))+0.6*(crit || this.spec.fcritp(delta)*this.spec.fmast_factor(delta)))
     );},
     fheal_disc: function(delta) {
         var da = 0.5;
