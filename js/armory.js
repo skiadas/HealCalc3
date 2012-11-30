@@ -22,7 +22,7 @@
                 // Strictly speaking we should look to see if it is really holy
                 // For now, holy priests will need to manually adjust
                 var armory_stats = {
-                    bint: Math.round(json.stats.int * (spec == "disc"? 1/1.05 : 1)),
+                    bint: Math.round(json.stats.int/1.05),
                     bspi: json.stats.spr,
                     bmast: json.stats.masteryRating,
                     bcrit: json.stats.critRating,

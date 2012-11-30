@@ -84,7 +84,7 @@ Spec = can.Model({
 },{
     mastery_factor: 2.5,
     fint: function(delta) { 
-        return (Math.round((this.attr('buffs.stats') ? 1.05 : 1)*
+        return (Math.round( 1.05 * (this.attr('buffs.stats') ? 1.05 : 1)*
                             (this.attr('stats.bint')*1 + ((delta && delta.int) || 0) +
                              (this.attr('buffs.intfood') ? 275 : 0) +
                              (this.attr('buffs.intflask') ? 1000 : 0) )));

@@ -40,7 +40,7 @@ $(document).ready(function() {
         // DRUID
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function(delta) {
-            return (Math.round((this.attr('buffs.stats') ? 1.1 : 1)*
+            return (Math.round(1.05*(this.attr('buffs.stats') ? 1.1 : 1)*
                                (1*this.attr('stats.bint') + ((delta && delta.int) || 0) +
                                (this.attr('buffs.intfood') ? 275 : 0) +
                                (this.attr('buffs.intflask') ? 1000 : 0)) *
