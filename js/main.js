@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    $.when(Buff.findAll({}), Stat.findAll({}), Spell.findAll({}), Spec.findAll({})).then(function(buffsResp, statsResp, spellsResp, specsResp) {
-        var buffs = buffsResp;
+    $.when(Stat.findAll({}), Spell.findAll({}), Spec.findAll({})).then(function(statsResp, spellsResp, specsResp) {
         var stats = statsResp;
         var spells = spellsResp;
         var specs = specsResp;
@@ -11,7 +10,7 @@ $(document).ready(function() {
         specs[0].fsp = function(delta) {
             return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
                                 ((delta && delta.sp) || 0)) * 
-                                (this.attr('buffs.buff_sp') ? 1.05 : 1) *
+                                (this.attr('buffs.sp') ? 1.05 : 1) *
                                 (this.attr('inner_fire') ? 1.1 : 1))
             );
         };
@@ -24,7 +23,7 @@ $(document).ready(function() {
         specs[1].fsp = function(delta) {
             return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
                                 ((delta && delta.sp) || 0)) * 
-                                (this.attr('buffs.buff_sp') ? 1.05 : 1) *
+                                (this.attr('buffs.sp') ? 1.05 : 1) *
                                 (this.attr('inner_fire') ? 1.1 : 1))
             );
         };
@@ -35,14 +34,16 @@ $(document).ready(function() {
         // PALLY
         specs[2].mastery_factor = 1.5;
         specs[2].fhaste_mul = function() {
-            return (1.1* (this.attr('buffs.buff_haste') ? 1.05 : 1));
+            return (1.1* (this.attr('buffs.haste') ? 1.05 : 1));
         }
         specs[2].attr({'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false , 'cs_to_hp': false, 'one_hp': false}).save();
         // DRUID
         specs[3].mastery_factor = 1.25;
         specs[3].fint = function(delta) {
-            return (Math.round((this.attr('buffs.buff_stats') ? 1.1 : 1)*
-                               ((1*this.attr('stats.bint') + ((delta && delta.int) || 0)))* 1 *
+            return (Math.round((this.attr('buffs.stats') ? 1.1 : 1)*
+                               (1*this.attr('stats.bint') + ((delta && delta.int) || 0) +
+                               (this.attr('buffs.intfood') ? 275 : 0) +
+                               (this.attr('buffs.intflask') ? 1000 : 0)) *
                                (this.attr('hotw') ? 1.06 : 1)));
         };
         specs[3].attr({'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false }).save();
@@ -51,12 +52,12 @@ $(document).ready(function() {
         specs[4].mastery_factor = 3;
         specs[4].fhaste_mul = function() {
             return ((this.attr('ancestral_swiftness') ? 1.05 : 1) *
-                    (this.attr('buffs.buff_haste') ? 1.05 : 1));
+                    (this.attr('buffs.haste') ? 1.05 : 1));
         };
         specs[4].fsp = function(delta) {
             return (Math.round((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
                                 (delta && delta.sp || 0) + 2873) * 
-                                (this.attr('buffs.buff_sp') ? 1.05 : 1)));
+                                (this.attr('buffs.sp') ? 1.05 : 1)));
         };
         specs[4].fmast_factor = function(delta) {
             return((1+(this.attr('health_deficit')/100)*this.fmastp(delta)));

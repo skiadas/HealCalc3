@@ -84,28 +84,30 @@ Spec = can.Model({
 },{
     mastery_factor: 2.5,
     fint: function(delta) { 
-        return (Math.round((this.attr('buffs.buff_stats') ? 1.05 : 1)*
-                            (this.attr('stats.bint')*1 + ((delta && delta.int) || 0))));
+        return (Math.round((this.attr('buffs.stats') ? 1.05 : 1)*
+                            (this.attr('stats.bint')*1 + ((delta && delta.int) || 0) +
+                             (this.attr('buffs.intfood') ? 275 : 0) +
+                             (this.attr('buffs.intflask') ? 1000 : 0) )));
     },
     fcrit: function(delta) {
         return (Math.round((((this.attr('stats.bcrit')*1 + ((delta && delta.crit) || 0)) /600 +
                  this.fint(delta) * 0.0003951) +
                  + this.attr('bcrit') +
-                 (this.attr('buffs.buff_crit') ? 5 : 0))*100 )/100  );
+                 (this.attr('buffs.crit') ? 5 : 0))*100 )/100  );
     },
     fcritp: function(delta) {
         return(0.01*this.fcrit(delta));
     },
     fmast: function(delta) {
         return (Math.round((((1* this.attr('stats.bmast') +((delta && delta.mast) || 0) +
-                            (this.attr('buffs.buff_mastery') ? 3000 : 0) )/600 +8)  *
+                            (this.attr('buffs.mastery') ? 3000 : 0) )/600 +8)  *
                     this.mastery_factor) * 100) /100);
     },
     fmastp: function(delta) {
         return(0.01*this.fmast(delta));
     },
     fhaste_mul: function() {
-        return((this.attr('buffs.buff_haste') ? 1.05 : 1));
+        return((this.attr('buffs.haste') ? 1.05 : 1));
     },
     fhaste: function(delta) {
         return ( (((1+ (this.attr('stats.bhaste')*1 +((delta && delta.haste) || 0)) /425 / 100) *
@@ -118,7 +120,7 @@ Spec = can.Model({
     fsp: function(delta) {
         return (Math.round(((1*this.fint(delta)-10 + 1*this.attr('stats.bweapon') +
                             ((delta && delta.sp) || 0))) * 
-                            (this.attr('buffs.buff_sp') ? 1.05 : 1)));
+                            (this.attr('buffs.sp') ? 1.05 : 1)));
     },
     fmast_heal_factor: function(delta) {
         return(1+0.01*this.fmast(delta));  // Specs need to override this
@@ -160,7 +162,7 @@ Specs = can.Control({
     init: function(element, options) {
         var self = this;
         var specs = options.specs;
-        var buffs = options.buffs[0];
+        var buffs = options.buffs;
         var stats = options.stats[0];
         specs.each(function(spec) {
             spec.attr('buffs', buffs);
@@ -190,7 +192,7 @@ Specs = can.Control({
         el.closest('li').next('div').toggle();
     },
     // '{Spec} updated': function() { this.options.specs.val_update(); },
-    '{Buff} updated': function() { this.options.specs.val_update(); },
+    '{buffs} change': function() { this.options.specs.val_update(); },
     '{Stat} updated': function() { this.options.specs.val_update(); }
 });
 
