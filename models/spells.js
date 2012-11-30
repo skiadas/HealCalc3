@@ -31,7 +31,7 @@ SPELLS = [
     { code: 'CascadeHoly', name: 'Cascade', specid: 2, base_ct: 1.5, base_mana: 27000, targets: 10, B: 10108, c: 0.975, img: 'ability_priest_cascade' , aoe: true, instant: true, item: 120785 },
     { code: 'CoHHoly', name: 'Circle of Healing', specid: 2, base_ct: 1.5, base_mana: 9600, targets: 5, B: 4840.5, c: 0.467, img: 'spell_holy_circleofrenewal', aoe: true, instant: true, item: 34861 },
     { code: 'DHHoly', name: 'Divine Hymn', specid: 2, base_ct: 8, base_mana: 18900, targets: 5*(4+ 0.1*3), B: 7987, c: 1.542, img: 'spell_holy_circleofrenewal', aoe: true, instant: false, item: 64843 },
-    { code: 'LWCastHoly', name: 'Lightwell Cast', specid: 2, base_ct: 1.5, base_mana: 16200, targets: 15*3, B: 5735, c: 0.553, img: 'spell_holy_summonlightwell', aoe: true, instant: true, item: 724 },
+    { code: 'LWCastHoly', name: 'Lightwell Cast', specid: 2, base_ct: 1.5, base_mana: 16200, targets: 15, Btick: 5735, ctick: 0.553, nticks: 3, time_tick: 2, img: 'spell_holy_summonlightwell', aoe: true, instant: true, item: 724 },
     // { code: 'LWHealHoly', name: 'Lightwell Heal', specid: 2, base_ct: 1.5, base_mana: 16200, targets: 3, B: 5735, c: 0.553, img: 'spell_holy_summonlightwell', aoe: false, instant: true, item: 2050 },
     { code: 'HWSerenityHoly', name: 'Holy Word: Serenity', specid: 2, base_ct: 1.5, base_mana: 6000, targets: 1, B: 13442, c: 1.3, img: 'spell_holy_persuitofjustice', aoe: false, instant: true, item: 88684 },
     { code: 'HWSanctuaryHoly', name: 'Holy Word: Sanctuary', specid: 2, base_ct: 1.5, base_mana: 18900, targets: 6, Btick: 504, ctick: 0.583, nticks: 15, time_tick: 2, img: 'spell_holy_divineprovidence', aoe: true, instant: true, item: 88686 },
@@ -289,6 +289,10 @@ Spells = can.Control({
         sp = spells.find('LWCastHoly');
             sp.fmana = sp.fmana_instant_priest;
             sp.fheal = sp.fbase;
+            sp.fhot = can.proxy(function(delta) {   
+                return((this.Btick+this.ctick*this.spec.fsp(delta)) * 
+                        this.spec.lw_charges * this.fnticks(delta) ); 
+            }, sp);
         // sp = spells.find('LWHealHoly');
         //     sp.fheal = sp.fbase;
         //     sp.fmana = function() {return NaN};

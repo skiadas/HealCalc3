@@ -29,7 +29,7 @@ $(document).ready(function() {
             );
         };
         specs[1].attr({'serenity': true, 'sanctuary': true, 'inner_fire': true,
-            'cascade_range_holy': 25, 'poh_targets_holy': 5,
+            'cascade_range_holy': 25, 'poh_targets_holy': 5, 'lw_charges': 15,
             'glyph_coh': false, 'glyph_pom_holy': true, 'glyph_renew_holy': false, 't4_2p_holy': false }
         ).save();
         // PALLY

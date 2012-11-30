@@ -19,7 +19,8 @@ SPECS[0].bpoints_info = [
 SPECS[1].bpoints_info = [
     { name: 'Renew', img: 'spell_holy_renew', nticks: 4, hfactor: 1 },
     { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, hfactor: 1 },
-    { name: 'HW: Sanc', img: 'spell_holy_divineprovidence', nticks: 15, hfactor: 1},
+    { name: 'HW:Sanc', img: 'spell_holy_divineprovidence', nticks: 15, hfactor: 1},
+    { name: 'LW/LS', img: 'spell_holy_summonlightwell', nticks: 3, hfactor: 1},
 ];
 SPECS[2].bpoints_info = [
     { name: 'EF', img: 'inv_torch_thrown', nticks: 10, hfactor: 1 },
