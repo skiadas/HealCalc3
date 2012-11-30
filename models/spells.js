@@ -255,7 +255,7 @@ Spells = can.Control({
             sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-5*0.06))}, sp)
         sp = spells.find('PenanceDisc');
             sp.fbase = can.proxy(function(delta) {
-                return(this.fdirect(delta) * (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+5*0.04) * 1.2); 
+                return(this.fdirect(delta) * (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+5*0.04)); 
             }, sp);
             sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-5*0.06))}, sp)
         // END DISC Spells setup
