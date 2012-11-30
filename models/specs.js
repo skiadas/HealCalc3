@@ -46,7 +46,7 @@ $.each(SPECS, function(_, spec) {
    spec.breakpoints = [];
    $.each(spec.bpoints_info, function(_, bpoint) {
        var max_haste_p = 0.5;
-       var max_new_points = Math.ceil(bpoint.nticks*max_haste_p-0.5);
+       var max_new_points = Math.ceil(bpoint.nticks*max_haste_p+0.5);
        for (i=1; i<max_new_points; i++) {
            var count = [i, ['st','nd','rd','th','th','th'][i-1]].join('');
            spec.breakpoints.push({name: bpoint.name, img: bpoint.img, no: count, hastep: (1+(i-0.5)/bpoint.nticks)/(bpoint.hfactor || 1) });
