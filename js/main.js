@@ -14,7 +14,7 @@ $(document).ready(function() {
                                 (this.attr('inner_fire') ? 1.1 : 1))
             );
         };
-        specs[0].attr({'inner_fire': true, 'grace': true, 'archangel': false,
+        specs[0].attr({'inner_fire': true, 'grace': true, 'evang_stacks': 5, 'archangel': false,
             'cascade_range_disc': 25, 'poh_targets_disc': 5, 'glyph_pom_disc': true,
             'glyph_renew_disc': false, 'glyph_penance': false, 't4_2p_disc': false }
         ).save();

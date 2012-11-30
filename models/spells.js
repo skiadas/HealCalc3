@@ -245,19 +245,19 @@ Spells = can.Control({
         sp = spells.find('HolyFireDisc');
             sp.fbase = can.proxy(function(delta) {
                 return((this.fhot(delta) + this.fdirect(delta)) *
-                    (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+5*0.04)); 
+                    (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+this.spec.evang_stacks*0.04)); 
             }, sp);
-            sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-5*0.06))}, sp)
+            sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-this.spec.evang_stacks*0.06))}, sp)
         sp = spells.find('SmiteDisc');
             sp.fbase = can.proxy(function(delta) {
-            return(this.fdirect(delta) * (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+5*0.04) * 1.2); 
+            return(this.fdirect(delta) * (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+this.spec.evang_stacks*0.04) * 1.2); 
         }, sp);
-            sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-5*0.06))}, sp)
+            sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-this.spec.evang_stacks*0.06))}, sp)
         sp = spells.find('PenanceDisc');
             sp.fbase = can.proxy(function(delta) {
-                return(this.fdirect(delta) * (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+5*0.04)); 
+                return(this.fdirect(delta) * (this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1) * (1+this.spec.evang_stacks*0.04)); 
             }, sp);
-            sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-5*0.06))}, sp)
+            sp.fmana = can.proxy(function(delta) { return(this.base_mana * (1-this.spec.evang_stacks*0.06))}, sp)
         // END DISC Spells setup
         // HOLY Spells setup
         $.each(['HealHoly', 'FhealHoly', 'GhealHoly', 'BhealHoly'], function(i, spname) {
