@@ -68,6 +68,8 @@ div#deltaView {
     right: 10px;
     top: 50%;
     width: 18%;
+    background-color: #618C8B;
+    border: 1px solid #464646;
 }
 #deltaView table * {
     font-size: 0.9em;
