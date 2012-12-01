@@ -103,7 +103,10 @@ Spell = can.Model({
         return((this.spec.cs_to_hp? 9000 : 0) * (this.spec.one_hp ? 1 : 3));
     },
     fdirect: function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * (this.targets || 1) ); },
-    fnticks: function(delta) { return(Math.round((this.nticks)*(1+this.spec.fhastep(delta)))); },
+    ftick_time: function(delta) {
+        return(Math.floor(1000*(this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005))/1000);
+    },
+    fnticks: function(delta) { return(Math.round(this.nticks * this.time_tick / this.ftick_time(delta))); },
     fnticks_shaman_aoe: function(delta) {return(1+Math.ceil(this.duration*(1+this.spec.fhastep(delta))/this.time_tick));},
     fhot: function(delta) { return((this.Btick+this.ctick*this.spec.fsp(delta)) * (this.targets || 1) * this.fnticks(delta) ); },
     fbase: function(delta) { return((this.nticks ? this.fhot(delta) : this.fdirect(delta))); },
@@ -218,7 +221,10 @@ Spells = can.Control({
         // DISC Spells setup
         var sp = spells.find('RenewDisc');
             sp.fmana = sp.fmana_instant_priest;
-            sp.fnticks = can.proxy(function(delta) { return(Math.round((this.nticks- (this.spec.attr('glyph_renew_disc') ? 1 : 0))*(1+this.spec.fhastep(delta))))}, sp); 
+            sp.fnticks = can.proxy(function(delta) {
+                return(Math.round((this.nticks-(this.spec.attr('glyph_renew_disc') ? 1 : 0)) *
+                 this.time_tick / this.ftick_time(delta)));
+            }, sp); 
             sp.fhot = can.proxy(function(delta) { return((this.spec.attr('glyph_renew_disc') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * (this.targets || 1) * this.fnticks(delta) );}, sp);
         sp = spells.find('CascadeDisc');
             sp.fmana = sp.fmana_instant_priest;
@@ -279,7 +285,10 @@ Spells = can.Control({
             sp.fdirect  = can.proxy(function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * (this.spec.attr('glyph_pom_holy') ? 5.6 : 6) ); }, sp);
         sp = spells.find('RenewHoly');
             sp.fmana = sp.fmana_instant_priest;
-            sp.fnticks = can.proxy(function(delta) { return(Math.round((this.nticks- (this.spec.attr('glyph_renew_holy') ? 1 : 0))*(1+this.spec.fhastep(delta))))}, sp); 
+            sp.fnticks = can.proxy(function(delta) { 
+                return(Math.round((this.nticks-(this.spec.attr('glyph_renew_holy') ? 1 : 0)) *
+                 this.time_tick / this.ftick_time(delta)));
+            }, sp); 
             sp.fhot = can.proxy(function(delta) { return((this.spec.attr('glyph_renew_holy') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * (this.targets || 1) * this.fnticks(delta) );}, sp);
             sp.fbase = can.proxy(function(delta) { return(this.fhot(delta) * 1.15 * 1.15 * (this.spec.sanctuary ? 1.25 : 1));}, sp);
             sp.fct = can.proxy(function(delta) { return 1;}, sp);
@@ -316,9 +325,14 @@ Spells = can.Control({
         sp = spells.find('Rejuv');
             sp.fmana = can.proxy(function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_druid') ? 0.9 : 1)))}, sp);
             sp.fct = can.proxy(function(delta) {return(1);}, sp);
-            sp.fnticks = can.proxy(function(delta) {return(Math.round(1+this.nticks*(1+this.spec.fhastep(delta))));}, sp);
+            sp.fnticks = can.proxy(function(delta) {
+                return(1+Math.round(this.nticks * this.time_tick / this.ftick_time(delta)));
+            }, sp);
         sp = spells.find('Lifebloom');
-            sp.fnticks = can.proxy(function(delta) {return(Math.round((this.nticks-(this.spec.attr('glyph_blooming') ? 5 : 0))*(1+this.spec.fhastep(delta))));}, sp);
+            sp.fnticks = can.proxy(function(delta) {
+                return(Math.round((this.nticks-(this.spec.attr('glyph_blooming') ? 5 : 0)) * 
+                    this.time_tick / this.ftick_time(delta)));
+            }, sp);
             sp.fdirect = can.proxy(function(delta) {return((this.B+this.c*this.spec.fsp(delta))*(this.spec.attr('glyph_blooming') ? 1.5 : 1));}, sp);
             sp.fbase = can.proxy(function(delta) {return(this.fdirect(delta) + this.fhot(delta));}, sp);
         sp = spells.find('WildGrowth');
@@ -330,9 +344,9 @@ Spells = can.Control({
                     this.fnticks(delta) );
             }, sp);
         sp = spells.find('Swiftmend');
-            sp.fnticks = can.proxy(function(delta) {return(
-                1 + 0.12* 3 * Math.round((this.nticks)*(1+this.spec.fhastep(delta)))
-            );}, sp);
+            sp.fnticks = can.proxy(function(delta) {
+                return( 1 + 0.12* 3 * Math.round(this.nticks * this.time_tick / this.ftick_time(delta)));
+            }, sp);
             sp.fheal = can.proxy(function(delta) {return( (1+this.spec.fmastp(delta)) *
                 (
                     this.fbase(delta) * (1+this.spec.fcritp(delta))  +
@@ -463,7 +477,8 @@ Spells = can.Control({
             sp.fnticks = sp.fnticks_shaman_aoe;
         sp = spells.find('HealingRain');
             sp.fnticks = can.proxy(function(delta) {
-                return(1+Math.round((this.nticks)*(1+this.spec.fhastep(delta))));
+                return(1+this.nticks * this.time_tick / 
+                    Math.floor( 1000*this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005)/1000);
             }, sp);
         sp = spells.find('Earthliving');
             sp.fhpm = sp.fhpm_nomana;
