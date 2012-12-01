@@ -478,7 +478,7 @@ Spells = can.Control({
         sp = spells.find('HealingRain');
             sp.fnticks = can.proxy(function(delta) {
                 return(1+this.nticks * this.time_tick / 
-                    Math.floor( 1000*this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005)/1000);
+                    (Math.floor( 1000*this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005)/1000));
             }, sp);
         sp = spells.find('Earthliving');
             sp.fhpm = sp.fhpm_nomana;
