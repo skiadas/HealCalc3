@@ -62,7 +62,7 @@ $(document).ready(function() {
         specs[4].fmast_factor = function(delta) {
             return((1+(this.attr('health_deficit')/100)*this.fmastp(delta)));
         }
-        specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true, 't4_2p_shaman': false }).save();
+        specs[4].attr({'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true, 'earth_shield_buff': true, 't4_2p_shaman': false }).save();
         // MONK
         //
         specs[5].mastery_factor = 0;

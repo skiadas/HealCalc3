@@ -131,8 +131,9 @@ Spell = can.Model({
     },
     fheal_shaman_aa: function(delta, crit) {
         // console.log(crit, 1+this.spec.fmast_factor(delta))
-        return(this.fbase(delta)*this.spec.fmast_factor(delta) *
-            (1+1.6*(crit || this.spec.fcritp(delta))));
+        return((this.spec.earth_shield_buff ? 1.2 : 1) *
+                this.fbase(delta)*this.spec.fmast_factor(delta) *
+                (1+1.6*(crit || this.spec.fcritp(delta))));
         },
     fheal_disc: function(delta) {
         var da = 0.5;
@@ -457,8 +458,12 @@ Spells = can.Control({
             }, sp);
         sp = spells.find('ChainHeal');
             sp.fmana = sp.fmana_shaman_resurgence;
+            sp.fdirect = can.proxy(function(delta) { 
+                return((this.B+this.c*this.spec.fsp(delta)) * 
+                (this.targets + (this.spec.earth_shield_buff ? 0.2 : 0)) );
+            }, sp);
             sp.fbase = can.proxy(function(delta) { 
-                return((this.nticks ? this.fhot(delta) : this.fdirect(delta)) * 1.25 *
+                return(this.fdirect(delta) * 1.25 *
                 (this.spec.attr('chain_heal_riptide') ? 1.25 : 1)); 
             }, sp);
         sp = spells.find('Riptide');
