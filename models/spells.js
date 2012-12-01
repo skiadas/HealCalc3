@@ -132,8 +132,8 @@ Spell = can.Model({
     fheal_shaman_aa: function(delta, crit) {
         // console.log(crit, 1+this.spec.fmast_factor(delta))
         return(this.fbase(delta)*this.spec.fmast_factor(delta) *
-            (1+1*(crit || this.spec.fcritp(delta))+0.6*(crit || this.spec.fcritp(delta)*this.spec.fmast_factor(delta)))
-    );},
+            (1+1.6*(crit || this.spec.fcritp(delta))));
+        },
     fheal_disc: function(delta) {
         var da = 0.5;
         return(this.fbase(delta)*(1+this.spec.fcritp(delta)*(1+2*da+2*da*this.spec.fmastp(delta))));
