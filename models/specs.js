@@ -28,7 +28,7 @@ SPECS[2].bpoints_info = [
 ];
 SPECS[3].bpoints_info = [
     { name: 'LB', img: 'inv_misc_herb_felblossom', nticks: 15, time_tick: 1 },
-    { name: 'Glyphed LB', img: 'inv_misc_herb_felblossom', nticks: 10, tick_tick: 1},
+    { name: 'Glyphed LB', img: 'inv_misc_herb_felblossom', nticks: 10, time_tick: 1},
     { name: 'WG/SM', img: 'ability_druid_flourish', nticks: 7, time_tick: 1},
     { name: 'Rejuv', img: 'spell_nature_rejuvenation', nticks: 4, time_tick: 3 },
     { name: 'Tranq', img: 'spell_nature_rejuvenation', nticks: 4, time_tick: 2 },
