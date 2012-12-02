@@ -85,3 +85,7 @@ div#deltaView {
     border-top: 1px solid #323232;
     border-left: 1px solid #323232;
 }
+
+#armory select, #armory option {
+    font-size: 0.8em;
+}

@@ -5,6 +5,11 @@
   <label for="realm">Realm: </label><input id="armory_realm" type="input" value="<%= character.attr('armory_realm') %>" />
   <label for="region">Region: </label><input id="armory_region" type="input" value="<%= character.attr('armory_region') %>" />
   <input type="button" value="OK" />
+  <select>
+    <% can.each(past_searches, function(search) { %>
+      <option value="<%= search %>"><%= search %></option>
+    <% }) %>
+  </select>
 </form>
 </div>
 </div>
