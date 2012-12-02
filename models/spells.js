@@ -102,13 +102,14 @@ Spell = can.Model({
     fmana_hp_pally: function(delta) {
         return((this.spec.cs_to_hp? 9000 : 0) * (this.spec.one_hp ? 1 : 3));
     },
-    fdirect: function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * (this.targets || 1) ); },
+    ftargets: function(delta) { return(this.targets || 1); },
+    fdirect: function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * this.ftargets(delta) ); },
     ftick_time: function(delta) {
         return(Math.floor(1000*(this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005))/1000);
     },
     fnticks: function(delta) { return(Math.round(this.nticks * this.time_tick / this.ftick_time(delta))); },
     fnticks_shaman_aoe: function(delta) {return(1+Math.ceil(this.duration*(1+this.spec.fhastep(delta))/this.time_tick));},
-    fhot: function(delta) { return((this.Btick+this.ctick*this.spec.fsp(delta)) * (this.targets || 1) * this.fnticks(delta) ); },
+    fhot: function(delta) { return((this.Btick+this.ctick*this.spec.fsp(delta)) * this.ftargets(delta) * this.fnticks(delta) ); },
     fbase: function(delta) { return((this.nticks ? this.fhot(delta) : this.fdirect(delta))); },
     fbase_disc: function(delta) {return((this.nticks ? this.fhot(delta) : this.fdirect(delta))*(this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1)); },
     fbase_disc_no_archangel: function(delta) {return((this.nticks ? this.fhot(delta) : this.fdirect(delta))*(this.spec.grace ? 1.3 : 1)); },
@@ -226,7 +227,7 @@ Spells = can.Control({
                 return(Math.round((this.nticks-(this.spec.attr('glyph_renew_disc') ? 1 : 0)) *
                  this.time_tick / this.ftick_time(delta)));
             }, sp); 
-            sp.fhot = can.proxy(function(delta) { return((this.spec.attr('glyph_renew_disc') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * (this.targets || 1) * this.fnticks(delta) );}, sp);
+            sp.fhot = can.proxy(function(delta) { return((this.spec.attr('glyph_renew_disc') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * this.ftargets(delta) * this.fnticks(delta) );}, sp);
         sp = spells.find('CascadeDisc');
             sp.fmana = sp.fmana_instant_priest;
         sp = spells.find('PWSDisc');
@@ -238,6 +239,7 @@ Spells = can.Control({
             sp.fdirect  = can.proxy(function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * (this.spec.attr('glyph_pom_disc') ? 5.6 : 6) ); }, sp);
         sp = spells.find('PoHDisc');
             sp.fheal = can.proxy(function(delta) { var da = 0.5; return(this.fbase(delta) * (1+this.spec.fcritp(delta)) * (1+da*(1+this.spec.fmastp(delta))) );}, sp);
+            sp.ftargets = can.proxy(function(delta) {return(1*this.spec.poh_targets_disc);},sp);
         sp = spells.find('HealSSDisc');
             sp.fheal = sp.fheal_spirit_shell;
         sp = spells.find('FhealDisc');
@@ -249,6 +251,7 @@ Spells = can.Control({
             sp.fheal = sp.fheal_spirit_shell;
         sp = spells.find('PoHSSDisc');
             sp.fheal = can.proxy(function(delta) { return(this.fbase(delta) * (1+this.spec.fcritp(delta)) * (1+this.spec.fmastp(delta)) * 1.3 );}, sp);
+            sp.ftargets = can.proxy(function(delta) {return(1*this.spec.poh_targets_disc);},sp);
         sp = spells.find('HolyFireDisc');
             sp.fbase = can.proxy(function(delta) {
                 return((this.fhot(delta) + this.fdirect(delta)) *
@@ -281,6 +284,8 @@ Spells = can.Control({
         sp = spells.find('HWSerenityHoly');
             sp.fbase = sp.fbase_holy_sth;
             sp.fmana = sp.fmana_instant_priest;
+        sp = spells.find('PoHHoly');
+            sp.ftargets = can.proxy(function(delta) {return(1*this.spec.poh_targets_holy);},sp);
         sp = spells.find('PoMHoly');
             sp.fmana = sp.fmana_instant_priest;
             sp.fdirect  = can.proxy(function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * (this.spec.attr('glyph_pom_holy') ? 5.6 : 6) ); }, sp);
@@ -290,7 +295,7 @@ Spells = can.Control({
                 return(Math.round((this.nticks-(this.spec.attr('glyph_renew_holy') ? 1 : 0)) *
                  this.time_tick / this.ftick_time(delta)));
             }, sp); 
-            sp.fhot = can.proxy(function(delta) { return((this.spec.attr('glyph_renew_holy') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * (this.targets || 1) * this.fnticks(delta) );}, sp);
+            sp.fhot = can.proxy(function(delta) { return((this.spec.attr('glyph_renew_holy') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * this.ftargets(delta) * this.fnticks(delta) );}, sp);
             sp.fbase = can.proxy(function(delta) { return(this.fhot(delta) * 1.15 * 1.15 * (this.spec.sanctuary ? 1.25 : 1));}, sp);
             sp.fct = can.proxy(function(delta) { return 1;}, sp);
         sp = spells.find('PWSHoly');
@@ -364,7 +369,7 @@ Spells = can.Control({
                 return((this.fdirect(delta) * nticks + 
                             (-3 + 3*nticks + 3*nticks) * 
                             (this.Btick + this.ctick*this.spec.fsp(delta)) *
-                            this.targets
+                            this.ftargets(delta)
                         ) * (1+this.spec.fmastp(delta)) * (1+this.spec.fcritp(delta))
                 );
             }, sp);
@@ -400,8 +405,9 @@ Spells = can.Control({
             sp.fmana = sp.fmana_hp_pally;
             sp.fhpm = sp.fhpm_hp_pally_nomana;
             sp.fbase = sp.fbase_pally_hp;
+            sp.ftargets = can.proxy(function(delta) {return(this.targets - (this.spec.attr('glyph_lod') ? 2 : 0))}, sp);
             sp.fdirect = can.proxy(function(delta) { return((this.B+this.c*this.spec.fsp(delta)) *
-                 (this.targets - (this.spec.attr('glyph_lod') ? 2 : 0)) *
+                 this.ftargets(delta) *
                  (this.spec.attr('glyph_lod') ? 1.25 : 1)); }, sp);
             sp.fheal = can.proxy(function(delta) {
                  return(this.fbase(delta)*(1+this.spec.fcritp(delta))*
@@ -458,10 +464,7 @@ Spells = can.Control({
             }, sp);
         sp = spells.find('ChainHeal');
             sp.fmana = sp.fmana_shaman_resurgence;
-            sp.fdirect = can.proxy(function(delta) { 
-                return((this.B+this.c*this.spec.fsp(delta)) * 
-                (this.targets + (this.spec.earth_shield_buff ? 0.2 : 0)) );
-            }, sp);
+            sp.ftargets = can.proxy(function(delta) {return(this.targets + (this.spec.earth_shield_buff ? 0.2 : 0))},sp);
             sp.fbase = can.proxy(function(delta) { 
                 return(this.fdirect(delta) * 1.25 *
                 (this.spec.attr('chain_heal_riptide') ? 1.25 : 1)); 
