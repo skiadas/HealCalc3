@@ -30,7 +30,7 @@ Filtering = can.Control({
         $.each(ALLSPECS, function(_, sp) {
             filters.attr(sp, sp == spec);
         });
-        $(['#filter', spec].join('_')).click();
+        $(['#filter', spec].join('_')).click().click();
     },
     'change': function() {
         var imask = 0;
