@@ -15,7 +15,7 @@ $(document).ready(function() {
             );
         };
         specs[0].attr({'inner_fire': true, 'grace': true, 'evang_stacks': 5, 'archangel': false,
-            'cascade_range_disc': 25, 'poh_targets_disc': 5, 'glyph_pom_disc': true,
+            'cascade_targets_disc': 10, 'cascade_range_disc': 25, 'poh_targets_disc': 5, 'glyph_pom_disc': true,
             'glyph_renew_disc': false, 'glyph_penance': false, 't4_2p_disc': false }
         ).save();
         // HOLY
@@ -28,7 +28,7 @@ $(document).ready(function() {
             );
         };
         specs[1].attr({'serenity': true, 'sanctuary': true, 'inner_fire': true,
-            'cascade_range_holy': 25, 'poh_targets_holy': 5, 'lw_charges': 15,
+            'cascade_targets_holy': 10, 'cascade_range_holy': 25, 'poh_targets_holy': 5, 'lw_charges': 15,
             'glyph_coh': false, 'glyph_pom_holy': true, 'glyph_renew_holy': false, 't4_2p_holy': false }
         ).save();
         // PALLY

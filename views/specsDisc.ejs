@@ -4,7 +4,8 @@
 </select>
 <label for="grace">Assume Grace</label><input name="grace" type="checkbox" <%= spec.attr('grace') ? 'checked="checked"' : ''  %> />
 <label for="evang_stacks">Evangelism Stacks</label><input name="evang_stacks" type="input" value="<%= spec.attr('evang_stacks')  %>" />
-<label for="archangel">Assume Archangel</label><input name="archangel" type="checkbox" <%= spec.attr('archangel') ? 'checked="checked"' : ''  %> />
+<label for="archangel">Assume Archangel</label><input name="archangel" type="checkbox" <%= spec.attr('archangel') ? 'checked="checked"' : ''  %> title="Maximum effect at 30 yards" />
+<label for="cascade_targets_disc">Cascade Targets</label><input name="cascade_targets_disc" type="input" value="<%== spec.attr('cascade_targets_disc') %>" />
 <label for="cascade_range_disc">Avg Cascade Range</label><input name="cascade_range_disc" type="input" value="<%== spec.attr('cascade_range_disc') %>" />
 <label for="poh_targets_disc">PoH Targets</label><input name="poh_targets_disc" type="input" value="<%== spec.attr('poh_targets_disc') %>" />
 <label for="glyph_pom_disc">Glyph of PoM</label><input name="glyph_pom_disc" type="checkbox" <%= spec.attr('glyph_pom_disc') ? 'checked="checked"' : ''  %> />

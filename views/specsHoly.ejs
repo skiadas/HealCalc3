@@ -4,7 +4,8 @@
 </select>
 <label for="serenity">Serenity Chakra</label><input name="serenity" type="checkbox" <%= spec.attr('serenity') ? 'checked="checked"' : ''  %> /> 
 <label for="sanctuary">Sanctuary Chakra</label><input name="sanctuary" type="checkbox" <%= spec.attr('sanctuary') ? 'checked="checked"' : ''  %> /> 
-<label for="cascade_range_holy">Avg Cascade Range</label><input name="cascade_range_holy" type="input" value="<%== spec.attr('cascade_range_holy') %>" />
+<label for="cascade_targets_holy">Cascade Targets</label><input name="cascade_targets_holy" type="input" value="<%== spec.attr('cascade_targets_holy') %>" />
+<label for="cascade_range_holy">Avg Cascade Range</label><input name="cascade_range_holy" type="input" value="<%== spec.attr('cascade_range_holy') %>" title="Maximum effect at 30 yards" />
 <label for="poh_targets_holy">PoH Targets</label><input name="poh_targets_holy" type="input" value="<%== spec.attr('poh_targets_holy') %>" />
 <label for="lw_charges">LW Charges</label><input name="lw_charges" type="input" value="<%= spec.attr('lw_charges') %>" />
 <label for="glyph_coh">Glyph of CoH</label><input name="glyph_coh" type="checkbox" <%= spec.attr('glyph_coh') ? 'checked="checked"' : ''  %>/>
