@@ -3,7 +3,7 @@
 buffs = new can.Observe({
     'stats': true, 'mastery': true, 'haste': true, 
     'crit': true, 'sp': true, 'armor': true, 
-    'spelldam': false, 'intfood': true, 'intflask': true
+    'spelldam': false, 'intfood': true, 'intflask': true, 'critmeta': true
 });
 
 Buffs = can.Control({

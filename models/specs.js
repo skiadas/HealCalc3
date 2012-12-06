@@ -137,7 +137,8 @@ Spec = can.Model({
         this.attr('mast_heal_factor', this.fmast_heal_factor());
         this.attr('haste', Math.round(this.fhaste()*100)/100);
         this.attr('hastep', this.fhastep());
-        this.attr('sp', this.fsp()).save();
+        this.attr('sp', this.fsp());
+        this.attr('critmeta', this.attr('buffs.critmeta')).save();
     }
 });
 
