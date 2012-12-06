@@ -78,8 +78,8 @@ SPELLS = [
     //
     { code: 'SoothingMist', name: 'Soothing Mist', specid: 6, base_ct: 1, base_mana: 3000, B: (20552 + 23872)/2/8, c: 0.1792, targets: 2, img: 'ability_monk_soothingmists', aoe: false, instant: true, item: 125953 },
     { code: 'SurgingMist', name: 'Surging Mist', specid: 6, base_ct: 1.5, base_mana: 24000, B: (15949 + 18535)/2 , c: 1.8, img: 'ability_monk_surgingmist', aoe: false, instant: true, item: 116995 },
-    { code: 'EnvelopingMist', name: 'Enveloping Mist', specid: 6, base_ct: 1.5, base_mana: 0, Btick: (10128 + 11769)/2 , ctick: 0.665, nticks: 6, time_ticks: 1, img: 'spell_shaman_spiritlink', aoe: false, instant: true, item: 132120 },
-    { code: 'RenewingMist', name: 'Renewing Mist', specid: 6, base_ct: 1.5, base_mana: 13800, Btick: 3236, ctick: 0.16, nticks: 6, time_ticks: 3, targets: 3, img: 'ability_monk_renewingmists', aoe: true, instant: true, item: 119611 },
+    { code: 'EnvelopingMist', name: 'Enveloping Mist', specid: 6, base_ct: 1.5, base_mana: 0, Btick: (10128 + 11769)/2 , ctick: 0.665, nticks: 6, time_tick: 1, img: 'spell_shaman_spiritlink', aoe: false, instant: true, item: 132120 },
+    { code: 'RenewingMist', name: 'Renewing Mist', specid: 6, base_ct: 1.5, base_mana: 13800, Btick: 3236, ctick: 0.16, nticks: 6, time_tick: 3, targets: 3, img: 'ability_monk_renewingmists', aoe: true, instant: true, item: 119611 },
     { code: 'LifeCocoon', name: 'Life Cocoon', specid: 6, base_ct: 1.5, base_mana: 13500, B: 39958, c: 5.5, img: 'ability_monk_chicocoon', aoe: false, instant: true, item: 116849 },
     { code: 'Uplift', name: 'Uplift', specid: 6, base_ct: 1.5, base_mana: 0, B: (7210 + 8379)/2, c: 0.68, img: 'ability_monk_uplift', targets: 8, aoe: true, instant: true, item: 116670 },
     { code: 'Revival', name: 'Revival', specid: 6, base_ct: 1.5, base_mana: 21000, B: 13684, c: 5, img: 'spell_shaman_blessingofeternals', targets: 10, aoe: true, instant: true, item: 115310 },
