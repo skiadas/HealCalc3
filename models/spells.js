@@ -379,7 +379,6 @@ Spells = can.Control({
         sp = spells.find('WildGrowth');
             sp.fhot = can.proxy(function(delta) {
                 return((this.Btick+this.ctick*this.spec.fsp(delta)) * 
-                        (1+this.spec.fmastp(delta)) * (1+this.spec.fcritp(delta)) *
                         (5+(this.spec.attr('glyph_wild_growth') ? 1 : 0) +
                         (this.spec.attr('incarnation') ? 2 : 0)) *
                     this.fnticks(delta) );
