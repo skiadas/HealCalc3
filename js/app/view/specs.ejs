@@ -1,0 +1,21 @@
+<% specs.each(function(spec) { %>
+  <div class="spec" <%= (el) -> can.data(el, 'spec', spec) %> >
+    <img src=<%== 'images/'+spec.attr('icon') %> /><h4><%= spec.name %></h4>
+    <ul><li><a>Settings</a></li>
+    <div class="settings">
+    <%== can.view.render(['js/app/view/specs',spec.name,'.ejs'].join(''), {spec: spec}) %>
+    </div>
+    <li><a>Stats</a></li>
+    <div class="stats">
+      <label>Intellect</label><input type="input" id="int" value="<%= spec.attr('int'); %>" readonly />
+      <label>Crit Percent</label><input type="input" id="crit" value="<%= spec.attr('crit'); %>" readonly />
+      <label>Haste Percent</label><input type="input" id="haste" value="<%= spec.attr('haste'); %>" readonly />
+      <label>Mastery Percent</label><input type="input" id="mast" value="<%= spec.attr('mast'); %>" readonly />
+      <label>Spellpower</label><input type="input" id="sp" value="<%= spec.attr('sp'); %>" readonly />
+    </div>
+    </ul>
+    <div <%= (el) -> can.data(el, 'spec', spec) %> class="haste_bar_cont" id="haste_bar_<%= spec.attr('name'); %>" >
+      
+    </div>
+  </div>
+<% }) %>

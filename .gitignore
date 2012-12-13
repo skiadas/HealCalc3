@@ -10,3 +10,7 @@ test.html
 test.js
 
 test.json
+
+js/.DS_Store
+
+testView.ejs

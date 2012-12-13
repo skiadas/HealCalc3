@@ -95,8 +95,21 @@ em { font-weight: bold; }
     height: auto;
 /*    height: 1.3em;*/
 }
-#character > div input[type="button"] {
+div#armory_btn {
     float: right;
+    position: relative;
+/*    top: 90%;
+*/
+    left: -20px;
+    width: 10%;
+    height: 5%;
+}
+div.spinner {
+    left: 22px;
+    top: 8px;
+}
+#character > div input[type="button"] {
+/*    float: right;*/
 }
 #character > div input[type="input"], #character > div input[type="checkbox"] {
     width: 34%;

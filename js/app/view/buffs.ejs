@@ -1,0 +1,14 @@
+<div <%= (el) -> can.data(el, 'buffs', buffs[0]) %>><a><h4>Buffs</h4></a>
+  <div>
+<label for="buff_stats">+5% all stats</label><input type="checkbox" id="buff_stats"  <%= buffs.attr('stats') ? 'checked="checked"' : '' %> />
+<label for="buff_mastery">+5 mastery</label><input type="checkbox" id="buff_mastery"  <%= buffs.attr('mastery') ? 'checked="checked"' : '' %> />
+<label for="buff_haste">+5% haste</label><input type="checkbox" id="buff_haste"  <%= buffs.attr('haste') ? 'checked="checked"' : '' %> />
+<label for="buff_crit">+5% crit chance</label><input type="checkbox" id="buff_crit"  <%= buffs.attr('crit') ? 'checked="checked"' : '' %> />
+<label for="buff_sp">+10% spellpower</label><input type="checkbox" id="buff_sp"  <%= buffs.attr('sp') ? 'checked="checked"' : '' %> />
+<label for="buff_armor">-12% armor</label><input type="checkbox" id="buff_armor"  <%= buffs.attr('armor') ? 'checked="checked"' : '' %> />
+<label for="buff_spelldam">+5% spell damage</label><input type="checkbox" id="buff_spelldam"  <%= buffs.attr('spelldam') ? 'checked="checked"' : '' %> />
+<label for="buff_intfood">Pandaren Banquet</label><input type="checkbox" id="buff_intfood"  <%= buffs.attr('intfood') ? 'checked="checked"' : '' %> />
+<label for="buff_intflask">Int flask</label><input type="checkbox" id="buff_intflask"  <%= buffs.attr('intflask') ? 'checked="checked"' : '' %> />
+<label for="buff_critmeta">Crit Effect Meta Gem</label><input type="checkbox" id="buff_critmeta"  <%= buffs.attr('critmeta') ? 'checked="checked"' : '' %> />
+</div>
+</div>

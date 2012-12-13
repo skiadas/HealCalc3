@@ -1,0 +1,12 @@
+<div class="haste_bar expand">
+  <div class="haste_current"></div>
+  <% spec.breakpoints.each(function(breakpoint) { %>
+    <div <%= (el) -> can.data(el, 'breakpoint', breakpoint) %> class="breakpoint">
+      <img src="<%= ['images/', breakpoint.img, '_large.jpg'].join('') %>" />
+    </div>
+  <% }); %>
+</div>
+<div class="haste_list">
+  <table>
+  </table>
+</div>
