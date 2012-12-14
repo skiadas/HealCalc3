@@ -7,7 +7,7 @@ define(['can'], function(can) {
         },
         'input click': function(el, ev) {
             var buffs = this.options.buffs;
-            var attr = el.attr('id').split('_')[1];
+            var attr = el.attr('id').replace('buff_', '');
             buffs.attr(attr, !buffs.attr(attr));
         },
     })
