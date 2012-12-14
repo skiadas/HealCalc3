@@ -10,9 +10,6 @@ define(['can'], function(can) {
             var val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
             $(this.element.children('div')[0]).data('stat').attr(attr, val);
         },
-        'a click': function(el,ev) {
-            $('div', el.closest('div')).toggle();
-        }
     });
     return Stats;
 });
