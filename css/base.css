@@ -66,7 +66,6 @@ em { font-weight: bold; }
     clear: both;
 }
 #character > div h4, #note .title {
-	background-color: #42605F;
 	border-bottom: 1px solid #5C5C5C;
 }
 /* Image settings */
@@ -88,7 +87,6 @@ em { font-weight: bold; }
 	padding: 1%;
 	vertical-align: baseline;
 }
-#character > div h4:hover { background-color: #374F4E; }
 #character > div input[type="input"], #character > div input[type="checkbox"], #character > div label {
     float: left;
     margin: 0.2em 1%;
@@ -135,7 +133,7 @@ div.spec div {
     overflow: auto;
 }
 
-div.spec li.collapse a {
+/*div.spec li.collapse a {
     background-image: url("../images/arrow-right.png");
     background-position: 5px 3px;
     background-size: 10px 10px;
@@ -147,13 +145,11 @@ div.spec li.expand a {
     background-size: 10px 10px;
     background-repeat: no-repeat;
 }
+*/
 div.spec li a {
     padding-left: 20px;
     display: block;
     clear: both;
-}
-div.spec li a:hover {
-    background-color: #537A78;
 }
 #character div.spec img {
     width: 24px;

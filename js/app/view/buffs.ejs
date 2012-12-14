@@ -1,4 +1,4 @@
-<div <%= (el) -> can.data(el, 'buffs', buffs[0]) %>><a><h4>Buffs</h4></a>
+<div <%= (el) -> can.data(el, 'buffs', buffs[0]) %>><a class="expandOff"><h4>Buffs</h4></a>
   <div>
 <label for="buff_stats">+5% all stats</label><input type="checkbox" id="buff_stats"  <%= buffs.attr('stats') ? 'checked="checked"' : '' %> />
 <label for="buff_mastery">+5 mastery</label><input type="checkbox" id="buff_mastery"  <%= buffs.attr('mastery') ? 'checked="checked"' : '' %> />

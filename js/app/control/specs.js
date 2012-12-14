@@ -13,10 +13,6 @@ define(['can'], function(can) {
             self.element.html(can.view('js/app/view/specs.ejs', {specs: specs, buffs: buffs, stats: stats}));
             $('li', self.element).addClass('expand').children('a').click();
         },
-        // 'img click': function(img, event) {
-        //     var spec = img.closest('div.spec').data('spec');
-        //     spec.attr('active', spec.attr('active') ? false : true).save();
-        // },
         'select change': function(el, ev) {
            var spec = el.closest('div.spec').data('spec');
            spec.attr('inner_fire', spec.attr('inner_fire') ? false : true);
@@ -28,11 +24,6 @@ define(['can'], function(can) {
             el.closest('div.spec').data('spec').attr(attr, val);
             this.options.specs.val_update();
         },
-        'a click': function(el, ev) {
-            el.closest('li').toggleClass('expand collapse');
-            el.closest('li').next('div').toggle();
-        },
-        // '{Spec} updated': function() { this.options.specs.val_update(); },
         '{buffs} change': function() { this.options.specs.val_update(); },
         '{stats} change': function() { this.options.specs.val_update(); }
     });

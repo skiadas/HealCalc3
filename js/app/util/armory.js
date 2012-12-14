@@ -27,9 +27,6 @@ define(['can', 'spin', 'jquery', 'jquerypp/dom/cookie'], function(can, Spinner, 
             this.element = element;
             this.element.html(can.view('js/app/view/armory.ejs', this.options));
         },
-        'a click': function(el,ev) {
-            $('div.toggle', el.closest('div')).toggle();
-        },
         'input[type="input"] change': function(el, ev) {
             this.options.character.attr($(el).attr('id'), $(el).attr('value'));
         },

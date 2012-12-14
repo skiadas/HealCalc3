@@ -1,14 +1,25 @@
-#character div div.haste_bar.collapse {
+/*#character div div.haste_bar*/
+.expandOff {
     background-image: url("../images/arrow-right.png");
-    background-position: 5px 3px;
+    background-position: 5px 50%;
     background-size: 10px 10px;
     background-repeat: no-repeat;
+    display: block;
+    background-color: #42605F;
 }
-#character div div.haste_bar.expand {
+/*#character div div.haste_bar*/
+.expandOn {
     background-image: url("../images/arrow-down.png");
-    background-position: 5px 3px;
+    background-position: 5px 50%;
     background-size: 10px 10px;
     background-repeat: no-repeat;
+    display: block;
+    background-color: #42605F;
+}
+.expandOn:hover, .expandOff:hover { background-color: #374F4E; }
+li > a.expandOn, li > a.expandOff { background-color: #547A78; }
+div.spec > a {
+    background-position: 30px 50%;
 }
 
 #character div div.haste_bar {

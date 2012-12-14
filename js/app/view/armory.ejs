@@ -1,5 +1,5 @@
-<div <%= (el) -> can.data(el, 'character', character) %> ><a><h4>Armory</h4></a>
-<div class="toggle" <%= (el) -> el.hide() %>>
+<div <%= (el) -> can.data(el, 'character', character) %> ><a class="expandOff"><h4>Armory</h4></a>
+<div>
 <form>
   <label for="armory_name">Name: </label><input id="armory_name" type="input" value="<%= character.attr('armory_name') %>" />
   <label for="realm">Realm: </label><input id="armory_realm" type="input" value="<%= character.attr('armory_realm') %>" />

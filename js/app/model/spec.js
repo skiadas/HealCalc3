@@ -211,15 +211,6 @@ define(['can'], function(can) {
          })
          can.Observe.stopBatch();
     };
-    // });
-    // can.fixture("/specs", "fixtures/spec.json");
-    // specStore = can.fixture.make(SPECS.length, function(i) {return(SPECS[i]);});
-    // can.fixture('GET /specs', specStore.findAll);
-    // can.fixture('GET /spec/{id}', specStore.findOne);
-    // can.fixture('POST /specs', specStore.create);
-    // can.fixture('PUT /spec/{id}', specStore.update);
-    // can.fixture('DELETE /spec/{id}', specStore.destroy);
-    // 
 
     return spcs;
 });
