@@ -4,7 +4,6 @@ define(['can'], function(can) {
             var self = this;
             var spec = options.spec;
             self.element.html(can.view('js/app/view/haste_bar.ejs', {spec: spec}));
-            $('.haste_bar', self.element).click();
             self.update_bar();
         },
         '{spec} change': function() {
@@ -31,12 +30,6 @@ define(['can'], function(can) {
             $('.haste_current').attr('title', can.sub('You have {haste_rat} rating.\nHaste factor: {hastep}', {haste_rat: haste_rat, hastep: hastep}));
             $('table', this.element).html(can.view('js/app/view/bpoint_rows.ejs', {breakpoints: bpoints}));
         },
-        '.haste_bar click': function(bar) {
-            el = this.element;
-            $(bar).toggleClass('collapse expand');
-            $('.haste_list', el).toggle();
-        }
-    
     });
     return HasteBar;
 })

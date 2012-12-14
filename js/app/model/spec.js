@@ -133,8 +133,6 @@ define(['can'], function(can) {
     spcs = new can.Observe.List([]);
     for (i=0; i< len; i++) {
         can.extend(SPECS[i], spec_generic);
-        // var spec = new can.Observe(SPECS[i]);
-        // spcs.push(spec);
         spcs.push(SPECS[i]);
     }
     spcs[0].attr({
