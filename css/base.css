@@ -146,7 +146,7 @@ div.spec li.expand a {
     background-repeat: no-repeat;
 }
 */
-div.spec li a {
+div li a {
     padding-left: 20px;
     display: block;
     clear: both;
