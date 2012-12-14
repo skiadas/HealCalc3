@@ -1,5 +1,5 @@
 define(['can'], function(can) {
-    DeltaViewer = can.Control({
+    var DeltaViewer = can.Control({
         init: function(element, options) {
             var self = this;
             options.delta = options.delta || 1000;

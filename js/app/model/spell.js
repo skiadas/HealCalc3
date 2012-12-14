@@ -1,5 +1,5 @@
 define(['can'], function(can) {
-    SPELLS = [
+    var SPELLS = [
         // DISC
         //
         { code: 'HealDisc', name: 'Heal', specid: 1, base_ct: 2.5, base_mana: 5700, B: 10645, c: 1.024, img: 'spell_holy_heal' , aoe: false, instant: false, item: 2050 },
@@ -85,7 +85,7 @@ define(['can'], function(can) {
         { code: 'Revival', name: 'Revival', specid: 6, base_ct: 1.5, base_mana: 21000, B: 13684, c: 5, img: 'spell_shaman_blessingofeternals', targets: 10, aoe: true, instant: true, item: 115310 },
      ];
 
-    spec_specific = {
+    var spec_specific = {
         fct: function(delta) { return(this.base_ct/(1+this.spec.fhastep(delta))); },
         fct_hp_pally: function(delta) {return((this.base_ct + (this.spec.cs_to_hp? 1.5 : 0) * (this.spec.one_hp ? 1 : 3) )/(1+this.spec.fhastep(delta)));},
         fmana: function(delta) { return(this.base_mana); },
@@ -185,7 +185,7 @@ define(['can'], function(can) {
      };
 
     var len = SPELLS.length;
-    spls = new can.Observe.List([]);
+    var spls = new can.Observe.List([]);
     for (i=0; i< len; i++) {
         var spell = new can.Observe(can.extend(SPELLS[i], spec_specific));
         // spls.push(spell);

@@ -1,5 +1,5 @@
 define(['can'], function(can) {
-    HasteBar = can.Control({
+    var HasteBar = can.Control({
         init: function(element, options) {
             var self = this;
             var spec = options.spec;

@@ -1,5 +1,5 @@
 define(['can'], function(can) {
-    qsort = function(A, less_eq) {
+    var qsort = function(A, less_eq) {
         console.log('sorting')
         _partition = function(p, r) {
             var x = A[r];

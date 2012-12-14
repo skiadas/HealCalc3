@@ -1,5 +1,5 @@
 define(['can', 'app/util/sorter'], function(can, _sort) {
-    Spells = can.Control({
+    var Spells = can.Control({
         init: function(element, options) {
             var self = this;
             var spells = self.options.spells;

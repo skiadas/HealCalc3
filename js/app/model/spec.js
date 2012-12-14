@@ -1,5 +1,5 @@
 define(['can'], function(can) {
-    SPECS = [
+    var SPECS = [
         {id: 1 , name: 'Disc', icon: 'spell_holy_powerwordshield_large.jpg', active: true, bcrit: 1.235, bpoints_info: [
             { name: 'Renew', img: 'spell_holy_renew', nticks: 4, time_tick: 3, hfactor: 1 },
             { name: 'Renew BT', img: 'spell_holy_renew', nticks: 4, time_tick: 3, hfactor: 1.15 },
@@ -123,8 +123,8 @@ define(['can'], function(can) {
            n++;
            flag = 0;
            for (var i=0; i < l-1; i++) {
-               val1 = spec.breakpoints[i].hastep;
-               val2 = spec.breakpoints[i+1].hastep;
+               var val1 = spec.breakpoints[i].hastep;
+               var val2 = spec.breakpoints[i+1].hastep;
                    // alert("here")
                if (val1 > val2) {
                    flag = 1;
@@ -136,7 +136,7 @@ define(['can'], function(can) {
        } while (flag == 1 && n<200);
     });
     
-    spec_generic = {
+    var spec_generic = {
         mastery_factor: 2.5,
         fint: function(delta) { 
             return (Math.round( 1.05 * (this.attr('buffs.stats') ? 1.05 : 1)*
@@ -222,7 +222,7 @@ define(['can'], function(can) {
         }
     };
     var len = SPECS.length;
-    spcs = new can.Observe.List([]);
+    var spcs = new can.Observe.List([]);
     for (i=0; i< len; i++) {
         can.extend(SPECS[i], spec_generic);
         spcs.push(SPECS[i]);

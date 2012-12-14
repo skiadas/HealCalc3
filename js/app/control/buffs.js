@@ -1,5 +1,5 @@
 define(['can'], function(can) {
-    Buffs = can.Control({
+    var Buffs = can.Control({
         init: function(element, options) {
             var self = this;
             var buffs = this.options.buffs || buffs;

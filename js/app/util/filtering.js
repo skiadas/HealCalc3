@@ -1,7 +1,7 @@
 define(['can'], function(can, spells) {
-ALLSPECS = ['disc', 'holy', 'pally', 'druid', 'shaman', 'monk'];
-FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime']);
-Filtering = can.Control({
+var ALLSPECS = ['disc', 'holy', 'pally', 'druid', 'shaman', 'monk'];
+var FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime']);
+var Filtering = can.Control({
     init: function(element, options) {
         var self = this;
         self.options = options;
