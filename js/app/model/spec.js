@@ -6,16 +6,53 @@ define(['can'], function(can) {
             { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, time_tick: 3, hfactor: 1 },
             { name: 'Glyphed Renew BT', img: 'spell_holy_renew', nticks: 3, time_tick: 3, hfactor: 1.15 },
             { name: 'Holy Fire', img: 'spell_holy_searinglight', nticks: 7, time_tick: 1, hfactor: 1 },
-            { name: 'Holy Fire BT', img: 'spell_holy_searinglight', nticks: 7, time_tick: 1, hfactor: 1.15 }]},
+            { name: 'Holy Fire BT', img: 'spell_holy_searinglight', nticks: 7, time_tick: 1, hfactor: 1.15 }],
+        mana_sources: [
+            { name: 'Passive Regen', fmana: function(time, delta) { 
+                return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )
+            }},
+            { name: 'Initial Mana', fmana: function(time, delta) {
+                return(this.mana_pool * time/this.interval_time);
+            }},
+            { name: 'Potion', fmana: function(time, delta) {
+                return(this.potmana * time/this.interval_time);
+            }},
+            { name: 'Rapture', fmana: function(time, delta) {return((this.spi * 2) * time /this.rapture_interval) }},
+            { name: 'Mindbender', fmana: function(time, delta) {return((this.mana_pool * 0.015 * 11) * time /60) }},
+            { name: 'Hymn of Hope', fmana: function(time, delta) {return(this.mana_pool * (1+3*1.15) * 0.02 * time /(60*6)) }},
+        ]},
         {id: 2 , name: 'Holy', icon: 'spell_holy_guardianspirit_large.jpg', active: false, bcrit: 1.235, bpoints_info: [
             { name: 'Renew', img: 'spell_holy_renew', nticks: 4, time_tick: 3 },
             { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, time_tick: 3 },
             { name: 'HW:Sanc', img: 'spell_holy_divineprovidence', nticks: 15, time_tick: 2 },
             { name: 'LW/LS', img: 'spell_holy_summonlightwell', nticks: 3, time_tick: 2 },
+        ],
+        mana_sources: [
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Initial Mana', fmana: function(time, delta) {
+                return(this.mana_pool * time/this.interval_time);
+            }},
+            { name: 'Potion', fmana: function(time, delta) {
+                return(this.potmana * time/this.interval_time);
+            }},
+            { name: 'Mindbender', fmana: function(time, delta) {return((this.mana_pool * 0.015 * 11) * time /60) }},
+            { name: 'Hymn of Hope', fmana: function(time, delta) {return(this.mana_pool * (1+3*1.15) * 0.02 * time /(60*6)) }},
         ]},
         {id: 3 , name: 'Pally', icon: 'spell_holy_holybolt_large.jpg', active: false, bcrit: 3.335, bpoints_info: [
             { name: 'EF', img: 'inv_torch_thrown', nticks: 10, time_tick: 3 },
             { name: 'SS', img: 'ability_paladin_blessedmending', nticks: 5, time_tick: 6 },
+        ],
+        mana_sources: [
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Initial Mana', fmana: function(time, delta) {
+                return(this.mana_pool * time/this.interval_time);
+            }},
+            { name: 'Potion', fmana: function(time, delta) {
+                return(this.potmana * time/this.interval_time);
+            }},
+            { name: 'Divine Plea', fmana: function(time, delta) {
+                return(this.mana_pool * 0.12 * time / (2*60))
+            }},
         ]},
         {id: 4 , name: 'Druid', icon: 'spell_nature_healingtouch_large.jpg', active: false, bcrit: 1.85, bpoints_info: [
             { name: 'LB', img: 'inv_misc_herb_felblossom', nticks: 15, time_tick: 1 },
@@ -24,6 +61,18 @@ define(['can'], function(can) {
             { name: 'Rejuv', img: 'spell_nature_rejuvenation', nticks: 4, time_tick: 3 },
             { name: 'Tranq', img: 'spell_nature_rejuvenation', nticks: 4, time_tick: 2 },
             { name: 'Regrowth', img: 'spell_nature_resistnature', nticks: 3, time_tick: 2 },
+        ],
+        mana_sources: [
+            { name: 'Spirit Based', fmana: function(time, delta) {return(((1*this.spi + (delta || 0)) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Initial Mana', fmana: function(time, delta) {
+                return(this.mana_pool * time/this.interval_time);
+            }},
+            { name: 'Potion', fmana: function(time, delta) {
+                return(this.potmana * time/this.interval_time);
+            }},
+            { name: 'Innervate', fmana: function(time, delta) {
+                return(this.mana_pool * 0.2 * time / (3*60))
+            }},
         ]},
         {id: 5 , name: 'Shaman', icon: 'spell_nature_healingwavegreater_large.jpg', active: false, bcrit: 1.235, bpoints_info: [
             { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6, time_tick: 3 },
@@ -31,9 +80,28 @@ define(['can'], function(can) {
             { name: 'Earthliving', img: 'spell_shaman_giftearthmother', nticks: 4, time_tick: 4 },
             { name: 'HTT', img: 'ability_shaman_healingtide', nticks: 11/2, time_tick: 2 },
             { name: 'HST', img: 'inv_spear_04', nticks: 15/2, time_tick: 2 },
+        ],
+        mana_sources: [
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Initial Mana', fmana: function(time, delta) {
+                return(this.mana_pool * time/this.interval_time);
+            }},
+            { name: 'Potion', fmana: function(time, delta) {
+                return(this.potmana * time/this.interval_time);
+            }},
         ]},
         {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec_large.jpg', active: false, bcrit: 2.19, bpoints_info: [
-            { name: 'Surging Mist, Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 }]}
+            { name: 'Surging Mist, Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 }
+        ],
+        mana_sources: [
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Initial Mana', fmana: function(time, delta) {
+                return(this.mana_pool * time/this.interval_time);
+            }},
+            { name: 'Potion', fmana: function(time, delta) {
+                return(this.potmana * time/this.interval_time);
+            }},
+        ]}
     ];
     $.each(SPECS, function(_, spec) {
        spec.breakpoints = [];
@@ -76,6 +144,9 @@ define(['can'], function(can) {
                                  (this.attr('buffs.intfood') ? 275 : 0) +
                                  (this.attr('buffs.intflask') ? 1000 : 0) )));
         },
+        fspi: function(delta) {
+            return(this.attr('stats.bspi'));
+        },
         fcrit: function(delta) {
             return (Math.round((((this.attr('stats.bcrit')*1 + ((delta && delta.crit) || 0)) /600 +
                      this.fint(delta) * 0.0003951) +
@@ -112,10 +183,12 @@ define(['can'], function(can) {
         fmast_heal_factor: function(delta) {
             return(1+0.01*this.fmast(delta));  // Specs need to override this
         },
+        interval_time: 60,   // Seconds to consider for mana sources
         val_update: function() {
             can.Observe.startBatch();
             this.attr({
                 'int': this.fint(),
+                'spi': this.fspi(),
                 'crit': this.fcrit(),
                 'critp': this.fcritp(),
                 'mast': this.fmast(),
@@ -124,8 +197,27 @@ define(['can'], function(can) {
                 'haste': Math.round(this.fhaste()*100)/100,
                 'hastep': this.fhastep(),
                 'sp': this.fsp(),
-                'critmeta': this.attr('buffs.critmeta')
+                'critmeta': this.attr('buffs.crit_meta'),
+                'manameta': this.attr('buffs.mana_meta'),
+                'mana_pool': (this.attr('buffs.mana_meta') ? 1.02 : 1) * 300000,
+                'potmana':  this.attr('buffs.focus_pot') ? 45000 : 30000,
             });
+            var spec = this;
+            var regen_mana = 0;
+            var regen_mps = 0;
+            spec.mana_sources.each(function(s) {
+                // console.log(spec.interval_time);
+                var mfun = can.proxy(s.fmana, spec);
+                var mana = Math.round(mfun(spec.interval_time*1));
+                var mps = Math.round(10*mfun(1))/10;
+                regen_mana +=mana;
+                if (s.name !== 'Initial Mana' && s.name !== 'Potion') {
+                    regen_mps +=mps;
+                }
+                s.attr({'mana': mana, 'mps': mps});
+            });
+            spec.attr('regen_mana', Math.round(regen_mana));
+            spec.attr('regen_mps', Math.round(10*regen_mps)/10);
             can.Observe.stopBatch();
         }
     };
@@ -146,7 +238,7 @@ define(['can'], function(can) {
         },
         'inner_fire': true, 'grace': true, 'evang_stacks': 5, 'archangel': false,
         'cascade_targets_disc': 10, 'cascade_range_disc': 25, 'poh_targets_disc': 5, 'glyph_pom_disc': true,
-        'glyph_renew_disc': false, 'glyph_penance': false, 't4_2p_disc': false });
+        'glyph_renew_disc': false, 'glyph_penance': false, 't4_2p_disc': false, 'rapture_interval': 15 });
     // HOLY
     spcs[1].attr({
         mastery_factor: 1.25,

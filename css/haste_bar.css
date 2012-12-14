@@ -73,6 +73,9 @@ div.spec > a {
 #character div.spec .haste_list tr.after {
     background-color: #76ABA9;
 }
+#character div.spec .mana_regen table * {
+    font-size: 0.95em;
+}
 
 div#deltaView {
     position: fixed;

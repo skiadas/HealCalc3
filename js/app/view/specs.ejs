@@ -14,10 +14,25 @@
         <label>Mastery Percent</label><input type="input" id="mast" value="<%= spec.attr('mast'); %>" readonly />
         <label>Spellpower</label><input type="input" id="sp" value="<%= spec.attr('sp'); %>" readonly />
       </div></li>
+      <li><a class="expandOff">Haste Points</a>
+        <div <%= (el) -> can.data(el, 'spec', spec) %> class="haste_bar_cont" id="haste_bar_<%= spec.attr('name'); %>" >
+        </div></li>
+      <li><a class="expandOff">Mana Regen</a>
+        <div class="mana_regen">
+          <label>Time duration</label><input type="input", name="interval_time" value="<%=spec.attr('interval_time'); %>" />
+          <table>
+            <thead>
+            <tr><th>Source</th><th>MPS</th><th>Mana</th></tr>
+            </thead>
+            <tbody>
+              <% spec.mana_sources.each(function(source) { %>
+                <tr><td><%= source.name %></td><td><%= source.attr('mps') %></td><td><%= source.attr('mana') %></td></tr>
+              <% }) %>
+              <tr class="total"><td>Total</td><td><%= spec.attr('regen_mps') %></td><td><%= spec.attr('regen_mana') %></td>
+            </tbody>
+          </table>
+        </div></li>
       </ul>
-      <div <%= (el) -> can.data(el, 'spec', spec) %> class="haste_bar_cont" id="haste_bar_<%= spec.attr('name'); %>" >
-      
-      </div>
     </div>
   </div>
 <% }) %>
