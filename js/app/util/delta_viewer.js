@@ -13,7 +13,7 @@ define(['can'], function(can) {
             var colfun = $(el).data('colinfo').fun;
             var base = sp[colfun]();
             this.options.base = base;
-            results = {};
+            var results = {};
             $.each(['int','sp','crit','haste','mast'], function(_, stat) {
                 var delta = {};
                 delta[stat] = del;

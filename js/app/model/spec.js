@@ -105,26 +105,28 @@ define(['can'], function(can) {
     ];
     $.each(SPECS, function(_, spec) {
        spec.breakpoints = [];
+       var max_haste_p = 0.5,
+           max_new_points,
+           i, count, flag,
+           n=0, l;
        $.each(spec.bpoints_info, function(_, bpoint) {
-           var max_haste_p = 0.5;
-           var max_new_points = Math.ceil(bpoint.nticks*max_haste_p+0.5);
+           max_new_points = Math.ceil(bpoint.nticks*max_haste_p+0.5);
            for (i=1; i<max_new_points; i++) {
-               var count = [i, ['st','nd','rd','th','th','th'][i-1]].join('');
+               count = [i, ['st','nd','rd','th','th','th'][i-1]].join('');
                spec.breakpoints.push({name: bpoint.name, img: bpoint.img, no: count, 
                    hastep: bpoint.time_tick/((bpoint.hfactor || 1) * Math.ceil((bpoint.time_tick*bpoint.nticks)/(bpoint.nticks+i-0.5) * 1000)/1000 - 0.0005)
                });
            }
        });
        // Sort the breakpoints
-       var flag;
-       var n=0;
-       var l = spec.breakpoints.length;
+       n = 0;
+       l = spec.breakpoints.length;
        do {
            n++;
            flag = 0;
-           for (var i=0; i < l-1; i++) {
-               var val1 = spec.breakpoints[i].hastep;
-               var val2 = spec.breakpoints[i+1].hastep;
+           for (i=0; i < l-1; i++) {
+               var val1 = spec.breakpoints[i].hastep,
+                   val2 = spec.breakpoints[i+1].hastep;
                    // alert("here")
                if (val1 > val2) {
                    flag = 1;
@@ -202,17 +204,18 @@ define(['can'], function(can) {
                 'mana_pool': (this.attr('buffs.mana_meta') ? 1.02 : 1) * 300000,
                 'potmana':  this.attr('buffs.focus_pot') ? 45000 : 30000,
             });
-            var spec = this;
-            var regen_mana = 0;
-            var regen_mps = 0;
+            var spec = this,
+                regen_mana = 0,
+                regen_mps = 0,
+                mfun, mana, mps;
             spec.mana_sources.each(function(s) {
                 // console.log(spec.interval_time);
-                var mfun = can.proxy(s.fmana, spec);
-                var mana = Math.round(mfun(spec.interval_time*1));
-                var mps = Math.round(10*mfun(1))/10;
-                regen_mana +=mana;
+                mfun = can.proxy(s.fmana, spec);
+                mana = Math.round(mfun(spec.interval_time*1));
+                mps = Math.round(10*mfun(1))/10;
+                regen_mana += mana;
                 if (s.name !== 'Initial Mana' && s.name !== 'Potion') {
-                    regen_mps +=mps;
+                    regen_mps += mps;
                 }
                 s.attr({'mana': mana, 'mps': mps});
             });
@@ -221,8 +224,8 @@ define(['can'], function(can) {
             can.Observe.stopBatch();
         }
     };
-    var len = SPECS.length;
-    var spcs = new can.Observe.List([]);
+    var len = SPECS.length,
+        spcs = new can.Observe.List([]);
     for (i=0; i< len; i++) {
         can.extend(SPECS[i], spec_generic);
         spcs.push(SPECS[i]);

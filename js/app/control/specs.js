@@ -1,10 +1,10 @@
 define(['can'], function(can) {
     var Specs = can.Control({
         init: function(element, options) {
-            var self = this;
-            var specs = options.specs;
-            var buffs = options.buffs;
-            var stats = options.stats;
+            var self = this,
+                specs = options.specs,
+                buffs = options.buffs,
+                stats = options.stats;
             specs.each(function(spec) {
                 spec.attr('buffs', buffs);
                 spec.attr('stats', stats);
@@ -19,8 +19,8 @@ define(['can'], function(can) {
            this.options.specs.val_update();
         },
         'input change': function(el, ev) {
-            var attr = el.attr('name');
-            var val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
+            var attr = el.attr('name'),
+                val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
             el.closest('div.spec').data('spec').attr(attr, val);
             this.options.specs.val_update();
         },
