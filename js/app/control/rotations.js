@@ -63,7 +63,7 @@ define(['can', 'jquery', 'app/model/rotation'], function(can, $, Rotation) {
         },
         '.spell_lister mouseleave': function(el, ev) { $(el).hide(); },
         '{specs} change': function() {
-            this.options.rotations.each(function(rotation) rotation.val_update());
+            this.options.rotations.each(function(rotation) {rotation.val_update()});
         }
     });
     return Rotations;
