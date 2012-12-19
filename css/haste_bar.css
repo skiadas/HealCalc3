@@ -103,3 +103,25 @@ div#deltaView {
 #armory select, #armory option {
     font-size: 0.8em;
 }
+
+.spell_lister {
+    height: auto;
+    overflow: auto;
+    width: auto;
+    background-color: #B8B17C;
+    border: 1px solid #999;
+}
+.spell_item {
+    display: block;
+    height: 1.5em;
+    overflow: auto;
+    clear: both;
+    width: 600px;
+}
+.spell_item .list_left { display: block; float: left; width: 220px; text-align: left;}
+.spell_item .list_right { display: block; float: left; width: 120px; text-align: right;}
+.spell_item:hover {background-color: #9C9669;}
+table.rotation input { width: 4em; text-align: right; }
+table.rotation .no { width: 5em; }
+table.rotation .name { width: 80em; }
+table.rotation .result { width: 30em; }

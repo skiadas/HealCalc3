@@ -1,0 +1,8 @@
+<% spells.each(function(spell) { %>
+  <div class="spell_item" <%= (el) -> $(el).data('spell', spell) %>>
+    <span class="list_left"><%= spell.attr('sp.name') %></span>
+    <span class="list_right"><%= spell.attr('sp.mana') %> mana</span>
+    <span class="list_right"><%= spell.attr('sp.ct') %> secs</span>
+    <span class="list_right"><%= spell.attr('sp.hps') %> HPS</span>
+  </div>
+<% }) %>

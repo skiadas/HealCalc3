@@ -19,13 +19,13 @@ define(['jquery', 'can',
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs});
         new Spells('#spells', {spells: spells, specs: specs});
         new Filter('#filters', {table: $('#spellTable'), specs: $('#specs'), view: 'js/app/view/filtering.ejs'})
-        new Delta("#deltaView", {source: $("#spellTable")});
-        new Armory("#armory");
+        new Delta('#deltaView', {source: $('#spellTable')});
+        new Armory('#armory');
         specs.each(function(spec) {
-            var name = "haste_bar_" + spec.name;
-            new HasteBar("#"+name, {spec: spec});
+            var name = 'haste_bar_' + spec.name;
+            new HasteBar('#'+name, {spec: spec});
         });
-        new Rotations("#rotations", {specs: specs});
+        new Rotations('#rotations', {specs: specs});
     });
     return;
 });

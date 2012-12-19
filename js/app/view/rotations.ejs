@@ -10,15 +10,27 @@
   </div>
   <ul>
   <% rotations.each(function(rotation) { %>
-    <li><img src="images/<%= rotation.spec.icon %>"/><span class="rotationName"><%= rotation.nick %></span><div>
+    <li <%= (el) -> can.data(el, 'rotation', rotation) %>><img src="images/<%= rotation.spec.icon %>"/><span class="rotationName"><%= rotation.nick %></span>
+      <div style="position: relative">
+      <input type="button" class="add_spell" value ="Add Spell" />
       <table class="rotation">
         <thead>
-          <th># Casts</th><th>Spell</th><th>Total Mana</th><th>Total Time</th><th>Overall Healing</th>
+          <th class="no"># Casts</th><th class="name">Spell</th><th class="result">Total Mana</th><th class="result">Total Time</th><th class="result">Overall Healing</th>
         </thead>
+        <tbody>
+        <% rotation.spells.each(function(spell) { %>
+          <tr <%= (el) -> can.data(el, 'spell', spell)%>>
+            <td><input type="input" value="<%= spell.attr('no') %>" /></td><td><%= spell.sp.name %></td>
+            <td><%= Math.round(spell.attr('no') * spell.attr('sp.mana')) %></td>
+            <td><%= Math.round(spell.attr('no') * spell.attr('sp.ct') *100)/100 %></td>
+            <td><%= Math.round(spell.attr('no') * spell.attr('sp.heal')*10)/10 %></td>
+          </tr>
+        <%})%>
         <tr class="totals"><td></td><td>Rotation Totals</td><td><%= rotation.results.attr('mana') %></td><td><%= rotation.results.attr('ct') %></td>
                   <td><%= rotation.results.attr('heal') %></td></tr>
         <tr class="totals"><td></td><td></td><td>HPS: <%= rotation.results.attr('hps') %></td><td>HPM: <%= rotation.results.attr('hpm') %></td>
                 <td>MPS: <%= rotation.results.attr('mps') %></td></tr>
+        </tbody>
       </table>
     </div></li>
   <% }); %>

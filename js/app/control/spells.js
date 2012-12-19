@@ -35,9 +35,7 @@ define(['can', 'app/util/sorter'], function(can, _sort) {
         },
         '{specs} change': function(_, ev) {
             this.options.spells.val_update(ev.target);
-            console.log(ev);
             this.sort(ev);
-            // $(this.element).trigger('ready');
         },
         'thead th click': function(el, ev) {
             var newAttr = el.attr('id').replace('th_', ''),
