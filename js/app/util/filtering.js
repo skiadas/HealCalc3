@@ -54,9 +54,6 @@ var Filtering = can.Control({
         this.options.curr_mask = imask;
         // this.update(this);
     },
-    'a click': function(el,ev) {
-        $('div', el.closest('div')).toggle();
-    }
 });
 return Filtering;
 });

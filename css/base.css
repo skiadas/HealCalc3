@@ -55,8 +55,8 @@ em { font-weight: bold; }
     border-top: 1px solid #3F3F3F;
     height: 2em;
 }
-#character > div { margin: 1em 5%; }
-#character > div {
+div.section { margin: 1em 5%; }
+div.section {
     background-color: #618C8B;
     border: 1px solid #5C5C5C;
     border-bottom: 1px solid #323232;
@@ -65,7 +65,7 @@ em { font-weight: bold; }
     overflow: auto;
     clear: both;
 }
-#character > div h4, #note .title {
+div.section h4, #note .title {
 	border-bottom: 1px solid #5C5C5C;
 }
 /* Image settings */
@@ -79,7 +79,7 @@ em { font-weight: bold; }
     border: 1px solid #000;
     float: left;
 }
-#character > div h4 {
+div.section h4 {
 	cursor: pointer;
 	height: 1%;
 	overflow: auto;
@@ -186,17 +186,24 @@ tr.spell_Monk { background-color: #97FFA4; }
 td { text-align: right; }
 .name { text-align: left; }
 
-#filters {
-	margin-bottom: 1em;
-    background-color: #618C8B;
-	border: 1px solid #3F5C5B;
+#filters, #rotations {
+	margin-bottom: 2em;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	background-color: #C0B981;
+	width: 95%;
 }
-#filters > a { display: block; background-color: #374F4E;}
+#filters div div { padding: 0.2em; }
+#filters > a, #rotations > a, #spells > a { display: block; background-color: #374F4E; border-bottom: 1px solid #999;}
 #filters label { margin-left: 8px; }
 #filters img { width: 14px; height: 14px; }
-#filters div {
-	width: 95%;
-	margin: 0 2%;
-	padding: 0.2em 0.2em;
-	background-color: #618C8B;
+
+#rotations li {
+	background-color: #AFA876;
+	margin: 2%;
+	padding: 1%;
+	border: 1px solid #343434;
+	list-style-type: none;
 }
+
+

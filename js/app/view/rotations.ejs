@@ -1,3 +1,4 @@
+<div><a class="expandOff"><h4>Rotations</h4></a>
 <div>
   <input type="button" id="btn_new_rotation" value="New Rotation" />
   <div id="new_rotation" <%= (el) -> $(el).hide(); %> ><label for="rotation_name">Name:</label><input name="rotation_name" type="input" />
@@ -11,8 +12,8 @@
   <ul>
   <% rotations.each(function(rotation) { %>
     <li <%= (el) -> can.data(el, 'rotation', rotation) %>><img src="images/<%= rotation.spec.icon %>"/><span class="rotationName"><%= rotation.nick %></span>
-      <div style="position: relative">
       <input type="button" class="add_spell" value ="Add Spell" />
+      <div style="position: relative">
       <table class="rotation">
         <thead>
           <th class="no"># Casts</th><th class="name">Spell</th><th class="result">Total Mana</th><th class="result">Total Time</th><th class="result">Overall Healing</th>
@@ -35,4 +36,6 @@
     </div></li>
   <% }); %>
   <ul>
+</div>
+
 </div>
