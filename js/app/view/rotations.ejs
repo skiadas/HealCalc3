@@ -1,0 +1,8 @@
+<div>
+  <input type="button" id="btn_new_rotation" value="New" />
+  <ul>
+  <% rotations.each(function(rotation) { %>
+    <li><a class="expand"><%= rotation.nick %></a><div></div></li>
+  <% }); %>
+  <ul>
+</div>
