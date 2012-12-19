@@ -1,8 +1,26 @@
 <div>
-  <input type="button" id="btn_new_rotation" value="New" />
+  <input type="button" id="btn_new_rotation" value="New Rotation" />
+  <div id="new_rotation" <%= (el) -> $(el).hide(); %> ><label for="rotation_name">Name:</label><input name="rotation_name" type="input" />
+  <select>
+    <% specs.each(function(spec) { %>
+      <option value="<%= spec.id %>"><%= spec.name %></option>
+    <% })%>
+  </select>
+  <input type="button" id="btn_create" value="Create!" />
+  </div>
   <ul>
   <% rotations.each(function(rotation) { %>
-    <li><a class="expand"><%= rotation.nick %></a><div></div></li>
+    <li><img src="images/<%= rotation.spec.icon %>"/><span class="rotationName"><%= rotation.nick %></span><div>
+      <table class="rotation">
+        <thead>
+          <th># Casts</th><th>Spell</th><th>Total Mana</th><th>Total Time</th><th>Overall Healing</th>
+        </thead>
+        <tr class="totals"><td></td><td>Rotation Totals</td><td><%= rotation.results.attr('mana') %></td><td><%= rotation.results.attr('ct') %></td>
+                  <td><%= rotation.results.attr('heal') %></td></tr>
+        <tr class="totals"><td></td><td></td><td>HPS: <%= rotation.results.attr('hps') %></td><td>HPM: <%= rotation.results.attr('hpm') %></td>
+                <td>MPS: <%= rotation.results.attr('mps') %></td></tr>
+      </table>
+    </div></li>
   <% }); %>
   <ul>
 </div>
