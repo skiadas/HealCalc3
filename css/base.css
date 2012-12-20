@@ -201,9 +201,19 @@ td { text-align: right; }
 #rotations li {
 	background-color: #AFA876;
 	margin: 2%;
-	padding: 1%;
 	border: 1px solid #343434;
 	list-style-type: none;
 }
+#rotation li div { padding: 1%; }
+#rotations li div.rotation { height: 100%; overflow: auto; }
+#rotations li div.rotation div { clear: both; }
+#rotations li div.rotation div.heading {
+    height: 1.5em;
+	background-color: #697A7D;
+	border-bottom: 1px solid #343434;
+	background-position: 28px 45%;
+}
+#rotations li div.rotation div.heading > * { float: left; display: block; clear: none; }
+#rotations li div.rotation div.heading > input { float: right; }
 
 

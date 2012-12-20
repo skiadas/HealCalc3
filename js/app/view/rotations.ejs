@@ -1,6 +1,8 @@
 <div><a class="expandOff"><h4>Rotations</h4></a>
 <div>
   <input type="button" id="btn_new_rotation" value="New Rotation" />
+  <input type="button" id="btn_load_rotation" value="Load Rotation" />
+  <input type="button" id="btn_import_rotation" value="Import Rotation" />
   <div id="new_rotation" <%= (el) -> $(el).hide(); %> ><label for="rotation_name">Name:</label><input name="rotation_name" type="input" />
   <select>
     <% specs.each(function(spec) { %>
@@ -9,33 +11,24 @@
   </select>
   <input type="button" id="btn_create" value="Create!" />
   </div>
+  <table id="rotations_comparison">
+    <thead>
+      <tr><th>Spec</th><th>Name</th><th>HPS</th><th>HPM</th><th>MPS</th><th>Time to OOM</th></tr>
+    </thead>
+    <tbody>
+      <% rotations.each(function(rotation) { %>
+        <tr <%= (el) -> can.data(el, 'rotation', rotation) %>>
+          <td><img src="images/<%= rotation.spec.icon %>" /></td>
+          <td><%= rotation.nick %></td><td><%= rotation.results.attr('hps') %></td>
+          <td><%= rotation.results.attr('hpm') %></td><td><%= rotation.results.attr('mps') %></td>
+          <td><%= rotation.results.attr('toom') %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
   <ul>
-  <% rotations.each(function(rotation) { %>
-    <li <%= (el) -> can.data(el, 'rotation', rotation) %>><img src="images/<%= rotation.spec.icon %>"/><span class="rotationName"><%= rotation.nick %></span>
-      <input type="button" class="add_spell" value ="Add Spell" />
-      <div style="position: relative">
-      <table class="rotation">
-        <thead>
-          <th class="no"># Casts</th><th class="name">Spell</th><th class="result">Total Mana</th><th class="result">Total Time</th><th class="result">Overall Healing</th>
-        </thead>
-        <tbody>
-        <% rotation.spells.each(function(spell) { %>
-          <tr <%= (el) -> can.data(el, 'spell', spell)%>>
-            <td><input type="input" value="<%= spell.attr('no') %>" /></td><td><%= spell.sp.name %></td>
-            <td><%= Math.round(spell.attr('no') * spell.attr('sp.mana')) %></td>
-            <td><%= Math.round(spell.attr('no') * spell.attr('sp.ct') *100)/100 %></td>
-            <td><%= Math.round(spell.attr('no') * spell.attr('sp.heal')*10)/10 %></td>
-          </tr>
-        <%})%>
-        <tr class="totals"><td></td><td>Rotation Totals</td><td><%= rotation.results.attr('mana') %></td><td><%= rotation.results.attr('ct') %></td>
-                  <td><%= rotation.results.attr('heal') %></td></tr>
-        <tr class="totals"><td></td><td></td><td>HPS: <%= rotation.results.attr('hps') %></td><td>HPM: <%= rotation.results.attr('hpm') %></td>
-                <td>MPS: <%= rotation.results.attr('mps') %></td></tr>
-        </tbody>
-      </table>
-    </div></li>
-  <% }); %>
-  <ul>
+    <!-- Rotation sections (copies of rotation.ejs) will go here -->
+  </ul>
 </div>
 
 </div>

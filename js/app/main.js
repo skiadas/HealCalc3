@@ -12,7 +12,8 @@ requirejs(['jquery', 'can/view/ejs', 'can/control',
         var _expand_fun = function(el,ev) {
             $(this).toggleClass('expandOff expandOn').siblings('div').toggle();
         }
-        $('a.expandOff, a.expandOn').bind('click', _expand_fun).filter('a.expandOff').siblings('div').hide();
+        $('body').delegate('.expandOff, .expandOn', 'click', _expand_fun);
+        $('.expandOff').siblings('div').hide();
     });
 });
 
