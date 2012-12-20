@@ -230,6 +230,13 @@ define(['can'], function(can) {
         can.extend(SPECS[i], spec_generic);
         spcs.push(SPECS[i]);
     }
+    spcs.find = function(str) {
+        var i = this.length;
+        while (i--) {
+            if (this[i].name == str) { return this[i] };
+        }
+        return false;
+    };
     spcs[0].attr({
         mastery_factor: 2.5, 
         fsp: function(delta) {

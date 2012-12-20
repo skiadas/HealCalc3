@@ -188,6 +188,7 @@ define(['can'], function(can) {
     var spls = new can.Observe.List([]);
     for (i=0; i< len; i++) {
         var spell = new can.Observe(can.extend(SPELLS[i], spec_specific));
+        spell.id = i;
         // spls.push(spell);
         spls.push(spell);
     }
@@ -204,9 +205,13 @@ define(['can'], function(can) {
         can.Observe.stopBatch();
     }, spls);
     spls.find = function(code) {
-        var ret;
-        this.each(function(spell) { if (spell.code == code) {ret=spell}; });
-        return ret;
+        // Search for spell by code or id
+        var _f = (typeof code === 'string') ? 
+                    function(spell) { return spell.code === code } :
+                    function(spell) { return spell.id === code },
+            i = this.length;
+        while (i--) if (_f(this[i])) { return this[i] };
+        return false;
     };
 
     // Spell customization

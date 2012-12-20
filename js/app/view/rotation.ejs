@@ -10,7 +10,7 @@
     <tbody>
     <% rotation.spells.each(function(spell) { %>
       <tr <%= (el) -> can.data(el, 'spell', spell)%>>
-        <td><input type="input" value="<%= spell.attr('no') %>" /></td><td><%= spell.sp.name %></td>
+        <td><input type="input" value="<%= spell.attr('no') %>" /></td><td><%= spell.sp.name %><a class="destroy">x</a></td>
         <td><%= Math.round(spell.attr('no') * spell.attr('sp.mana')) %></td>
         <td><%= Math.round(spell.attr('no') * spell.attr('sp.ct') *100)/100 %></td>
         <td><%= Math.round(spell.attr('no') * spell.attr('sp.heal')*10)/10 %></td>

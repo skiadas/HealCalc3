@@ -1,10 +1,30 @@
-define(['can'], function(can) {
+define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells) {
     var Rotation = can.Construct({
-        init: function(spec, nick) {
-            this.nick = nick || 'foo';
-            this.spec = spec;
-            this.specid = spec.id;
-            this.spells = new can.Observe.List([]); // Meant to extend spells with a 'no:' property
+        import: function(str) {
+            console.log('In import', str)
+            var arr = str.split('&'),
+                options = {
+                    nick: decodeURIComponent(arr.shift()),
+                    spec: specs.find(arr.shift()),
+                    spells: [],
+                },
+                splt, spell,
+                i = arr.length;
+            while (i--) {
+                splt = arr[i].split(':');
+                options.spells.push({no: splt[0], sp: spells.find(parseInt(splt[1]))});
+            }
+            // console.log(new this(options));
+            return new this(options);
+        },
+    }, {
+        init: function(options) {
+            this.nick = options.nick || 'foo';
+            this.spec = options.spec;
+            console.log("In init", options)
+            this.specid = options.spec.id;
+            // Each spell is an object { no: , sp: spell }
+            this.spells = new can.Observe.List(options.spells || []); 
             this.results = new can.Observe({}); // Contains statistics on the rotation
             this.val_update();
         },
@@ -29,6 +49,13 @@ define(['can'], function(can) {
             // console.log({no: 1, sp: spell})
             this.spells.push({no: 1, sp: spell});
             this.val_update();
+        },
+        export: function() {
+            var arr = [];
+            arr.push(encodeURIComponent(this.nick));
+            arr.push(this.spec.name);
+            this.spells.each(function(spell) { arr.push(can.sub('{no}:{sp.id}', spell));});
+            return(arr.join("&"));
         },
         _looper : function(fname, delta) {
             var val = 0, spells = this.spells, i;

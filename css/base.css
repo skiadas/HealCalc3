@@ -215,5 +215,6 @@ td { text-align: right; }
 }
 #rotations li div.rotation div.heading > * { float: left; display: block; clear: none; }
 #rotations li div.rotation div.heading > input { float: right; }
-
+.destroy { float:right; color: #E90002; padding: 0 0 0 2px; margin: 0; }
+.destroy:hover { cursor: pointer; }
 
