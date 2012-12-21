@@ -48,7 +48,7 @@ define(['can', 'jquery', 'app/control/rotation', 'app/model/spec', 'app/util/rot
             this.options.rotation_storage.update_rotation($(el).closest('li').data('rotation'));
         },
         '{specs} change': function() {
-            $('li', this.element).each(function(i, li) {$(li).data('rotation').val_update();});
+            $('ul#rotations_list li', this.element).each(function(i, li) {$(li).data('rotation').val_update();});
         },
     });
     return Rotations;
