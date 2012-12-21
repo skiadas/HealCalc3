@@ -27,6 +27,10 @@ define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/mod
                 ind = spells.indexOf(spell);
             spells.splice(ind, 1);
         },
+        'input.target_time change': function(el, ev) {
+            this.options.rotation.results.attr('target_time', parseInt($(el).val()));
+            this.options.rotation.val_update();
+        },
         '.btn_export_rotation click': function(el, ev) {
             console.log("HERE")
             ev.stopImmediatePropagation();

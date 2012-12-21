@@ -13,15 +13,25 @@
   </div>
   <table id="rotations_comparison">
     <thead>
-      <tr><th>Spec</th><th>Name</th><th>HPS</th><th>HPM</th><th>MPS</th><th>Time to OOM</th></tr>
+      <tr><th>Spec</th><th>Name</th><th>HPS</th><th>Eff. HPS</th><th>HPM</th><th>MPS</th><th>Eff. MPS</th>
+      <th>Target Time</th><th>Cast Time</th><th>Idle Time</th>
+      <th>Time to OOM</th>
+      </tr>
     </thead>
     <tbody>
       <% rotations.each(function(rotation) { %>
         <tr <%= (el) -> can.data(el, 'rotation', rotation) %>>
           <td><img src="images/<%= rotation.spec.icon %>" /></td>
-          <td><%= rotation.nick %></td><td><%= rotation.results.attr('hps') %></td>
-          <td><%= rotation.results.attr('hpm') %></td><td><%= rotation.results.attr('mps') %></td>
-          <td><%= rotation.results.attr('toom') %></td>
+          <td><%= rotation.nick %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhps', name: 'HPS'}) %>><%= rotation.results.attr('hps') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fehps', name: 'Eff. HPS'}) %>><%= rotation.results.attr('ehps') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhpm', name: 'HPM'}) %>><%= rotation.results.attr('hpm') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmps', name: 'MPS'}) %>><%= rotation.results.attr('mps') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'femps', name: 'Eff. MPS'}) %>><%= rotation.results.attr('emps') %></td>
+          <td><%= rotation.results.attr('target_time') %></td>
+          <td><%= rotation.results.attr('ct') %> (<%= rotation.results.attr('ctp') %>%)</td>
+          <td><%= rotation.results.attr('idle') %> (<%= rotation.results.attr('idlep') %>%)</td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'ftoom', name: 'Time to OOM'}) %>><%= rotation.results.attr('toom') %></td>
         </tr>
       <% }) %>
     </tbody>

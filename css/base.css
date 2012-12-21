@@ -218,3 +218,6 @@ td { text-align: right; }
 .destroy { float:right; color: #E90002; padding: 0 0 0 2px; margin: 0; }
 .destroy:hover { cursor: pointer; }
 
+
+tr.totals td {background-color: #979165; font-weight: bold; }
+input.target_time { width: 4em; text-align: right; }
