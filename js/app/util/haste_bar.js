@@ -1,5 +1,6 @@
-define(['can', 'text!view/haste_bar.ejs'], function(can, view) {
+define(['can', 'text!view/haste_bar.ejs', 'text!view/bpoint_rows.ejs'], function(can, view, rowsView) {
     can.view.ejs('hasteBarView', view);
+    can.view.ejs('bpointRowsView', rowsView);
     var HasteBar = can.Control({
         init: function(element, options) {
             var self = this;
@@ -29,7 +30,7 @@ define(['can', 'text!view/haste_bar.ejs'], function(can, view) {
             }).show().css('left', function() {return($(this).data('breakpoint').percent);}).
             attr('title', function() { return($(this).data('breakpoint').text);});
             $('.haste_current').attr('title', can.sub('You have {haste_rat} rating.\nHaste factor: {hastep}', {haste_rat: haste_rat, hastep: hastep}));
-            $('table', this.element).html(can.view('js/app/view/bpoint_rows.ejs', {breakpoints: bpoints}));
+            $('table', this.element).html(can.view('bpointRowsView', {breakpoints: bpoints}));
         },
     });
     return HasteBar;
