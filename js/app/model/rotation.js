@@ -76,26 +76,23 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
         fhpm: function(delta) { return(this.fheal(delta)/this.fmana(delta)); },
         fmps: function(delta) { return(this.fmana(delta)/this.fct(delta)); },
         femps: function(delta) { return(this.fmana(delta)/this.results.target_time); },
-        fidle: function(delta) { return(this.target_time - this.fct(delta)); },
-        fidlep: function(delta) { return(this.fidle(delta)/this.target_time); },
+        fidle: function(delta) { return(this.results.target_time - this.fct(delta)); },
+        fidlep: function(delta) { return(this.fidle(delta)/this.results.target_time); },
+        ftoom: function(delta) {return(this.spec.ftotal_mana(delta)/Math.max(this.femps(delta) - this.spec.fregen_mps(delta), 0));},
         val_update: function(delta) {
             this.results.attr({
                 'heal': Math.round(this.fheal(delta)),
                 'ct': Math.round(this.fct(delta)*100)/100,
-                'mana': Math.round(this.fmana(delta))
-            });
-            this.results.attr({
+                'mana': Math.round(this.fmana(delta)),
                 'hps': Math.round(this.fhps() * 10)/10,
                 'ehps': Math.round(this.fehps() * 10)/10,
                 'hpm': Math.round(this.fhpm()),
                 'mps': Math.round(this.fmps() *100)/100,
                 'emps': Math.round(this.femps() *100)/100,
-                'toom': 'NA',
-                'idle': Math.round((this.results.target_time-this.results.ct)*100)/100,
-                'idlep': Math.round((1-this.results.ct/this.results.target_time)*1000)/10,
-                'ctp': Math.round((this.results.ct/this.results.target_time)*1000)/10
-            });
-            this.results.attr({'toom': Math.round(this.spec.total_mana/Math.max(this.results.emps - this.spec.regen_mps, 0)),
+                'idle': Math.round(this.fidle()*100)/100,
+                'idlep': Math.round(this.fidlep()*1000)/10,
+                'ctp': Math.round(this.fctp()*1000)/10,
+                'toom': Math.round(this.ftoom()*10)/10,
             });
         }
     });

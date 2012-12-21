@@ -9,7 +9,7 @@ define(['can'], function(can) {
             { name: 'Holy Fire BT', img: 'spell_holy_searinglight', nticks: 7, time_tick: 1, hfactor: 1.15 }],
         mana_sources: [
             { name: 'Passive Regen', fmana: function(time, delta) { 
-                return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )
+                return((1*this.spi + ((delta && delta.spi) || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )
             }},
             { name: 'Initial Mana', fmana: function(time, delta) {
                 return(this.mana_pool * time/this.interval_time);
@@ -28,7 +28,7 @@ define(['can'], function(can) {
             { name: 'LW/LS', img: 'spell_holy_summonlightwell', nticks: 3, time_tick: 2 },
         ],
         mana_sources: [
-            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + ((delta && delta.spi) || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
             { name: 'Initial Mana', fmana: function(time, delta) {
                 return(this.mana_pool * time/this.interval_time);
             }},
@@ -43,7 +43,7 @@ define(['can'], function(can) {
             { name: 'SS', img: 'ability_paladin_blessedmending', nticks: 5, time_tick: 6 },
         ],
         mana_sources: [
-            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + ((delta && delta.spi) || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
             { name: 'Initial Mana', fmana: function(time, delta) {
                 return(this.mana_pool * time/this.interval_time);
             }},
@@ -63,7 +63,7 @@ define(['can'], function(can) {
             { name: 'Regrowth', img: 'spell_nature_resistnature', nticks: 3, time_tick: 2 },
         ],
         mana_sources: [
-            { name: 'Spirit Based', fmana: function(time, delta) {return(((1*this.spi + (delta || 0)) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Spirit Based', fmana: function(time, delta) {return(((1*this.spi + ((delta && delta.spi) || 0)) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
             { name: 'Initial Mana', fmana: function(time, delta) {
                 return(this.mana_pool * time/this.interval_time);
             }},
@@ -82,7 +82,7 @@ define(['can'], function(can) {
             { name: 'HST', img: 'inv_spear_04', nticks: 15/2, time_tick: 2 },
         ],
         mana_sources: [
-            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + ((delta && delta.spi) || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
             { name: 'Initial Mana', fmana: function(time, delta) {
                 return(this.mana_pool * time/this.interval_time);
             }},
@@ -94,7 +94,7 @@ define(['can'], function(can) {
             { name: 'Surging Mist, Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 }
         ],
         mana_sources: [
-            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + (delta || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
+            { name: 'Spirit Based', fmana: function(time, delta) {return((1*this.spi + ((delta && delta.spi) || 0) * 0.5 * 1.129 + 6000) / 5 * (time || 1) )} },
             { name: 'Initial Mana', fmana: function(time, delta) {
                 return(this.mana_pool * time/this.interval_time);
             }},
@@ -184,6 +184,28 @@ define(['can'], function(can) {
         },
         fmast_heal_factor: function(delta) {
             return(1+0.01*this.fmast(delta));  // Specs need to override this
+        },
+        ftotal_mana: function(delta) {
+            var total = 0,
+                sources = this.mana_sources,
+                i = this.mana_sources.length;
+            while (i--) {
+                if (sources[i].name === 'Initial Mana' || sources[i].name === 'Potion') {
+                    total += sources[i].fmana.call(this, this.interval_time*1, delta);
+                };
+            };
+            return total;
+        },
+        fregen_mps: function(delta) {
+            var total = 0,
+                sources = this.mana_sources,
+                i = this.mana_sources.length;
+            while (i--) {
+                if (sources[i].name !== 'Initial Mana' && sources[i].name !== 'Potion') {
+                    total += sources[i].fmana.call(this, 1, delta);
+                };
+            };
+            return total;
         },
         interval_time: 60,   // Seconds to consider for mana sources
         val_update: function() {

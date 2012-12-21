@@ -23,7 +23,6 @@ define(['can'], function(can) {
             this.element.html(can.view('js/app/view/delta_view.ejs', this.options));
         },
         'input change': function(el, ev) {
-            // console.log($(el).value);
             this.options.delta = $(el).attr('value') * 1;
         },
     });
