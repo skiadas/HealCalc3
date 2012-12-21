@@ -5,12 +5,14 @@ define(['can'], function(can) {
             options.delta = options.delta || 1000;
             var source = options.source;  // The source table where spells are looked up at
         },
-        '{source} tr.spell td mouseover': function(el, ev) {
+        '{source} tr td mouseover': function(el, ev) {
             if (!$(el).data('colinfo')) { return; }
-            var sp = $(el).closest('tr').data('spell');
+            var sp = $(el).closest('tr').data('spell') || $(el).closest('tr').data('rotation');
             var del = this.options.delta;
             this.options.measure = $(el).data('colinfo').name;
             var colfun = $(el).data('colinfo').fun;
+            // console.log(sp);
+            console.log(colfun);
             var base = sp[colfun]();
             this.options.base = base;
             var results = {};

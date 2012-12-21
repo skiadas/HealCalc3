@@ -19,7 +19,8 @@ define(['jquery', 'can',
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs});
         new Spells('#spells', {spells: spells, specs: specs});
         new Filter('#filters', {table: $('#spellTable'), specs: $('#specs'), view: 'js/app/view/filtering.ejs'})
-        new Delta('#deltaView', {source: $('#spellTable')});
+        // new Delta('#deltaView', {source: $('#spellTable')});
+        new Delta('#deltaView', {source: $('body')});
         new Armory('#armory');
         specs.each(function(spec) {
             var name = 'haste_bar_' + spec.name;
