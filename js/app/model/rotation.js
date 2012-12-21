@@ -1,6 +1,6 @@
 define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells) {
     var Rotation = can.Construct({
-        import: function(str) {
+        decode: function(str) {
             var arr = str.split('&'),
                 options = {
                     nick: decodeURIComponent(arr.shift()),
@@ -14,7 +14,10 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
                 splt = arr[i].split(':');
                 options.spells.push({no: splt[0], sp: spells.find(parseInt(splt[1]))});
             }
-            return new this(options);
+            return options;
+        },
+        import: function(str) {
+            return new this(this.decode(str));
         },
     }, {
         init: function(options) {
