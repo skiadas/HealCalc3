@@ -1,6 +1,6 @@
 define(['can'], function(can) {
     var SPECS = [
-        {id: 1 , name: 'Disc', icon: 'spell_holy_powerwordshield_large.jpg', active: true, bcrit: 1.235, bpoints_info: [
+        {id: 1 , name: 'Disc', icon: 'spell_holy_powerwordshield', active: true, bcrit: 1.235, bpoints_info: [
             { name: 'Renew', img: 'spell_holy_renew', nticks: 4, time_tick: 3, hfactor: 1 },
             { name: 'Renew BT', img: 'spell_holy_renew', nticks: 4, time_tick: 3, hfactor: 1.15 },
             { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, time_tick: 3, hfactor: 1 },
@@ -21,7 +21,7 @@ define(['can'], function(can) {
             { name: 'Mindbender', fmana: function(time, delta) {return((this.mana_pool * 0.015 * 11) * time /60) }},
             { name: 'Hymn of Hope', fmana: function(time, delta) {return(this.mana_pool * (1+3*1.15) * 0.02 * time /(60*6)) }},
         ]},
-        {id: 2 , name: 'Holy', icon: 'spell_holy_guardianspirit_large.jpg', active: false, bcrit: 1.235, bpoints_info: [
+        {id: 2 , name: 'Holy', icon: 'spell_holy_guardianspirit', active: false, bcrit: 1.235, bpoints_info: [
             { name: 'Renew', img: 'spell_holy_renew', nticks: 4, time_tick: 3 },
             { name: 'Glyphed Renew', img: 'spell_holy_renew', nticks: 3, time_tick: 3 },
             { name: 'HW:Sanc', img: 'spell_holy_divineprovidence', nticks: 15, time_tick: 2 },
@@ -38,7 +38,7 @@ define(['can'], function(can) {
             { name: 'Mindbender', fmana: function(time, delta) {return((this.mana_pool * 0.015 * 11) * time /60) }},
             { name: 'Hymn of Hope', fmana: function(time, delta) {return(this.mana_pool * (1+3*1.15) * 0.02 * time /(60*6)) }},
         ]},
-        {id: 3 , name: 'Pally', icon: 'spell_holy_holybolt_large.jpg', active: false, bcrit: 3.335, bpoints_info: [
+        {id: 3 , name: 'Pally', icon: 'spell_holy_holybolt', active: false, bcrit: 3.335, bpoints_info: [
             { name: 'EF', img: 'inv_torch_thrown', nticks: 10, time_tick: 3 },
             { name: 'SS', img: 'ability_paladin_blessedmending', nticks: 5, time_tick: 6 },
         ],
@@ -54,7 +54,7 @@ define(['can'], function(can) {
                 return(this.mana_pool * 0.12 * time / (2*60))
             }},
         ]},
-        {id: 4 , name: 'Druid', icon: 'spell_nature_healingtouch_large.jpg', active: false, bcrit: 1.85, bpoints_info: [
+        {id: 4 , name: 'Druid', icon: 'spell_nature_healingtouch', active: false, bcrit: 1.85, bpoints_info: [
             { name: 'LB', img: 'inv_misc_herb_felblossom', nticks: 15, time_tick: 1 },
             { name: 'Glyphed LB', img: 'inv_misc_herb_felblossom', nticks: 10, time_tick: 1},
             { name: 'WG/SM', img: 'ability_druid_flourish', nticks: 7, time_tick: 1},
@@ -74,7 +74,7 @@ define(['can'], function(can) {
                 return(this.mana_pool * 0.2 * time / (3*60))
             }},
         ]},
-        {id: 5 , name: 'Shaman', icon: 'spell_nature_healingwavegreater_large.jpg', active: false, bcrit: 1.235, bpoints_info: [
+        {id: 5 , name: 'Shaman', icon: 'spell_nature_healingwavegreater', active: false, bcrit: 1.235, bpoints_info: [
             { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6, time_tick: 3 },
             { name: 'Healing Rain', img: 'spell_nature_giftofthewaterspirit', nticks: 5, time_tick: 2 },
             { name: 'Earthliving', img: 'spell_shaman_giftearthmother', nticks: 4, time_tick: 4 },
@@ -90,7 +90,7 @@ define(['can'], function(can) {
                 return(this.potmana * time/this.interval_time);
             }},
         ]},
-        {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec_large.jpg', active: false, bcrit: 2.19, bpoints_info: [
+        {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec', active: false, bcrit: 2.19, bpoints_info: [
             { name: 'Surging Mist, Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 }
         ],
         mana_sources: [
@@ -252,7 +252,8 @@ define(['can'], function(can) {
         }
     };
     var len = SPECS.length,
-        spcs = new can.Observe.List([]);
+        spcs = new can.Observe.List([]),
+        i;
     for (i=0; i< len; i++) {
         can.extend(SPECS[i], spec_generic);
         spcs.push(SPECS[i]);

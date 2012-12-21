@@ -186,7 +186,7 @@ define(['can'], function(can) {
 
     var len = SPELLS.length;
     var spls = new can.Observe.List([]);
-    for (i=0; i< len; i++) {
+    for (var i=0; i< len; i++) {
         var spell = new can.Observe(can.extend(SPELLS[i], spec_specific));
         spell.id = i;
         spls.push(spell);
