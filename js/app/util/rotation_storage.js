@@ -3,7 +3,7 @@ define(['can', 'jquery', 'app/model/rotation'], function(can, $, RotModel) {
        init: function(element, options) {
            this.element = element;
            var ls = localStorage['rotations'];
-           this.options.storage = $.map(ls ? ls.split('|') : [], function(str) {return RotModel.decode(str)});
+           this.options.storage = new can.Observe.List($.map(ls ? ls.split('|') : [], function(str) {return RotModel.decode(str)}));
            this.element.html(can.view('js/app/view/rotation_storage.ejs', this.options));
        },
        save: function() {
@@ -15,7 +15,7 @@ define(['can', 'jquery', 'app/model/rotation'], function(can, $, RotModel) {
            var storage = this.options.storage,
                i = storage.length;
            while (i--) {
-               if ((storage[i].name === rotation.name) && (storage[i].spec.name === rotation.spec.name)) {
+               if ((storage[i].nick === rotation.nick) && (storage[i].spec.name === rotation.spec.name)) {
                    return i;
                }
            }
@@ -23,7 +23,7 @@ define(['can', 'jquery', 'app/model/rotation'], function(can, $, RotModel) {
        },
        update_rotation: function(rotation) {
            var storage = this.options.storage,
-               i = storage.indexOf(rotation);
+               i = this.indexOf(rotation);
            if (i === -1) {
                storage.push(rotation);
            } else {
@@ -31,9 +31,21 @@ define(['can', 'jquery', 'app/model/rotation'], function(can, $, RotModel) {
            }
            return this.save();
        },
-       '.rotation click': function(el, ev) {
-           console.log('Selected one!');
-       }
+       'li click': function(el, ev) {
+           $(this).trigger('load_rotation', el.closest('li').data('rotation'));
+           this.element.hide();
+       },
+       'mouseleave': function(el, ev) {
+           this.element.hide();
+       },
+       '.destroy click': function(el, ev) {
+           ev.stopImmediatePropagation();
+           var storage = this.options.storage,
+               rotation = el.closest('li').data('rotation'),
+               ind = storage.indexOf(rotation);
+           storage.splice(ind, 1);
+           this.save();
+       },
    });
    
    return RotationStorage;

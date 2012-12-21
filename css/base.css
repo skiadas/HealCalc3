@@ -221,3 +221,7 @@ td { text-align: right; }
 
 tr.totals td {background-color: #979165; font-weight: bold; }
 input.target_time { width: 4em; text-align: right; }
+
+#rotation_storage li { width: 15em; height: 22px; cursor: pointer; }
+#rotation_storage li:hover { background-color: #6A6547; }
+#rotation_storage { overflow: auto; background-color: #8F8A61; border: 1px solid #6D6D6D;}

@@ -7,11 +7,14 @@ define(['can', 'jquery', 'app/control/rotation', 'app/model/spec', 'app/util/rot
             self.options.rotations = new can.Observe.List();
             self.element.append(can.view('js/app/view/rotations.ejs', self.options));
             self.options.rotation_storage = new RotStorage('#rotation_storage');
+            $(self.options.rotation_storage).bind('load_rotation', function(ev, rotation) {
+                self.add_rotation(rotation);
+            });
             return;
         },
         '#btn_new_rotation click': function(el, ev) { $('#new_rotation').show(); },
         'add_rotation': function(options) {
-            var new_el = $('<li style="position: relative"></li>').appendTo($('ul', this.element));
+            var new_el = $('<li style="position: relative"></li>').appendTo($('ul#rotations_list', this.element));
             this.options.rotations.push((new Rotation(new_el, options)).options.rotation);
             return this;
         },
@@ -36,6 +39,9 @@ define(['can', 'jquery', 'app/control/rotation', 'app/model/spec', 'app/util/rot
                 ind = rotations.indexOf(rotation);
             rotations.splice(ind, 1);
             li.remove();
+        },
+        '#btn_load_rotation click': function(el, ev) {
+            $('#rotation_storage').toggle();
         },
         '.btn_save_rotation click': function(el, ev) {
             ev.stopImmediatePropagation();

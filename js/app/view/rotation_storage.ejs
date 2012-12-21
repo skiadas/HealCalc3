@@ -1,5 +1,5 @@
 <ul>
 <% can.each(storage, function(rotation) { %>
-<li class="rotation"><img src="images/<%= rotation.spec.icon %>" /><span class="rotation_name"><%= rotation.nick %></span><a class="destroy">x</a></li>
+<li class="rotation_st" <%= (el) -> can.data(el, 'rotation', rotation) %>><img src="images/<%= rotation.spec.icon %>" /><span class="rotation_name"><%= rotation.nick %></span><a class="destroy">x</a></li>
 <% }) %>
 </ul>
