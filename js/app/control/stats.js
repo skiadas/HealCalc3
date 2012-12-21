@@ -1,14 +1,16 @@
 define(['can'], function(can) {
     var Stats = can.Control({
         init: function(element, options) {
-            var self = this,
-                stats = options.stats;
-            self.element.html(can.view('js/app/view/stats.ejs', {stats: stats}));
+            this.element = element;
+            this.options.stats = options.stats;
+            console.log(this.options.stats);
+            this.element.html(can.view('js/app/view/stats.ejs', this.options));
+            console.log(this.options.stats === $('div', $('#stats')).data('stat'));
         },
         'input change': function(el, ev) {
             var attr = el.attr('id'),
-                val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
-            $(this.element.children('div')[0]).data('stat').attr(attr, val);
+                val = el.val();
+            this.options.stats.attr(attr, val*1);
         },
     });
     return Stats;
