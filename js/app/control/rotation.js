@@ -32,9 +32,12 @@ define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/mod
             this.options.rotation.val_update();
         },
         '.btn_export_rotation click': function(el, ev) {
-            console.log("HERE")
             ev.stopImmediatePropagation();
             prompt('The following string represents your rotation. Use it with "Import  Rotation:"', this.options.rotation.export());
+        },
+        '.btn_save_rotation click': function(el, ev) {
+            ev.stopImmediatePropagation();
+            RotModel.ls.update_rotation(this.options.rotation);
         },
     })
     return Rotation;
