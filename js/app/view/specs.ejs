@@ -1,6 +1,7 @@
 <% specs.each(function(spec) { %>
   <div class="spec" <%= (el) -> can.data(el, 'spec', spec) %> >
-    <img src=<%== 'images/'+spec.attr('icon') %> /><a class="expandOn"><h4><%= spec.name %></h4></a>
+    <%== ImageLoader.str(spec.icon) %>
+    <a class="expandOn"><h4><%= spec.name %></h4></a>
     <div>
       <ul><li><a class="expandOff">Settings</a>
       <div class="settings">

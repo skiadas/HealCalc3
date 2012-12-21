@@ -4,16 +4,18 @@ define(['jquery', 'can',
             'app/model/spec', 'app/control/specs',
             'app/model/spell', 'app/control/spells',
             'app/util/filtering', 'app/util/delta_viewer',
-            'app/util/armory', 'app/util/haste_bar', 'app/control/rotations'
+            'app/util/armory', 'app/util/haste_bar', 'app/control/rotations',
+            'app/util/image_loader'
             ], function($, can, 
             stats, Stats, 
             buffs, Buffs, 
             specs, Specs, 
             spells, Spells, 
             Filter, Delta, 
-            Armory, HasteBar, Rotations) {
+            Armory, HasteBar, Rotations,
+            ImageLoader) {
     $(document).ready(function() {
-        // var stats = Stat.findAll({});
+        can.EJS.Helpers.prototype.ImageLoader = ImageLoader;
         new Stats('#stats', {stats: stats});
         new Buffs('#buffs', {buffs: buffs});
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs});

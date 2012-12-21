@@ -1,6 +1,6 @@
 <div class="rotation">
   <div class="heading expandOn">
-    <img src="images/<%= rotation.spec.icon %>"/><a class="rotationName"><%= rotation.nick %></a>
+    <%== ImageLoader.str(rotation.spec.icon) %><a class="rotationName"><%= rotation.nick %></a>
     <input type="button" class="btn_export_rotation" value ="Export Rotation" />
     <input type="button" class="btn_save_rotation" value ="Save Rotation" />
     <input type="button" class="btn_remove_rotation" value ="Remove Rotation" />
