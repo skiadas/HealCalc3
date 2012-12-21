@@ -16,6 +16,14 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
             }
             return options;
         },
+        encode: function(rotation) {
+            var arr = [];
+            arr.push(encodeURIComponent(rotation.nick));
+            arr.push(rotation.spec.name);
+            arr.push('time:' + rotation.results.target_time)
+            rotation.spells.each(function(spell) { arr.push(can.sub('{no}:{sp.id}', spell));});
+            return(arr.join("&"));
+        },
         import: function(str) {
             return new this(this.decode(str));
         },
@@ -54,12 +62,7 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
             this.val_update();
         },
         export: function() {
-            var arr = [];
-            arr.push(encodeURIComponent(this.nick));
-            arr.push(this.spec.name);
-            arr.push('time:' + this.results.target_time)
-            this.spells.each(function(spell) { arr.push(can.sub('{no}:{sp.id}', spell));});
-            return(arr.join("&"));
+            return Rotation.encode(this);
         },
         _looper : function(fname, delta) {
             var val = 0, spells = this.spells, i;
