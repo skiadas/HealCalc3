@@ -1,4 +1,5 @@
-define(['can', 'spin', 'jquery', 'jquerypp/dom/cookie'], function(can, Spinner, $) {
+define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'], function(can, Spinner, $, view) {
+    can.view.ejs('armoryView', view);
     var spin_opts = {
       lines: 13, length: 2, width: 3, radius: 4, corners: 1, 
       rotate: 34, color: '#000', speed: 0.9, trail: 50, 
@@ -25,7 +26,7 @@ define(['can', 'spin', 'jquery', 'jquerypp/dom/cookie'], function(can, Spinner, 
                 this.options.character.attr(_from_str(this.options.past_searches[0]));
             }
             this.element = element;
-            this.element.html(can.view('js/app/view/armory.ejs', this.options));
+            this.element.html(can.view('armoryView', this.options));
         },
         'input[type="input"] change': function(el, ev) {
             this.options.character.attr($(el).attr('id'), $(el).attr('value'));
@@ -71,7 +72,7 @@ define(['can', 'spin', 'jquery', 'jquerypp/dom/cookie'], function(can, Spinner, 
                 $('div', $('#stats')).data('stat').attr(armory_stats);
                 can.Observe.stopBatch();
                 // Change filter to the appropriate spec
-                self.element.html(can.view('js/app/view/armory.ejs', self.options));
+                self.element.html(can.view('armoryView', self.options));
             }).error(function(json, a, b) {
                 spinner.stop();
                 $("#armory_btn").children('input').show();

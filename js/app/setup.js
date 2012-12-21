@@ -18,7 +18,7 @@ define(['jquery', 'can',
         new Buffs('#buffs', {buffs: buffs});
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs});
         new Spells('#spells', {spells: spells, specs: specs});
-        new Filter('#filters', {table: $('#spellTable'), specs: $('#specs'), view: 'js/app/view/filtering.ejs'})
+        new Filter('#filters', {table: $('#spellTable'), specs: $('#specs')})
         // new Delta('#deltaView', {source: $('#spellTable')});
         new Delta('#deltaView', {source: $('body')});
         new Armory('#armory');

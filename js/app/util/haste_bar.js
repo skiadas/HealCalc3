@@ -1,9 +1,10 @@
-define(['can'], function(can) {
+define(['can', 'text!view/haste_bar.ejs'], function(can, view) {
+    can.view.ejs('hasteBarView', view);
     var HasteBar = can.Control({
         init: function(element, options) {
             var self = this;
             var spec = options.spec;
-            self.element.html(can.view('js/app/view/haste_bar.ejs', {spec: spec}));
+            self.element.html(can.view('hasteBarView', {spec: spec}));
             self.update_bar();
         },
         '{spec} change': function() {

@@ -1,11 +1,12 @@
-define(['can', 'jquery', 'app/control/rotation', 'app/model/spec', 'app/util/rotation_storage'], function(can, $, Rotation, specs, RotStorage) {
+define(['can', 'jquery', 'app/control/rotation', 'app/model/spec', 'app/util/rotation_storage', 'text!view/rotations.ejs'], function(can, $, Rotation, specs, RotStorage, view) {
+    can.view.ejs('rotationsView', view);
     var Rotations = can.Control({
         init: function(element, options) {
             var self = this;
             self.element = element;
             self.options = options;
             self.options.rotations = new can.Observe.List();
-            self.element.append(can.view('js/app/view/rotations.ejs', self.options));
+            self.element.append(can.view('rotationsView', self.options));
             self.options.rotation_storage = new RotStorage('#rotation_storage');
             $(self.options.rotation_storage).bind('load_rotation', function(ev, rotation) {
                 self.add_rotation(rotation);

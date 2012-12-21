@@ -1,7 +1,8 @@
-define(['can'], function(can, spells) {
-var ALLSPECS = ['disc', 'holy', 'pally', 'druid', 'shaman', 'monk'];
-var FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime']);
-var Filtering = can.Control({
+define(['can', 'text!view/filtering.ejs'], function(can, view) {
+    can.view.ejs('filterView', view);
+    var ALLSPECS = ['disc', 'holy', 'pally', 'druid', 'shaman', 'monk'];
+    var FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime']);
+    var Filtering = can.Control({
     init: function(element, options) {
         var self = this;
         self.options = options;
@@ -14,7 +15,7 @@ var Filtering = can.Control({
         self.options.fullmask = (1 << 10) -1;
         self.options.curr_mask = 0;
         self.element.data('filters', self.options.filters);
-        self.element.append(can.view(options.view, self.options));
+        self.element.append(can.view('filterView', self.options));
         setInterval(function() {self.update(self);}, 30);
     },
     'update': function(self) {

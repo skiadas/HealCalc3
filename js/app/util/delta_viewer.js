@@ -1,4 +1,5 @@
-define(['can'], function(can) {
+define(['can', 'text!view/delta_view.ejs'], function(can, view) {
+    can.view.ejs('deltaViewerView', view);
     var DeltaViewer = can.Control({
         init: function(element, options) {
             var self = this;
@@ -20,7 +21,7 @@ define(['can'], function(can) {
                 results[stat] = Math.round((sp[colfun](delta) - base)/base * 10000)/100;
             });
             this.options.results = results;
-            this.element.html(can.view('js/app/view/delta_view.ejs', this.options));
+            this.element.html(can.view('deltaViewerView', this.options));
         },
         'input change': function(el, ev) {
             this.options.delta = $(el).attr('value') * 1;

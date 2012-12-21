@@ -1,5 +1,5 @@
-define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/model/spec'], function(can, $, RotModel, lister, specs) {
-
+define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/model/spec', 'text!view/rotation.ejs'], function(can, $, RotModel, lister, specs, view) {
+    can.view.ejs('rotationView', view);
     var Rotation = can.Control({
         init: function(element, options) {
             this.element = element;
@@ -9,7 +9,7 @@ define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/mod
                         RotModel.import(options.str) : // This is an imported string
                         new RotModel(options);  // New model
             this.element.data('rotation', this.options.rotation);
-            this.element.html(can.view('js/app/view/rotation.ejs', this.options));
+            this.element.html(can.view('rotationView', this.options));
         },
         'input.btn_add_spell click': function(el, ev) {
             var rotation = this.options.rotation;

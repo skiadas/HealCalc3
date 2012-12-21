@@ -1,4 +1,5 @@
-define(['can', 'app/util/sorter'], function(can, _sort) {
+define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, view) {
+    can.view.ejs('spellsView', view);
     var Spells = can.Control({
         init: function(element, options) {
             var self = this,
@@ -15,7 +16,7 @@ define(['can', 'app/util/sorter'], function(can, _sort) {
             this.options.spells.val_update();
             this.sort();
             // Call View
-            self.element.html(can.view('js/app/view/spells.ejs', {spells: spells}));
+            self.element.html(can.view('spellsView', {spells: spells}));
         },
         sort: function(ev) {
             var batchNum = this.options.batchNum;

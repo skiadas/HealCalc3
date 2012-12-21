@@ -1,4 +1,17 @@
-define(['can'], function(can) {
+define(['can', 'text!view/specs.ejs',
+    'text!view/specsDisc.ejs', 'text!view/specsHoly.ejs', 'text!view/specsDruid.ejs',
+    'text!view/specsPally.ejs', 'text!view/specsMonk.ejs', 'text!view/specsShaman.ejs'
+], function(can, view, 
+    specsDiscView, specsHolyView, specsDruidView, 
+    specsPallyView, specsMonkView, specsShamanView
+    ) {
+    can.view.ejs('specsView', view);
+    can.view.ejs('specsDiscView',   specsDiscView);
+    can.view.ejs('specsHolyView',   specsHolyView);
+    can.view.ejs('specsDruidView',  specsDruidView);
+    can.view.ejs('specsPallyView',  specsPallyView);
+    can.view.ejs('specsMonkView',   specsMonkView);
+    can.view.ejs('specsShamanView', specsShamanView);
     var Specs = can.Control({
         init: function(element, options) {
             var self = this,
@@ -10,7 +23,7 @@ define(['can'], function(can) {
                 spec.attr('stats', stats);
             });
             specs.val_update();
-            self.element.html(can.view('js/app/view/specs.ejs', {specs: specs, buffs: buffs, stats: stats}));
+            self.element.html(can.view('specsView', {specs: specs, buffs: buffs, stats: stats}));
             $('li', self.element).addClass('expand').children('a').click();
         },
         'select change': function(el, ev) {

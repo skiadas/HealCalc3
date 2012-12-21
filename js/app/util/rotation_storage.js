@@ -1,10 +1,11 @@
-define(['can', 'jquery', 'app/model/rotation'], function(can, $, RotModel) {
-   var RotationStorage = can.Control({
+define(['can', 'jquery', 'app/model/rotation', 'text!view/rotation_storage.ejs'], function(can, $, RotModel, view) {
+    can.view.ejs('rotationStorageView', view);
+    var RotationStorage = can.Control({
        init: function(element, options) {
            this.element = element;
            var ls = localStorage['rotations'];
            this.options.storage = new can.Observe.List($.map(ls ? ls.split('|') : [], function(str) {return RotModel.decode(str)}));
-           this.element.html(can.view('js/app/view/rotation_storage.ejs', this.options));
+           this.element.html(can.view('rotationStorageView', this.options));
        },
        save: function() {
            localStorage['rotations'] = $.map(this.options.storage, function(rotation) {return(RotModel.encode(rotation))}).join("|");

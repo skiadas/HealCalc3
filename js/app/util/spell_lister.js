@@ -1,8 +1,9 @@
-define(['can', 'jquery', 'app/model/spell'], function(can, $, spells) {
+define(['can', 'jquery', 'app/model/spell', 'text!view/spell_lister.ejs'], function(can, $, spells, view) {
+    can.view.ejs('spellListerView', view);
     var SpellLister = can.Control({
         init: function(element) {
             this.options.spells = spells;
-            this.options.view = 'js/app/view/spell_lister.ejs';
+            this.options.view = 'spellListerView';
             this.options.rendered_spells = [];
             this.element = element;
         },

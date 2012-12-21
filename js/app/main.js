@@ -2,7 +2,8 @@ requirejs.config({
     baseUrl: 'js/lib',
     paths: {
         app: '../app',
-        "jquery" : "jquery-1.8.3.min"
+        "jquery" : "jquery-1.8.3.min",
+        view: '../app/view',
     }
 });
 requirejs(['jquery', 'can/view/ejs', 'can/control', 
