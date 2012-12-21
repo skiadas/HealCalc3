@@ -56,7 +56,6 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
         add: function(spell) {
             // Adds the spell to the rotation
             // In the future, this part should decide the count for new spells
-            // console.log({no: 1, sp: spell})
             this.spells.push({no: 1, sp: spell});
             this.val_update();
         },
@@ -96,7 +95,6 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
                 'idlep': Math.round((1-this.results.ct/this.results.target_time)*1000)/10,
                 'ctp': Math.round((this.results.ct/this.results.target_time)*1000)/10
             });
-            console.log(this)
             this.results.attr({'toom': Math.round(this.spec.total_mana/Math.max(this.results.emps - this.spec.regen_mps, 0)),
             });
         }

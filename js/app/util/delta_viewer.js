@@ -14,7 +14,7 @@ define(['can'], function(can) {
             var base = sp[colfun]();
             this.options.base = base;
             var results = {};
-            $.each(['int','sp','crit','haste','mast'], function(_, stat) {
+            $.each(['int','sp','crit','haste','mast', 'spi'], function(_, stat) {
                 var delta = {};
                 delta[stat] = del;
                 results[stat] = Math.round((sp[colfun](delta) - base)/base * 10000)/100;

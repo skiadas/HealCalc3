@@ -210,7 +210,6 @@ define(['can'], function(can) {
                 total_mana = 0,
                 mfun, mana, mps;
             spec.mana_sources.each(function(s) {
-                // console.log(spec.interval_time);
                 mfun = can.proxy(s.fmana, spec);
                 mana = Math.round(mfun(spec.interval_time*1));
                 mps = Math.round(10*mfun(1))/10;

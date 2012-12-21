@@ -189,12 +189,9 @@ define(['can'], function(can) {
     for (i=0; i< len; i++) {
         var spell = new can.Observe(can.extend(SPELLS[i], spec_specific));
         spell.id = i;
-        // spls.push(spell);
         spls.push(spell);
     }
-    // console.log(spls);
     spls.val_update = can.proxy(function(spec) {
-        // console.log("in spells val_update:", spec)
         can.Observe.startBatch();
         this.each(function(spell) {
             // If no spec specified, update all spells
