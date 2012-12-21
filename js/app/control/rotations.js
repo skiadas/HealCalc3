@@ -1,4 +1,4 @@
-define(['can', 'jquery', 'app/control/rotation', 'app/model/spec'], function(can, $, Rotation, specs) {
+define(['can', 'jquery', 'app/control/rotation', 'app/model/spec', 'app/util/rotation_storage'], function(can, $, Rotation, specs, RotStorage) {
     var Rotations = can.Control({
         init: function(element, options) {
             var self = this;
@@ -6,6 +6,7 @@ define(['can', 'jquery', 'app/control/rotation', 'app/model/spec'], function(can
             self.options = options;
             self.options.rotations = new can.Observe.List();
             self.element.append(can.view('js/app/view/rotations.ejs', self.options));
+            self.options.rotation_storage = new RotStorage('#rotation_storage');
             return;
         },
         '#btn_new_rotation click': function(el, ev) { $('#new_rotation').show(); },
@@ -35,6 +36,10 @@ define(['can', 'jquery', 'app/control/rotation', 'app/model/spec'], function(can
                 ind = rotations.indexOf(rotation);
             rotations.splice(ind, 1);
             li.remove();
+        },
+        '.btn_save_rotation click': function(el, ev) {
+            ev.stopImmediatePropagation();
+            this.options.rotation_storage.update_rotation($(el).closest('li').data('rotation'));
         },
         '{specs} change': function() {
             $('li', this.element).each(function(i, li) {$(li).data('rotation').val_update();});

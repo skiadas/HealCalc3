@@ -11,8 +11,6 @@ define(['can'], function(can) {
             var del = this.options.delta;
             this.options.measure = $(el).data('colinfo').name;
             var colfun = $(el).data('colinfo').fun;
-            // console.log(sp);
-            console.log(colfun);
             var base = sp[colfun]();
             this.options.base = base;
             var results = {};

@@ -2,7 +2,6 @@ define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/mod
 
     var Rotation = can.Control({
         init: function(element, options) {
-            console.log(element)
             this.element = element;
             this.options = {};
             this.options.lister = lister;
@@ -34,10 +33,6 @@ define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/mod
         '.btn_export_rotation click': function(el, ev) {
             ev.stopImmediatePropagation();
             prompt('The following string represents your rotation. Use it with "Import  Rotation:"', this.options.rotation.export());
-        },
-        '.btn_save_rotation click': function(el, ev) {
-            ev.stopImmediatePropagation();
-            RotModel.ls.update_rotation(this.options.rotation);
         },
     })
     return Rotation;

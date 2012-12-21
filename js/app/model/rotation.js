@@ -5,7 +5,7 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
                 options = {
                     nick: decodeURIComponent(arr.shift()),
                     spec: specs.find(arr.shift()),
-                    target_time: parseInt(arr.shift().replace('time:','')),
+                    results: {target_time: parseInt(arr.shift().replace('time:',''))},
                     spells: [],
                 },
                 splt, spell,
@@ -21,7 +21,7 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
             arr.push(encodeURIComponent(rotation.nick));
             arr.push(rotation.spec.name);
             arr.push('time:' + rotation.results.target_time)
-            rotation.spells.each(function(spell) { arr.push(can.sub('{no}:{sp.id}', spell));});
+            $.each(rotation.spells, function(_, spell) { arr.push(can.sub('{no}:{sp.id}', spell));});
             return(arr.join("&"));
         },
         import: function(str) {
@@ -31,12 +31,11 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
         init: function(options) {
             this.nick = options.nick || 'foo';
             this.spec = options.spec;
-            console.log("In init", options)
             this.specid = options.spec.id;
             // Each spell is an object { no: , sp: spell }
             this.spells = new can.Observe.List(options.spells || []); 
             this.results = new can.Observe({}); // Contains statistics on the rotation
-            this.results.attr('target_time', options.target_time || 120);
+            this.results.attr('target_time', (options.results && options.results.target_time) || 120);
             this.val_update();
         },
         contains_not: function(spell) {
@@ -71,7 +70,7 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
         },
         fheal: function(delta) { return(this._looper('fheal', delta)); },
         fct: function(delta) { return(this._looper('fct', delta)); },
-        fctp: function(delta) { return(this.fct(delta)/this.target_time); },
+        fctp: function(delta) { return(this.fct(delta)/this.results.target_time); },
         fmana: function(delta) { return(this._looper('fmana', delta)); },
         fhps: function(delta) { return(this.fheal(delta)/this.fct(delta)); },
         fehps: function(delta) { return(this.fheal(delta)/this.results.target_time); },
@@ -99,36 +98,5 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
             });
         }
     });
-    //
-    // Implementing Local Storage on Rotation objects
-    //
-    var ls = localStorage['rotations'];
-    Rotation.ls = $.map(ls ? ls.split('|') : [], function(str) {return Rotation.decode(str)});
-    Rotation.ls.indexOf = function(rotation) {
-        // Two rotations are considered "the same" if they have the same name and spec
-        var i = this.length;
-        console.log(this)
-        while (i--) {
-            if ((this[i].name === rotation.name) && (this[i].spec.name === rotation.spec.name)) {
-                return i;
-            }
-        }
-        return -1;
-    };
-    Rotation.ls.update_rotation = function(rotation) {
-        var i = this.indexOf(rotation);
-        if (i === -1) {
-            this.push(rotation);
-        } else {
-            this[i] = rotation;
-        }
-        return this.save();
-    };
-    Rotation.ls.save = function() {
-        localStorage['rotations'] = $.map(this, function(rotation) {return(rotation.export())}).join("|");
-        return this;
-    };
-    console.log(Rotation.ls)
-    // Rotation.ls.save();
     return Rotation;
 });

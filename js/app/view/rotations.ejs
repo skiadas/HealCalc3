@@ -2,6 +2,7 @@
 <div>
   <input type="button" id="btn_new_rotation" value="New Rotation" />
   <input type="button" id="btn_load_rotation" value="Load Rotation" disabled="disabled" />
+  <div id="rotation_storage" style="position: relative; display: none"></div>
   <input type="button" id="btn_import_rotation" value="Import Rotation" />
   <div id="new_rotation" <%= (el) -> $(el).hide(); %> ><label for="rotation_name">Name:</label><input name="rotation_name" type="input" />
   <select>
