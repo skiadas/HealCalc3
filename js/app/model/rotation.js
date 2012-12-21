@@ -99,5 +99,36 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
             });
         }
     });
+    //
+    // Implementing Local Storage on Rotation objects
+    //
+    var ls = localStorage['rotations'];
+    Rotation.ls = $.map(ls ? ls.split('|') : [], function(str) {return Rotation.decode(str)});
+    Rotation.ls.indexOf = function(rotation) {
+        // Two rotations are considered "the same" if they have the same name and spec
+        var i = this.length;
+        console.log(this)
+        while (i--) {
+            if ((this[i].name === rotation.name) && (this[i].spec.name === rotation.spec.name)) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    Rotation.ls.update_rotation = function(rotation) {
+        var i = this.indexOf(rotation);
+        if (i === -1) {
+            this.push(rotation);
+        } else {
+            this[i] = rotation;
+        }
+        return this.save();
+    };
+    Rotation.ls.save = function() {
+        localStorage['rotations'] = $.map(this, function(rotation) {return(rotation.export())}).join("|");
+        return this;
+    };
+    console.log(Rotation.ls)
+    // Rotation.ls.save();
     return Rotation;
 });
