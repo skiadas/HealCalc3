@@ -1,4 +1,4 @@
-define(['can', 'jquery', 'app/model/rotation', 'app/control/spell_lister', 'app/model/spec'], function(can, $, RotModel, lister, specs) {
+define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/model/spec'], function(can, $, RotModel, lister, specs) {
 
     var Rotation = can.Control({
         init: function(element, options) {
