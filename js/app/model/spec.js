@@ -207,6 +207,7 @@ define(['can'], function(can) {
             var spec = this,
                 regen_mana = 0,
                 regen_mps = 0,
+                total_mana = 0,
                 mfun, mana, mps;
             spec.mana_sources.each(function(s) {
                 // console.log(spec.interval_time);
@@ -216,11 +217,16 @@ define(['can'], function(can) {
                 regen_mana += mana;
                 if (s.name !== 'Initial Mana' && s.name !== 'Potion') {
                     regen_mps += mps;
+                } else {
+                    total_mana += mana;
                 }
                 s.attr({'mana': mana, 'mps': mps});
             });
-            spec.attr('regen_mana', Math.round(regen_mana));
-            spec.attr('regen_mps', Math.round(10*regen_mps)/10);
+            spec.attr({
+                'regen_mana': Math.round(regen_mana),
+                'regen_mps': Math.round(10*regen_mps)/10,
+                'total_mana': Math.round(total_mana),
+            });
             can.Observe.stopBatch();
         }
     };

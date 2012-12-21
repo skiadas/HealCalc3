@@ -94,7 +94,10 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
                 'toom': 'NA',
                 'idle': Math.round((this.results.target_time-this.results.ct)*100)/100,
                 'idlep': Math.round((1-this.results.ct/this.results.target_time)*1000)/10,
-                'ctp': Math.round((this.results.ct/this.results.target_time)*1000)/10,
+                'ctp': Math.round((this.results.ct/this.results.target_time)*1000)/10
+            });
+            console.log(this)
+            this.results.attr({'toom': Math.round(this.spec.total_mana/Math.max(this.results.emps - this.spec.regen_mps, 0)),
             });
         }
     });
