@@ -6,9 +6,7 @@ requirejs.config({
         view: '../app/view',
     }
 });
-requirejs(['jquery', 'can/view/ejs', 'can/control', 
-            'app/model/stat', 'app/control/stats', 
-            'app/model/buff', 'app/control/buffs', 'app/setup'], function($, can, _, stats, Stats, buffs, Buffs) {
+requirejs(['jquery', 'can', 'app/setup'], function($, can) {
     $(document).ready(function() {
         var _expand_fun = function(el,ev) {
             $(this).toggleClass('expandOff expandOn').siblings('div').toggle();
