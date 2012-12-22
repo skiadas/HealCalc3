@@ -1,18 +1,19 @@
 define(['jquery', 'text!app/util/image_namelist.js','text!app/util/big_one.jpg'], function($, names, big_one) {
-    eval(names);
-    var imageList = big_one.split("\u0001");
-    var retList = {};
-    for (var i = 0, len = imageList.length; i < len; i++) {
-        retList[names[i]] = '<img src="data:image/jpeg;base64,' + imageList[i] + '" />';
-    }
-    return (function() {
-        var imList = retList,
-            ret = function(name) {
-                return $(imList[name.replace('_large.jpg', '')]);
-            };
+    ImageLoader = (function() {
+        eval(names);
+        var imageList = big_one.split("\u0001");
+        var retList = {};
+        for (var i = 0, len = imageList.length; i < len; i++) {
+            retList[names[i]] = '<img src="data:image/jpeg;base64,' + imageList[i] + '" />';
+        }
+        ret = function(name) {
+            return $(retList[name.replace('_large.jpg', '')]);
+        };
         ret.str = function(name) {
-            return imList[name.replace('_large.jpg', '')];
+            return retList[name.replace('_large.jpg', '')];
         }
         return ret;
     })();
+    return ImageLoader;
 });
+

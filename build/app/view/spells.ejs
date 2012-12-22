@@ -1,0 +1,30 @@
+<h4>Spells</h4>
+<table id="spellTable" <%= (el) -> can.data(el, 'spells', spells) %>>
+  <thead>
+    <th id="th_spec">Spec</th>
+    <th id="th_name">Name</th>
+    <th id="th_ct">Cast Time</th>
+    <th id="th_mana">Mana</th>
+    <th id="th_base">Base Heal</th>
+    <th id="th_heal">Average Heal</th>
+    <th id="th_hps" class="sort_desc">HPS</th>
+    <th id="th_hpm">HPM</th>
+    <th id="th_mps">MPS</th>
+  </thead>
+  <tbody>
+<% spells.each(function(spell) { %>
+  <tr class="spell spell_<%= spell.spec.name %>" <%= (el) -> can.data(el, 'spell', spell) %> >
+    <td class="spec"><%== ImageLoader.str(spell.spec.icon) %></td>
+    <td class="name"><%== ImageLoader.str(spell.img) %>
+      <a href="http://www.wowhead.com/spell=<%= spell.item %>" target="_blank"><%= spell.name %></a></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fct', name: 'Cast Time'}) %>><%= spell.attr('ct') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmana', name: 'Mana Cost'}) %>><%= spell.attr('mana') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbase', name: 'Base Heal'}) %>><%= spell.attr('base_heal') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fheal', name: 'Average Heal'}) %>><%= spell.attr('heal') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhps', name: 'HPS'}) %>><%= spell.attr('hps') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhpm', name: 'HPM'}) %>><%= spell.attr('hpm') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmps', name: 'MPS'}) %>><%= spell.attr('mps') %></td>
+  </tr>
+<% }) %>
+  </tbody>
+</table>

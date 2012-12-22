@@ -1,0 +1,45 @@
+<div><a class="expandOff"><h4>Rotations</h4></a>
+<div>
+  <input type="button" id="btn_new_rotation" value="New Rotation" />
+  <input type="button" id="btn_load_rotation" value="Load Rotation" style="position: relative" />
+  <div id="rotation_storage" style="position: absolute" <%= (el) -> el.hide() %>></div>
+  <input type="button" id="btn_import_rotation" value="Import Rotation" />
+  <div id="new_rotation" <%= (el) -> $(el).hide(); %> ><label for="rotation_name">Name:</label><input name="rotation_name" type="input" />
+  <select>
+    <% specs.each(function(spec) { %>
+      <option value="<%= spec.id %>"><%= spec.name %></option>
+    <% })%>
+  </select>
+  <input type="button" id="btn_create" value="Create!" />
+  </div>
+  <table id="rotations_comparison">
+    <thead>
+      <tr><th>Spec</th><th>Name</th><th>HPS</th><th>Eff. HPS</th><th>HPM</th><th>MPS</th><th>Eff. MPS</th>
+      <th>Target Time</th><th>Cast Time</th><th>Idle Time</th>
+      <th>Time to OOM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% rotations.each(function(rotation) { %>
+        <tr <%= (el) -> can.data(el, 'rotation', rotation) %>>
+          <td><%== ImageLoader.str(rotation.spec.icon) %></td>
+          <td><%= rotation.nick %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhps', name: 'HPS'}) %>><%= rotation.results.attr('hps') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fehps', name: 'Eff. HPS'}) %>><%= rotation.results.attr('ehps') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhpm', name: 'HPM'}) %>><%= rotation.results.attr('hpm') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmps', name: 'MPS'}) %>><%= rotation.results.attr('mps') %></td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'femps', name: 'Eff. MPS'}) %>><%= rotation.results.attr('emps') %></td>
+          <td><%= rotation.results.attr('target_time') %></td>
+          <td><%= rotation.results.attr('ct') %> (<%= rotation.results.attr('ctp') %>%)</td>
+          <td><%= rotation.results.attr('idle') %> (<%= rotation.results.attr('idlep') %>%)</td>
+          <td <%= (el) -> can.data(el, 'colinfo', {fun: 'ftoom', name: 'Time to OOM'}) %>><%= rotation.results.attr('toom') %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <ul id="rotations_list">
+    <!-- Rotation sections (copies of rotation.ejs) will go here -->
+  </ul>
+</div>
+
+</div>

@@ -1,0 +1,20 @@
+<div><a class="expandOff"><h4>Filters</h4></a>
+<div>
+  <label for="filter_allspecs">All Specs</label><input id="filter_allspecs" type="checkbox" <%= filters.attr('allspecs') ? 'checked="checked"' : '' %> />
+  <label for="filter_disc"><%== ImageLoader.str('spell_holy_powerwordshield') %></label><input id="filter_disc" type="checkbox" <%= filters.attr('disc') ? 'checked="checked"' : '' %> />
+  <label for="filter_holy"><%== ImageLoader.str('spell_holy_guardianspirit') %>
+</label><input id="filter_holy" type="checkbox" <%= filters.attr('holy') ? 'checked="checked"' : '' %> />
+  <label for="filter_pally"><%== ImageLoader.str('spell_holy_holybolt') %>
+</label><input id="filter_pally" type="checkbox" <%= filters.attr('pally') ? 'checked="checked"' : '' %> />
+  <label for="filter_druid"><%== ImageLoader.str('spell_nature_healingtouch') %>
+</label><input id="filter_druid" type="checkbox" <%= filters.attr('druid') ? 'checked="checked"' : '' %> />
+  <label for="filter_shaman"><%== ImageLoader.str('spell_nature_healingwavegreater') %>
+</label><input  id="filter_shaman" type="checkbox" <%= filters.attr('shaman') ? 'checked="checked"' : '' %> />
+  <label for="filter_monk"><%== ImageLoader.str('spell_monk_mistweaver_spec') %>
+</label><input id="filter_monk" type="checkbox" <%= filters.attr('monk') ? 'checked="checked"' : '' %> />
+  <label for="filter_aoe">AoE</label><input id="filter_aoe" type="checkbox" <%= filters.attr('aoe') ? 'checked="checked"' : '' %> />
+  <label for="filter_single">Single Target</label><input id="filter_single" type="checkbox" <%= filters.attr('single') ? 'checked="checked"' : '' %> />
+  <label for="filter_instant">Instant Cast</label><input id="filter_instant" type="checkbox" <%= filters.attr('instant') ? 'checked="checked"' : '' %> />
+  <label for="filter_casttime">Cast Time</label><input id="filter_casttime" type="checkbox" <%= filters.attr('casttime') ? 'checked="checked"' : '' %> />
+</div>
+</div>

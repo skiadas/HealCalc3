@@ -1,0 +1,30 @@
+<div class="rotation">
+  <div class="heading expandOn">
+    <%== ImageLoader.str(rotation.spec.icon) %><a class="rotationName"><%= rotation.nick %></a>
+    <input type="button" class="btn_export_rotation" value ="Export Rotation" />
+    <input type="button" class="btn_save_rotation" value ="Save Rotation" />
+    <input type="button" class="btn_remove_rotation" value ="Remove Rotation" />
+  </div>
+  <div>
+  <input type="button" class="btn_add_spell" value ="Add Spell" /><label for="target_time">Target Time: <input type="input" class="target_time" name="target_time" value="<%= rotation.results.attr('target_time') %>"/></label>
+  <table class="rotation">
+    <thead>
+      <th class="no"># Casts</th><th class="name">Spell</th><th class="result">Total Mana</th><th class="result">Total Time</th><th class="result">Overall Healing</th>
+    </thead>
+    <tbody>
+    <% rotation.spells.each(function(spell) { %>
+      <tr <%= (el) -> can.data(el, 'spell', spell)%>>
+        <td><input type="input" value="<%= spell.attr('no') %>" /></td><td><%= spell.sp.name %><a class="destroy">x</a></td>
+        <td><%= Math.round(spell.attr('no') * spell.attr('sp.mana')) %></td>
+        <td><%= Math.round(spell.attr('no') * spell.attr('sp.ct') *100)/100 %></td>
+        <td><%= Math.round(spell.attr('no') * spell.attr('sp.heal')*10)/10 %></td>
+      </tr>
+    <%})%>
+    <tr class="totals"><td></td><td>Rotation Totals</td><td><%= rotation.results.attr('mana') %></td><td><%= rotation.results.attr('ct') %></td>
+              <td><%= rotation.results.attr('heal') %></td></tr>
+    <tr class="totals"><td></td><td></td><td>HPS: <%= rotation.results.attr('hps') %></td><td>HPM: <%= rotation.results.attr('hpm') %></td>
+            <td>MPS: <%= rotation.results.attr('mps') %></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
