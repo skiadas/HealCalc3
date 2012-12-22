@@ -1,4 +1,4 @@
-define(['jquery', 'text!app/util/image_namelist.js','text!app/util/big_one.jpg'], function($, names, big_one) {
+define(['text!app/util/image_namelist.js','text!app/util/big_one.jpg'], function(names, big_one) {
     ImageLoader = (function() {
         eval(names);
         var imageList = big_one.split("\u0001");
@@ -7,9 +7,6 @@ define(['jquery', 'text!app/util/image_namelist.js','text!app/util/big_one.jpg']
             retList[names[i]] = '<img src="data:image/jpeg;base64,' + imageList[i] + '" />';
         }
         ret = function(name) {
-            return $(retList[name.replace('_large.jpg', '')]);
-        };
-        ret.str = function(name) {
             return retList[name.replace('_large.jpg', '')];
         }
         return ret;

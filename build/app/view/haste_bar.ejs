@@ -2,7 +2,7 @@
   <div class="haste_current"></div>
   <% spec.breakpoints.each(function(breakpoint) { %>
     <div <%= (el) -> can.data(el, 'breakpoint', breakpoint) %> class="breakpoint">
-      <%== ImageLoader.str(breakpoint.img) %>
+      <%== ImageLoader(breakpoint.img) %>
     </div>
   <% }); %>
 </div>

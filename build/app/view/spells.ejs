@@ -14,8 +14,8 @@
   <tbody>
 <% spells.each(function(spell) { %>
   <tr class="spell spell_<%= spell.spec.name %>" <%= (el) -> can.data(el, 'spell', spell) %> >
-    <td class="spec"><%== ImageLoader.str(spell.spec.icon) %></td>
-    <td class="name"><%== ImageLoader.str(spell.img) %>
+    <td class="spec"><%== ImageLoader(spell.spec.icon) %></td>
+    <td class="name"><%== ImageLoader(spell.img) %>
       <a href="http://www.wowhead.com/spell=<%= spell.item %>" target="_blank"><%= spell.name %></a></td>
     <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fct', name: 'Cast Time'}) %>><%= spell.attr('ct') %></td>
     <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmana', name: 'Mana Cost'}) %>><%= spell.attr('mana') %></td>

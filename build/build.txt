@@ -1,7 +1,6 @@
 
 app/util/image_loader.js
 ----------------
-jquery-1.8.3.min.js
 text.js
 text!app/util/image_namelist.js
 text!app/util/big_one.jpg
@@ -9,6 +8,7 @@ app/util/image_loader.js
 
 app/main.js
 ----------------
+jquery-1.8.3.min.js
 can/util/can.js
 can/util/array/each.js
 can/util/jquery.js

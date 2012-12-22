@@ -22,7 +22,7 @@
     <tbody>
       <% rotations.each(function(rotation) { %>
         <tr <%= (el) -> can.data(el, 'rotation', rotation) %>>
-          <td><%== ImageLoader.str(rotation.spec.icon) %></td>
+          <td><%== ImageLoader(rotation.spec.icon) %></td>
           <td><%= rotation.nick %></td>
           <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhps', name: 'HPS'}) %>><%= rotation.results.attr('hps') %></td>
           <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fehps', name: 'Eff. HPS'}) %>><%= rotation.results.attr('ehps') %></td>
