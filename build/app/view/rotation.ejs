@@ -13,7 +13,7 @@
     </thead>
     <tbody>
     <% rotation.spells.each(function(spell) { %>
-      <tr <%= (el) -> can.data(el, 'spell', spell)%>>
+      <tr <%= (el) -> can.data(el, 'spell', spell)%> class='spell'>
         <td><input type="input" value="<%= spell.attr('no') %>" /></td><td><%= spell.sp.name %><a class="destroy">x</a></td>
         <td><%= Math.round(spell.attr('no') * spell.attr('sp.mana')) %></td>
         <td><%= Math.round(spell.attr('no') * spell.attr('sp.ct') *100)/100 %></td>
