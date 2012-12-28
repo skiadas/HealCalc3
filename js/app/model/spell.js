@@ -133,8 +133,8 @@ define(['can'], function(can) {
         fheal_shaman_aa: function(delta, crit) {
             return((this.spec.earth_shield_buff ? 1.2 : 1) *
                     this.fbase(delta)*this.spec.fmast_factor(delta) *
-                    (1+(-1+ 2*(this.spec.critmeta? 1.03 : 1)*1.3*
-                        (crit || this.spec.fcritp(delta)))));
+                    (1+(-1+ 2*(this.spec.critmeta? 1.03 : 1)*1.3)*
+                        (crit || this.spec.fcritp(delta))));
             },
         fheal_disc: function(delta) {
             var da = 0.5;
