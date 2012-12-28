@@ -76,6 +76,7 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
             }).error(function(json, a, b) {
                 spinner.stop();
                 $("#armory_btn").children('input').show();
+                console.log(json, a, b)
                 alert("There was a problem accessing armory. Armory may be down, or the character name or realm are incorrect.")
             });
         }
