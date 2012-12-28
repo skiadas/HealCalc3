@@ -15,7 +15,7 @@ define(['can', 'jquery', 'app/model/rotation', 'app/util/spell_lister', 'app/mod
             var rotation = this.options.rotation;
             this.options.lister.attach(el, rotation);
         },
-        '.rotation input change': function(el, ev) {
+        '.rotation input.spell change': function(el, ev) {
             var spell = $(el).closest('tr').data('spell');
             spell.attr('no', parseInt($(el).val()));
             this.options.rotation.val_update();
