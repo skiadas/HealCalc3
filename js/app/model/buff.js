@@ -5,7 +5,7 @@ var buffs = new can.Observe({
     'crit': true, 'sp': true, 'armor': true, 
     'spelldam': false, 'intfood': true, 'intflask': true, 'crit_meta': true, 
     'mana_meta': false, 'focus_pot': true,
-    'relics': [
+    'trinkets': [
         {'name': 'None', uptime: 0, effect: {}},
         {'name': 'Empty Fruit Barrel (463)', uptime: 0.3, effect: {'int': 3386}},
         {'name': 'Empty Fruit Barrel (471)', uptime: 0.3, effect: {'int': 3648}},
@@ -39,6 +39,7 @@ var buffs = new can.Observe({
         {'name': 'Scroll of Revered Ancestors (497)', uptime: 0.25, effect: {'spi': 3873}},
         {'name': 'Heartwarmer/Cutstitcher Medallion (496)', uptime: 0.25, effect: {'spi': 3838}},
     ],
+    'trinket1': false, 'trinket2': false,
 });
     return buffs;
 });

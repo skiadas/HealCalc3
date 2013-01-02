@@ -17,6 +17,16 @@
       <label for="buff_crit_meta">Crit Effect Meta Gem</label><input type="checkbox" id="buff_crit_meta"  <%= buffs.attr('crit_meta') ? 'checked="checked"' : '' %> />
       <label for="buff_mana_meta">Extra Mana Meta Gem</label><input type="checkbox" id="buff_mana_meta"  <%= buffs.attr('mana_meta') ? 'checked="checked"' : '' %> />
       <label for="buff_focus_pot">Use Focus Pot Instead</label><input type="checkbox" id="buff_focus_pot"  <%= buffs.attr('focus_pot') ? 'checked="checked"' : '' %> />
+      <label for="trinket1">Trinket 1</label><select name="trinket1">
+        <% buffs.trinkets.each(function(trinket, ind) { %>
+          <option value="<%= ind %>"><%= trinket.name %></option>
+        <% }); %>
+      </select>
+      <label for="trinket2">Trinket 2</label><select name="trinket2">
+        <% buffs.trinkets.each(function(trinket, ind) { %>
+          <option value="<%= ind %>"><%= trinket.name %></option>
+        <% }); %>
+      </select>
     </div></li>
     </ul>
   </div>
