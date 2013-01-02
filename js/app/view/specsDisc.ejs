@@ -1,16 +1,18 @@
+<label>
 <select>
   <option value="inner_fire" <%= spec.attr('inner_fire') ? 'selected="selected"' : '' %>>Inner Fire</option>
   <option value="inner_will" <%= spec.attr('inner_fire') ? '' : 'selected="selected"' %>>Inner Will</option>
 </select>
-<label for="grace">Assume Grace</label><input name="grace" type="checkbox" <%= spec.attr('grace') ? 'checked="checked"' : ''  %> />
-<label for="evang_stacks">Evangelism Stacks</label><input name="evang_stacks" type="input" value="<%= spec.attr('evang_stacks')  %>" />
-<label for="archangel">Assume Archangel</label><input name="archangel" type="checkbox" <%= spec.attr('archangel') ? 'checked="checked"' : ''  %>  />
-<label for="cascade_targets_disc">Cascade Targets</label><input name="cascade_targets_disc" type="input" value="<%== spec.attr('cascade_targets_disc') %>" />
-<label for="cascade_range_disc">Avg Cascade Range</label><input name="cascade_range_disc" type="input" value="<%== spec.attr('cascade_range_disc') %>" title="Maximum effect at 30 yards" />
-<label for="poh_targets_disc">PoH Targets</label><input name="poh_targets_disc" type="input" value="<%== spec.attr('poh_targets_disc') %>" />
-<label for="glyph_pom_disc">Glyph of PoM</label><input name="glyph_pom_disc" type="checkbox" <%= spec.attr('glyph_pom_disc') ? 'checked="checked"' : ''  %> />
-<label for="glyph_renew_disc">Glyph of Renew</label><input name="glyph_renew_disc" type="checkbox" <%= spec.attr('glyph_renew_disc') ? 'checked="checked"' : ''  %> /> 
-<label for="glyph_penance">Glyph of Penance</label><input name="glyph_penance" type="checkbox" <%= spec.attr('glyph_penance') ? 'checked="checked"' : ''  %> /> 
-<label for="t14_2p_disc">T14 2piece</label><input name="t14_2p_disc" type="checkbox" <%= spec.attr('t14_2p_disc') ? 'checked="checked"' : ''  %> /> 
-<label for="rapture_interval">Rapture every: </label><input name="rapture_interval" type="input" value="<%== spec.attr('rapture_interval') %>" />
+</label>
+<label for="grace">Assume Grace<input name="grace" type="checkbox" <%= spec.attr('grace') ? 'checked="checked"' : ''  %> /></label>
+<label for="evang_stacks">Evangelism Stacks<input name="evang_stacks" type="input" value="<%= spec.attr('evang_stacks')  %>" /></label>
+<label for="archangel">Assume Archangel<input name="archangel" type="checkbox" <%= spec.attr('archangel') ? 'checked="checked"' : ''  %>  /></label>
+<label for="cascade_targets_disc">Cascade Targets<input name="cascade_targets_disc" type="input" value="<%== spec.attr('cascade_targets_disc') %>" /></label>
+<label for="cascade_range_disc">Avg Cascade Range<input name="cascade_range_disc" type="input" value="<%== spec.attr('cascade_range_disc') %>" title="Maximum effect at 30 yards" /></label>
+<label for="poh_targets_disc">PoH Targets<input name="poh_targets_disc" type="input" value="<%== spec.attr('poh_targets_disc') %>" /></label>
+<label for="glyph_pom_disc">Glyph of PoM<input name="glyph_pom_disc" type="checkbox" <%= spec.attr('glyph_pom_disc') ? 'checked="checked"' : ''  %> /></label>
+<label for="glyph_renew_disc">Glyph of Renew<input name="glyph_renew_disc" type="checkbox" <%= spec.attr('glyph_renew_disc') ? 'checked="checked"' : ''  %> /></label> 
+<label for="glyph_penance">Glyph of Penance<input name="glyph_penance" type="checkbox" <%= spec.attr('glyph_penance') ? 'checked="checked"' : ''  %> /></label> 
+<label for="t14_2p_disc">T14 2piece<input name="t14_2p_disc" type="checkbox" <%= spec.attr('t14_2p_disc') ? 'checked="checked"' : ''  %> /></label> 
+<label for="rapture_interval">Rapture every: <input name="rapture_interval" type="input" value="<%== spec.attr('rapture_interval') %>" /></label>
 
