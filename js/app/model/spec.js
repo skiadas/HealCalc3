@@ -144,10 +144,15 @@ define(['can'], function(can) {
             return (Math.round( 1.05 * (this.attr('buffs.stats') ? 1.05 : 1)*
                                 (this.attr('stats.bint')*1 + ((delta && delta.int) || 0) +
                                  (this.attr('buffs.intfood') ? 275 : 0) +
-                                 (this.attr('buffs.intflask') ? 1000 : 0) )));
+                                 (this.attr('buffs.intflask') ? 1000 : 0) +
+                                 this.attr('buffs.trinket1.int') +
+                                 this.attr('buffs.trinket2.int')
+                                 )));
         },
         fspi: function(delta) {
-            return(this.attr('stats.bspi'));
+            return((this.attr('stats.bspi') || delta) + this.attr('buffs.trinket1.spi') +
+                                                        this.attr('buffs.trinket2.spi')
+                  );
         },
         fcrit: function(delta) {
             return (Math.round((((this.attr('stats.bcrit')*1 + ((delta && delta.crit) || 0)) /600 +
@@ -305,7 +310,9 @@ define(['can'], function(can) {
             return (Math.round(1.05*(this.attr('buffs.stats') ? 1.1 : 1)*
                            (1*this.attr('stats.bint') + ((delta && delta.int) || 0) +
                            (this.attr('buffs.intfood') ? 275 : 0) +
-                           (this.attr('buffs.intflask') ? 1000 : 0)) *
+                           (this.attr('buffs.intflask') ? 1000 : 0) + 
+                           this.attr('buffs.trinket1.int') +
+                           this.attr('buffs.trinket2.int')) *
                            (this.attr('hotw') ? 1.06 : 1)));
         },
         'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false });
