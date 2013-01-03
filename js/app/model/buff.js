@@ -39,7 +39,7 @@ var buffs = new can.Observe({
         {'name': 'Scroll of Revered Ancestors (497)', uptime: 0.25, 'spi': 3873, 'int': 0},
         {'name': 'Heartwarmer/Cutstitcher Medallion (496)', uptime: 0.25, 'spi': 3838, 'int': 0},
     ],
-    'trinket1': {'spi': 0, 'int' : 0}, 'trinket2': {'spi': 0, 'int' : 0},
+    'trinket1': {uptime: 0, 'spi': 0, 'int' : 0}, 'trinket2': {uptime: 0, 'spi': 0, 'int' : 0},
 });
     return buffs;
 });

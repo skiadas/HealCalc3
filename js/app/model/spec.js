@@ -145,13 +145,18 @@ define(['can'], function(can) {
                                 (this.attr('stats.bint')*1 + ((delta && delta.int) || 0) +
                                  (this.attr('buffs.intfood') ? 275 : 0) +
                                  (this.attr('buffs.intflask') ? 1000 : 0) +
-                                 this.attr('buffs.trinket1.int') +
-                                 this.attr('buffs.trinket2.int')
+                                 (this.attr('buffs.trinket1.int') * 
+                                      this.attr('buffs.trinket1.uptime')) +
+                                 (this.attr('buffs.trinket2.int') * 
+                                      this.attr('buffs.trinket2.uptime'))
                                  )));
         },
         fspi: function(delta) {
-            return((this.attr('stats.bspi') || delta) + this.attr('buffs.trinket1.spi') +
-                                                        this.attr('buffs.trinket2.spi')
+            return((this.attr('stats.bspi') || delta) + 
+                   (this.attr('buffs.trinket1.spi') * 
+                    this.attr('buffs.trinket1.uptime')) +
+                   (this.attr('buffs.trinket2.spi') * 
+                    this.attr('buffs.trinket2.uptime'))
                   );
         },
         fcrit: function(delta) {
@@ -311,8 +316,10 @@ define(['can'], function(can) {
                            (1*this.attr('stats.bint') + ((delta && delta.int) || 0) +
                            (this.attr('buffs.intfood') ? 275 : 0) +
                            (this.attr('buffs.intflask') ? 1000 : 0) + 
-                           this.attr('buffs.trinket1.int') +
-                           this.attr('buffs.trinket2.int')) *
+                           (this.attr('buffs.trinket1.int') * 
+                                this.attr('buffs.trinket1.uptime')) +
+                           (this.attr('buffs.trinket2.int') * 
+                                this.attr('buffs.trinket2.uptime'))) *
                            (this.attr('hotw') ? 1.06 : 1)));
         },
         'incarnation': false, 'hotw': false, glyph_wild_growth: true, glyph_blooming: false, glyph_regrowth: true, glyph_rejuv: false, 't4_2p_druid': false });
