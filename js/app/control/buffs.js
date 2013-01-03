@@ -17,7 +17,6 @@ define(['can', 'text!view/buffs.ejs'], function(can, view) {
                 key = el.attr('name'), 
                 buffs = this.options.buffs;
             this.options.buffs.attr(key, buffs.trinkets[val]);
-            console.log(key, val, this.options.buffs);
         },
     })
     return Buffs;
