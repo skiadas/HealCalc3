@@ -4,7 +4,7 @@ var buffs = new can.Observe({
     'stats': true, 'mastery': true, 'haste': true, 
     'crit': true, 'sp': true, 'armor': true, 
     'spelldam': false, 'intfood': true, 'intflask': true, 'crit_meta': true, 
-    'mana_meta': false, 'focus_pot': true,
+    'mana_meta': false, 'focus_pot': true, 'darkglow': false,
     'trinkets': [
         {'name': 'None', uptime: 0, 'spi': 0, 'int': 0 },
         {'name': 'Empty Fruit Barrel (463)', uptime: 0.3, 'spi': 0, 'int': 3386},

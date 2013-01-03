@@ -156,7 +156,8 @@ define(['can'], function(can) {
                    (this.attr('buffs.trinket1.spi') * 
                     this.attr('buffs.trinket1.uptime')) +
                    (this.attr('buffs.trinket2.spi') * 
-                    this.attr('buffs.trinket2.uptime'))
+                    this.attr('buffs.trinket2.uptime')) +
+                   (this.attr('buffs.darkglow') ? 3000 * 15/60 : 0)
                   );
         },
         fcrit: function(delta) {
