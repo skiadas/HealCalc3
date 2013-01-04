@@ -53,6 +53,11 @@ define(['can'], function(can) {
             { name: 'Divine Plea', fmana: function(time, delta) {
                 return(this.mana_pool * 0.12 * time / (2*60))
             }},
+            {
+                name: 'Seal of Insight', fmana: function(time, delta) {
+                    return(this.mana_pool * 0.04 * this.soi_ppm * time / 60)
+                }
+            },
         ]},
         {id: 4 , name: 'Druid', icon: 'spell_nature_healingtouch', active: false, bcrit: 1.85, bpoints_info: [
             { name: 'LB', img: 'inv_misc_herb_felblossom', nticks: 15, time_tick: 1 },
@@ -308,7 +313,7 @@ define(['can'], function(can) {
         fhaste_mul: function() {
             return (1.1* (this.attr('buffs.haste') ? 1.05 : 1));
         },
-        'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false , 'cs_to_hp': false, 'one_hp': false});
+        'daybreak': false, 'bol': false, 'glyph_lod': false, 't4_2p_pally': false , 'cs_to_hp': false, 'one_hp': false, 'soi_ppm': 6});
     // DRUID
     spcs[3].attr({
         mastery_factor: 1.25,
