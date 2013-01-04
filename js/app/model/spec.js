@@ -94,6 +94,17 @@ define(['can'], function(can) {
             { name: 'Potion', fmana: function(time, delta) {
                 return(this.potmana * time/this.interval_time);
             }},
+            {
+                name: 'Water Shield', fmana: function(time, delta) {
+                    return(2138 * (this.glyph_water_shield ? 0.85 : 1)/5 * time);
+                }
+            },
+            {
+                name: 'Water Shield proc', fmana: function(time, delta) {
+                    return(2928 * (this.glyph_water_shield ? 1.5 : 1) * 
+                           this.water_shield_ppm * time / 60);
+                }
+            },
         ]},
         {id: 6 , name: 'Monk', icon: 'spell_monk_mistweaver_spec', active: false, bcrit: 2.19, bpoints_info: [
             { name: 'Surging Mist, Renewing Mist', img: 'ability_monk_surgingmist', nticks: 6 }
@@ -345,7 +356,7 @@ define(['can'], function(can) {
         fmast_factor: function(delta) {
             return((1+(this.attr('health_deficit')/100)*this.fmastp(delta)));
         },
-        'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true, 'earth_shield_buff': true, 't4_2p_shaman': false });
+        'resurgence': true, 'tidal_waves': true, 'conductivity': false, 'echo_elements': false, 'ancestral_swiftness': false, 'glyph_riptide': false, 'health_deficit': 20, 'chain_heal_riptide': true, 'earth_shield_buff': true, 't4_2p_shaman': false, 'glyph_water_shield': false, 'water_shield_ppm': 4 });
     // MONK
     //
     spcs[5].attr({
