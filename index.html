@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HealCalc WoW Healing Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Healing Calculator for the Mists of Pandaria expansion to World of Warcraft. Covers all healing specs. Allows comparison between specs.">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="css/base.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <div id="header">
+      <h1>Heal Adinne</h1>
+      <h2>Home of <em>HealCalc</em></h2>
+      <p>HealCalc is a Javascript-based healing calculator for the Mists of Pandaria expansion.</p>
+    </div>
+    <div id="main">
+        <div id="subcontainer">
+          <div id="character">
+          </div>
+          <div id="spellsCont">
+            <p>This is the home page for HealCalc, a web-based calculator for all the healing classes of World of Warcraft.</p>
+
+            <p>This page will introduce the calculator, which you can find at its <a href="healcalc.html">new home</a>.</p>
+
+            <h3 id="broad_overview">Broad Overview</h3>
+
+            <p>A brief overview of the main components of HealCalc:</p>
+
+            <ol>
+            <li>A table of the healing numbers, cast time and mana costs of all spells. This list by default includes all the spells from <em>all healer classes</em> at once, allowing easy comparison between classes. You can however <em>filter</em> the table according to various criteria.</li>
+            <li>The spell table dynamically updates its numbers are you change the stats/other settings. Most class abilities are customizable, if they are reasonable choices (e.g. you can switch between inner fire/inner will, but you cannot turn off the 5% int bonus for wearing the right armor type).</li>
+            <li>The spell table contains, among other things, the Healing per Second (HPS), Mana per Second (MPS) and Healing per Mana (HPM) numbers for the spell. You can <em>sort</em> the table according to any of the columns in it, to see for instance which spells are the most mana-efficient.</li>
+            <li><em>Spec Sections</em>, one for each spec, provide spec specific information and settings, including <em>haste breakpoints</em> and <em>mana regen</em>.</li>
+            <li>A <em>Rotation</em> section allows you to create &#8216;rotations&#8217;, which are a collection of spells to be cast in a specific amount of time. Rotations can be shared by copy/pasting some simple strings, so you can easily share your rotations with your friends!</li>
+            <li><em>Multiple rotations</em>, from possibly different specs, can be active at the same time. A comparison table shows in summary form how the rotations compare to each other.</li>
+            <li>A <em>delta viewer</em> on the right side of the screen provides information on how much would be gained by a fixed increase in each of the various stats. This information can be used to create for instance stat weights. The delta viewer at any given time refers to whatever you mouse over.</li>
+            <li>Character profiles can be loaded from Armory. Other profile sources will hopefully appear in the future.</li>
+            </ol>
+
+            <h3 id="specifics">Specifics</h3>
+
+            <h4 id="the_armory_tab">The Armory tab</h4>
+
+            <p>On the top left of the screen you will find the Armory tab, click on it to expand it.</p>
+
+            <p><img src="images/armory_tab.png" alt="The Armory Tab" title="" class="long"></p>
+
+            <p>The Armory tab allows you to load someone&#8217;s information straight from battle.net. You need to get the spelling exactly right, both for the person and for the realm. Successful searches will be added to the pulldown menu for easy access in the future.</p>
+
+            <p>Once all the information is entered and the OK button is pressed, the character&#8217;s stats section is updated and the Filter tab is set to only show spells from the person&#8217;s spec. </p>
+
+            <p>Bugs/Caveats:</p>
+
+            <ol>
+            <li>At the moment, all priests are treated as Disc. This is for convenience and to minimize the amount of information requested from battle.net</li>
+            <li>At the moment, HealCalc will simply load your character&#8217;s stats. Information on glyphs, meta gems, special trinket procs, and profession procs, will need to be entered manually.</li>
+            </ol>
+
+            <h4 id="the_stats_tab">The Stats Tab</h4>
+
+            <p>The Stats tab contains information on basic character statistics. These numbers, if not loaded directly from Armory, should be entered as they appear on your character sheet.</p>
+
+            <p><img src="images/stats_tab.png" alt="The Stats Tab" title="" class="long"></p>
+
+            <p>You can edit the values in this tab, to see how different stats values would affect your character. The input values here should be ratings, not the corresponding percentages.</p>
+
+            <h4 id="the_buffs_tab">The Buffs Tab</h4>
+
+            <p>The Buffs tab allows you to set both which raid-wide buffs should be enabled, as well as which personal buffs should be considered. This is where you will enable for instance the crit meta effect, or the trinket procs.</p>
+
+            <p><img src="images/buffs_tab.png" alt="The Buffs Tab" title="" class="long"></p>
+
+            <p>Bugs/Caveats:</p>
+
+            <ol>
+            <li>Most proc effects are averaged. For instance, Darkglow Embroidery procs about every 1 minute, and offers 3000 spirit for 15 seconds, for a 25% uptime. This will be interpreted as a flat 750 spirit increase.</li>
+            <li>The stats from the gems are already taken into account as part of the character&#8217;s stats. The checkboxes in the Buffs tab simply activate the extra gem effect, like the +2% total mana or the +3% critical effect.</li>
+            </ol>
+
+            <h4 id="the_specs_tabs">The Specs Tabs</h4>
+
+            <p>The left side of the browser window ends with one tab for each spec. These tabs are only visible if the corresponding spec has not been filtered out in the Filter tab. </p>
+
+            <p><img src="images/specs_tabs.png" alt="The Specs Tabs" title="" class="long"></p>
+
+            <p>Each specs tab has four sub-tabs, each of which can be expanded/collapsed:</p>
+
+            <ol>
+            <li>The <em>Settings Tab</em> allows you to set spec-specific settings, for instance whether Inner Fire or Inner Will should be used, what the average distance between Cascade targets should be, how many targets PoH would hit etc.</li>
+            <li><em>The Stats Tab</em> shows you the derived stats for your spec, taking into account specific spec effects, like Inner Fire or Gift of the Wild, as well as the raid-wide or personal buffs selected in the Buffs Tab. These are not meant to be edited.</li>
+            <li>The <em>Haste Tab</em> contains useful information regarding haste breakpoints. It has two sections:
+
+            <p><img src="images/haste_tab.png" alt="The Haste Tab" title="" class="long"></p>
+
+            <p>At the very top of it you see a <em>haste bar</em>. The red marker in the middle represents your current haste point. Icons on the right represent haste breakpoints that you haven&#8217;t reached yet, while those on the left are breakpoints you have reached. For instance in the figure above my character seems to be just after and very close to the next holy fire breakpoint (actually the one on the left is a &#8216;holy fire under borrowed time&#8217; breakpoint). You can hover over one of the icons to see more information, or you can use the table that follows the bar:</p>
+
+            <p>Right below the haste bar is a table of haste breakpoints. Each row represents an extra tick for some spell, what haste percent would be needed for it, what the corresponding haste rating would be, and finally how much haste rating you would need from your current rating. The different colorings represent breakpoints already achieved/still ahead of me. We can see for instance that in my case I have achieved a second extra tick on holy fires cast under borrowed time, which would have been achieved at 5.59% haste. Under my current settings of raid buffs etc this would be achieved with 237 rating, which is 430 rating less than my current haste rating. Ahead of me is the first extra tick of holy fire, which I could achieve by adding 193 haste rating. The next haste breakpoint would be for renew, and I would need an extra 2372 rating to get there.</p>
+
+            <p>These values get adjusted as you change settings. For instance removing the 5% raid-wide haste buff will radically change all the rating values.</p></li>
+            <li>The <em>Mana Regen</em> tab shows your character&#8217;s various mana sources.
+
+            <p><img src="images/mana_regen_tab.png" alt="The Mana Regen Tab" title="" class="long"></p>
+
+            <p>You can specify a fixed interval to consider, it is set to 60 seconds by default. This affects the Mana column for most sources, and the MPS column for pots and initial mana (as these are both one-time sources). Some caveats:</p>
+            <p>The system currently simply averages mana sources based on their cooldowns, for instance it does not care that you would be able to fit 5 mindbenders in 4.5 minutes, it would compute things based on a 1 mindbender per minute basis (effectively assuming you had used 4.5 mindbenders).</p>
+            <p>In the Total column an important choice is being made, namely the MPS values for Initial Mana and Potion mana are not being added. The reason for that is that the mana regeneration model I use considers that you have a total initial mana pool, including your original mana and the mana you would get from using the pot, and gradually losing that amount of mana based on your incoming mps and your outgoing mps, until you run out of mana. The time till that happens, is for me a measure of the value of spirit, and to determine that we need to exclude initial mana and potion from the incoming mps computations (as their values in terms of mps are not static, but rather depend on the actual duration length).</p>
+            <p>Some of the specs are missing some of their mana sources, for instance Seal of Insight and Telluric Currents and Mana Tea. Hopefully these will soon be implemented.</p>
+            </li>
+            </ol>
+
+            <h4 id="the_filters_tab">The Filters Tab</h4>
+
+            <p>At the top of the page is the <em>Filters Tab</em>, which you can use to control which spells/specs are shown. For instance if we wanted to compare the Disc&#8217;s and Pally&#8217;s single target heals, we would enable only those two specs, and disable AoE.</p>
+
+            <p><img src="images/filters_tab.png" alt="The Filters Tab" title="" class="wide"></p>
+
+            <h4 id="the_spells_table">The Spells Table</h4>
+
+            <p>The majority of the page is taken over by the spell table, which lists all the spells determined by the filter options above.</p>
+
+            <p><img src="images/spells_tab.png" alt="The Spells Table" title="" class="wide"></p>
+
+            <p>Spells for different specs have slightly different background colors. In the figure above, spells are sorted according to the HPS column, as can be seen by the fact that the HPS header is highlighted. Clicking on a header will sort according to a specific header, clicking a second time will change the direction from ascending to descending and vice versa.</p>
+
+            <h4 id="the_delta_viewer">The Delta Viewer</h4>
+
+            <p>On the right of the screen, a little window I call the <em>Delta Viewer</em> shows the effect of various stats on the currently moused over item. For instance when I hover over the HPS entry for the Pally&#8217;s Eternal Flame spell, I see the following:</p>
+
+            <p><img src="images/delta_viewer_tab.png" alt="The Delta Viewer" title="" class="long"></p>
+
+            <p>This tells me that the information is about HPS, and that we are talking about Stat increments of 1000 (you can adjust that value). What we can see is that 1000 more intellect would increase Eternal Flame&#8217;s HPS by 3.8%, 1000 more spellpower would increase it by 3.1%, 1000 more crit would increase it by 1.43% etc. On the next column we see the stat weights that this would imply, scaled so that spellpower has weight 1. We can see this way that crit would be worth 0.46 of spellpower, intellect would be worth 1.23 spellpower etc. You can use this information across different spells for your spec to decide how you should value the various stats. </p>
+
+            <p>More about the Delta Viewer in the Rotation Tab section.</p>
+
+            <h4 id="the_rotations_tab">The Rotations Tab</h4>
+
+            <p>The <em>Rotations Tab</em> allows you to put together a number of spells over a fixed time period, and to look at the total effect of things on this collection of spells. Here&#8217;s how it looks with my standard disc priest rotation loaded:</p>
+
+            <p><img src="images/rotations_tab.png" alt="The Rotations Tab" title="" class="wide"></p>
+
+            <p>As you can see the Rotations tab has a lot of parts to it.</p>
+
+            <p>At the very top there are three buttons for creating new rotations. &#8216;Add Rotation&#8217; creates a new rotation from scratch. You will have to give it a name and choose a spec. &#8216;Load Rotation&#8217; will offer you a list of previously saved rotations to choose from. &#8216;Import Rotation&#8217; allows you to import rotations that others have created. You will be asked to put in the string representing the rotation, which you can copy and paste from an email or web-site or whatnot. For example, here&#8217;s the string for my rotation: </p>
+
+            <p><code>DiscYo!&amp;Disc&amp;time:120&amp;3:14&amp;3:2&amp;12:15&amp;8:10&amp;12:13&amp;10:9&amp;4:8&amp;12:12</code></p>
+
+            <p>Pasting this into the field provided when you select &#8216;Import Rotation&#8217; should load up my rotation for you.</p>
+
+            <p>Right below the buttons there is a summary table, which lists all the currently loaded rotations, in my case there are two rotations currently loaded, one for priests and one for pallies. You can see the HPS produced and the MPS cost of these rotations, as well as their respective effective values.</p>
+
+            <p>The difference between those values and their <em>effective</em> counterparts is in the total time considered. Each rotation has a target time, in the case of my rotations that time is 120 seconds. The actual time spent casting according to those rotations can be less however, 109.71 and 108.26 seconds respectively. The regular HPS measures the amount of healing produced divided by these cast time, while the effective HPS measures the amount of healing produced divided by the target times of 120 seconds, assuming that you would spend the remaining time (10.29 and 11.74 seconds respectively) being idle/moving without casting/delaying between casts etc. The last entry in those rows is the time you can spend casting your rotation till you go OOM, using the effective mps value for that. In my Disc&#8217;s rotation this time is 638.8 seconds.</p>
+
+            <p>Hovering over any of these values will show you in the <em>Delta Viewer</em> how much of an effect adding a stat has. This allows you to see overall what impact crit or mastery for instance will have on your overall rotation, instead of just their effect on the spells they favor. This way I can see for instance that crit is overall much better for me than mastery. This can also help you decide how much to value spirit, by seeing its effect on time to oom.</p>
+
+            <p>Following this summary table is a table for each spec you have loaded. These tables allow you to adjust what spells to include, and how many times each is used. You can also remove spells by clicking on the little red x&#8217;s next to a spell name. Finally you can adjust the target time to consider for your rotation; I like to use as a time the duration of my longest cooldown but you can do anything you like. Finally, 3 buttons at the top right of the table allow you to <em>remove</em> this rotation from the active rotation list, to <em>save</em> the rotation in the browser&#8217;s local storage (these can be retrieved from the &#8216;Load Rotation&#8217; button), or to <em>export</em> a string to be used with the &#8216;Import Rotation&#8217; button, to share your rotations with your friends.</p>
+
+            <p><em>Note:</em> When you save a rotation, two things are checked: The rotation&#8217;s name and spec. If those both match the corresponding values of an existing rotation, that rotation will be overwritten. Luckily this is usually what you want.</p>
+
+            <p><em>Note 2:</em> To &#8216;clone&#8217; a rotation in order to create a new rotation starting from an existing one, you probably want to do the following: Export your rotation, then change the name of the rotation in the corresponding string (it should appear at the beginning of the string), then paste the new string in the Import Rotation menu.</p>
+
+            <h3 id="the_end">The End</h3>
+
+            <p>Well that&#8217;s all folks, thank you for reading and I hope you enjoy using HealCalc! Please let me know what you think or what you&#8217;d like to see implemented in the following <a href="http://www.plusheal.com/forum/m/1833799/viewthread/2917560-introducing-healcalc">PlusHeal thread</a>.</p>
+          </div>
+        </div>
+        <div id="right">
+          <!-- Keep up with updates -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

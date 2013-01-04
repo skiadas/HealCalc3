@@ -1,0 +1,30 @@
+p {
+    padding: 1em;
+}
+ul, ol {
+    margin: 0.5em;
+}
+li {
+    margin: 0.5em;
+    padding: 0.5em;
+    list-style: decimal inside;
+    text-align: justify;
+}
+h3 {
+    font-size: 135%;
+    font-weight: bold;
+    text-align: center;
+}
+h4 {
+    font-size: 115%;
+    font-weight: bold;
+    text-align: center;
+}
+img.wide {
+    width: 80%;
+    height: auto;
+}
+img.long {
+    width: 30%;
+    height: auto;
+}
