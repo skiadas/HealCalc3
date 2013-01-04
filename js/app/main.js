@@ -6,6 +6,23 @@ requirejs.config({
         view: '../app/view',
     }
 });
+//
+//    Extending basic math rounding functions to have a specific number of digits
+//
+Math.ceiln = function(x, d) {
+    var n = Math.pow( 10, d || 0 );
+    return Math.ceil( x * n ) / n;
+}
+Math.floorn = function(x, d) {
+    var n = Math.pow( 10, d || 0 );
+    return Math.floor( x * n ) / n;
+}
+Math.roundn = function(x, d) {
+    var n = Math.pow( 10, d || 0 );
+    return Math.round( x * n ) / n;
+}
+
+//
 requirejs(['jquery', 'can', 'app/setup'], function($, can) {
     $(document).ready(function() {
         var _expand_fun = function(el,ev) {

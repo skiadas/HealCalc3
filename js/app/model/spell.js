@@ -91,7 +91,7 @@ define(['can'], function(can) {
         fmana: function(delta) { return(this.base_mana); },
         fmana_instant_priest: function(delta) { return(this.base_mana * (this.spec.attr('inner_fire') ? 1 : 0.85)) },
         fmana_shaman_resurgence: function(delta) {
-            return(Math.round(this.base_mana - (8849*0.01*this.spec.fcrit(delta)*this.res_factor * (this.spec.resurgence ? 1 : 0))));
+            return(Math.roundn(this.base_mana - (8849*0.01*this.spec.fcrit(delta)*this.res_factor * (this.spec.resurgence ? 1 : 0))));
         },
         fmana_hp_pally: function(delta) {
             return((this.spec.cs_to_hp? 9000 : 0) * (this.spec.one_hp ? 1 : 3));
@@ -99,10 +99,10 @@ define(['can'], function(can) {
         ftargets: function(delta) { return(this.targets || 1); },
         fdirect: function(delta) { return((this.B+this.c*this.spec.fsp(delta)) * this.ftargets(delta) ); },
         ftick_time: function(delta) {
-            return(Math.floor(1000*(this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005))/1000);
+            return(Math.floorn(this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005, 3));
         },
-        fnticks: function(delta) { return(Math.round(this.nticks * this.time_tick / this.ftick_time(delta))); },
-        fnticks_shaman_aoe: function(delta) {return(1+Math.ceil(this.duration*(1+this.spec.fhastep(delta))/this.time_tick));},
+        fnticks: function(delta) { return(Math.roundn(this.nticks * this.time_tick / this.ftick_time(delta))); },
+        fnticks_shaman_aoe: function(delta) {return(1+Math.ceiln(this.duration*(1+this.spec.fhastep(delta))/this.time_tick));},
         fhot: function(delta) { return((this.Btick+this.ctick*this.spec.fsp(delta)) * this.ftargets(delta) * this.fnticks(delta) ); },
         fbase: function(delta) { return((this.nticks ? this.fhot(delta) : this.fdirect(delta))); },
         fbase_disc: function(delta) {return((this.nticks ? this.fhot(delta) : this.fdirect(delta))*(this.spec.grace ? 1.3 : 1)*(this.spec.archangel ? 1.25 : 1)); },
@@ -172,13 +172,13 @@ define(['can'], function(can) {
         val_update: function(delta) {
             can.Observe.startBatch();
             this.attr({
-            'ct': Math.round(this.fct()*100)/100,
-            'mana': Math.round(this.fmana()),
-            'base_heal': Math.round(this.fbase()),
-            'heal': Math.round(this.fheal()),
-            'hps': Math.round(this.fhps()),
-            'hpm': Math.round(100*this.fhpm())/100,
-            'mps': Math.round(this.fmps())
+            'ct': Math.roundn(this.fct(), 2),
+            'mana': Math.roundn(this.fmana()),
+            'base_heal': Math.roundn(this.fbase()),
+            'heal': Math.roundn(this.fheal()),
+            'hps': Math.roundn(this.fhps()),
+            'hpm': Math.roundn(this.fhpm(), 2),
+            'mps': Math.roundn(this.fmps())
             });
             can.Observe.stopBatch();
         }
@@ -231,7 +231,7 @@ define(['can'], function(can) {
     spls.find('RenewDisc').attr({
         fmana: function(delta) {return(this.fmana_instant_priest(delta));},
         fnticks: function(delta) {
-            return(Math.round((this.nticks-(this.spec.attr('glyph_renew_disc') ? 1 : 0)) *
+            return(Math.roundn((this.nticks-(this.spec.attr('glyph_renew_disc') ? 1 : 0)) *
              this.time_tick / this.ftick_time(delta)));
         },
         fhot: function(delta) { return((this.spec.attr('glyph_renew_disc') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * this.ftargets(delta) * this.fnticks(delta) );
@@ -262,11 +262,11 @@ define(['can'], function(can) {
     });
     spls.find('HealSSDisc').attr({ fheal: function(delta) {return(this.fheal_spirit_shell(delta));} });
     spls.find('FhealDisc').attr({
-        fmana: function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_disc') ? 0.9 : 1)))},
+        fmana: function(delta) { return(Math.roundn(this.base_mana * (this.spec.attr('t14_2p_disc') ? 0.9 : 1)))},
     });
     spls.find('FhealSSDisc').attr({
         fheal: function(delta) {return(this.fheal_spirit_shell(delta));},
-        fmana: function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_disc') ? 0.9 : 1)))
+        fmana: function(delta) { return(Math.roundn(this.base_mana * (this.spec.attr('t14_2p_disc') ? 0.9 : 1)))
         },
     });
     spls.find('GhealSSDisc').attr({ fheal: function(delta) {return(this.fheal_spirit_shell(delta));} });
@@ -305,7 +305,7 @@ define(['can'], function(can) {
         });
     });
     spls.find('FhealHoly').attr({
-        fmana: function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_holy') ? 0.9 : 1)))}
+        fmana: function(delta) { return(Math.roundn(this.base_mana * (this.spec.attr('t14_2p_holy') ? 0.9 : 1)))}
     });
     $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly'], function(i, spname) {
         spls.find(spname).attr({
@@ -329,7 +329,7 @@ define(['can'], function(can) {
     spls.find('RenewHoly').attr({
         fmana: function(delta) {return(this.fmana_instant_priest(delta));},
         fnticks: function(delta) { 
-            return(Math.round((this.nticks-(this.spec.attr('glyph_renew_holy') ? 1 : 0)) *
+            return(Math.roundn((this.nticks-(this.spec.attr('glyph_renew_holy') ? 1 : 0)) *
              this.time_tick / this.ftick_time(delta)));
         },
         fhot: function(delta) { return((this.spec.attr('glyph_renew_holy') ? (1+1/3) : 1) * (this.Btick+this.ctick*this.spec.fsp(delta)) * this.ftargets(delta) * this.fnticks(delta) );},
@@ -368,15 +368,15 @@ define(['can'], function(can) {
         },
     });
     spls.find('Rejuv').attr({
-        fmana: function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_druid') ? 0.9 : 1)))},
+        fmana: function(delta) { return(Math.roundn(this.base_mana * (this.spec.attr('t14_2p_druid') ? 0.9 : 1)))},
         fct: function(delta) {return(1);},
         fnticks: function(delta) {
-            return(1+Math.round(this.nticks * this.time_tick / this.ftick_time(delta)));
+            return(1+Math.roundn(this.nticks * this.time_tick / this.ftick_time(delta)));
         }
     });
     spls.find('Lifebloom').attr({
         fnticks: function(delta) {
-            return(Math.round((this.nticks-(this.spec.attr('glyph_blooming') ? 5 : 0)) * 
+            return(Math.roundn((this.nticks-(this.spec.attr('glyph_blooming') ? 5 : 0)) * 
                 this.time_tick / this.ftick_time(delta)));
         },
         fdirect: function(delta) {return((this.B+this.c*this.spec.fsp(delta))*(this.spec.attr('glyph_blooming') ? 1.5 : 1));},
@@ -392,7 +392,7 @@ define(['can'], function(can) {
     });
     spls.find('Swiftmend').attr({
         fnticks: function(delta) {
-            return( 1 + 0.12* 3 * Math.round(this.nticks * this.time_tick / this.ftick_time(delta)));
+            return( 1 + 0.12* 3 * Math.roundn(this.nticks * this.time_tick / this.ftick_time(delta)));
         },
         fheal: function(delta) {return( (1+this.spec.fmastp(delta)) *
             (
@@ -448,7 +448,7 @@ define(['can'], function(can) {
         fbase: function(delta) {return(this.fbase_pally_hp(delta));}
     });
     spls.find('HolyRadiance').attr({
-        fmana: function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_pally') ? 0.9 : 1)))},
+        fmana: function(delta) { return(Math.roundn(this.base_mana * (this.spec.attr('t14_2p_pally') ? 0.9 : 1)))},
         fheal: function(delta) {
             return(this.fbase(delta)*
                 (1+(-1+2*(this.spec.critmeta? 1.03 : 1))*this.spec.fcritp(delta))*
@@ -515,7 +515,7 @@ define(['can'], function(can) {
         }
     });
     spls.find('GHW').attr({
-        fmana: function(delta) { return(Math.round(this.base_mana * (this.spec.attr('t14_2p_shaman') ? 0.9 : 1) - (8849*this.spec.fcritp(delta)*this.res_factor * (this.spec.resurgence ? 1 : 0))))},
+        fmana: function(delta) { return(Math.roundn(this.base_mana * (this.spec.attr('t14_2p_shaman') ? 0.9 : 1) - (8849*this.spec.fcritp(delta)*this.res_factor * (this.spec.resurgence ? 1 : 0))))},
         fheal: function(delta) {return(this.fheal_shaman_aa(delta));},
         fct: function(delta) {
             return(this.base_ct/(1+this.spec.fhastep(delta)) * (this.spec.attr('tidal_waves') ? 0.7 : 1));
@@ -524,7 +524,7 @@ define(['can'], function(can) {
     spls.find('HSurge').attr({
         fmana: function(delta) {
             var crit = this.spec.fcritp(delta) + (this.spec.attr('tidal_waves') ? 0.3 : 0);
-            return(Math.round(this.base_mana-(crit*8849*0.6 *
+            return(Math.roundn(this.base_mana-(crit*8849*0.6 *
                     (this.spec.attr('resurgence') ? 1 : 0)))); },
         fheal: function(delta) {
             return(this.fheal_shaman_aa(delta, this.spec.fcritp(delta) + (this.spec.attr('tidal_waves') ? 0.3 : 0)));
@@ -555,7 +555,7 @@ define(['can'], function(can) {
     spls.find('HealingRain').attr({
         fnticks: function(delta) {
             return(1+this.nticks * this.time_tick / 
-                (Math.floor( 1000*this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005)/1000));
+                Math.floor(this.time_tick/(1+this.spec.fhastep(delta)) + 0.0005, 3));
         }
     });
     spls.find('Earthliving').attr({ fhpm: function(delta) {return(this.fhpm_nomana(delta));} });

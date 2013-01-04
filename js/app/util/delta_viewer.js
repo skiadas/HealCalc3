@@ -18,7 +18,7 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
             $.each(['int','sp','crit','haste','mast', 'spi'], function(_, stat) {
                 var delta = {};
                 delta[stat] = del;
-                results[stat] = Math.round((sp[colfun](delta) - base)/base * 10000)/100;
+                results[stat] = Math.roundn((sp[colfun](delta) - base)/base * 100, 2);
             });
             this.options.results = results;
             this.element.html(can.view('deltaViewerView', this.options));

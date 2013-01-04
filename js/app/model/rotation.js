@@ -81,18 +81,18 @@ define(['can', 'app/model/spec', 'app/model/spell'], function(can, specs, spells
         ftoom: function(delta) {return(this.spec.ftotal_mana(delta)/Math.max(this.femps(delta) - this.spec.fregen_mps(delta), 0));},
         val_update: function(delta) {
             this.results.attr({
-                'heal': Math.round(this.fheal(delta)),
-                'ct': Math.round(this.fct(delta)*100)/100,
-                'mana': Math.round(this.fmana(delta)),
-                'hps': Math.round(this.fhps() * 10)/10,
-                'ehps': Math.round(this.fehps() * 10)/10,
-                'hpm': Math.round(this.fhpm()),
-                'mps': Math.round(this.fmps() *100)/100,
-                'emps': Math.round(this.femps() *100)/100,
-                'idle': Math.round(this.fidle()*100)/100,
-                'idlep': Math.round(this.fidlep()*1000)/10,
-                'ctp': Math.round(this.fctp()*1000)/10,
-                'toom': Math.round(this.ftoom()*10)/10,
+                'heal': Math.roundn(this.fheal(delta)),
+                'ct': Math.roundn(this.fct(delta), 2),
+                'mana': Math.roundn(this.fmana(delta)),
+                'hps': Math.roundn(this.fhps(), 1),
+                'ehps': Math.roundn(this.fehps(), 1),
+                'hpm': Math.roundn(this.fhpm()),
+                'mps': Math.roundn(this.fmps(), 2),
+                'emps': Math.roundn(this.femps(), 2),
+                'idle': Math.roundn(this.fidle(), 2),
+                'idlep': Math.roundn(this.fidlep()*100, 1),
+                'ctp': Math.roundn(this.fctp()*100, 1),
+                'toom': Math.roundn(this.ftoom(), 1),
             });
         }
     });

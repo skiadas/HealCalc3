@@ -5,7 +5,7 @@
 <% breakpoints.each(function(breakpoint) { %>
   <tr <%= (el) -> can.data(el, 'breakpoint', breakpoint) %> class="bpoint_line <%= breakpoint.rel_rating > 0 ? 'after' : '' %>">
     <td><%= breakpoint.no %></td><td><%= breakpoint.name %></td>
-    <td><%= Math.round((breakpoint.hastep-1) * 10000)/100 %>%</td><td><%= breakpoint.rating %></td>
+    <td><%= Math.roundn((breakpoint.hastep-1) * 100, 2) %>%</td><td><%= breakpoint.rating %></td>
     <td><%= breakpoint.rel_rating %></td>
   </tr>
 <% }); %>

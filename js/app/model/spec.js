@@ -376,7 +376,7 @@ define(['can'], function(can) {
 
         spec.breakpoints = [];
         $.each( spec.bpoints_info, function(_, bpoint) {
-            max_new_points = Math.ceil( bpoint.nticks * max_haste_p + 0.5 );
+            max_new_points = Math.ceiln( bpoint.nticks * max_haste_p + 0.5 );
             for ( i = 1; i < max_new_points; i++ ) {
                 count = [i, ['st','nd','rd','th','th','th'][i-1]].join('');
                 spec.breakpoints.push({
@@ -386,11 +386,10 @@ define(['can'], function(can) {
                     hastep: bpoint.time_tick /
                          (
                              ( bpoint.hfactor || 1 ) *
-                                 Math.ceil(
+                                 Math.ceiln(
                                      ( bpoint.time_tick * bpoint.nticks ) / 
-                                     ( bpoint.nticks + i - 0.5 ) *
-                                     1000 
-                                 ) / 1000 -
+                                     ( bpoint.nticks + i - 0.5 ),
+                                3 ) -
                              0.0005
                          )
                 });
@@ -420,7 +419,7 @@ define(['can'], function(can) {
         mastery_factor: 2.5,
         fint: function(delta) { 
             return(
-                Math.round(
+                Math.roundn(
                     1.05 * 
                     (this.attr('buffs.stats') ? 1.05 : 1) *
                     (
@@ -448,15 +447,13 @@ define(['can'], function(can) {
         },
         fcrit: function(delta) {
             return (
-                Math.round(
-                    (
+                Math.roundn(
                         this.attr('stats.bcrit') /600 +
                         ( (delta && delta.crit) || 0 ) /600 +
                         this.fint(delta) * 0.0003951 +
                         this.attr('bcrit') +
-                        ( this.attr('buffs.crit') ? 5 : 0 )
-                    ) * 100
-                ) / 100  
+                        ( this.attr('buffs.crit') ? 5 : 0 ), 
+                2 ) 
             );
         },
         fcritp: function(delta) {
@@ -464,17 +461,15 @@ define(['can'], function(can) {
         },
         fmast: function(delta) {
             return(
-                Math.round(
-                    (
+                Math.roundn(
                         (
                             this.attr('stats.bmast') / 600 +
                             ( (delta && delta.mast) || 0 ) / 600 +
                             ( this.attr('buffs.mastery') ? 3000 : 0 ) / 600 +
                             8
                         ) *
-                        this.mastery_factor
-                    ) * 100
-                ) / 100
+                        this.mastery_factor,
+                2 )
             );
         },
         fmastp: function(delta) {
@@ -503,7 +498,7 @@ define(['can'], function(can) {
         },
         fsp: function(delta) {
             return(
-                Math.round(
+                Math.roundn(
                     (
                         (
                             1 * this.fint(delta) -
@@ -553,7 +548,7 @@ define(['can'], function(can) {
                 'mast': this.fmast(),
                 'mastp': this.fmastp(),
                 'mast_heal_factor': this.fmast_heal_factor(),
-                'haste': Math.round( this.fhaste()*100 ) / 100,
+                'haste': Math.roundn( this.fhaste(), 2),
                 'hastep': this.fhastep(),
                 'sp': this.fsp(),
                 'critmeta': this.attr('buffs.crit_meta'),
@@ -570,8 +565,8 @@ define(['can'], function(can) {
             
             spec.mana_sources.each(function(s) {
                 mfun = can.proxy(s.fmana, spec);
-                mana = Math.round( mfun( spec.interval_time * 1 ) );
-                mps = Math.round( 10 * mfun(1) ) / 10;
+                mana = Math.roundn( mfun( spec.interval_time * 1 ) );
+                mps = Math.roundn( mfun(1), 1 );
                 regen_mana += mana;
                 if ( s.name !== 'Initial Mana' && s.name !== 'Potion' ) {
                     regen_mps += mps;
@@ -581,9 +576,9 @@ define(['can'], function(can) {
                 s.attr({ 'mana': mana, 'mps': mps });
             });
             spec.attr({
-                'regen_mana': Math.round(regen_mana),
-                'regen_mps': Math.round(10 * regen_mps) / 10,
-                'total_mana': Math.round(total_mana),
+                'regen_mana': Math.roundn(regen_mana),
+                'regen_mps': Math.roundn(regen_mps, 1),
+                'total_mana': Math.roundn(total_mana),
             });
             can.Observe.stopBatch();
         }
@@ -622,7 +617,7 @@ define(['can'], function(can) {
         mastery_factor: 2.5, 
         fsp: function(delta) {
             return(
-                Math.round(
+                Math.roundn(
                     (
                         1 * this.fint(delta) - 10 + 
                         1 * this.attr('stats.bweapon') +
@@ -652,7 +647,7 @@ define(['can'], function(can) {
         mastery_factor: 1.25,
         fsp: function(delta) {
             return(
-                Math.round(
+                Math.roundn(
                     (
                         1 * this.fint(delta) - 10 + 
                         1 * this.attr('stats.bweapon') +
@@ -696,7 +691,7 @@ define(['can'], function(can) {
         mastery_factor: 1.25,
         fint: function(delta) {
             return(
-                Math.round(
+                Math.roundn(
                     1.05 * 
                     ( this.attr('buffs.stats') ? 1.1 : 1 ) *
                     (
@@ -734,7 +729,7 @@ define(['can'], function(can) {
         },
         fsp: function(delta) {
             return(
-                Math.round(
+                Math.roundn(
                     (
                         1 * this.fint(delta) - 10 +
                         1 * this.attr('stats.bweapon') +
