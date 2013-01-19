@@ -6,6 +6,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_powerwordshield',
             active: true,
             bcrit: 1.235,
+            bint: 216,
             bpoints_info: [
                 {
                     name: 'Renew',
@@ -95,6 +96,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_guardianspirit',
             active: false,
             bcrit: 1.235,
+            bint: 216,
             bpoints_info: [
                 {
                     name: 'Renew',
@@ -161,6 +163,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_holybolt',
             active: false,
             bcrit: 3.335,
+            bint: 113,
             bpoints_info: [
                 {
                     name: 'EF',
@@ -214,6 +217,7 @@ define(['can'], function(can) {
             icon: 'spell_nature_healingtouch',
             active: false,
             bcrit: 1.85,
+            bint: 177,
             bpoints_info: [
                 {
                     name: 'LB',
@@ -286,6 +290,7 @@ define(['can'], function(can) {
             icon: 'spell_nature_healingwavegreater',
             active: false,
             bcrit: 1.235,
+            bint: 145,
             bpoints_info: [
                 { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6, time_tick: 3 },
                 { name: 'Healing Rain', img: 'spell_nature_giftofthewaterspirit', nticks: 5, time_tick: 2 },
@@ -334,6 +339,7 @@ define(['can'], function(can) {
             icon: 'spell_monk_mistweaver_spec',
             active: false,
             bcrit: 2.19,
+            bint: 150,
             bpoints_info: [
                 {
                     name: 'Surging Mist, Renewing Mist',
