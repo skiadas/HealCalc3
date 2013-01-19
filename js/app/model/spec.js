@@ -6,7 +6,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_powerwordshield',
             active: true,
             bcrit: 1.235,
-            bint: 216,
+            bint: 206,
             bpoints_info: [
                 {
                     name: 'Renew',
@@ -96,7 +96,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_guardianspirit',
             active: false,
             bcrit: 1.235,
-            bint: 216,
+            bint: 206,
             bpoints_info: [
                 {
                     name: 'Renew',
@@ -163,7 +163,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_holybolt',
             active: false,
             bcrit: 3.335,
-            bint: 113,
+            bint: 108,
             bpoints_info: [
                 {
                     name: 'EF',
@@ -217,7 +217,7 @@ define(['can'], function(can) {
             icon: 'spell_nature_healingtouch',
             active: false,
             bcrit: 1.85,
-            bint: 177,
+            bint: 169,
             bpoints_info: [
                 {
                     name: 'LB',
@@ -290,7 +290,7 @@ define(['can'], function(can) {
             icon: 'spell_nature_healingwavegreater',
             active: false,
             bcrit: 1.235,
-            bint: 145,
+            bint: 138,
             bpoints_info: [
                 { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6, time_tick: 3 },
                 { name: 'Healing Rain', img: 'spell_nature_giftofthewaterspirit', nticks: 5, time_tick: 2 },
@@ -339,7 +339,7 @@ define(['can'], function(can) {
             icon: 'spell_monk_mistweaver_spec',
             active: false,
             bcrit: 2.19,
-            bint: 150,
+            bint: 143,
             bpoints_info: [
                 {
                     name: 'Surging Mist, Renewing Mist',
@@ -427,16 +427,20 @@ define(['can'], function(can) {
             return(
                 Math.roundn(
                     1.05 * 
-                    (this.attr('buffs.stats') ? 1.05 : 1) *
                     (
-                        this.attr('stats.bint') * 1 +
-                        ( ( delta && delta.int ) || 0 ) +
-                        ( this.attr('buffs.intfood') ? 275 : 0 ) +
-                        ( this.attr('buffs.intflask') ? 1000 : 0 ) +
-                        ( this.attr('buffs.trinket1.int') * 
-                                this.attr('buffs.trinket1.uptime') ) +
-                        ( this.attr('buffs.trinket2.int') * 
-                                this.attr('buffs.trinket2.uptime') )
+                        this.attr('bint') +   // Got to take out the base int, buff.stats ignores it
+                        (this.attr('buffs.stats') ? 1.05 : 1) *
+                            (
+                                this.attr('stats.bint') * 1 -
+                                this.attr('bint') +
+                                ( ( delta && delta.int ) || 0 ) +
+                                ( this.attr('buffs.intfood') ? 275 : 0 ) +
+                                ( this.attr('buffs.intflask') ? 1000 : 0 ) +
+                                ( this.attr('buffs.trinket1.int') * 
+                                        this.attr('buffs.trinket1.uptime') ) +
+                                ( this.attr('buffs.trinket2.int') * 
+                                        this.attr('buffs.trinket2.uptime') )
+                            )
                     )
                 )
             );
@@ -698,19 +702,23 @@ define(['can'], function(can) {
         fint: function(delta) {
             return(
                 Math.roundn(
-                    1.05 * 
-                    ( this.attr('buffs.stats') ? 1.1 : 1 ) *
                     (
-                        1 * this.attr('stats.bint') +
-                        ( ( delta && delta.int ) || 0 ) +
-                        ( this.attr('buffs.intfood') ? 275 : 0 ) +
-                        ( this.attr('buffs.intflask') ? 1000 : 0 ) + 
-                        ( this.attr('buffs.trinket1.int') * 
-                                this.attr('buffs.trinket1.uptime') ) +
-                        ( this.attr('buffs.trinket2.int') * 
-                                this.attr('buffs.trinket2.uptime') )
+                        this.attr('bint') + // The base int does not get multiplied
+                        ( this.attr('buffs.stats') ? 1.1 : 1 ) *
+                            (
+                                1 * this.attr('stats.bint') -
+                                this.attr('bint') +
+                                ( ( delta && delta.int ) || 0 ) +
+                                ( this.attr('buffs.intfood') ? 275 : 0 ) +
+                                ( this.attr('buffs.intflask') ? 1000 : 0 ) + 
+                                ( this.attr('buffs.trinket1.int') * 
+                                        this.attr('buffs.trinket1.uptime') ) +
+                                ( this.attr('buffs.trinket2.int') * 
+                                        this.attr('buffs.trinket2.uptime') )
+                            )
                     ) *
-                    ( this.attr('hotw') ? 1.06 : 1 )
+                    1.05 * 
+                    ( this.attr('hotw') ? 1.06 : 1 )   // But HotW does affect it!
                 )
             );
         },
