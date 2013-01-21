@@ -1150,6 +1150,12 @@ define(['can'], function(can) {
                 (this.spec.grace ? 1.3 : 1)
             );
         },
+        fbase_druid: function(delta) {
+            return(
+                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
+                1.1   // Buff from 5.2
+            );
+        },
         fbase_holy_sth: function(delta) {
             return(
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
@@ -1414,6 +1420,9 @@ define(['can'], function(can) {
         } else if ( sp.specid == 5 ) {
             // General Shaman spell setup
             sp.fheal = sp.fheal_shaman;
+        } else if (sp.specid == 4) {
+            // General Druid setup
+            sp.fbase = sp.fbase_druid;
         }
     });
     
@@ -1493,21 +1502,21 @@ define(['can'], function(can) {
     });
     
     spls.find('PoHDisc').attr({
-        fheal: function(delta) { 
-            var da = 0.5;
-            return(
-                this.fbase(delta) * 
-                (
-                    1 + 
-                        (
-                            -1 +
-                            2 * (this.spec.critmeta? 1.03 : 1)
-                        ) *
-                        this.spec.fcritp(delta)
-                ) *
-                ( 1 + da * ( 1 + this.spec.fmastp(delta)) )
-            );
-        }, 
+        // fheal: function(delta) { 
+        //     var da = 0.5;
+        //     return(
+        //         this.fbase(delta) * 
+        //         (
+        //             1 + 
+        //                 (
+        //                     -1 +
+        //                     2 * (this.spec.critmeta? 1.03 : 1)
+        //                 ) *
+        //                 this.spec.fcritp(delta)
+        //         ) *
+        //         ( 1 + da * ( 1 + this.spec.fmastp(delta)) )
+        //     );
+        // }, 
         ftargets: function(delta) {
             return( 1 * this.spec.poh_targets_disc );
         },
@@ -1772,7 +1781,11 @@ define(['can'], function(can) {
             );
         },
         fbase: function(delta) {
-            return( this.fdirect(delta) * 1.2 );
+            return(
+                this.fdirect(delta) *
+                1.2 *   // Buff from 3 Rejuvs
+                1.1     // 5.2 buff
+            );
         },
         fheal: function(delta) {
             return( this.fheal_living_seed(delta) );
@@ -1788,8 +1801,10 @@ define(['can'], function(can) {
     spls.find('Regrowth').attr({
         fbase: function(delta) {
             return(
-                this.fdirect(delta) +
-                (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta))
+                (
+                    this.fdirect(delta) +
+                    (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta))
+                ) * 1.1  // 5.2 Buff
             );
         },
         fheal: function(delta) { 
@@ -1860,7 +1875,12 @@ define(['can'], function(can) {
             );
         },
         fbase: function(delta) {
-            return(this.fdirect(delta) + this.fhot(delta));
+            return(
+                (
+                    this.fdirect(delta) +
+                    this.fhot(delta)
+                ) * 1.1 // 5.2 Buff
+            );
         }
     });
     
