@@ -1933,6 +1933,7 @@ define(['can'], function(can) {
     spls.find('Mushrooms').attr({
         fheal: function(delta) {
             return(
+                ( 1 + this.spec.fmastp(delta) ) *
                 this.fbase(delta) *
                 (
                     1 + 
