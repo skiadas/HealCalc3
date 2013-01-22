@@ -506,7 +506,7 @@ define(['can'], function(can) {
             name: 'Rejuvenation',
             specid: 4,
             base_ct: 1.5,
-            base_mana: 9600,
+            base_mana: 8700, // was 9600 before 5.2
             Btick: 4234,
             ctick: 0.392,
             nticks: 4,
