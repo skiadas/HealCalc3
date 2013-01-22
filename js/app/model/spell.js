@@ -3,6 +3,7 @@ define(['can'], function(can) {
         // DISC
         //
         {
+            id: 0,
             code: 'HealDisc',
             name: 'Heal',
             specid: 1,
@@ -16,6 +17,7 @@ define(['can'], function(can) {
             item: 2050
         },
         // {
+        //     id: 1,
         //     code: 'HealSSDisc',
         //     name: 'Heal Spirit Shell',
         //     specid: 1,
@@ -29,6 +31,7 @@ define(['can'], function(can) {
         //     item: 2050
         // },
         {
+            id: 2,
             code: 'GhealDisc',
             name: 'Greater Heal',
             specid: 1,
@@ -42,6 +45,7 @@ define(['can'], function(can) {
             item: 2060
         },
         // {
+        //     id: 3,
         //     code: 'GhealSSDisc',
         //     name: 'Greater Heal Spirit Shell',
         //     specid: 1,
@@ -55,6 +59,7 @@ define(['can'], function(can) {
         //     item: 2060
         // },
         {
+            id: 4,
             code: 'FhealDisc',
             name: 'Flash Heal',
             specid: 1,
@@ -68,6 +73,7 @@ define(['can'], function(can) {
             item: 2061
         },
         // {
+        //     id: 5,
         //     code: 'FhealSSDisc',
         //     name: 'Flash Heal Spirit Shell',
         //     specid: 1,
@@ -81,6 +87,7 @@ define(['can'], function(can) {
         //     item: 2061
         // },
         {
+            id: 6,
             code: 'BhealDisc',
             name: 'Binding Heal',
             specid: 1,
@@ -95,6 +102,7 @@ define(['can'], function(can) {
             item: 32546
         },
         {
+            id: 7,
             code: 'RenewDisc',
             name: 'Renew',
             specid: 1,
@@ -110,6 +118,7 @@ define(['can'], function(can) {
             item: 139
         },
         {
+            id: 8,
             code: 'CascadeDisc',
             name: 'Cascade',
             specid: 1,
@@ -124,6 +133,7 @@ define(['can'], function(can) {
             item: 120785
         },
         {
+            id: 9,
             code: 'PWSDisc',
             name: 'Power Word: Shield',
             specid: 1,
@@ -137,6 +147,7 @@ define(['can'], function(can) {
             item: 17
         },
         {
+            id: 10,
             code: 'PoMDisc',
             name: 'Prayer of Mending',
             specid: 1,
@@ -151,6 +162,7 @@ define(['can'], function(can) {
             item: 33076
         },
         {
+            id: 11,
             code: 'PoHDisc',
             name: 'Prayer of Healing',
             specid: 1,
@@ -165,6 +177,7 @@ define(['can'], function(can) {
             item: 596
         },
         // {
+        //     id: 12,
         //     code: 'PoHSSDisc',
         //     name: 'Prayer of Healing Spirit Shell',
         //     specid: 1,
@@ -179,6 +192,7 @@ define(['can'], function(can) {
         //     item: 596
         // },
         {
+            id: 13,
             code: 'HolyFireDisc',
             name: 'Holy Fire',
             specid: 1,
@@ -196,6 +210,7 @@ define(['can'], function(can) {
             item: 14914
         },
         {
+            id: 14,
             code: 'SmiteDisc',
             name: 'Smite',
             specid: 1,
@@ -209,6 +224,7 @@ define(['can'], function(can) {
             item: 585
         },
         {
+            id: 15,
             code: 'PenanceDisc',
             name: 'Penance',
             specid: 1,
@@ -227,6 +243,7 @@ define(['can'], function(can) {
         // HOLY
         //
         {
+            id: 16,
             code: 'HealHoly',
             name: 'Heal',
             specid: 2,
@@ -240,6 +257,7 @@ define(['can'], function(can) {
             item: 2050
         },
         {
+            id: 17,
             code: 'GhealHoly',
             name: 'Greater Heal',
             specid: 2,
@@ -253,6 +271,7 @@ define(['can'], function(can) {
             item: 2060
         },
         {
+            id: 18,
             code: 'FhealHoly',
             name: 'Flash Heal',
             specid: 2,
@@ -266,6 +285,7 @@ define(['can'], function(can) {
             item: 2061
         },
         {
+            id: 19,
             code: 'BhealHoly',
             name: 'Binding Heal',
             specid: 2,
@@ -280,6 +300,7 @@ define(['can'], function(can) {
             item: 32546
         },
         {
+            id: 20,
             code: 'RenewHoly',
             name: 'Renew',
             specid: 2,
@@ -295,6 +316,7 @@ define(['can'], function(can) {
             item: 139
         },
         {
+            id: 21,
             code: 'PWSHoly',
             name: 'Power Word: Shield',
             specid: 2,
@@ -308,6 +330,7 @@ define(['can'], function(can) {
             item: 17
         },
         {
+            id: 22,
             code: 'PoMHoly',
             name: 'Prayer of Mending',
             specid: 2,
@@ -322,6 +345,7 @@ define(['can'], function(can) {
             item: 33076
         },
         {
+            id: 23,
             code: 'PoHHoly',
             name: 'Prayer of Healing',
             specid: 2,
@@ -336,6 +360,7 @@ define(['can'], function(can) {
             item: 596
         },
         {
+            id: 24,
             code: 'CascadeHoly',
             name: 'Cascade',
             specid: 2,
@@ -350,6 +375,7 @@ define(['can'], function(can) {
             item: 120785
         },
         {
+            id: 25,
             code: 'CoHHoly',
             name: 'Circle of Healing',
             specid: 2,
@@ -364,6 +390,7 @@ define(['can'], function(can) {
             item: 34861
         },
         {
+            id: 26,
             code: 'DHHoly',
             name: 'Divine Hymn',
             specid: 2,
@@ -378,6 +405,7 @@ define(['can'], function(can) {
             item: 64843
         },
         {
+            id: 27,
             code: 'LWCastHoly',
             name: 'Lightwell Cast',
             specid: 2,
@@ -408,6 +436,7 @@ define(['can'], function(can) {
         //     item: 2050
         // },
         {
+            id: 28,
             code: 'HWSerenityHoly',
             name: 'Holy Word: Serenity',
             specid: 2,
@@ -422,6 +451,7 @@ define(['can'], function(can) {
             item: 88684
         },
         {
+            id: 29,
             code: 'HWSanctuaryHoly',
             name: 'Holy Word: Sanctuary',
             specid: 2,
@@ -442,6 +472,7 @@ define(['can'], function(can) {
         // DRUID
         //
         {
+            id: 30,
             code: 'HealingTouch',
             name: 'Healing Touch',
             specid: 4,
@@ -455,6 +486,7 @@ define(['can'], function(can) {
             item: 5185
         },
         {
+            id: 31,
             code: 'ForceOfNature',
             name: 'Force of Nature',
             specid: 4,
@@ -472,6 +504,7 @@ define(['can'], function(can) {
             item: 106737
         },
         {
+            id: 32,
             code: 'Nourish',
             name: 'Nourish',
             specid: 4,
@@ -485,6 +518,7 @@ define(['can'], function(can) {
             item: 50464
         },
         {
+            id: 33,
             code: 'Regrowth',
             name: 'Regrowth',
             specid: 4,
@@ -502,6 +536,7 @@ define(['can'], function(can) {
             item: 8936
         }, 
         {
+            id: 34,
             code: 'Rejuv',
             name: 'Rejuvenation',
             specid: 4,
@@ -517,6 +552,7 @@ define(['can'], function(can) {
             item: 774
         },
         {
+            id: 35,
             code: 'Lifebloom',
             name: 'Lifebloom',
             specid: 4,
@@ -534,6 +570,7 @@ define(['can'], function(can) {
             item: 94447
         },
         {
+            id: 36,
             code: 'WildGrowth',
             name: 'Wild Growth',
             specid: 4,
@@ -550,6 +587,7 @@ define(['can'], function(can) {
             item: 48438
         },
         {
+            id: 37,
             code: 'Swiftmend',
             name: 'Swiftmend',
             specid: 4,
@@ -566,6 +604,7 @@ define(['can'], function(can) {
             item: 18562
         },
         {
+            id: 38,
             code: 'Mushrooms',
             name: 'Wild Mushrooms',
             specid: 4,
@@ -580,6 +619,7 @@ define(['can'], function(can) {
             item: 102792
         },
         {
+            id: 39,
             code: 'Tranquility',
             name: 'Tranquility',
             specid: 4,
@@ -602,6 +642,7 @@ define(['can'], function(can) {
         // PALLY
         //
         {
+            id: 40,
             code: 'HolyLight',
             name: 'Holy Light',
             specid: 3,
@@ -615,6 +656,7 @@ define(['can'], function(can) {
             item: 635
         },
         {
+            id: 41,
             code: 'DivineLight',
             name: 'Divine Light',
             specid: 3,
@@ -628,6 +670,7 @@ define(['can'], function(can) {
             item: 82326
         },
         {
+            id: 42,
             code: 'FlashLight',
             name: 'Flash of Light',
             specid: 3,
@@ -641,6 +684,7 @@ define(['can'], function(can) {
             item: 19750
         },
         {
+            id: 43,
             code: 'HolyRadiance',
             name: 'Holy Radiance',
             specid: 3,
@@ -655,6 +699,7 @@ define(['can'], function(can) {
             item: 82327
         },
         {
+            id: 44,
             code: 'HolyShock',
             name: 'Holy Shock',
             specid: 3,
@@ -668,6 +713,7 @@ define(['can'], function(can) {
             item: 20473
         },
         {
+            id: 45,
             code: 'WoG',
             name: 'Word of Glory',
             specid: 3,
@@ -681,6 +727,7 @@ define(['can'], function(can) {
             item: 130551
         },
         {
+            id: 46,
             code: 'LoD',
             name: 'Light of Dawn',
             specid: 3,
@@ -695,6 +742,7 @@ define(['can'], function(can) {
             item: 85222
         },
         {
+            id: 47,
             code: 'HolyPrism',
             name: 'Holy Prism Single',
             specid: 3,
@@ -708,6 +756,7 @@ define(['can'], function(can) {
             item: 114165
         },
         {
+            id: 48,
             code: 'HolyPrismAoE',
             name: 'Holy Prism AoE',
             specid: 3,
@@ -722,6 +771,7 @@ define(['can'], function(can) {
             item: 114165
         },
         {
+            id: 49,
             code: 'LightsHammer',
             name: 'Light\'s Hammer',
             specid: 3,
@@ -736,6 +786,7 @@ define(['can'], function(can) {
             item: 114158
         },
         {
+            id: 50,
             code: 'Execution',
             name: 'Execution Sentence',
             specid: 3,
@@ -749,6 +800,7 @@ define(['can'], function(can) {
             item: 114157
         },
         {
+            id: 51,
             code: 'EternalFlame',
             name: 'Eternal Flame',
             specid: 3,
@@ -766,6 +818,7 @@ define(['can'], function(can) {
             item: 114163
         },
         {
+            id: 52,
             code: 'SacredShield',
             name: 'Sacred Shield',
             specid: 3,
@@ -785,6 +838,7 @@ define(['can'], function(can) {
         // SHAMAN
         //
         {
+            id: 53,
             code: 'HW',
             name: 'Healing Wave',
             specid: 5,
@@ -798,6 +852,7 @@ define(['can'], function(can) {
             item: 331
         },
         {
+            id: 54,
             code: 'GHW',
             name: 'Greater Healing Wave',
             specid: 5,
@@ -811,6 +866,7 @@ define(['can'], function(can) {
             item: 77472
         },
         {
+            id: 55,
             code: 'HSurge',
             name: 'Healing Surge',
             specid: 5,
@@ -824,6 +880,7 @@ define(['can'], function(can) {
             item: 8004
         },
         {
+            id: 56,
             code: 'ChainHeal',
             name: 'Chain Heal',
             specid: 5,
@@ -839,6 +896,7 @@ define(['can'], function(can) {
             item: 1064
         },
         {
+            id: 57,
             code: 'Riptide',
             name: 'Riptide',
             specid: 5,
@@ -857,6 +915,7 @@ define(['can'], function(can) {
             item: 61295
         }, 
         {
+            id: 58,
             code: 'UnleashLife',
             name: 'Unleash Life',
             specid: 5,
@@ -871,6 +930,7 @@ define(['can'], function(can) {
             item: 73685
         },
         {
+            id: 59,
             code: 'HST',
             name: 'Healing Stream Totem',
             specid: 5,
@@ -887,6 +947,7 @@ define(['can'], function(can) {
             item: 5394
         },
         {
+            id: 60,
             code: 'HTT',
             name: 'Healing Tide Totem',
             specid: 5,
@@ -904,6 +965,7 @@ define(['can'], function(can) {
             item: 108280
         },
         {
+            id: 61,
             code: 'HealingRain',
             name: 'Healing Rain',
             specid: 5,
@@ -921,6 +983,7 @@ define(['can'], function(can) {
             item: 73920
         },
         {
+            id: 62,
             code: 'Earthliving',
             name: 'Earthliving',
             specid: 5,
@@ -936,6 +999,7 @@ define(['can'], function(can) {
             item: 51945
         },
         {
+            id: 63,
             code: 'EarthShield',
             name: 'Earth Shield',
             specid: 5,
@@ -954,6 +1018,7 @@ define(['can'], function(can) {
         // MONK
         //
         {
+            id: 64,
             code: 'SoothingMist',
             name: 'Soothing Mist',
             specid: 6,
@@ -968,6 +1033,7 @@ define(['can'], function(can) {
             item: 125953
         },
         {
+            id: 65,
             code: 'SurgingMist',
             name: 'Surging Mist',
             specid: 6,
@@ -981,6 +1047,7 @@ define(['can'], function(can) {
             item: 116995
         },
         {
+            id: 66,
             code: 'EnvelopingMist',
             name: 'Enveloping Mist',
             specid: 6,
@@ -996,6 +1063,7 @@ define(['can'], function(can) {
             item: 132120
         },
         {
+            id: 67,
             code: 'RenewingMist',
             name: 'Renewing Mist',
             specid: 6,
@@ -1012,6 +1080,7 @@ define(['can'], function(can) {
             item: 119611
         },
         {
+            id: 68,
             code: 'LifeCocoon',
             name: 'Life Cocoon',
             specid: 6,
@@ -1025,6 +1094,7 @@ define(['can'], function(can) {
             item: 116849
         },
         {
+            id: 69,
             code: 'Uplift',
             name: 'Uplift',
             specid: 6,
@@ -1039,6 +1109,7 @@ define(['can'], function(can) {
             item: 116670
         },
         {
+            id: 70,
             code: 'Revival',
             name: 'Revival',
             specid: 6,
@@ -1378,7 +1449,7 @@ define(['can'], function(can) {
 
     for (i=0; i< len; i++) {
         spell = new can.Observe(can.extend(SPELLS[i], spec_specific));
-        spell.id = i;
+        // spell.id = i;
         spls.push(spell);
     }
     // Global update function
