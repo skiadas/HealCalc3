@@ -15,19 +15,19 @@ define(['can'], function(can) {
             instant: false,
             item: 2050
         },
-        {
-            code: 'HealSSDisc',
-            name: 'Heal Spirit Shell',
-            specid: 1,
-            base_ct: 2.5,
-            base_mana: 5700,
-            B: 10645,
-            c: 1.024,
-            img: 'ability_shaman_astralshift',
-            aoe: false,
-            instant: false,
-            item: 2050
-        },
+        // {
+        //     code: 'HealSSDisc',
+        //     name: 'Heal Spirit Shell',
+        //     specid: 1,
+        //     base_ct: 2.5,
+        //     base_mana: 5700,
+        //     B: 10645,
+        //     c: 1.024,
+        //     img: 'ability_shaman_astralshift',
+        //     aoe: false,
+        //     instant: false,
+        //     item: 2050
+        // },
         {
             code: 'GhealDisc',
             name: 'Greater Heal',
@@ -41,19 +41,19 @@ define(['can'], function(can) {
             instant: false,
             item: 2060
         },
-        {
-            code: 'GhealSSDisc',
-            name: 'Greater Heal Spirit Shell',
-            specid: 1,
-            base_ct: 2.5,
-            base_mana: 17700,
-            B: 22725.92,
-            c: 2.19,
-            img: 'ability_shaman_astralshift',
-            aoe: false,
-            instant: false,
-            item: 2060
-        },
+        // {
+        //     code: 'GhealSSDisc',
+        //     name: 'Greater Heal Spirit Shell',
+        //     specid: 1,
+        //     base_ct: 2.5,
+        //     base_mana: 17700,
+        //     B: 22725.92,
+        //     c: 2.19,
+        //     img: 'ability_shaman_astralshift',
+        //     aoe: false,
+        //     instant: false,
+        //     item: 2060
+        // },
         {
             code: 'FhealDisc',
             name: 'Flash Heal',
@@ -67,19 +67,19 @@ define(['can'], function(can) {
             instant: false,
             item: 2061
         },
-        {
-            code: 'FhealSSDisc',
-            name: 'Flash Heal Spirit Shell',
-            specid: 1,
-            base_ct: 1.5,
-            base_mana: 17700,
-            B: 17044.549,
-            c: 1.642,
-            img: 'ability_shaman_astralshift',
-            aoe: false,
-            instant: false,
-            item: 2061
-        },
+        // {
+        //     code: 'FhealSSDisc',
+        //     name: 'Flash Heal Spirit Shell',
+        //     specid: 1,
+        //     base_ct: 1.5,
+        //     base_mana: 17700,
+        //     B: 17044.549,
+        //     c: 1.642,
+        //     img: 'ability_shaman_astralshift',
+        //     aoe: false,
+        //     instant: false,
+        //     item: 2061
+        // },
         {
             code: 'BhealDisc',
             name: 'Binding Heal',
@@ -164,20 +164,20 @@ define(['can'], function(can) {
             instant: false,
             item: 596
         },
-        {
-            code: 'PoHSSDisc',
-            name: 'Prayer of Healing Spirit Shell',
-            specid: 1,
-            base_ct: 2.5,
-            base_mana: 13500,
-            targets: 5,
-            B: 8687,
-            c: 0.8381,
-            img: 'ability_shaman_astralshift',
-            aoe: true,
-            instant: false,
-            item: 596
-        },
+        // {
+        //     code: 'PoHSSDisc',
+        //     name: 'Prayer of Healing Spirit Shell',
+        //     specid: 1,
+        //     base_ct: 2.5,
+        //     base_mana: 13500,
+        //     targets: 5,
+        //     B: 8687,
+        //     c: 0.8381,
+        //     img: 'ability_shaman_astralshift',
+        //     aoe: true,
+        //     instant: false,
+        //     item: 596
+        // },
         {
             code: 'HolyFireDisc',
             name: 'Holy Fire',
@@ -1543,11 +1543,11 @@ define(['can'], function(can) {
         },
     });
     
-    spls.find('HealSSDisc').attr({
-        fheal: function(delta) {
-            return( this.fheal_spirit_shell(delta) );
-        }
-    });
+    // spls.find('HealSSDisc').attr({
+    //     fheal: function(delta) {
+    //         return( this.fheal_spirit_shell(delta) );
+    //     }
+    // });
     
     spls.find('FhealDisc').attr({
         fmana: function(delta) {
@@ -1560,39 +1560,39 @@ define(['can'], function(can) {
         },
     });
     
-    spls.find('FhealSSDisc').attr({
-        fheal: function(delta) {
-            return( this.fheal_spirit_shell(delta) );
-        },
-        fmana: function(delta) {
-            return(
-                Math.roundn(
-                    this.base_mana *
-                    (this.spec.attr('t14_2p_disc') ? 0.9 : 1)
-                )
-            );
-        },
-    });
+    // spls.find('FhealSSDisc').attr({
+    //     fheal: function(delta) {
+    //         return( this.fheal_spirit_shell(delta) );
+    //     },
+    //     fmana: function(delta) {
+    //         return(
+    //             Math.roundn(
+    //                 this.base_mana *
+    //                 (this.spec.attr('t14_2p_disc') ? 0.9 : 1)
+    //             )
+    //         );
+    //     },
+    // });
     
-    spls.find('GhealSSDisc').attr({
-        fheal: function(delta) {
-            return( this.fheal_spirit_shell(delta) );
-        }
-    });
+    // spls.find('GhealSSDisc').attr({
+    //     fheal: function(delta) {
+    //         return( this.fheal_spirit_shell(delta) );
+    //     }
+    // });
     
-    spls.find('PoHSSDisc').attr({
-        fheal: function(delta) {
-            return(
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                1.3
-            );
-        },
-        ftargets: function(delta) {
-            return( 1 * this.spec.poh_targets_disc );
-        },
-    });
+    // spls.find('PoHSSDisc').attr({
+    //     fheal: function(delta) {
+    //         return(
+    //             this.fbase(delta) *
+    //             ( 1 + this.spec.fcritp(delta) ) *
+    //             ( 1 + this.spec.fmastp(delta) ) *
+    //             1.3
+    //         );
+    //     },
+    //     ftargets: function(delta) {
+    //         return( 1 * this.spec.poh_targets_disc );
+    //     },
+    // });
     
     spls.find('HolyFireDisc').attr({
         fbase: function(delta) {
