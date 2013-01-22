@@ -1430,6 +1430,18 @@ define(['can'], function(can) {
     //
     //
     // DISC Spells setup
+    spls.find('BhealDisc').attr({
+        fmana: function(delta) {
+            return(
+                (this.spec.attr('glyph_binding_disc') ? 1.35 : 1) *
+                this.base_mana
+            );
+        },
+        ftargets: function(delta) {
+            return(this.spec.attr('glyph_binding_disc') ? 3 : 2)
+        }
+    });
+
     spls.find('RenewDisc').attr({
         fmana: function(delta) {
             return( this.fmana_instant_priest(delta) );
@@ -1646,6 +1658,18 @@ define(['can'], function(can) {
                 return( this.fheal_sth_holy(delta) );
             }
         });
+    });
+    
+    spls.find('BhealHoly').attr({
+        fmana: function(delta) {
+            return(
+                (this.spec.attr('glyph_binding_holy') ? 1.35 : 1) *
+                this.base_mana
+            );
+        },
+        ftargets: function(delta) {
+            return(this.spec.attr('glyph_binding_holy') ? 3 : 2)
+        }
     });
     
     spls.find('FhealHoly').attr({

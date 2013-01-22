@@ -648,7 +648,10 @@ define(['can'], function(can) {
         glyph_pom_disc: true,
         glyph_renew_disc: false,
         glyph_penance: false,
+        glyph_binding_disc: false,
         t4_2p_disc: false,
+        t5_2p_disc: false,
+        t5_4p_disc: false,
         rapture_interval: 15
     });
     
@@ -678,7 +681,10 @@ define(['can'], function(can) {
         glyph_coh: false,
         glyph_pom_holy: true,
         glyph_renew_holy: false,
-        t4_2p_holy: false
+        glyph_binding_holy: false,
+        t4_2p_holy: false,
+        t5_2p_holy: false,
+        t5_4p_holy: false
     });
     
     // PALLY
