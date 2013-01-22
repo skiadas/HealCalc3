@@ -2482,7 +2482,16 @@ define(['can'], function(can) {
         }
     });
     
-    
+    spls.find('RenewingMist').attr({
+        ftargets: function(delta) {
+            return(
+                this.spec.attr('t15_2p_monk') ?
+                    1 + 1.15 * ( 1 + 1.15 )
+                :
+                    3
+            );
+        }
+    });
     
     return spls;
 });
