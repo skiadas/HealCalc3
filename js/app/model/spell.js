@@ -1625,7 +1625,7 @@ define(['can'], function(can) {
             return(
                 Math.roundn(
                     this.base_mana *
-                    (this.spec.attr('t14_2p_disc') ? 0.9 : 1)
+                    (this.spec.attr('t14_2p_disc') ? 0.8 : 1)
                 )
             );
         },
