@@ -1246,6 +1246,7 @@ define(['can'], function(can) {
                 this.spec.fmast_factor(delta) *
                 (
                     1 + 
+                    (this.spec.t15_4p_shaman ? 0.3 : 0) +
                     (
                         -1 +
                             2 *
@@ -2285,8 +2286,13 @@ define(['can'], function(can) {
         fct: function(delta) {
             return(
                 this.base_ct /
-                (1+this.spec.fhastep(delta)) *
-                (this.spec.attr('tidal_waves') ? 0.7 : 1)
+                ( 1 + this.spec.fhastep(delta) ) *
+                (
+                    this.spec.attr('tidal_waves') ? 
+                        0.7 + (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
+                    :
+                        1
+                )
             );
         }
     });
@@ -2315,14 +2321,26 @@ define(['can'], function(can) {
             return(
                 this.base_ct /
                 ( 1 + this.spec.fhastep(delta) ) *
-                (this.spec.attr('tidal_waves') ? 0.7 : 1)
+                (
+                    this.spec.attr('tidal_waves') ? 
+                        0.7 + (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
+                    :
+                        1
+                )
+                
             );
         }
     });
     
     spls.find('HSurge').attr({
         fmana: function(delta) {
-            var crit = this.spec.fcritp(delta) + (this.spec.attr('tidal_waves') ? 0.3 : 0);
+            var crit = this.spec.fcritp(delta) + 
+                       (
+                           this.spec.attr('tidal_waves') ? 
+                               0.3 + (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
+                           :
+                               0
+                       );
             return(
                 Math.roundn(
                     this.base_mana - 
@@ -2398,6 +2416,9 @@ define(['can'], function(can) {
     spls.find('HST').attr({
         fnticks: function(delta) {
             return( this.fnticks_shaman_aoe(delta) );
+        },
+        ftargets: function(delta) {
+            return( this.spec.t15_2p_shaman ? 1.5 : 1);
         }
     });
     
