@@ -1217,7 +1217,9 @@ define(['can'], function(can) {
                 ) *
                 ( 
                     1 +
-                    (this.spec.bol ? 0.5 : 0) +
+                        (this.spec.bol ? 0.5 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                    +
                     this.spec.fmastp(delta)
                 )
             );
@@ -2050,7 +2052,9 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                    (this.spec.bol ? 1 : 0) +
+                        (this.spec.bol ? 1 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                     +
                     this.spec.fmastp(delta)
                 )
             );
@@ -2063,7 +2067,9 @@ define(['can'], function(can) {
             return(
                 (
                     1 +
-                    (this.spec.bol ? 0.5 : 0) +
+                        (this.spec.bol ? 0.5 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                     +
                     this.spec.fmastp(delta)
                 ) *
                 this.fbase(delta) *
@@ -2072,7 +2078,12 @@ define(['can'], function(can) {
                         ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
                         crit
                 ) *
-                ( this.spec.attr('daybreak') ? 2 : 1 )
+                (
+                    this.spec.attr('daybreak') ? 
+                        (this.spec.attr('t15_2p_pally') ? 2.5 : 2)
+                    :
+                        1
+                )
             ); 
         }
     });
@@ -2111,7 +2122,9 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                    (this.spec.bol ? 0.15 : 0) +
+                        (this.spec.bol ? 0.15 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                    +
                     this.spec.fmastp(delta)
                 )
             );
@@ -2151,7 +2164,9 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                    (this.spec.bol ? 0.15 : 0) +
+                        (this.spec.bol ? 0.15 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                     +
                     this.spec.fmastp(delta)
                 )
             );
@@ -2171,7 +2186,8 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                    (this.spec.bol ? 0.15 : 0)
+                        (this.spec.bol ? 0.15 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
                 )
             );
         }
@@ -2226,7 +2242,9 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                    (this.spec.bol ? 0.15 : 0) +
+                        (this.spec.bol ? 0.15 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                    +
                     this.spec.fmastp(delta)
                 )
             );
@@ -2244,7 +2262,9 @@ define(['can'], function(can) {
                 ) *
                 (
                     1+
-                    (this.spec.bol ? 0.15 : 0) +
+                        (this.spec.bol ? 0.15 : 0) *
+                        (this.spec.t15_4p_pally ? 1.2 : 1)
+                    +
                     this.spec.fmastp(delta)
                 )
             );

@@ -697,6 +697,8 @@ define(['can'], function(can) {
         bol: false,
         glyph_lod: false,
         t4_2p_pally: false,
+        t5_2p_pally: false,
+        t5_4p_pally: false,
         cs_to_hp: false,
         one_hp: false,
         soi_ppm: 6
