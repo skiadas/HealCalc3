@@ -1907,10 +1907,19 @@ define(['can'], function(can) {
         },
         fct: function(delta) { return( 1 ); },
         fnticks: function(delta) {
+            var ntick = Math.roundn(
+                    this.nticks * this.time_tick / this.ftick_time(delta)
+                );
+                // If t15 set bonus, we count the ticks including the extra healing from the bonus
+                // FIXME: Does the initial heal get affected by that? Guess is no
             return(
                 1 +
-                Math.roundn(
-                    this.nticks * this.time_tick / this.ftick_time(delta)
+                (
+                    this.spec.attr('t15_4p_druid')
+                    ? 
+                        (Math.pow(1.06, ntick) - 1) / (1.06 - 1)   // Sum of powers of 1.06
+                    :
+                        ntick
                 )
             );
         }
@@ -1963,7 +1972,8 @@ define(['can'], function(can) {
         fnticks: function(delta) {
             return(
                 1 +
-                    0.12 * 3 *
+                    0.12 *
+                    (this.spec.t15_2p_druid ? 4 : 3) *
                     Math.roundn(
                         this.nticks *
                         this.time_tick /
