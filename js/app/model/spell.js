@@ -1508,7 +1508,13 @@ define(['can'], function(can) {
         fdirect: function(delta) {
             return(
                 ( this.B + this.c * this.spec.fsp(delta) ) *
-                ( this.spec.attr('glyph_pom_disc') ? 5.6 : 6 )
+                (
+                    this.spec.attr('t15_2p_disc') ? 
+                        1.1 * (1 + 1.1 * (1 + 1.1 * (1 + 1.1))) +  // The 2th through 5th heals
+                        (this.spec.attr('glyph_pom_disc') ? 1.6 : (1 + Math.pow(1.1, 5)))
+                    :
+                        (this.spec.attr('glyph_pom_disc') ? 5.6 : 6)
+                )
             );
         },
     });
@@ -1636,7 +1642,10 @@ define(['can'], function(can) {
             ); 
         },
         fheal: function(delta) {
-            return( this.fheal_disc_atonement(delta) );
+            return(
+                this.fheal_disc_atonement(delta) +
+                (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
+            );
         }, // This actually assumes penance is used as atonement
         fmana: function(delta) {
             return(
@@ -1712,6 +1721,25 @@ define(['can'], function(can) {
         }
     });
     
+    spls.find('CoHHoly').attr({
+       fheal: function(delta) {
+           return(
+               this.fbase(delta) *
+               (
+                   1 +
+                       (
+                           -1 +
+                           2 * (this.spec.critmeta ? 1.03 : 1)
+                       ) *
+                       this.spec.fcritp(delta)
+               ) *
+               ( 1 + 1 * this.spec.fmastp(delta) ) +
+               (this.spec.attr('t15_4p_holy') ? 0.4 * 100000 : 0)
+           );
+           
+       },
+    });
+    
     spls.find('PoHHoly').attr({
         ftargets: function(delta) {
             return( 1 * this.spec.poh_targets_holy );
@@ -1725,7 +1753,13 @@ define(['can'], function(can) {
         fdirect: function(delta) {
             return(
                 ( this.B + this.c * this.spec.fsp(delta) ) *
-                (this.spec.attr('glyph_pom_holy') ? 5.6 : 6)
+                (
+                    this.spec.attr('t15_2p_holy') ? 
+                        1.1 * (1 + 1.1 * (1 + 1.1 * (1 + 1.1))) +  // The 2th through 5th heals
+                        (this.spec.attr('glyph_pom_holy') ? 1.6 : (1 + Math.pow(1.1, 5)))
+                    :
+                        (this.spec.attr('glyph_pom_holy') ? 5.6 : 6)
+                )
             );
         }
     });
