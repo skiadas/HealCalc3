@@ -2499,7 +2499,7 @@ define(['can'], function(can) {
             return( this.fnticks_shaman_aoe(delta) );
         },
         ftargets: function(delta) {
-            return( this.spec.t15_2p_shaman ? 1.5 : 1);
+            return( this.spec.t15_2p_shaman ? 1.25 : 1);
         }
     });
     
