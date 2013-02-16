@@ -1329,25 +1329,15 @@ define(['can'], function(can) {
             );
         },
         fheal_disc: function(delta) {
-            var da = 0.5;
             return(
                 this.fbase(delta) *
+                (1 + this.spec.fmastp(delta)) *
                 (
                     1 +
                         (
                             -1 +
                                 2 *
                                 (this.spec.critmeta? 1.03 : 1) *
-                                (
-                                    1 +
-                                        da *
-                                        ( 1 + this.spec.fmastp(delta) )
-                                )
-                        ) *
-                        this.spec.fcritp(delta)
-                )
-            );
-        },
         fheal_disc_atonement: function(delta) {
             var da = 0.5;
             return(
