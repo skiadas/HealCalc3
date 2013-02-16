@@ -624,7 +624,7 @@ define(['can'], function(can) {
     
     // DISC
     spcs[0].attr({
-        mastery_factor: 2.5, 
+        mastery_factor: 0.8, 
         fsp: function(delta) {
             return(
                 Math.roundn(
