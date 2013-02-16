@@ -1545,7 +1545,8 @@ define(['can'], function(can) {
         fheal: function(delta) {
             return(
                 this.fbase(delta) *
-                ( 1 + 2 * this.spec.fmastp(delta) )
+                ( 1 + 2 * this.spec.fmastp(delta) ) *
+                ( 1 + this.spec.fcritp(delta) )
             );
         },
     });
