@@ -1360,6 +1360,25 @@ define(['can'], function(can) {
                 )
             );
         },
+        fheal_disc_atonement: function(delta) {
+            return(
+                this.fbase(delta) *
+                (1 + this.spec.fmastp(delta)) *
+                (
+                    1 +
+                        (
+                            -1 +
+                                2 *
+                                (this.spec.critmeta? 1.09 : 1) *
+                                (this.spec.critmeta? 1.03 : 1) * 
+                                 // For some reason atonement seems to triple-dip into the crit effect meta
+                                (this.spec.critmeta? 1.03 : 1) *
+                                ( 1 + this.spec.fmastp(delta) )
+                        ) *
+                        this.spec.fcritp(delta)
+                )
+            );
+        },
         fheal_spirit_shell: function(delta) {
             return(
                 this.fbase(delta) *
@@ -1666,6 +1685,7 @@ define(['can'], function(can) {
                 ( 1 + this.spec.evang_stacks * 0.04 )
             ); 
         },
+        fheal: this.fheal_disc_atonement,
         fmana: function(delta) {
             return(
                 this.base_mana *
@@ -1684,6 +1704,7 @@ define(['can'], function(can) {
                 1.2
             ); 
         },
+        fheal: this.fheal_disc_atonement,
         fmana: function(delta) {
             return(
                 this.base_mana *
@@ -1703,7 +1724,7 @@ define(['can'], function(can) {
         },
         fheal: function(delta) {
             return(
-                this.fheal_disc(delta) +
+                this.fheal_disc_atonement(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
         }, // This actually assumes penance is used as atonement
@@ -1729,7 +1750,7 @@ define(['can'], function(can) {
                 this.fheal_disc(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
-        }, // This actually assumes penance is used as atonement
+        }, 
         fmana: function(delta) {
             return(
                 this.base_mana *
