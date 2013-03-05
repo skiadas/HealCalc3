@@ -230,14 +230,29 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2,
             base_mana: 9300,
-            B: 6605.5 * 1.2,
-            c: 0.635 * 1.2,
+            B: 1000.5 * 1.2,
+            c: 1.037 * 1.2,
             targets: 3,
             img: 'spell_holy_penance',
             aoe: false,
             instant: false,
             item: 47540
         },
+        // { This Penance meant for when used as a heal.
+        //     id: 15,
+        //     code: 'PenanceDisc',
+        //     name: 'Penance',
+        //     specid: 1,
+        //     base_ct: 2,
+        //     base_mana: 9300,
+        //     B: 6605.5 * 1.2,
+        //     c: 0.635 * 1.2,
+        //     targets: 3,
+        //     img: 'spell_holy_penance',
+        //     aoe: false,
+        //     instant: false,
+        //     item: 47540
+        // },
         
         //
         // HOLY

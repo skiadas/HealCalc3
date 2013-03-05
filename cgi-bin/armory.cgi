@@ -15,7 +15,7 @@ region = form["region"].value;
 server = form["server"].value;
 character = form["character"].value;
 host = os.environ["HTTP_HOST"];
-if not(host == "192.168.1.3" or host == "www.healadinne.com"):
+if not(host == "192.168.1.4" or host == "www.healadinne.com"):
     print "Status: 403 Forbidden"
     # print "Content-Type: text/plain"
     print
