@@ -194,7 +194,7 @@ define(['can'], function(can) {
         {
             id: 13,
             code: 'HolyFireDisc',
-            name: 'Holy Fire',
+            name: 'Holy Fire / Solace',
             specid: 1,
             base_ct: 1.5,
             base_mana: 5400,
