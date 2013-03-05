@@ -226,7 +226,7 @@ define(['can'], function(can) {
         {
             id: 15,
             code: 'PenanceDisc',
-            name: 'Penance',
+            name: 'Penance Damage',
             specid: 1,
             base_ct: 2,
             base_mana: 9300,
@@ -238,21 +238,7 @@ define(['can'], function(can) {
             instant: false,
             item: 47540
         },
-        // { This Penance meant for when used as a heal.
-        //     id: 15,
-        //     code: 'PenanceDisc',
-        //     name: 'Penance',
-        //     specid: 1,
-        //     base_ct: 2,
-        //     base_mana: 9300,
-        //     B: 6605.5 * 1.2,
-        //     c: 0.635 * 1.2,
-        //     targets: 3,
-        //     img: 'spell_holy_penance',
-        //     aoe: false,
-        //     instant: false,
-        //     item: 47540
-        // },
+        // There is also Penance meant for when used as a heal. It is item 71 at the end of the list
         
         //
         // HOLY
@@ -1138,6 +1124,21 @@ define(['can'], function(can) {
             instant: true,
             item: 115310
         },
+        { 
+            id: 71,
+            code: 'PenanceHealDisc',
+            name: 'Penance Heal',
+            specid: 1,
+            base_ct: 2,
+            base_mana: 9300,
+            B: 6605.5 * 1.2,
+            c: 0.635 * 1.2,
+            targets: 3,
+            img: 'spell_holy_penance',
+            aoe: false,
+            instant: false,
+            item: 47540
+        },
     ];
 
      //
@@ -1712,7 +1713,31 @@ define(['can'], function(can) {
                 ( 1 - this.spec.evang_stacks * 0.06 )
             )
         },
-});
+    });
+
+    spls.find('PenanceHealDisc').attr({
+        fbase: function(delta) {
+            return(
+                this.fdirect(delta) *
+                (this.spec.grace ? 1.3 : 1) *
+                (this.spec.archangel ? 1.25 : 1) *
+                ( 1 + this.spec.evang_stacks * 0.04 )
+            ); 
+        },
+        fheal: function(delta) {
+            return(
+                this.fheal_disc(delta) +
+                (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
+            );
+        }, // This actually assumes penance is used as atonement
+        fmana: function(delta) {
+            return(
+                this.base_mana *
+                ( 1 - this.spec.evang_stacks * 0.06 )
+            )
+        },
+    });
+    
     // END DISC Spells setup
     
     
