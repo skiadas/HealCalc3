@@ -517,7 +517,7 @@ define(['can'], function(can) {
                             ( (delta && delta.sp) || 0 )
                         )
                     ) * 
-                    ( this.attr('buffs.sp') ? 1.05 : 1 )
+                    ( this.attr('buffs.sp') ? 1.1 : 1 )
                 )
             );
         },
