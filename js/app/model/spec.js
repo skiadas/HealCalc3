@@ -55,7 +55,7 @@ define(['can'], function(can) {
                 { 
                     name: 'Passive Regen',
                     fmana: function(time, delta) { 
-                        return( (1*this.spi + ((delta && delta.spi) || 0) *
+                        return( ((1*this.spi + ((delta && delta.spi) || 0)) *
                                  0.5 * 1.129 + 6000) / 5 * (time || 1) )
                     }
                 },
@@ -127,7 +127,7 @@ define(['can'], function(can) {
                 {
                     name: 'Spirit Based',
                     fmana: function(time, delta) {
-                        return( (1*this.spi + ((delta && delta.spi) || 0) * 
+                        return( ((1*this.spi + ((delta && delta.spi) || 0)) * 
                                 0.5 * 1.129 + 6000) / 5 * (time || 1) )
                     }
                 },
@@ -182,7 +182,7 @@ define(['can'], function(can) {
                 {
                     name: 'Spirit Based',
                     fmana: function(time, delta) {
-                        return( ( 1*this.spi + ( ( delta && delta.spi ) || 0 ) * 
+                        return( ( (1*this.spi + ( ( delta && delta.spi ) || 0 )) * 
                                 0.5 * 1.129 + 6000) / 5 * ( time || 1 ) );
                     }
                 },
