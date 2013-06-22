@@ -633,7 +633,7 @@ define(['can'], function(can) {
                         1 * this.attr('stats.bweapon') +
                         ( ( delta && delta.sp ) || 0 )
                     ) * 
-                    ( this.attr('buffs.sp') ? 1.05 : 1 ) *
+                    ( this.attr('buffs.sp') ? 1.1 : 1 ) *
                     ( this.attr('inner_fire') ? 1.1 : 1 )
                 )
             );
@@ -666,7 +666,7 @@ define(['can'], function(can) {
                         1 * this.attr('stats.bweapon') +
                         ( ( delta && delta.sp ) || 0 )
                     ) * 
-                    ( this.attr('buffs.sp') ? 1.05 : 1 ) *
+                    ( this.attr('buffs.sp') ? 1.1 : 1 ) *
                     ( this.attr('inner_fire') ? 1.1 : 1 )
                 )
             );
@@ -758,7 +758,7 @@ define(['can'], function(can) {
                         ( delta && delta.sp || 0 ) +
                         2873
                     ) * 
-                    ( this.attr('buffs.sp') ? 1.05 : 1 )
+                    ( this.attr('buffs.sp') ? 1.1 : 1 )
                 )
             );
         },
