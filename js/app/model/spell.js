@@ -1362,19 +1362,17 @@ define(['can'], function(can) {
         },
         fheal_disc_atonement: function(delta) {
             return(
-                //Patch 5.3: Atonement now heals nearby friendly targets for 90% of the damage dealt, down from 100%.  
-                //Also, there does not appear to be any triple-dipping into the crit effect meta.  
-                //The combined critical heal + Divine Aegis from atonement is base heal + base heal *  mastery % 
-                //from character screen.  The crit meta gem is completely ignored!  The updated calculation was 
-                //tested against combat logs and appears accurate.
-                0.9 * this.fbase(delta) * 
+                //Patch 5.3: Atonement now heals nearby friendly targets for 90% of the damage dealt, down from 100%.
+                //Also, there does not appear to be any triple-dipping into the crit effect meta - the effect is triggered once
+                0.9 * this.fbase(delta) *
                 (
-                    (1 - this.spec.fcritp(delta)) + 
-                        (1 + 
+                    (1 - this.spec.fcritp(delta)) +
+                        (1 +
                             (1 + 2 * this.spec.fmastp(delta))
-                        ) * 
-                    this.spec.fcritp(delta)
-                )             
+                        ) *
+                    this.spec.fcritp(delta) 
+                    * (this.spec.critmeta? 1.03 : 1)
+                )
             );
         },
         fheal_spirit_shell: function(delta) {
