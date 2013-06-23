@@ -1748,7 +1748,7 @@ define(['can'], function(can) {
         fheal: function(delta) {
             //Patch 5.3: Penance now deals 10% less damage, but healing done is increased by 10%.
             return(
-                0.9 * this.fheal_disc(delta) +
+                1.1 * this.fheal_disc(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
         }, 
