@@ -1362,21 +1362,19 @@ define(['can'], function(can) {
         },
         fheal_disc_atonement: function(delta) {
             return(
-                this.fbase(delta) *
-                (1 + this.spec.fmastp(delta)) *
+                //Patch 5.3: Atonement now heals nearby friendly targets for 90% of the damage dealt, down from 100%.  
+                //Also, there does not appear to be any triple-dipping into the crit effect meta.  
+                //The combined critical heal + Divine Aegis from atonement is base heal + base heal *  mastery % 
+                //from character screen.  The crit meta gem is completely ignored!  The updated calculation was 
+                //tested against combat logs and appears accurate.
+                0.9 * this.fbase(delta) * 
                 (
-                    1 +
-                        (
-                            -1 +
-                                2 *
-                                (this.spec.critmeta? 1.09 : 1) *
-                                (this.spec.critmeta? 1.03 : 1) * 
-                                 // For some reason atonement seems to triple-dip into the crit effect meta
-                                (this.spec.critmeta? 1.03 : 1) *
-                                ( 1 + this.spec.fmastp(delta) )
-                        ) *
-                        this.spec.fcritp(delta)
-                )
+                    (1 - this.spec.fcritp(delta)) + 
+                        (1 + 
+                            (1 + 2 * this.spec.fmastp(delta))
+                        ) * 
+                    this.spec.fcritp(delta)
+                )             
             );
         },
         fheal_spirit_shell: function(delta) {
@@ -1700,8 +1698,9 @@ define(['can'], function(can) {
                 this.fdirect(delta) *
                 (this.spec.grace ? 1.3 : 1) *
                 (this.spec.archangel ? 1.25 : 1) *
-                ( 1 + this.spec.evang_stacks * 0.04 ) *
-                1.2
+                ( 1 + this.spec.evang_stacks * 0.04 ) 
+                //No longer multiplying by 1.2 (Patch 5.3: Glyph of Smite no longer causes the 
+                //additional 20% damage dealt by Smite to transfer into Atonement.) 
             ); 
         },
         fheal: this.fheal_disc_atonement,
@@ -1723,8 +1722,9 @@ define(['can'], function(can) {
             ); 
         },
         fheal: function(delta) {
+            //Patch 5.3: Penance now deals 10% less damage, but healing done is increased by 10%.
             return(
-                this.fheal_disc_atonement(delta) +
+                0.9 * this.fheal_disc_atonement(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
         }, // This actually assumes penance is used as atonement
@@ -1746,8 +1746,9 @@ define(['can'], function(can) {
             ); 
         },
         fheal: function(delta) {
+            //Patch 5.3: Penance now deals 10% less damage, but healing done is increased by 10%.
             return(
-                this.fheal_disc(delta) +
+                0.9 * this.fheal_disc(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
         }, 
