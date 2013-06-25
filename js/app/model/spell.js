@@ -230,8 +230,8 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2,
             base_mana: 9300,
-            B: 1000.5 * 1.2,
-            c: 1.037 * 1.2,
+            B: 1080.5,
+            c: 1.12,
             targets: 3,
             img: 'spell_holy_penance',
             aoe: false,
@@ -1131,8 +1131,8 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2,
             base_mana: 9300,
-            B: 6605.5 * 1.2,
-            c: 0.635 * 1.2,
+            B: 8719,
+            c: 0.838,
             targets: 3,
             img: 'spell_holy_penance',
             aoe: false,
@@ -1721,9 +1721,9 @@ define(['can'], function(can) {
             ); 
         },
         fheal: function(delta) {
-            //Patch 5.3: Penance now deals 10% less damage, but healing done is increased by 10%.
+            
             return(
-                0.9 * this.fheal_disc_atonement(delta) +
+                this.fheal_disc_atonement(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
         }, // This actually assumes penance is used as atonement
@@ -1745,9 +1745,9 @@ define(['can'], function(can) {
             ); 
         },
         fheal: function(delta) {
-            //Patch 5.3: Penance now deals 10% less damage, but healing done is increased by 10%.
+            
             return(
-                1.1 * this.fheal_disc(delta) +
+                this.fheal_disc(delta) +
                 (this.spec.attr('t15_4p_disc') ? 0.4 * 100000 : 0)
             );
         }, 
