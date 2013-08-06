@@ -460,7 +460,7 @@ define(['can'], function(can) {
             base_mana: 18900,
             targets: 6,
             Btick: 504,
-            ctick: 0.583,
+            ctick: 0.0583,
             nticks: 15,
             time_tick: 2,
             img: 'spell_holy_divineprovidence',
@@ -1850,7 +1850,22 @@ define(['can'], function(can) {
             return( 1 * this.spec.poh_targets_holy );
         },
     });
-    
+    spls.find('HWSanctuaryHoly').attr({
+        fheal: function(delta) {
+            // The average heal amount, including crits and mastery.
+            return(
+                this.fbase(delta) *
+                (
+                    1 +
+                        (
+                            -1 +
+                            2 * (this.spec.critmeta ? 1.03 : 1)
+                        ) *
+                        this.spec.fcritp(delta)
+                )
+            );
+        },
+    });
     spls.find('PoMHoly').attr({
         fmana: function(delta) {
             return( this.fmana_instant_priest(delta) );
