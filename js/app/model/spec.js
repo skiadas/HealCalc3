@@ -201,8 +201,14 @@ define(['can'], function(can) {
                 {
                     name: 'Divine Plea',
                     fmana: function(time, delta) {
-                        return( this.mana_pool * 0.12 * time / (2*60) );
+                        return( 
+                            Math.max( 
+                                0.12 * this.mana_pool,
+                                (1*this.spi + ( ( delta && delta.spi ) || 0 )) * 3 * 1.35
+                            ) * time / ( 2*60 )
+                        );
                     }
+                    
                 }
             ]
         },
