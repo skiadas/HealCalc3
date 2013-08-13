@@ -2521,7 +2521,7 @@ define(['can'], function(can) {
                             (this.spec.critmeta? 1.03 : 1) *
                             1.3
                     ) *
-                    (crit || this.spec.fcritp(delta))
+                    this.spec.fcritp(delta)
                 )
             );
         }
