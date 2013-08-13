@@ -2507,6 +2507,23 @@ define(['can'], function(can) {
                 1.25 *
                 (this.spec.attr('chain_heal_riptide') ? 1.25 : 1)
             ); 
+        },
+        fheal: function(delta) {
+            return(
+                this.fbase(delta) *
+                this.spec.fmast_factor(delta) *
+                (
+                    1 + 
+                    (this.spec.t15_4p_shaman ? 0.3 : 0) +
+                    (
+                        -1 +
+                            2 *
+                            (this.spec.critmeta? 1.03 : 1) *
+                            1.3
+                    ) *
+                    (crit || this.spec.fcritp(delta))
+                )
+            );
         }
     });
 
