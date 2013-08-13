@@ -279,7 +279,13 @@ define(['can'], function(can) {
                 {
                     name: 'Innervate',
                     fmana: function(time, delta) {
-                        return( this.mana_pool * 0.2 * time / ( 3*60 ) );
+                        return( 
+                            Math.max( 
+                                0.08 * this.mana_pool,
+                                (1*this.spi + ( ( delta && delta.spi ) || 0 )) * 10 * 0.5
+                                    * (this.glyph_innervate ? 0.6 : 1)
+                            ) * time / ( 3*60 ) 
+                        );
                     }
                 },
             ]
@@ -736,6 +742,7 @@ define(['can'], function(can) {
         glyph_blooming: false,
         glyph_regrowth: true,
         glyph_rejuv: false,
+        glyph_innervate: false,
         t4_2p_druid: false
     });
 
