@@ -902,7 +902,7 @@ define(['can'], function(can) {
             name: 'Riptide',
             specid: 5,
             base_ct: 1.5,
-            base_mana: 9600,
+            base_mana: 7200,
             B: 3735,
             c: 0.339,
             Btick: 1764,
@@ -2534,7 +2534,7 @@ define(['can'], function(can) {
         fdirect: function(delta) {
             return(
                 ( this.B + this.c * this.spec.fsp(delta) ) *
-                (this.spec.attr('glyph_riptide') ? 0.1 : 1)
+                (this.spec.attr('glyph_riptide') ? 0.25 : 1)
             );
         },
         fbase: function(delta) {
