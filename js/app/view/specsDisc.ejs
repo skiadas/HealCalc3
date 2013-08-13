@@ -18,4 +18,12 @@
 <label for="t15_2p_disc">T15 2piece<input name="t15_2p_disc" type="checkbox" <%= spec.attr('t15_2p_disc') ? 'checked="checked"' : ''  %> /></label> 
 <label for="t15_4p_disc">T15 4piece<input name="t15_4p_disc" type="checkbox" <%= spec.attr('t15_4p_disc') ? 'checked="checked"' : ''  %> /></label> 
 <label for="rapture_interval">Rapture every: <input name="rapture_interval" type="input" value="<%== spec.attr('rapture_interval') %>" /></label>
+<label for="hfpm">Holy Fires per min: <input name="hfpm" type="input" value="<%== spec.attr('hfpm') %>" /></label>
+<label>Level 45 talent
+<select>
+  <option value="fdcl" <%= (spec.attr('talent45_disc') === 'fdcl') ? 'selected="selected"' : '' %>>FDCL</option>
+  <option value="mb" <%= (spec.attr('talent45_disc') === 'mb') ? 'selected="selected"' : '' %>>Mindbender</option>
+  <option value="solace" <%= (spec.attr('talent45_disc') === 'solace') ? 'selected="selected"' : '' %>>Solace</option>
+</select>
+</label>
 

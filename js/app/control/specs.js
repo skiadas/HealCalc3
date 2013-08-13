@@ -28,7 +28,18 @@ define(['can', 'text!view/specs.ejs',
         },
         'select change': function(el, ev) {
            var spec = el.closest('div.spec').data('spec');
-           spec.attr('inner_fire', spec.attr('inner_fire') ? false : true);
+           var val = $(el).val();
+           switch (val) {
+           case 'inner_fire':
+           case 'inner_will':
+               spec.attr('inner_fire', spec.attr('inner_fire') ? false : true);
+               break;
+           case 'mb':
+           case 'solace':
+           case 'fdcl':
+               spec.attr('talent45_' + spec.name.toLowerCase(), val);
+               break;
+           }
            this.options.specs.val_update();
         },
         'input change': function(el, ev) {

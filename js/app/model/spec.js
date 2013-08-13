@@ -77,9 +77,15 @@ define(['can'], function(can) {
                     }
                 },
                 {
-                    name: 'Mindbender',
+                    name: 'MB/SF',
                     fmana: function(time, delta) {
-                        return( (this.mana_pool * 0.015 * 11) * time /60 );
+                        return( (this.mana_pool * ((this.talent45_disc === 'mb') ? 0.0175 * 13 / 60 : 0.03 *11 / (3*60))) * time )
+                    }
+                },
+                {
+                    name: 'Solace',
+                    fmana: function(time, delta) {
+                        return( this.mana_pool * ((this.talent45_disc === 'solace') ?  0.0226 : 0) * time * this.hfpm /60 )
                     }
                 },
                 {
@@ -144,9 +150,9 @@ define(['can'], function(can) {
                     }
                 },
                 {
-                    name: 'Mindbender',
+                    name: 'MB/SF',
                     fmana: function(time, delta) {
-                        return( (this.mana_pool * 0.015 * 11) * time /60 )
+                        return( (this.mana_pool * ((this.talent45_holy === 'mb') ? 0.0175 * 13 / 60 : 0.03 *11 / (3*60))) * time )
                     }
                 },
                 {
@@ -659,7 +665,9 @@ define(['can'], function(can) {
         t4_2p_disc: false,
         t5_2p_disc: false,
         t5_4p_disc: false,
-        rapture_interval: 15
+        rapture_interval: 15,
+        hfpm: 6,
+        talent45_disc: 'solace'
     });
     
     // HOLY
@@ -691,7 +699,8 @@ define(['can'], function(can) {
         glyph_binding_holy: false,
         t4_2p_holy: false,
         t5_2p_holy: false,
-        t5_4p_holy: false
+        t5_4p_holy: false,
+        talent45_holy: 'mb'
     });
     
     // PALLY
