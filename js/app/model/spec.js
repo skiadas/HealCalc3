@@ -203,12 +203,7 @@ define(['can'], function(can) {
                     fmana: function(time, delta) {
                         return( this.mana_pool * 0.12 * time / (2*60) );
                     }
-                },
-                {
-                    name: 'Seal of Insight', fmana: function(time, delta) {
-                        return(this.mana_pool * 0.04 * this.soi_ppm * time / 60)
-                    }
-                },
+                }
             ]
         },
         {
@@ -706,8 +701,7 @@ define(['can'], function(can) {
         t5_2p_pally: false,
         t5_4p_pally: false,
         cs_to_hp: false,
-        one_hp: false,
-        soi_ppm: 6
+        one_hp: false
     });
     
     // DRUID
