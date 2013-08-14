@@ -79,7 +79,7 @@ define(['can'], function(can) {
                 {
                     name: 'MB/SF',
                     fmana: function(time, delta) {
-                        return( (this.mana_pool * ((this.talent45_disc === 'mb') ? 0.0175 * 13 / 60 : 0.03 *11 / (3*60))) * time )
+                        return( (this.mana_pool * ((this.talent45_disc === 'mb') ? 0.0175 * 10 / 60 : 0.03 *6 / (3*60))) * time )
                     }
                 },
                 {
