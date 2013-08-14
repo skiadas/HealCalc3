@@ -706,7 +706,7 @@ define(['can'], function(can) {
     
     // PALLY
     spcs[2].attr({
-        mastery_factor: 1.5,
+        mastery_factor: 1.25,
         fhaste_mul: function() {
             return( 1.1 * ( this.attr('buffs.haste') ? 1.05 : 1 ) );
         },
