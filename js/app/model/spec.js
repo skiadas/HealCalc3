@@ -214,7 +214,12 @@ define(['can'], function(can) {
                             ) * time / ( 2*60 )
                         );
                     }
-                    
+                },
+                {
+                    name: 'Lay on Hands',
+                    fmana: function(time, delta) {
+                        return(  0.1 * this.mana_pool * time / this.interval_time );
+                    }
                 }
             ]
         },
