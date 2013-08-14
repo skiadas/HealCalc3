@@ -17,3 +17,10 @@
 <label for="t14_2p_holy">T14 2piece<input name="t14_2p_holy" type="checkbox" <%= spec.attr('t14_2p_holy') ? 'checked="checked"' : ''  %> /></label> 
 <label for="t15_2p_holy">T15 2piece<input name="t15_2p_holy" type="checkbox" <%= spec.attr('t15_2p_holy') ? 'checked="checked"' : ''  %> /></label> 
 <label for="t15_4p_holy">T15 4piece<input name="t15_4p_holy" type="checkbox" <%= spec.attr('t15_4p_holy') ? 'checked="checked"' : ''  %> /></label> 
+<label>Level 45 talent
+<select>
+  <option value="fdcl" <%= spec.attr('talent45_holy') === 'fdcl' ? 'selected="selected"' : '' %>>FDCL</option>
+  <option value="mb" <%= spec.attr('talent45_holy') === 'mb' ? 'selected="selected"' : '' %>>Mindbender</option>
+  <option value="solace" <%= spec.attr('talent45_holy') === 'solace' ? 'selected="selected"' : '' %>>Solace</option>
+</select>
+</label>
