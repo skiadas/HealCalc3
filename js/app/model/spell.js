@@ -824,8 +824,8 @@ define(['can'], function(can) {
             name: 'Sacred Shield',
             specid: 3,
             base_ct: 1.5,
-            base_mana: 0,
-            Btick: 30,
+            base_mana: 9600,
+            Btick: 340,
             ctick: 1.17,
             nticks: 5,
             time_tick: 6,
@@ -2365,11 +2365,11 @@ define(['can'], function(can) {
     });
     
     spls.find('SacredShield').attr({
-        fhpm: function(delta) {
-            return( this.fhpm_nomana(delta) );
-        },
         fbase: function(delta) {
             return( this.fhot(delta) );
+        },
+        fheal: function(delta) {
+            return( this.fbase(delta) );
         }
     });
     
