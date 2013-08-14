@@ -807,10 +807,10 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 0,
-            B: (5240+5837)/2,
+            B: 5539,
             c: 0.49,
-            Btick: 508,
-            ctick: 0.0585,
+            Btick: 711,
+            ctick: 0.0819,
             nticks: 10,
             time_tick: 3,
             img: 'inv_torch_thrown',
@@ -2230,6 +2230,18 @@ define(['can'], function(can) {
         },
         fbase: function(delta) {
             return( this.fbase_pally_hp(delta) );
+        },
+        fheal: function(delta) {
+            return(
+                (
+                    this.fbase(delta) +
+                    this.spec.fmastp(delta) * this.fdirect(delta) * 1.5 * 1.05
+                ) *
+                ( 1 +
+                    ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) * 
+                    this.spec.fcritp(delta)
+                )
+            );
         }
     });
 
@@ -2349,7 +2361,7 @@ define(['can'], function(can) {
                 1.25 *
                 (this.spec.one_hp ? 1 : 3)
             );
-        }   
+        }
     });
     
     spls.find('SacredShield').attr({
