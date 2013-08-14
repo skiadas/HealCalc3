@@ -73,7 +73,7 @@ define(['can'], function(can) {
                 {
                     name: 'Rapture', 
                     fmana: function(time, delta) {
-                        return( (this.spi * 1.5) * time / this.rapture_interval );
+                        return( 13725 * time / this.rapture_interval );
                     }
                 },
                 {
