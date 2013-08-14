@@ -658,7 +658,7 @@ define(['can'], function(can) {
             );
         },
         inner_fire: true,
-        grace: true,
+        grace: false,
         evang_stacks: 5,
         archangel: false,
         cascade_targets_disc: 10,
