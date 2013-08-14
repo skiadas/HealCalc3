@@ -611,9 +611,9 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 4.5,
             base_mana: 6120,
-            B: 2233,
-            c: 0.207,
-            targets: 3*7,
+            B: 13398,
+            c: 1.242,
+            targets: 1,
             img: 'druid_ability_wildmushroom_b',
             aoe: true,
             instant: true,
@@ -2129,12 +2129,7 @@ define(['can'], function(can) {
         fheal: function(delta) {
             return(
                 ( 1 + this.spec.fmastp(delta) ) *
-                this.fbase(delta) *
-                (
-                    1 + 
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
-                        this.spec.fcritp(delta)
-                )
+                this.fbase(delta)
             );
         }
     });
