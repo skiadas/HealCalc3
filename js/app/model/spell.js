@@ -2586,7 +2586,14 @@ define(['can'], function(can) {
     });
     spls.find('HealingRain').attr({
         fnticks: function(delta) {
-            return( this.fnticks_shaman_aoe(delta) );
+            return(
+                1 +
+                Math.ceiln(
+                    (this.duration + this.spec.conductivity * 2) * 
+                    (1 + this.spec.fhastep(delta)) / 
+                    this.time_tick
+                )
+            );
         },
         fbase: function(delta) {
             return( this.fbase_shaman(delta) * 2 ); // 100% extra buff to HST from purification

@@ -784,7 +784,7 @@ define(['can'], function(can) {
         },
         resurgence: true,
         tidal_waves: true,
-        conductivity: false,
+        conductivity: 0,
         echo_elements: false,
         ancestral_swiftness: false,
         glyph_riptide: false,
