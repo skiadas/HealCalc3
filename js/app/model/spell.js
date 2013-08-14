@@ -2580,7 +2580,6 @@ define(['can'], function(can) {
             return( this.fbase_shaman(delta) * 1.5 ); // 50% extra buff to HST from purification
         },
         ftargets: function(delta) {
-            console.log(this.spec.buffs)
             return( this.spec.buffs.raid25 ? 12 : 5 );
         }
     });
