@@ -1922,6 +1922,23 @@ define(['can'], function(can) {
                 1.15      // Renew instantly heals target for 15%
             );
         },
+        fheal: function(delta) {
+            return(
+                this.fbase(delta) * 
+                (
+                    // Need to add the mastery from the initial tick
+                    1 + 0.15 / 1.15 * this.spec.fmastp(delta)
+                ) *
+                (
+                    1 +
+                        (
+                            -1 +
+                            2 * (this.spec.critmeta ? 1.03 : 1)
+                        ) *
+                        this.spec.fcritp(delta)
+                )
+            );
+        },
         fct: function(delta) { return( 1 ); },
     });
     
