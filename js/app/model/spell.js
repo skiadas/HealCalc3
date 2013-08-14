@@ -720,7 +720,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 0,
-            B: (4803+5350)/2,
+            B: 5539,
             c: 0.49,
             img: 'inv_helmet_96',
             aoe: false,
