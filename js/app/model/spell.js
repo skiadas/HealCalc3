@@ -1919,8 +1919,7 @@ define(['can'], function(can) {
             return(
                 this.fhot(delta) *
                 1.15 *    // Renew Heals for 15%
-                1.15 *    // Renew instantly heals target for 15%
-                (this.spec.sanctuary ? 1.25 : 1)
+                1.15      // Renew instantly heals target for 15%
             );
         },
         fct: function(delta) { return( 1 ); },
