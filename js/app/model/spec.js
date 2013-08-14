@@ -793,7 +793,8 @@ define(['can'], function(can) {
         earth_shield_buff: true,
         t4_2p_shaman: false,
         glyph_water_shield: false,
-        water_shield_ppm: 4
+        water_shield_ppm: 4,
+        rushing_streams: false
     });
     
     // MONK

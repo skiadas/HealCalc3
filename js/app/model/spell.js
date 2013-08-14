@@ -936,9 +936,9 @@ define(['can'], function(can) {
             name: 'Healing Stream Totem',
             specid: 5,
             base_ct: 1.5,
-            base_mana: 4100,
-            Btick: 31,
-            ctick: 0.0827+0.3124,
+            base_mana: 14100,
+            Btick: 0,
+            ctick: 0.444,
             nticks: 15/2,
             time_tick: 2,
             duration: 15,
@@ -971,7 +971,7 @@ define(['can'], function(can) {
             name: 'Healing Rain',
             specid: 5,
             base_ct: 2,
-            base_mana: 25860,
+            base_mana: 21981,
             Btick:  (1983 + 2358)/2,
             ctick: 0.197,
             targets: 6,
@@ -990,8 +990,8 @@ define(['can'], function(can) {
             specid: 5,
             base_ct: 1.5,
             base_mana: 0,
-            Btick:  3648,
-            ctick: 0.083,
+            Btick:  1094,
+            ctick: 0.0996,
             nticks: 4,
             time_tick: 3,
             img: 'spell_shaman_giftearthmother',
@@ -1006,8 +1006,8 @@ define(['can'], function(can) {
             specid: 5,
             base_ct: 1.5,
             base_mana: 11400,
-            B: 2043,
-            c: 0.13,
+            B: 2461.4/1.25,  // To account for 1.25 baseline buff to shaman spells
+            c: 0.2413/1.25,
             targets: 9,
             img: 'spell_nature_skinofearth',
             aoe: false,
@@ -1500,6 +1500,7 @@ define(['can'], function(can) {
             sp.fheal = sp.fheal_pally;
         } else if ( sp.specid == 5 ) {
             // General Shaman spell setup
+            sp.fbase = sp.fbase_shaman;
             sp.fheal = sp.fheal_shaman;
         } else if (sp.specid == 4) {
             // General Druid setup
@@ -2539,8 +2540,10 @@ define(['can'], function(can) {
         },
         fbase: function(delta) {
             return(
-                this.fhot(delta) +
-                this.fdirect(delta)
+                (
+                    this.fhot(delta) +
+                    this.fdirect(delta)
+                ) * 1.25
             );
         },
         fheal: function(delta) {
@@ -2562,26 +2565,31 @@ define(['can'], function(can) {
             return( this.fnticks_shaman_aoe(delta) );
         },
         ftargets: function(delta) {
-            return( this.spec.t15_2p_shaman ? 1.25 : 1);
+            return( (this.spec.t15_2p_shaman ? 1.25 : 1) * (this.spec.rushing_streams ? 1.15 * 2 : 1));
+        },
+        fbase: function(delta) {
+            return( this.fbase_shaman(delta) * 1.5 ); // 50% extra buff to HST from purification
         }
     });
     
     spls.find('HTT').attr({
         fnticks: function(delta) {
             return( this.fnticks_shaman_aoe(delta) );
+        },
+        fbase: function(delta) {
+            return( this.fbase_shaman(delta) * 1.5 ); // 50% extra buff to HST from purification
+        },
+        ftargets: function(delta) {
+            console.log(this.spec.buffs)
+            return( this.spec.buffs.raid25 ? 12 : 5 );
         }
     });
     spls.find('HealingRain').attr({
         fnticks: function(delta) {
-            return(
-                1 +
-                    this.nticks *
-                    this.time_tick / 
-                    Math.floor(
-                        this.time_tick /
-                        (1+this.spec.fhastep(delta)) +
-                    0.0005, 3)
-            );
+            return( this.fnticks_shaman_aoe(delta) );
+        },
+        fbase: function(delta) {
+            return( this.fbase_shaman(delta) * 2 ); // 100% extra buff to HST from purification
         }
     });
     
