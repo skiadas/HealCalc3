@@ -2146,7 +2146,7 @@ define(['can'], function(can) {
                             3 * nticks
                         ) * 
                         ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
-                        this.ftargets(delta)
+                        ( this.spec.buffs.raid25 ? 12 : 5)
                 ) * 
                 ( 1 + this.spec.fmastp(delta) ) *
                 (
