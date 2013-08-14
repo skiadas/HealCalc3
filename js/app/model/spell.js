@@ -1266,7 +1266,7 @@ define(['can'], function(can) {
             return(
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
                 1.05 *
-                1.25 *
+                1.5 *
                 (this.spec.one_hp ? 1 : 3)
             );
         },
