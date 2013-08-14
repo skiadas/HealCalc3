@@ -397,7 +397,7 @@ define(['can'], function(can) {
             specid: 2,
             base_ct: 8,
             base_mana: 18900,
-            targets: 5*(4+ 0.1*3),
+            targets: 5,
             B: 7987,
             c: 1.542,
             img: 'spell_holy_circleofrenewal',
@@ -457,7 +457,7 @@ define(['can'], function(can) {
             name: 'Holy Word: Sanctuary',
             specid: 2,
             base_ct: 1.5,
-            base_mana: 18900,
+            base_mana: 11400,
             targets: 6,
             Btick: 504,
             ctick: 0.0583,
@@ -1804,6 +1804,12 @@ define(['can'], function(can) {
                 return( this.fbase_holy_aoe(delta) );
             },
         });
+    });
+    
+    spls.find('DHHoly').attr({
+        ftargets: function(delta) {
+            return( (this.spec.buffs.raid25 ? 12 : 5) * (4 + 2 * 0.1) );
+        }
     });
     
     spls.find('HWSerenityHoly').attr({
