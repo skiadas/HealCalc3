@@ -574,6 +574,7 @@ define(['can'], function(can) {
                 'haste': Math.roundn( this.fhaste(), 2),
                 'hastep': this.fhastep(),
                 'sp': this.fsp(),
+                'raid25': this.attr('buffs.raid25'),
                 'critmeta': this.attr('buffs.crit_meta'),
                 'manameta': this.attr('buffs.mana_meta'),
                 'mana_pool': ( this.attr('buffs.mana_meta') ? 1.02 : 1 ) * 300000,

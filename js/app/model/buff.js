@@ -14,6 +14,7 @@ define(['can'], function(can) {
         mana_meta: false,
         focus_pot: true,
         darkglow: false,
+        raid25: false,
         trinkets: [
             {
                 name: 'None',
