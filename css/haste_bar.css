@@ -90,6 +90,8 @@ div#deltaView {
 }
 #deltaView span {
     float: left;
+    display: block;
+    width: 100%;
 }
 #deltaView input {
     width: 20%;
