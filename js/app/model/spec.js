@@ -795,6 +795,8 @@ define(['can'], function(can) {
         conductivity: 0,
         echo_elements: false,
         ancestral_swiftness: false,
+        hr_targets: 6,
+        ch_targets: 4,
         glyph_riptide: false,
         health_deficit: 20,
         chain_heal_riptide: true,

@@ -2569,7 +2569,7 @@ define(['can'], function(can) {
         },
         ftargets: function(delta) {
             return(
-                this.targets +
+                Math.min(1 * this.spec.ch_targets, this.targets) +
                 (this.spec.earth_shield_buff ? 0.2 : 0)
             );
         },
@@ -2664,6 +2664,9 @@ define(['can'], function(can) {
                     this.time_tick
                 )
             );
+        },
+        ftargets: function(delta) {
+            return( Math.min(1 * this.spec.hr_targets, this.targets) );
         },
         fbase: function(delta) {
             return( this.fbase_shaman(delta) * 2 ); // 100% extra buff to HST from purification
