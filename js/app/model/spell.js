@@ -609,7 +609,7 @@ define(['can'], function(can) {
             code: 'Mushrooms',
             name: 'Wild Mushrooms',
             specid: 4,
-            base_ct: 4.5,
+            base_ct: 1.5,
             base_mana: 6120,
             B: 13398,
             c: 1.242,
