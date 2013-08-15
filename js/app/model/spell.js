@@ -1139,6 +1139,23 @@ define(['can'], function(can) {
             instant: false,
             item: 47540
         },
+        {
+            id: 72,
+            code: 'Efflorescence',
+            name: 'Efflorescence',
+            specid: 4,
+            base_ct: 1,
+            base_mana: 0,
+            Btick: 13966 * 0.12,
+            ctick: 1.29 * 0.12,
+            nticks: 7,
+            time_tick: 1,
+            targets: 3,
+            img: 'spell_shaman_giftearthmother',
+            aoe: false,
+            instant: true,
+            item: 81262
+        }
     ];
 
      //
@@ -2112,17 +2129,24 @@ define(['can'], function(can) {
         fnticks: function(delta) {
             return(
                 1 +
-                    0.12 *
-                    (this.spec.t15_2p_druid ? 4 : 3) *
-                    Math.roundn(
-                        this.nticks *
-                        this.time_tick /
-                        this.ftick_time(delta)
+                    (
+                        this.spec.glyph_efflo ? 
+                        0 :
+                        (
+                            0.12 *
+                            (this.spec.t15_2p_druid ? 4 : 3) *
+                            Math.roundn(
+                                this.nticks *
+                                this.time_tick /
+                                this.ftick_time(delta)
+                            )
+                        )
                     )
             );
         },
         fheal: function(delta) {
             return(
+                (this.spec.glyph_efflo ? 1.2 : 1) *
                 ( 1 + this.spec.fmastp(delta) ) *
                 (
                     this.fbase(delta) *
@@ -2141,11 +2165,29 @@ define(['can'], function(can) {
         }
     });
     
+    spls.find('Efflorescence').attr({
+        fhpm: function(delta) {
+            return( this.fhpm_nomana(delta) );
+        },
+        fbase: function(delta) {
+            return(
+                ( this.Btick + this.ctick * this.spec.fsp(delta) )
+                * this.ftargets(delta)
+            );
+        }
+    });
     spls.find('Mushrooms').attr({
         fheal: function(delta) {
+            var rj = spls.find('Rejuv').fheal(delta);
+            var efflo = spls.find('Efflorescence').fheal(delta);
+            var efflo_tick = spls.find('Efflorescence').ftick_time(delta);
             return(
                 ( 1 + this.spec.fmastp(delta) ) *
                 this.fbase(delta)
+                + this.spec.wm_rj * rj  // Include full rejuvs
+                + ( this.spec.glyph_efflo ? 
+                    (efflo * (1 * this.spec.wm_bloom_time - 3) / efflo_tick) : 0
+                  )
             );
         }
     });
