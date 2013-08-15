@@ -28,7 +28,7 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
             filters[$(el).data('spec').name.toLowerCase()] ? $(el).show() : $(el).hide();
         });
     },
-    'input click': function(el, ev) {
+    'input change': function(el, ev) {
         var filters = this.options.filters;
         var attr = el.attr('id').split('_')[1];
         filters.attr(attr, !filters.attr(attr));
