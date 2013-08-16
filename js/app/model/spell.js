@@ -493,12 +493,12 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 0,
-            Btick: 0.1*20130,
-            ctick: 0.1*1.86,
+            Btick: 3501.6,
+            ctick: 0.3214,
             nticks: 6,
             time_tick: 2.5,
             duration: 15,
-            targets: 3,
+            targets: 1,
             img: 'ability_druid_forceofnature',
             aoe: true,
             instant: true,
@@ -2222,6 +2222,21 @@ define(['can'], function(can) {
         },
         fhpm: function(delta) {
             return( this.fhpm_nomana(delta) );
+        },
+        fbase: function(delta) {
+            console.log(this.Btick, this.ctick, this.spec.fsp(delta), this.ftargets(delta), this.fnticks(delta) )
+            return( this.fhot(delta) );
+        },
+        fheal: function(delta) {
+            var sm = spls.find('Swiftmend').fheal(delta);
+            return(
+                this.fbase(delta) *
+                (
+                    1 + 
+                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        this.spec.fcritp(delta)
+                ) + 0.16 * sm
+            );
         }
     });
     //END DRUID Spells setup
