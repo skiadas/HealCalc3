@@ -2503,7 +2503,7 @@ define(['can'], function(can) {
                 ( 1 + this.spec.fhastep(delta) ) *
                 (
                     this.spec.attr('tidal_waves') ? 
-                        0.7 + (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
+                        0.7 - (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
                     :
                         1
                 )
@@ -2537,7 +2537,7 @@ define(['can'], function(can) {
                 ( 1 + this.spec.fhastep(delta) ) *
                 (
                     this.spec.attr('tidal_waves') ? 
-                        0.7 + (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
+                        0.7 - (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
                     :
                         1
                 )
