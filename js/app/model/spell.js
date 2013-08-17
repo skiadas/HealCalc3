@@ -1809,7 +1809,7 @@ define(['can'], function(can) {
             return(
                 Math.roundn(
                     this.base_mana *
-                    (this.spec.attr('t14_2p_holy') ? 0.9 : 1)
+                    (this.spec.attr('t14_2p_holy') ? 0.8 : 1)
                 )
             )
         }
