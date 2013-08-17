@@ -705,7 +705,7 @@ define(['can'], function(can) {
             name: 'Holy Shock',
             specid: 3,
             base_ct: 1.5,
-            base_mana: 9600,
+            base_mana: 4800,
             B: 9389,
             c: 0.833,
             img: 'spell_holy_searinglight',
