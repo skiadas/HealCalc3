@@ -1992,8 +1992,8 @@ define(['can'], function(can) {
         fct: function(delta) {
             return(
                 (
-                    this.base_ct -
-                    (this.spec.attr('glyph_rejuv') ? 0.5 : 0)
+                    this.base_ct *
+                    (this.spec.attr('glyph_rejuv') ? 0.7 : 1)
                 ) /
                 ( 1 + this.spec.fhastep(delta) )
             );
