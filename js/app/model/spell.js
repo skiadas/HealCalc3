@@ -2431,7 +2431,7 @@ define(['can'], function(can) {
                     this.fdirect(delta)
                 ) *
                 1.05 *
-                1.25 *
+                1.5 *
                 (this.spec.one_hp ? 1 : 3)
             );
         }
