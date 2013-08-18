@@ -38,6 +38,8 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
             this.options.spells.val_update(ev.target);
             this.sort(ev);
         },
+        '{buffs} change': function() { this.options.spells.val_update(); },
+        '{stats} change': function() { this.options.spells.val_update(); },
         'thead th click': function(el, ev) {
             var newAttr = el.attr('id').replace('th_', ''),
                 sort_info = this.options.sort;
