@@ -2192,7 +2192,7 @@ define(['can'], function(can) {
                 ( 1 + this.spec.fmastp(delta) ) *
                 this.fbase(delta)
                 + this.spec.wm_rj * rj  // Include full rejuvs
-                + ( this.spec.glyph_efflo ? 
+                + ( (this.spec.glyph_efflo && this.spec.efflo_wm) ? 
                     (efflo * (1 * this.spec.wm_bloom_time - 3) / efflo_tick) : 0
                   )
             );

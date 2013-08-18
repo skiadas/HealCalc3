@@ -754,6 +754,7 @@ define(['can'], function(can) {
         incarnation: false,
         hotw: false,
         wm_bloom_time: 15,
+        efflo_wm: true,
         wm_rj: 1,
         glyph_wild_growth: true,
         glyph_blooming: false,
