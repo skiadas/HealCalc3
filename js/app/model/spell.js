@@ -1749,6 +1749,7 @@ define(['can'], function(can) {
         fmana: function(delta) {
             return(
                 this.base_mana *
+                (this.spec.glyph_penance ? 1.2 : 1) *
                 ( 1 - this.spec.evang_stacks * 0.06 )
             )
         },
@@ -1773,6 +1774,7 @@ define(['can'], function(can) {
         fmana: function(delta) {
             return(
                 this.base_mana *
+                (this.spec.glyph_penance ? 1.2 : 1) *
                 ( 1 - this.spec.evang_stacks * 0.06 )
             )
         },

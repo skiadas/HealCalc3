@@ -666,7 +666,7 @@ define(['can'], function(can) {
         poh_targets_disc: 5,
         glyph_pom_disc: true,
         glyph_renew_disc: false,
-        glyph_penance: false,
+        glyph_penance: true,
         glyph_binding_disc: false,
         t4_2p_disc: false,
         t5_2p_disc: false,
