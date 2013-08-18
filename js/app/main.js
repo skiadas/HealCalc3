@@ -23,7 +23,7 @@ Math.roundn = function(x, d) {
 }
 
 //
-requirejs(['jquery', 'can', 'app/setup'], function($, can) {
+requirejs(['jquery', 'can', 'app/setup', 'app/util/twitterLoader'], function($, can) {
     $(document).ready(function() {
         var _expand_fun = function(el,ev) {
             $(this).toggleClass('expandOff expandOn').siblings('div').toggle(200);

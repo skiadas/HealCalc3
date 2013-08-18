@@ -67,4 +67,5 @@ app/util/rotation_storage.js
 text!view/rotations.ejs
 app/control/rotations.js
 app/setup.js
+app/util/twitterLoader.js
 app/main.js
