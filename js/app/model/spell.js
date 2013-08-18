@@ -1852,6 +1852,12 @@ define(['can'], function(can) {
     });
     
     spls.find('CoHHoly').attr({
+       fmana: function(delta) {
+           return( this.base_mana * (this.spec.glyph_coh ? 1.35 : 1) );
+       },
+       ftargets: function(delta) {
+           return( this.targets + (this.spec.glyph_coh ? 1 : 0) );
+       },
        fheal: function(delta) {
            return(
                this.fbase(delta) *
