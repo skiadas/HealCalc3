@@ -2224,7 +2224,6 @@ define(['can'], function(can) {
             return( this.fhpm_nomana(delta) );
         },
         fbase: function(delta) {
-            console.log(this.Btick, this.ctick, this.spec.fsp(delta), this.ftargets(delta), this.fnticks(delta) )
             return( this.fhot(delta) );
         },
         fheal: function(delta) {
