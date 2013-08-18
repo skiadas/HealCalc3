@@ -1704,7 +1704,7 @@ define(['can'], function(can) {
         fheal: this.fheal_disc_atonement,
         fmana: function(delta) {
             return(
-                this.base_mana *
+                this.fmana_instant_priest(delta) *
                 ( 1 - this.spec.evang_stacks * 0.06 )
             );
         },
