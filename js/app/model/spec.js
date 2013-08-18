@@ -16,25 +16,11 @@ define(['can'], function(can) {
                     hfactor: 1
                 },
                 {
-                    name: 'Renew BT',
-                    img: 'spell_holy_renew',
-                    nticks: 4,
-                    time_tick: 3,
-                    hfactor: 1.15
-                },
-                {
                     name: 'Glyphed Renew',
                     img: 'spell_holy_renew',
                     nticks: 3,
                     time_tick: 3,
                     hfactor: 1
-                },
-                {
-                    name: 'Glyphed Renew BT',
-                    img: 'spell_holy_renew',
-                    nticks: 3,
-                    time_tick: 3,
-                    hfactor: 1.15
                 },
                 {
                     name: 'Holy Fire',
@@ -43,13 +29,6 @@ define(['can'], function(can) {
                     time_tick: 1,
                     hfactor: 1
                 },
-                {
-                    name: 'Holy Fire BT',
-                    img: 'spell_holy_searinglight',
-                    nticks: 7,
-                    time_tick: 1,
-                    hfactor: 1.15
-                }
             ],
             mana_sources: [
                 { 
