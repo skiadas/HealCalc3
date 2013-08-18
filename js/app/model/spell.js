@@ -1155,6 +1155,66 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 81262
+        },
+        {
+            id: 73,
+            code: 'DivineStarDisc',
+            name: 'Divine Star',
+            specid: 1,
+            base_ct: 1.5,
+            base_mana: 13500,
+            targets: 10,
+            B: 7861.5,
+            c:  0.758,
+            img: 'spell_priest_divinestar',
+            aoe: true,
+            instant: true,
+            item: 110744
+        },
+        {
+            id: 74,
+            code: 'DivineStarHoly',
+            name: 'Divine Star',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 13500,
+            targets: 10,
+            B: 7861.5,
+            c:  0.758,
+            img: 'spell_priest_divinestar',
+            aoe: true,
+            instant: true,
+            item: 110744
+        },
+        {
+            id: 75,
+            code: 'HaloDisc',
+            name: 'Halo',
+            specid: 1,
+            base_ct: 1.5,
+            base_mana: 40500,
+            targets: 10,
+            B: 33694,
+            c:  0.325,
+            img: 'ability_priest_halo',
+            aoe: true,
+            instant: true,
+            item: 120517
+        },
+        {
+            id: 76,
+            code: 'HaloHoly',
+            name: 'Halo',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 40500,
+            targets: 10,
+            B: 33694,
+            c:  0.325,
+            img: 'ability_priest_halo',
+            aoe: true,
+            instant: true,
+            item: 120517
         }
     ];
 
@@ -1582,6 +1642,23 @@ define(['can'], function(can) {
             );
         }
     });
+
+    spls.find('DivineStarDisc').attr({
+        fmana: function(delta) {
+            return( this.fmana_instant_priest(delta) );
+        },
+        ftargets: function(delta) {
+            return( this.spec.divinestar_targets_disc * 2 );
+        }
+    });
+    spls.find('HaloDisc').attr({
+        fmana: function(delta) {
+            return( this.fmana_instant_priest(delta) );
+        },
+        ftargets: function(delta) {
+            return( this.spec.halo_targets_disc );
+        }
+    });
     
     spls.find('PWSDisc').attr({
         fmana: function(delta) {
@@ -1818,7 +1895,7 @@ define(['can'], function(can) {
         }
     });
     
-    $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly', 'CascadeHoly'], function(i, spname) {
+    $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly', 'CascadeHoly', 'DivineStarHoly', 'HaloHoly'], function(i, spname) {
         spls.find(spname).attr({
             fbase: function(delta) {
                 return( this.fbase_holy_aoe(delta) );
@@ -1850,6 +1927,16 @@ define(['can'], function(can) {
                     Math.min( this.spec.cascade_range_holy, 30 ) * 0.02
                 )
             );
+        }
+    });
+    spls.find('DivineStarHoly').attr({
+        ftargets: function(delta) {
+            return( this.spec.divinestar_targets_holy * 2 );
+        }
+    });
+    spls.find('HaloHoly').attr({
+        ftargets: function(delta) {
+            return( this.spec.halo_targets_holy );
         }
     });
     
