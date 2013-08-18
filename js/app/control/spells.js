@@ -4,7 +4,8 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
         init: function(element, options) {
             var self = this,
                 spells = self.options.spells,
-                specs = self.options.specs;
+                specs = self.options.specs,
+                buffs = self.options.buffs;
             spells.each(function(spell) {
                 specs.each(function(spec) {
                     if (spec.id == spell.specid) {

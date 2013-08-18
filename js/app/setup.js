@@ -19,7 +19,7 @@ define(['jquery', 'can',
         new Stats('#stats', {stats: stats});
         new Buffs('#buffs', {buffs: buffs});
         new Specs('#specs', {specs: specs, stats: stats, buffs: buffs});
-        new Spells('#spells', {spells: spells, specs: specs});
+        new Spells('#spells', {spells: spells, specs: specs, buffs: buffs});
         new Filter('#filters', {table: $('#spellTable'), specs: $('#specs')})
         // new Delta('#deltaView', {source: $('#spellTable')});
         new Delta('#deltaView', {source: $('body')});
