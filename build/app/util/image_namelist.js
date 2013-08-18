@@ -70,4 +70,6 @@ names = [
     'spell_shaman_spiritlink',
     'spell_shaman_unleashweapon_life',
     'warlock_curse_shadow',
+    'spell_priest_divinestar',
+    'ability_priest_halo'
 ];
