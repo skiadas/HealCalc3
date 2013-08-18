@@ -1816,7 +1816,7 @@ define(['can'], function(can) {
         }
     });
     
-    $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly'], function(i, spname) {
+    $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly', 'CascadeHoly'], function(i, spname) {
         spls.find(spname).attr({
             fbase: function(delta) {
                 return( this.fbase_holy_aoe(delta) );
