@@ -1382,6 +1382,7 @@ define(['can'], function(can) {
                 //Patch 5.3: Atonement now heals nearby friendly targets for 90% of the damage dealt, down from 100%.
                 //Also, there does not appear to be any triple-dipping into the crit effect meta - the effect is triggered once
                 0.9 * this.fbase(delta) * 
+                (this.spec.buffs.spelldam ? 1.05 : 1) *
                 (1 + this.spec.fmastp(delta)) *
                 (
                     (1 - this.spec.fcritp(delta)) +
