@@ -1758,7 +1758,7 @@ define(['can'], function(can) {
         fbase: function(delta) {
             return(
                 this.fdirect(delta) *
-                (this.spec.grace ? 1.3 : 1) *
+                (this.spec.grace ? 1.3 : 1.1) *
                 (this.spec.archangel ? 1.25 : 1) *
                 ( 1 + this.spec.evang_stacks * 0.04 )
             ); 
