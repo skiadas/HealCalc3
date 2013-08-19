@@ -59,13 +59,17 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
                 var spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 10: "monk"}[json['class']];
                 // Strictly speaking we should look to see if it is really holy
                 // For now, holy priests will need to manually adjust
+                var stats = json.stats;
                 var armory_stats = {
-                    bint: Math.roundn(json.stats.int/1.05),
-                    bspi: json.stats.spr,
-                    bmast: json.stats.masteryRating,
-                    bcrit: json.stats.critRating,
-                    bhaste: json.stats.hasteRating,
-                    bweapon: json.stats.spellPower - json.stats.int + 10
+                    bint: Math.roundn(stats.int/1.05),
+                    bspi: stats.spr,
+                    bmast: stats.masteryRating,
+                    bcrit: stats.critRating,
+                    bhaste: stats.hasteRating,
+                    bweapon: stats.spellPower - stats.int + 10,
+                    // Melee haste different from spell haste:
+                    bwspeed: Math.roundn(stats.mainHandSpeed * (1 + stats.haste / 100), 2),
+                    bwdps: Math.roundn(stats.mainHandDps / (1 + stats.haste / 100) - stats.attackPower / 14, 2)
                 };
                 can.Observe.startBatch();
                 $('#filters').data('controls')[0].setSpec(spec);

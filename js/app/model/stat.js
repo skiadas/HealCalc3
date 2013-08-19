@@ -8,7 +8,9 @@ define(['can'], function(can) {
             bmast: 3831,
             bcrit: 2628,
             bhaste: 555,
-            bweapon: 5812
+            bweapon: 5812,
+            bwspeed: 3.3,
+            bwdps: 1643
         }
     ],
         stat = new can.Observe(STATS[0]);
