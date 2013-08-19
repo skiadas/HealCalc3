@@ -3,12 +3,12 @@ define(['can'], function(can) {
         {
             id: 1, 
             name: 'standard',
-            bint: 13400,
-            bspi: 8394,
-            bmast: 3831,
-            bcrit: 2628,
-            bhaste: 555,
-            bweapon: 5812,
+            bint: 21512,
+            bspi: 11460,
+            bmast: 3770,
+            bcrit: 6288,
+            bhaste: 2195,
+            bweapon: 8926,
             bwspeed: 3.3,
             bwdps: 1643
         }
