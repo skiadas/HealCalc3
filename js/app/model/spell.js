@@ -1025,13 +1025,15 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1,
             base_mana: 3000,
-            B: (20552 + 23872)/2/8,
+            B: 2776.5,
             c: 0.1792,
             targets: 2,
             img: 'ability_monk_soothingmists',
             aoe: false,
             instant: true,
-            item: 125953
+            item: 125953,
+            mast_factor: (0.3+0.15)/2, // Averaging chances of spell and statue
+            chi_gain: 0.3
         },
         {
             id: 65,
@@ -1040,12 +1042,14 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1.5,
             base_mana: 24000,
-            B: (15949 + 18535)/2 ,
+            B: 17242.2,
             c: 1.8,
             img: 'ability_monk_surgingmist',
             aoe: false,
             instant: true,
-            item: 116995
+            item: 116995,
+            mast_factor: 1,
+            chi_gain: 1
         },
         {
             id: 66,
@@ -1054,14 +1058,16 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1.5,
             base_mana: 0,
-            Btick: (10128 + 11769)/2 ,
-            ctick: 0.665,
+            Btick: 44448/6,
+            ctick: 2.7/6,
             nticks: 6,
             time_tick: 1,
             img: 'spell_shaman_spiritlink',
             aoe: false,
             instant: true,
-            item: 132120
+            item: 132120,
+            mast_factor: 0.2,
+            chi_use: 3
         },
         {
             id: 67,
@@ -1070,15 +1076,17 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1.5,
             base_mana: 13800,
-            Btick: 3236,
-            ctick: 0.16,
+            Btick: 2266,
+            ctick: 0.107,
             nticks: 6,
             time_tick: 3,
             targets: 3,
             img: 'ability_monk_renewingmists',
             aoe: true,
             instant: true,
-            item: 119611
+            item: 119611,
+            mast_factor: 0.15,
+            chi_gain: 1
         },
         {
             id: 68,
@@ -1086,13 +1094,14 @@ define(['can'], function(can) {
             name: 'Life Cocoon',
             specid: 6,
             base_ct: 1.5,
-            base_mana: 13500,
-            B: 39958,
-            c: 5.5,
+            base_mana: 15000,
+            B: 79916/1.2,
+            c: 11/1.2,
             img: 'ability_monk_chicocoon',
             aoe: false,
             instant: true,
-            item: 116849
+            item: 116849,
+            mast_factor: 0
         },
         {
             id: 69,
@@ -1107,7 +1116,9 @@ define(['can'], function(can) {
             targets: 8,
             aoe: true,
             instant: true,
-            item: 116670
+            item: 116670,
+            mast_factor: 0.25,
+            chi_use: 2
         },
         {
             id: 70,
@@ -1122,7 +1133,8 @@ define(['can'], function(can) {
             targets: 10,
             aoe: true,
             instant: true,
-            item: 115310
+            item: 115310,
+            mast_factor: 0.15
         },
         { 
             id: 71,
@@ -1232,6 +1244,16 @@ define(['can'], function(can) {
                 (1+this.spec.fhastep(delta))
             );
         },
+        fct_monk: function(delta) {
+            return(
+                (
+                    this.base_ct +
+                    (this.spec.mana_tea ? (this.chi_gain || 0) * 0.25 : 0)
+                ) /
+                (1 + this.spec.fhastep(delta))
+            )
+                
+        },
         fmana: function(delta) {
             return(this.base_mana);
         },
@@ -1255,6 +1277,16 @@ define(['can'], function(can) {
             return(
                 (this.spec.cs_to_hp? 9000 : 0) *
                 (this.spec.one_hp ? 1 : 3)
+            );
+        },
+        fmana_monk: function(delta) {
+            return(
+                this.base_mana -
+                (
+                    this.spec.mana_tea ? 
+                    ( (this.chi_gain || 0) * 0.01 * this.spec.mana_pool ) :
+                    0
+                )
             );
         },
         ftargets: function(delta) {
@@ -1352,6 +1384,12 @@ define(['can'], function(can) {
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
                 1.25
             );
+        },
+        fbase_monk: function(delta) {
+            return(
+                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
+                1.2
+            )
         },
         fheal: function(delta) {
             // The average heal amount, including crits and mastery.
@@ -1494,6 +1532,24 @@ define(['can'], function(can) {
                 )
             );
         },
+        fheal_monk: function(delta) {
+            return(
+                this.fbase(delta) *
+                (
+                    1 +
+                        (
+                            -1 +
+                            2 * (this.spec.critmeta ? 1.03 : 1)
+                        ) *
+                        this.spec.fcritp(delta)
+                ) +
+                this.mast_factor * 
+                (this.fnticks(delta) || 1) * 
+                (this.ftargets(delta) || 1) *
+                this.spec.fmastp(delta) *
+                ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c )
+            );
+        },
         fhps: function(delta) {
             return( this.fheal(delta) / this.fct(delta) );
         },
@@ -1583,6 +1639,12 @@ define(['can'], function(can) {
         } else if (sp.specid == 4) {
             // General Druid setup
             sp.fbase = sp.fbase_druid;
+        } else if (sp.specid == 6) {
+           // General Monk setup
+           sp.fct = sp.fct_monk;
+           sp.fmana = sp.fmana_monk;
+           sp.fbase = sp.fbase_monk;
+           sp.fheal = sp.fheal_monk;
         }
     });
     
@@ -2803,7 +2865,12 @@ define(['can'], function(can) {
         fmana: function(delta) {
             return(
                 this.base_mana *
-                (this.spec.attr('t14_2p_monk') ? 0.9 : 1)
+                (this.spec.attr('t14_2p_monk') ? 0.9 : 1) - 
+                (
+                    this.spec.mana_tea ? 
+                    ( (this.chi_gain || 0) * 0.01 * this.spec.mana_pool ) :
+                    0
+                )
             );
         }
     });

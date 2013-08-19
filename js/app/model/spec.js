@@ -793,10 +793,13 @@ define(['can'], function(can) {
     
     // MONK
     spcs[5].attr({
-        mastery_factor: 0,
+        mastery_factor: 0.8,
         uplift_targets: 8,
         revival_targets: 10,
-        t4_2p_monk: false
+        t4_2p_monk: false,
+        mast_B: 1.2 * 9985,
+        mast_c: 1.2 * 0.7,
+        mana_tea: true
     });
     
     return spcs;
