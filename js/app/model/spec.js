@@ -543,6 +543,38 @@ define(['can'], function(can) {
             };
             return total;
         },
+        fmonk_ap: function(delta) {
+            return(
+                this.fsp(delta) * 2
+            );
+        },
+        fmonk_melee_haste: function(delta) {
+            return(
+                ((1 + this.fhastep(delta)) * 1.4 - 1) * 100
+            );
+        },
+        fmonk_melee_hastep: function(delta) {
+            return( 0.01 * this.fmonk_melee_haste(delta) );
+        },
+        fmonk_wspeed: function(delta) {
+            return(
+                this.attr('stats.bwspeed') / (1 + this.fmonk_melee_hastep(delta))
+            );
+        },
+        fmonk_wdps: function(delta) {
+            return(
+                (
+                    this.attr('stats.bwdps') + 
+                    this.fmonk_ap(delta) / 14
+                ) *
+                (1 + this.fmonk_melee_hastep(delta))
+            );
+        },
+        fmonk_wdam: function(delta) {
+            return(
+                this.fmonk_wdps(delta) * this.fmonk_wspeed(delta)
+            );
+        },
         interval_time: 60,   // Seconds to consider for mana sources
         val_update: function() {
             can.Observe.startBatch();
@@ -558,6 +590,12 @@ define(['can'], function(can) {
                 'haste': Math.roundn( this.fhaste(), 2),
                 'hastep': this.fhastep(),
                 'sp': this.fsp(),
+                'monk_ap': this.fmonk_ap(),
+                'monk_melee_haste': Math.roundn(this.fmonk_melee_haste(), 2),
+                'monk_melee_hastep': this.fmonk_melee_hastep(),
+                'monk_wspeed': this.fmonk_wspeed(),
+                'monk_wdps': this.fmonk_wdps(),
+                'monk_wdam': this.fmonk_wdam(),
                 'raid25': this.attr('buffs.raid25'),
                 'critmeta': this.attr('buffs.crit_meta'),
                 'manameta': this.attr('buffs.mana_meta'),
