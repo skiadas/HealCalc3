@@ -56,7 +56,7 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
                     past_searches.pop();
                 }
                 $.cookie('armory_searches', past_searches.join('&'));
-                var spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 1: "monk"}[json['class']];
+                var spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 10: "monk"}[json['class']];
                 // Strictly speaking we should look to see if it is really holy
                 // For now, holy priests will need to manually adjust
                 var armory_stats = {
