@@ -613,7 +613,7 @@ define(['can'], function(can) {
             base_mana: 6120,
             B: 13398,
             c: 1.242,
-            targets: 1,
+            targets: 6,
             img: 'druid_ability_wildmushroom_b',
             aoe: true,
             instant: true,
