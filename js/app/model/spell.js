@@ -1958,7 +1958,13 @@ define(['can'], function(can) {
                 ( 1 + this.spec.evang_stacks * 0.04 )
             ); 
         },
-        fheal: this.fheal_disc_atonement,
+        fheal: function(delta) {
+            return(
+                // For solace, no 90% on atonement
+                this.fheal_disc_atonement(delta) /
+                ((this.spec.talent45_disc === 'solace') ? 0.9 : 1)
+            );
+        },
         fmana: function(delta) {
             return(
                 (
