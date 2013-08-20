@@ -1344,11 +1344,8 @@ define(['can'], function(can) {
         },
         fct_monk: function(delta) {
             return(
-                (
-                    this.base_ct +
-                    (this.spec.mana_tea ? (this.chi_gain || 0) * 0.25 : 0)
-                ) /
-                (1 + this.spec.fhastep(delta))
+                (this.base_ct) / (1 + this.spec.fhastep(delta)) +
+                (this.spec.mana_tea ? (this.chi_gain || 0) * 0.25 : 0)
             )
                 
         },
