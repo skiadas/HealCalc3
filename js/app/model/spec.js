@@ -493,7 +493,9 @@ define(['can'], function(can) {
                             (
                                 this.attr('stats.bhaste') * 1 +
                                 ( (delta && delta.haste) || 0 )
-                            ) / 425 / 100
+                            ) *
+                            (this.attr('monk_haste') ? 1.5 : 1) /
+                            425 / 100
                         ) *
                         this.fhaste_mul()
                     ) - 1
@@ -845,7 +847,8 @@ define(['can'], function(can) {
         t4_2p_monk: false,
         mast_B: 1.2 * 9985,
         mast_c: 1.2 * 0.7,
-        mana_tea: true
+        mana_tea: true,
+        monk_haste: true
     });
     
     return spcs;
