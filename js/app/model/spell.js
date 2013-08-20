@@ -1391,6 +1391,14 @@ define(['can'], function(can) {
                 1.2
             )
         },
+        fbase_monk_melee: function(delta) {
+            return(
+                1.2 *
+                this.melee_coeff *
+                this.spec.fmonk_melee_factor(delta) *
+                this.ftargets(delta)
+            )
+        },
         fheal: function(delta) {
             // The average heal amount, including crits and mastery.
             return(

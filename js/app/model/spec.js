@@ -570,6 +570,13 @@ define(['can'], function(can) {
                 (1 + this.fmonk_melee_hastep(delta))
             );
         },
+        fmonk_melee_factor: function(delta) {
+            return(
+                this.attr('stats.bwdps') *
+                ( (this.attr('stats.bwspeed') > 3) ? 1 : 1.5 * 0.898882 ) +
+                this.fmonk_ap(delta) / 14
+            );
+        },
         fmonk_wdam: function(delta) {
             return(
                 this.fmonk_wdps(delta) * this.fmonk_wspeed(delta)
