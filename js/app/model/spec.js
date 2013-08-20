@@ -107,6 +107,13 @@ define(['can'], function(can) {
                     nticks: 3,
                     time_tick: 2
                 },
+                {
+                    name: 'Holy Fire',
+                    img: 'spell_holy_searinglight',
+                    nticks: 7,
+                    time_tick: 1,
+                    hfactor: 1
+                },
             ],
             mana_sources: [
                 {
@@ -132,6 +139,12 @@ define(['can'], function(can) {
                     name: 'MB/SF',
                     fmana: function(time, delta) {
                         return( (this.mana_pool * ((this.talent45_holy === 'mb') ? 0.0175 * 13 / 60 : 0.03 *11 / (3*60))) * time )
+                    }
+                },
+                {
+                    name: 'Solace',
+                    fmana: function(time, delta) {
+                        return( this.mana_pool * ((this.talent45_holy === 'solace') ?  0.01 : 0) * time * this.hfpm /60 )
                     }
                 },
                 {
@@ -736,6 +749,7 @@ define(['can'], function(can) {
         t4_2p_holy: false,
         t5_2p_holy: false,
         t5_4p_holy: false,
+        hfpm: 6,
         talent45_holy: 'mb'
     });
     

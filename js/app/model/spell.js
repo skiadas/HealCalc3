@@ -1308,6 +1308,24 @@ define(['can'], function(can) {
             item: 115460,
             mast_factor: 0
         },
+        {
+            id: 81,
+            code: 'HolyFireHoly',
+            name: 'Holy Fire / Solace',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 5400,
+            B: 1135.52,
+            c: 1.11,
+            Btick: 57,
+            ctick: 0.0312,
+            nticks: 7,
+            time_tick: 1,
+            img: 'spell_holy_searinglight',
+            aoe: false,
+            instant: true,
+            item: 14914
+        }
     ];
 
      //
@@ -1946,10 +1964,21 @@ define(['can'], function(can) {
         fheal: this.fheal_disc_atonement,
         fmana: function(delta) {
             return(
-                this.fmana_instant_priest(delta) *
-                ( 1 - this.spec.evang_stacks * 0.06 )
+                (
+                    (this.spec.talent45_disc === 'solace') ?
+                    0 :
+                    this.fmana_instant_priest(delta)
+                ) *
+                ( 1 - (this.spec.evang_stacks || 5) * 0.06 )
             );
         },
+        fhpm: function(delta) {
+            return(
+                (this.spec.talent45_disc === 'solace') ?
+                0 :
+                this.fheal(delta) / this.fmana(delta)
+            );
+        }
     });
     
     spls.find('SmiteDisc').attr({
@@ -2057,6 +2086,33 @@ define(['can'], function(can) {
                     (this.spec.attr('t14_2p_holy') ? 0.8 : 1)
                 )
             )
+        }
+    });
+    
+    spls.find('HolyFireHoly').attr({
+        fbase: function(delta) {
+            return(
+                (this.fhot(delta) + this.fdirect(delta)) *
+                ( 1 + (this.spec.evang_stacks || 5) * 0.04 )
+            ); 
+        },
+        fheal: this.fheal_sth_holy,
+        fmana: function(delta) {
+            return(
+                (
+                    (this.spec.talent45_holy === 'solace') ?
+                    0 :
+                    this.fmana_instant_priest(delta)
+                ) *
+                ( 1 - (this.spec.evang_stacks || 5) * 0.06 )
+            );
+        },
+        fhpm: function(delta) {
+            return(
+                (this.spec.talent45_holy === 'solace') ?
+                0 :
+                this.fheal(delta) / this.fmana(delta)
+            );
         }
     });
     
