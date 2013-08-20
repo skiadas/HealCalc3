@@ -1027,12 +1027,12 @@ define(['can'], function(can) {
             base_mana: 3000,
             B: 2776.5,
             c: 0.1792,
-            targets: 2,
+            targets: 1,
             img: 'ability_monk_soothingmists',
             aoe: false,
             instant: true,
             item: 125953,
-            mast_factor: (0.3+0.15)/2, // Averaging chances of spell and statue
+            mast_factor: 0.3+0.15, // Spell and statue
             chi_gain: 0.3
         },
         {
@@ -3022,6 +3022,11 @@ define(['can'], function(can) {
         });
     });
     
+    spls.find('SoothingMist').attr({
+        fbase: function(delta) {
+            return( this.fbase_monk(delta) * 1.5 );
+        }
+    });
     spls.find('EnvelopingMist').attr({
         fhpm: function(delta) {
             return( this.fhpm_nomana(delta) );
