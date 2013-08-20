@@ -1530,7 +1530,7 @@ define(['can'], function(can) {
                 ( 1 +
                     (
                         -1 +
-                        2 * (this.spec.critmeta? 1.03 : 0)
+                        2 * (this.spec.critmeta? 1.03 : 1)
                     ) *
                     (
                         (this.spec.serenity ? 0.25 : 0) +
