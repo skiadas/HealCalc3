@@ -10,7 +10,7 @@ define(['can'], function(can) {
         spelldam: false,
         intfood: true,
         intflask: true,
-        crit_meta: true,
+        crit_meta: false,
         mana_meta: false,
         focus_pot: true,
         darkglow: false,
