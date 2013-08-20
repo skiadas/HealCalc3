@@ -1227,6 +1227,22 @@ define(['can'], function(can) {
             aoe: true,
             instant: true,
             item: 120517
+        },
+        {
+            id: 76,
+            code: 'ExpelHarm',
+            name: 'Expel Harm',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 7500,
+            melee_coeff: 7,
+            targets: 1,
+            img: 'ability_monk_expelharm',
+            aoe: false,
+            instant: true,
+            item: 115072,
+            mast_factor: 1,
+            chi_gain: 1
         }
     ];
 
@@ -2863,6 +2879,14 @@ define(['can'], function(can) {
     
     
     // MONK Spells setup
+    $.each(['ExpelHarm'], function(i, spname) {
+        spls.find(spname).attr({
+            fbase: function(delta) {
+                return( this.fbase_monk_melee(delta) );
+            }
+        });
+    });
+    
     spls.find('EnvelopingMist').attr({
         fhpm: function(delta) {
             return( this.fhpm_nomana(delta) );
@@ -2896,6 +2920,14 @@ define(['can'], function(can) {
                     1 + 1.15 * ( 1 + 1.15 )
                 :
                     3
+            );
+        }
+    });
+    
+    spls.find('ExpelHarm').attr({
+        ftargets: function(delta) {
+            return(
+                this.spec.attr('glyph_targeted_expulsion') ? 0.5 : 1
             );
         }
     });

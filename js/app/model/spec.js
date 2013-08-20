@@ -841,6 +841,7 @@ define(['can'], function(can) {
         mastery_factor: 0.8,
         uplift_targets: 8,
         revival_targets: 10,
+        glyph_targeted_explusion: false,
         t4_2p_monk: false,
         mast_B: 1.2 * 9985,
         mast_c: 1.2 * 0.7,
