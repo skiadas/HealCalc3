@@ -57,8 +57,16 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
                 }
                 $.cookie('armory_searches', past_searches.join('&'));
                 var spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 10: "monk"}[json['class']];
-                // Strictly speaking we should look to see if it is really holy
-                // For now, holy priests will need to manually adjust
+                var talents = json.talents;
+                if (spec === "disc") {
+                    // Detecting Holy
+                    var spec1 = talents[0].spec.name,
+                        spec2 = talents[1].spec.name,
+                        primary = talents[0].selected ? spec1 : spec2,
+                        secondary = talents[0].selected ? spec2 : spec1,
+                        specLong = (primary === 'Shadow') ? secondary : primary;
+                    spec = {'Discipline': 'disc', 'Holy': 'holy'}[specLong];
+                }
                 var stats = json.stats;
                 var armory_stats = {
                     bint: Math.roundn(stats.int/1.05),
