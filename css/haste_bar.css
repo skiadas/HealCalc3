@@ -78,10 +78,13 @@ div.spec > a {
 }
 
 div#deltaView {
-    position: fixed;
+/*    position: fixed;
     right: 10px;
     top: 50%;
-    width: 18%;
+*/
+    width: 95%;
+    margin: 2%;
+    padding: 2px;
     background-color: #618C8B;
     border: 1px solid #464646;
 }

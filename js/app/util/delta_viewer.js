@@ -23,6 +23,13 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
                 delta[stat] = del * ( secondary ? (secondary_stats[stat] ? 2 : 1): 1);
                 results[stat] = Math.roundn((sp[colfun](delta) - base)/base * 100, 2);
             });
+            $.each(['int-crit', 'int-mast', 'int-haste', 'crit-int', 'crit-mast', 'crit-haste', 'mast-int', 'mast-crit', 'mast-haste', 'haste-int', 'haste-crit', 'haste-mast'], function(_, stats) {
+                var delta = {};
+                $.each(stats.split('-'), function(ind, stat) {
+                    delta[stat] = (ind > 0 ? -1 : 1) * del * (secondary_stats[stat] ? 2 : 1);
+                });
+                results[stats] = Math.roundn((sp[colfun](delta) - base)/base * 100, 2);
+            });
             this.options.results = results;
             this.element.html(can.view('deltaViewerView', this.options));
         },
