@@ -1410,10 +1410,23 @@ define(['can'], function(can) {
         fbase_monk_melee: function(delta) {
             return(
                 1.2 *
+                (0.25 + 0.25) *    // Eminence and statue
                 this.melee_coeff *
                 this.spec.fmonk_melee_factor(delta) *
-                this.ftargets(delta)
-            )
+                this.ftargets(delta) *
+                this.ftarget_armor_dr(delta)
+            );
+        },
+        ftarget_armor_dr: function(delta) {
+            return(
+                1 -
+                1 /
+                (
+                    1 +
+                    (4037.5*90 - 317117.5) /
+                    (24835 * (this.spec.tiger_power ? 0.7 : 1))
+                )
+            );
         },
         fheal: function(delta) {
             // The average heal amount, including crits and mastery.
