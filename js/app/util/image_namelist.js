@@ -71,5 +71,9 @@ names = [
     'spell_shaman_unleashweapon_life',
     'warlock_curse_shadow',
     'spell_priest_divinestar',
-    'ability_priest_halo'
+    'ability_priest_halo',
+    'ability_monk_roundhousekick',
+    'ability_monk_tigerpalm',
+    'ability_monk_staffstrike',
+    'ability_monk_expelharm'
 ];
