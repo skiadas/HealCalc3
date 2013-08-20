@@ -15,6 +15,12 @@
         <label>Haste Percent<input type="input" id="haste" value="<%= spec.attr('haste'); %>" readonly /></label>
         <label>Mastery Percent<input type="input" id="mast" value="<%= spec.attr('mast'); %>" readonly /></label>
         <label>Spellpower<input type="input" id="sp" value="<%= spec.attr('sp'); %>" readonly /></label>
+    <% if (spec.name === 'Monk') { %>
+        <label>Melee Haste<input type="input" id="monk_melee_haste" value="<%= spec.attr('monk_melee_haste'); %>" readonly /></label>
+        <label>Weapon Speed<input type="input" id="monk_wspeed" value="<%= spec.attr('monk_wspeed'); %>" readonly /></label>
+        <label>Weapon DPS<input type="input" id="monk_wdps" value="<%= spec.attr('monk_wdps'); %>" readonly /></label>
+        <label>Weapon Damage<input type="input" id="monk_wdam" value="<%= spec.attr('monk_wdam'); %>" readonly /></label>
+    <% } %>
       </div></li>
       <li><a class="expandOff">Haste Points</a>
         <div <%= (el) -> can.data(el, 'spec', spec) %> class="haste_bar_cont" id="haste_bar_<%= spec.attr('name'); %>" >
