@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="css/haste_bar.css" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
+    <a href="#openModal" class="modalLink">Tips Window</a>
+    <div id="openModal" class="modalDialog">
+      <div>
+      		<a href="#close" title="Close" class="close">X</a>
+      		<h2>Welcome to HealCalc!</h2>
+      		<p>If this is your first visit, you may want to <a href="index.html">read our guide</a> first.</p>
+      		<p>If you would like to dive right in, you may want to start with the Armory section in the top left to import your character, and/or use the Filters section on the top to limit the data to specific specs.</p>
+      		<p>When you hover over a spell, a little window on the right will show you gains to that spell from stat increases.</p>
+      		<p>If you would like to bring this window up again, click the link at the top left of the screen.</p>
+      	</div>
+    </div>
     <div id="header">
       <h1>Heal Adinne</h1>
       <h2>Home of <em>HealCalc</em></h2>
@@ -60,6 +71,13 @@
         </div>
       </div>
     </div>
+    <script>
+      if (window.localStorage && !window.localStorage['visited']) {
+        // First visit
+        window.localStorage['visited'] = "true";
+        window.location.hash = "openModal"
+      }
+    </script>
     <script type="text/javascript" data-main="js/app/main" src="js/lib/require.js"></script>
     <script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script><script>var wowhead_tooltips = { "colorlinks": true, "iconizelinks": true, "renamelinks": true }</script>
   </body>
