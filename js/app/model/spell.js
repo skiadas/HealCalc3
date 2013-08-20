@@ -1571,7 +1571,6 @@ define(['can'], function(can) {
         },
         fheal_monk: function(delta) {
             return(
-                this.fbase(delta) *
                 (
                     1 +
                         (
@@ -1579,12 +1578,15 @@ define(['can'], function(can) {
                             2 * (this.spec.critmeta ? 1.03 : 1)
                         ) *
                         this.spec.fcritp(delta)
-                ) +
-                this.mast_factor * 
-                (this.fnticks(delta) || 1) * 
-                (this.ftargets(delta) || 1) *
-                this.spec.fmastp(delta) *
-                ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c )
+                ) *
+                (
+                    this.fbase(delta) +
+                    this.mast_factor * 
+                    (this.fnticks(delta) || 1) * 
+                    (this.ftargets(delta) || 1) *
+                    this.spec.fmastp(delta) *
+                    ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c )
+                )
             );
         },
         fhps: function(delta) {
