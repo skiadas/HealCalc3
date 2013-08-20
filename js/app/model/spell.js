@@ -1243,7 +1243,71 @@ define(['can'], function(can) {
             item: 115072,
             mast_factor: 1,
             chi_gain: 1
-        }
+        },
+        {
+            id: 77,
+            code: 'Jab',
+            name: 'Jab',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 24000,
+            melee_coeff: 1.5,
+            targets: 1,
+            img: 'ability_monk_staffstrike',
+            aoe: false,
+            instant: true,
+            item: 108557,
+            mast_factor: 0.2 + 0.1,  // Eminence and Statue
+            chi_gain: 1
+        },
+        {
+            id: 78,
+            code: 'TigerPalm',
+            name: 'Tiger Palm',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 0,
+            melee_coeff: 3 * 2,  // Teaching of Monastery
+            targets: 1,
+            img: 'ability_monk_tigerpalm',
+            aoe: false,
+            instant: true,
+            item: 100787,
+            mast_factor: 0.2 + 0.1,  // Eminence and Statue
+            chi_use: 1
+        },
+        {
+            id: 79,
+            code: 'BlackoutKick',
+            name: 'Blackout Kick',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 0,
+            melee_coeff: 7.12,  // Need to add muscle memory/multiple targets later
+            targets: 1,
+            img: 'ability_monk_roundhousekick',
+            aoe: true,
+            instant: true,
+            item: 100784,
+            mast_factor: 0.2 + 0.1,  // Eminence and Statue
+            chi_use: 2
+        },
+        {
+            id: 80,
+            code: 'HealingSphere',
+            name: 'Healing Sphere',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 6000,
+            B: 9984.5,
+            c: 1.5,
+            img: 'ability_monk_healthsphere',
+            targets: 1,
+            aoe: false,
+            instant: true,
+            item: 115460,
+            mast_factor: 0
+        },
     ];
 
      //
@@ -1405,7 +1469,7 @@ define(['can'], function(can) {
             return(
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
                 1.2
-            )
+            );
         },
         fbase_monk_melee: function(delta) {
             return(
@@ -2894,7 +2958,7 @@ define(['can'], function(can) {
     
     
     // MONK Spells setup
-    $.each(['ExpelHarm'], function(i, spname) {
+    $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {
         spls.find(spname).attr({
             fbase: function(delta) {
                 return( this.fbase_monk_melee(delta) );
@@ -2944,6 +3008,52 @@ define(['can'], function(can) {
             return(
                 this.spec.attr('glyph_targeted_expulsion') ? 0.5 : 1
             );
+        },
+        fbase: function(delta) {
+            return(
+                1.2 *
+                this.melee_coeff *
+                this.spec.fmonk_melee_factor(delta) *
+                this.ftargets(delta)
+            );
+        }
+    });
+    
+    spls.find('Jab').attr({
+        fmana: function(delta) {
+            return(
+                this.fmana_monk(delta) -
+                (this.spec.muscle_memory ? 0.04 * this.spec.mana_pool : 0)
+            );
+        }
+    });
+    spls.find('TigerPalm').attr({
+        fbase: function(delta) {
+            return(
+                this.fbase_monk_melee(delta) *
+                (this.spec.muscle_memory ? 2.5 : 1)
+            );
+        },
+        fhpm: function(delta) {
+            return( this.fhpm_nomana(delta) );
+        }
+    });
+    
+    spls.find('BlackoutKick').attr({
+        fbase: function(delta) {
+            return(
+                this.fbase_monk_melee(delta) *
+                (this.spec.muscle_memory ? 2.5 : 1) *
+                (1 + 0.5 * this.spec.blackoutkick_extra * 1)
+            );
+        },
+        ftargets: function(delta) {
+            return(
+                (1 + this.spec.blackoutkick_extra * 1)
+            );
+        },
+        fhpm: function(delta) {
+            return( this.fhpm_nomana(delta) );
         }
     });
     
