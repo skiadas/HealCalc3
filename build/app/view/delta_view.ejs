@@ -14,4 +14,21 @@
   <tr><td>Haste  </td><td><%= results.haste %>%</td><td><%= Math.roundn(results.haste /results.sp, 2) %></td></tr>
   <tr><td>Spirit  </td><td><%= results.spi %>%</td><td><%= Math.roundn(results.spi /results.sp, 2) %></td></tr>
 </tbody>
+<thead>
+  <th>+ Stat</th><th>- Stat</th><th>Relative Change</th>
+</thead>
+<tbody>
+  <tr><td rowspan="3">Int    </td><td>Crit</td><td><%= results['int-crit'] %>%</td></tr>
+  <tr><td>Mastery</td><td><%= results['int-mast'] %>%</td></tr>
+  <tr><td>Haste</td><td><%= results['int-haste'] %>%</td></tr>
+  <tr><td rowspan="3">Crit    </td><td>Int</td><td><%= results['crit-int'] %>%</td></tr>
+  <tr><td>Mastery</td><td><%= results['crit-mast'] %>%</td></tr>
+  <tr><td>Haste</td><td><%= results['crit-haste'] %>%</td></tr>
+  <tr><td rowspan="3">Mastery    </td><td>Int</td><td><%= results['mast-int'] %>%</td></tr>
+  <tr><td>Crit</td><td><%= results['mast-crit'] %>%</td></tr>
+  <tr><td>Haste</td><td><%= results['mast-haste'] %>%</td></tr>
+  <tr><td rowspan="3">Haste    </td><td>Int</td><td><%= results['haste-int'] %>%</td></tr>
+  <tr><td>Crit</td><td><%= results['haste-crit'] %>%</td></tr>
+  <tr><td>Mastery</td><td><%= results['haste-mast'] %>%</td></tr>
+</tbody>
 </table>
