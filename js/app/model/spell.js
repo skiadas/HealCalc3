@@ -1685,7 +1685,6 @@ define(['can'], function(can) {
             return( this.fmana(delta) / this.fct(delta) );
         },
         val_update: function(delta) {
-            can.Observe.startBatch();
             this.attr({
                 'ct': Math.roundn(this.fct(), 2),
                 'mana': Math.roundn(this.fmana()),
@@ -1695,7 +1694,6 @@ define(['can'], function(can) {
                 'hpm': Math.roundn(this.fhpm(), 2),
                 'mps': Math.roundn(this.fmps())
             });
-            can.Observe.stopBatch();
         }
      };
 
