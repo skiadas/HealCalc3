@@ -1709,16 +1709,20 @@ define(['can'], function(can) {
         spls.push(spell);
     }
     // Global update function
-    spls.val_update = can.proxy(function(spec) {
-        can.Observe.startBatch();
-        this.each( function(spell) {
-            // If no spec specified, update all spells
-            if ( !spec || spell.specid == spec.id ) {
-                 spell.val_update();
-            }
-        });
-        can.Observe.stopBatch();
-    }, spls);
+    spls.val_update = function() {
+        if (!this.updating) {
+            this.updating = true;
+            setTimeout(this._updater.bind(this), 30);
+        }
+    };
+    spls._updater = function() {
+        // can.Observe.startBatch();
+        this.each(
+            function(spell) { spell.val_update(); }
+        );
+        // can.Observe.stopBatch();
+        this.updating = false;
+    };
     
     // Search for spell by code or id
     spls.find = function(code) {

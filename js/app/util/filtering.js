@@ -5,6 +5,7 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
     var Filtering = can.Control({
     init: function(element, options) {
         var self = this;
+        var spells = options.spells;
         self.options = options;
         self.options.filters = new can.Observe({
             allspecs: true,
@@ -16,7 +17,7 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
         self.options.curr_mask = 0;
         self.element.data('filters', self.options.filters);
         self.element.append(can.view('filterView', self.options));
-        setInterval(function() {self.update(self);}, 200);
+        setInterval(function() {self.update(self);}, 100);
     },
     'update': function(self) {
         var imask = self.options.curr_mask;

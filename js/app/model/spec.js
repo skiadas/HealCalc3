@@ -599,7 +599,6 @@ define(['can'], function(can) {
         },
         interval_time: 60,   // Seconds to consider for mana sources
         val_update: function() {
-            can.Observe.startBatch();
             // Update basic stats first
             this.attr({
                 'int': this.fint(),
@@ -648,7 +647,6 @@ define(['can'], function(can) {
                 'regen_mps': Math.roundn(regen_mps, 1),
                 'total_mana': Math.roundn(total_mana),
             });
-            can.Observe.stopBatch();
         }
     };
     
@@ -673,7 +671,7 @@ define(['can'], function(can) {
     };
     // Updates each spec in order
     spcs.val_update = function() {
-         can.Observe.startBatch();
+        can.Observe.startBatch();
          this.each( function(spec) {
              spec.val_update();
          });
