@@ -20,7 +20,6 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
             self.element.html(can.view('spellsView', {spells: spells}));
         },
         sorter: function() {
-            this.sort_scheduled = false;
             var spells = this.options.spells,
                 attr = this.options.sort.attr,
                 comp_fun = (this.options.sort.dir == 'desc') ? 
@@ -32,6 +31,7 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
             spells.push(spells[0]);
             spells.pop();
             can.Observe.stopBatch();
+            this.sort_scheduled = false;
         },
         sort: function(ev) {
             if (!this.sort_scheduled) {
