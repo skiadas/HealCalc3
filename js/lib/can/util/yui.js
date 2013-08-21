@@ -1,10 +1,13 @@
-/*
-* CanJS - 1.1.3 (2012-12-11)
-* http://canjs.us/
-* Copyright (c) 2012 Bitovi
-* Licensed MIT
-*/
-define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/array/each', 'can/util/object/isplain', 'can/util/deferred'], function (can) {
+/*!
+ * CanJS - 1.1.7
+ * http://canjs.us/
+ * Copyright (c) 2013 Bitovi
+ * Wed, 24 Jul 2013 00:23:28 GMT
+ * Licensed MIT
+ * Includes: CanJS default build
+ * Download from: http://canjs.us/
+ */
+define(["can/util/can", "yui", "can/util/event", "can/util/fragment", "can/util/array/each", "can/util/object/isplain", "can/util/deferred", "can/util/hashchange"], function (can) {
 
 	// ---------
 	// _YUI node list._
@@ -43,14 +46,12 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 			i = deep + 1,
 			arg;
 		for (; arg = arguments[i]; i++) {
-			Y.mix(target, arg, true, null, null, !! deep);
+			Y.mix(target, arg, true, null, null, !!deep);
 		}
 		return target;
 	}
 	can.param = function (object) {
-		return Y.QueryString.stringify(object, {
-			arrayKey: true
-		})
+		return Y.QueryString.stringify(object, {arrayKey : true})
 	}
 	can.isEmptyObject = function (object) {
 		return Y.Object.isEmpty(object);
@@ -86,9 +87,9 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 	can.get = function (wrapped, index) {
 		return wrapped._nodes[index];
 	}
-	can.append = function (wrapped, html) {
-		wrapped.each(function (node) {
-			if (typeof html === 'string') {
+	can.append = function( wrapped, html ) {
+		wrapped.each(function( node ) {
+			if ( typeof html === 'string' ) {
 				html = can.buildFragment(html, node)
 			}
 			node.append(html)
@@ -119,9 +120,9 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 
 	// Ajax
 	var optionsMap = {
-		type: "method",
-		success: undefined,
-		error: undefined
+		type : "method",
+		success : undefined,
+		error : undefined
 	}
 	var updateDeferred = function (request, d) {
 		// `YUI` only returns a request if it is asynchronous.
@@ -154,7 +155,7 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 			error = options.error;
 
 		requestOptions.on = {
-			success: function (transactionid, response) {
+			success : function (transactionid, response) {
 				var data = response.responseText;
 				if (options.dataType === 'json') {
 					data = eval("(" + data + ")")
@@ -163,7 +164,7 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 				d.resolve(data);
 				success && success(data, "success", request);
 			},
-			failure: function (transactionid, response) {
+			failure : function (transactionid, response) {
 				updateDeferred(request, d);
 				d.reject(request, "error");
 				error && error(request, "error");
@@ -179,10 +180,10 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 	// Events - The `id` of the `function` to be bound, used as an expando on the `function`
 	// so we can lookup it's `remove` object.
 	var yuiEventId = 0,
-		// Takes a node list, goes through each node
-		// and adds events data that has a map of events to
-		// `callbackId` to `remove` object.  It looks like
-		// `{click: {5: {remove: fn}}}`.
+	// Takes a node list, goes through each node
+	// and adds events data that has a map of events to
+	// `callbackId` to `remove` object.  It looks like
+	// `{click: {5: {remove: fn}}}`.
 		addBinding = function (nodelist, selector, ev, cb) {
 			if (nodelist instanceof Y.NodeList || !nodelist.on || nodelist.getDOMNode) {
 				nodelist.each(function (node) {
@@ -212,22 +213,25 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 				events[ev][cb.__bindingsIds] = obj.on(ev, cb);
 			}
 		},
-		// Removes a binding on a `nodelist` by finding
-		// the remove object within the object's data.
+	// Removes a binding on a `nodelist` by finding
+	// the remove object within the object's data.
 		removeBinding = function (nodelist, selector, ev, cb) {
 			if (nodelist instanceof Y.NodeList || !nodelist.on || nodelist.getDOMNode) {
 				nodelist.each(function (node) {
 					var node = can.$(node),
-						events = can.data(node, "events"),
-						eventName = ev + ":" + selector,
-						handlers = events[eventName],
-						handler = handlers[cb.__bindingsIds];
-					handler.detach();
-					delete handlers[cb.__bindingsIds];
-					if (can.isEmptyObject(handlers)) {
-						delete events[ev];
+						events = can.data(node, "events");
+					if (events) {
+						var eventName = ev + ":" + selector,
+							handlers = events[eventName],
+							handler = handlers[cb.__bindingsIds];
+						handler.detach();
+						delete handlers[cb.__bindingsIds];
+						if (can.isEmptyObject(handlers)) {
+							delete events[ev];
+						}
+						if (can.isEmptyObject(events)) {
+						}
 					}
-					if (can.isEmptyObject(events)) {}
 				});
 			} else {
 				var obj = nodelist,
@@ -239,68 +243,69 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 				if (can.isEmptyObject(handlers)) {
 					delete events[ev];
 				}
-				if (can.isEmptyObject(events)) {}
-			}
-		}
-		can.bind = function (ev, cb) {
-			// If we can bind to it...
-			if (this.bind && this.bind !== can.bind) {
-				this.bind(ev, cb)
-			} else if (this.on || this.nodeType) {
-				addBinding(can.$(this), undefined, ev, cb)
-			} else if (this.addEvent) {
-				this.addEvent(ev, cb)
-			} else {
-				// Make it bind-able...
-				can.addEvent.call(this, ev, cb)
-			}
-			return this;
-		}
-		can.unbind = function (ev, cb) {
-			// If we can bind to it...
-			if (this.unbind && this.unbind !== can.unbind) {
-				this.unbind(ev, cb)
-			}
-
-			else if (this.on || this.nodeType) {
-				removeBinding(can.$(this), undefined, ev, cb);
-			} else {
-				// Make it bind-able...
-				can.removeEvent.call(this, ev, cb)
-			}
-			return this;
-		}
-		can.trigger = function (item, event, args, bubble) {
-			if (item instanceof Y.NodeList) {
-				item = item.item(0);
-			}
-			if (item.getDOMNode) {
-				item = item.getDOMNode();
-			}
-
-			if (item.nodeName) {
-				item = Y.Node(item);
-				if (bubble === false) {
-					// Force stop propagation by listening to `on` and then
-					// immediately disconnecting
-					item.once(event, function (ev) {
-						ev.stopPropagation && ev.stopPropagation();
-						ev.cancelBubble = true;
-						ev._stopper && ev._stopper();
-					})
+				if (can.isEmptyObject(events)) {
 				}
-				realTrigger(item.getDOMNode(), event, {})
-			} else {
-				if (typeof event === 'string') {
-					event = {
-						type: event
-					}
-				}
-				event.target = event.target || item
-				event.data = args
-				can.dispatch.call(item, event)
 			}
-		};
+		}
+	can.bind = function (ev, cb) {
+		// If we can bind to it...
+		if (this.bind && this.bind !== can.bind) {
+			this.bind(ev, cb)
+		} else if (this.on || this.nodeType) {
+			addBinding(can.$(this), undefined, ev, cb)
+		} else if (this.addEvent) {
+			this.addEvent(ev, cb)
+		} else {
+			// Make it bind-able...
+			can.addEvent.call(this, ev, cb)
+		}
+		return this;
+	}
+	can.unbind = function (ev, cb) {
+		// If we can bind to it...
+		if (this.unbind && this.unbind !== can.unbind) {
+			this.unbind(ev, cb)
+		}
+
+		else if (this.on || this.nodeType) {
+			removeBinding(can.$(this), undefined, ev, cb);
+		} else {
+			// Make it bind-able...
+			can.removeEvent.call(this, ev, cb)
+		}
+		return this;
+	}
+	can.trigger = function (item, event, args, bubble) {
+		if (item instanceof Y.NodeList) {
+			item = item.item(0);
+		}
+		if (item.getDOMNode) {
+			item = item.getDOMNode();
+		}
+
+		if (item.nodeName) {
+			item = Y.Node(item);
+			if (bubble === false) {
+				// Force stop propagation by listening to `on` and then
+				// immediately disconnecting
+				item.once(event, function (ev) {
+					ev.stopPropagation && ev.stopPropagation();
+					ev.cancelBubble = true;
+					ev._stopper && ev._stopper();
+				})
+			}
+			realTrigger(item.getDOMNode(), event, {})
+		} else {
+			if (typeof event === 'string') {
+				event = {
+					type : event
+				}
+			}
+			event.target = event.target || item
+			event.data = args
+			can.dispatch.call(item, event)
+		}
+	};
 	// Allow `dom` `destroyed` events.
 	Y.mix(Y.Node.DOM_EVENTS, {
 		destroyed: true,
@@ -330,14 +335,14 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 			return "mouse" + (p == "enter" ? "over" : "out");
 		},
 		realTrigger = document.createEvent ?
-		function (n, e, a) {
-			// the same branch
-			var ev = document.createEvent("HTMLEvents");
-			e = e.replace(leaveRe, _fix);
-			ev.initEvent(e, true, true);
-			a && can.extend(ev, a);
-			n.dispatchEvent(ev);
-		} : function (n, e, a) {
+			function (n, e, a) {
+				// the same branch
+				var ev = document.createEvent("HTMLEvents");
+				e = e.replace(leaveRe, _fix);
+				ev.initEvent(e, true, true);
+				a && can.extend(ev, a);
+				n.dispatchEvent(ev);
+			} : function (n, e, a) {
 			// the janktastic branch
 			var ev = "on" + e,
 				stop = false,
@@ -356,12 +361,12 @@ define(['can/util/can', 'yui', 'can/util/event', 'can/util/fragment', 'can/util/
 			} catch (er) {
 				// a lame duck to work with. we're probably a 'custom event'
 				var evdata = can.extend({
-					type: e,
-					target: n,
-					faux: true,
+					type : e,
+					target : n,
+					faux : true,
 					// HACK: [needs] added support for customStopper to _base/event.js
 					// some tests will fail until del._stopPropagation has support.
-					_stopper: function () {
+					_stopper : function () {
 						stop = this.cancelBubble;
 					}
 				}, a);

@@ -27,7 +27,7 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
                     function(a,b) {return a[attr] <= b[attr] };
             _sort(spells, comp_fun);
             // spells = spells.slice();
-            can.Observe.startBatch();
+            var now= new Date();
             spells.push(spells[0]);
             spells.pop();
             can.Observe.stopBatch();

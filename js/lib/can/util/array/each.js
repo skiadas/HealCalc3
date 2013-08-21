@@ -1,16 +1,18 @@
-/*
-* CanJS - 1.1.3 (2012-12-11)
-* http://canjs.us/
-* Copyright (c) 2012 Bitovi
-* Licensed MIT
-*/
-define(['can/util/can'], function (can) {
+/*!
+ * CanJS - 1.1.7
+ * http://canjs.us/
+ * Copyright (c) 2013 Bitovi
+ * Wed, 24 Jul 2013 00:23:28 GMT
+ * Licensed MIT
+ * Includes: CanJS default build
+ * Download from: http://canjs.us/
+ */
+define(["can/util/can"], function (can) {
 	can.each = function (elements, callback, context) {
-		var i = 0,
-			key;
+		var i = 0, key;
 		if (elements) {
 			if (typeof elements.length === 'number' && elements.pop) {
-				if (elements.attr) {
+				if ( elements.attr ) {
 					elements.attr('length');
 				}
 				for (key = elements.length; i < key; i++) {
@@ -18,9 +20,9 @@ define(['can/util/can'], function (can) {
 						break;
 					}
 				}
-			} else if (elements.hasOwnProperty) {
+			} else if(elements.hasOwnProperty) {
 				for (key in elements) {
-					if (elements.hasOwnProperty(key)) {
+					if(elements.hasOwnProperty(key)) {
 						if (callback.call(context || elements[key], elements[key], key, elements) === false) {
 							break;
 						}
