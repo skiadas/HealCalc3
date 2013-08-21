@@ -19,20 +19,24 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
             // Call View
             self.element.html(can.view('spellsView', {spells: spells}));
         },
+        sorter: function() {
+            this.sort_scheduled = false;
+            var spells = this.options.spells,
+                attr = this.options.sort.attr,
+                comp_fun = (this.options.sort.dir == 'desc') ? 
+                    function(a,b) {return a[attr] >= b[attr] } : 
+                    function(a,b) {return a[attr] <= b[attr] };
+            _sort(spells, comp_fun);
+            // spells = spells.slice();
+            can.Observe.startBatch();
+            spells.push(spells[0]);
+            spells.pop();
+            can.Observe.stopBatch();
+        },
         sort: function(ev) {
-            var batchNum = this.options.batchNum;
-            if( !ev || !ev.batchNum || ev.batchNum !== batchNum ) {
-                if (ev) {this.options.batchNum = ev.batchNum};
-                var attr = this.options.sort.attr,
-                    comp_fun = (this.options.sort.dir == 'desc') ? 
-                        function(a,b) {return a[attr] >= b[attr] } : 
-                        function(a,b) {return a[attr] <= b[attr] },
-                    spells = this.options.spells;
-                setTimeout(function() {
-                    _sort(spells, comp_fun);
-                    spells.push(spells[0]);
-                    spells.pop();
-                }, 30);
+            if (!this.sort_scheduled) {
+                this.sort_scheduled = true;
+                setTimeout(this.sorter.bind(this), 100);
             }
         },
         '{specs} change': function(_, ev) {
