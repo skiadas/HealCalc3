@@ -3120,5 +3120,11 @@ define(['can'], function(can) {
         }
     });
     
+    spls.find('HealingSphere').attr({
+        fct: function(delta) {
+            return( 0.5 );
+        }
+    });
+    
     return spls;
 });
