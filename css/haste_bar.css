@@ -131,8 +131,11 @@ table.rotation .no { width: 5em; }
 table.rotation .name { width: 80em; }
 table.rotation .result { width: 30em; }
 
+#right div {
+    padding: 2px;
+}
 
-.modalLink {
+body > .modalLink {
     float: left;
 }
 .modalDialog {
@@ -163,11 +166,11 @@ table.rotation .result { width: 30em; }
     padding: 5px;
 }
 .modalDialog p {
-    padding: 5px;
+    margin: 12px;
 }
 
 .modalDialog > div {
-	width: 400px;
+	width: 500px;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
@@ -176,6 +179,10 @@ table.rotation .result { width: 30em; }
 	background: -moz-linear-gradient(#fff, #999);
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);
+}
+
+#right .modalDialog > div {
+    width: 800px;
 }
 
 .close {
