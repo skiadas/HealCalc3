@@ -34,6 +34,37 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
             this.options.base = base;
             var secondary = this.options.double_secondary;
             var results = {};
+            var pairOptimizer = function(stats) {
+                var delta = {},
+                    stat1, stat2, oldRes, newRes, improvement,
+                    stat1base, stat2base,
+                    direction = 1,
+                    deltaF = del;
+                getstats = stats.split('-');
+                stat1 = getstats[1], stat2 = getstats[2];
+                stat1base = sp.spec.stats['b' + stat1];
+                stat2base = sp.spec.stats['b' + stat2];
+                delta[stat1] = 0, delta[stat2] = 0;
+                newRes = sp[colfun](delta);
+                while (oldRes = newRes) {
+                    delta[stat1] = delta[stat1] + direction * deltaF * (secondary_stats[stat1] ? 2 : 1);
+                    delta[stat2] = delta[stat2] - direction * deltaF * (secondary_stats[stat2] ? 2 : 1);
+                    newRes = sp[colfun](delta);
+                    improvement = newRes / oldRes - 1;
+                    if (
+                        improvement < 0 ||
+                        ((direction > 0) && (delta[stat2] + stat2base < 0)) ||
+                        ((direction < 0) && (delta[stat1] + stat1base < 0))
+                    ) {
+                        // Wrong direction
+                        direction = -direction;
+                        deltaF = Math.floor(deltaF / 2);
+                    }
+                    if (deltaF === 0) { break; }
+                }
+                delta['res'] = Math.roundn((newRes - base)/base * 100, 2);
+                return delta;
+            };
             $.each(['int','sp','crit','haste','mast', 'spi'], function(_, stat) {
                 var delta = {};
                 delta[stat] = del * ( secondary ? (secondary_stats[stat] ? 2 : 1): 1);
@@ -48,42 +79,8 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
             });
             // Pair optimizer:
             $.each(['comp-int-crit', 'comp-int-mast', 'comp-int-haste', 'comp-crit-mast', 'comp-crit-haste', 'comp-mast-haste'], function(_, stats) {
-                var delta = {},
-                    stat1, stat2, oldRes, newRes, improvement,
-                    stat1base, stat2base,
-                    direction = 1,
-                    deltaF = del;
-                getstats = stats.split('-');
-                stat1 = getstats[1], stat2 = getstats[2];
-                stat1base = sp.spec.stats['b' + stat1];
-                stat2base = sp.spec.stats['b' + stat2];
-                delta[stat1] = 0, delta[stat2] = 0;
-                oldRes = sp[colfun](delta);
-                while (true) {
-                    // break;
-                    delta[stat1] = delta[stat1] + direction * deltaF * (secondary_stats[stat1] ? 2 : 1);
-                    delta[stat2] = delta[stat2] - direction * deltaF * (secondary_stats[stat2] ? 2 : 1);
-                    newRes = sp[colfun](delta);
-                    improvement = newRes / oldRes - 1;
-                    if (
-                        improvement < 0 ||
-                        ((direction > 0) && (delta[stat2] + stat2base < 0)) ||
-                        ((direction < 0) && (delta[stat1] + stat1base < 0))
-                    ) {
-                        // Wrong direction
-                        direction = -direction;
-                        deltaF = Math.floor(deltaF / 2);
-                    }
-                    if (deltaF === 0) {
-                        break;
-                    }
-                    oldRes = newRes;
-                }
-                delta['res'] = Math.roundn((newRes - base)/base * 100, 2);
-                // console.log(delta);
-                results[stats] = delta;
+                results[stats] = pairOptimizer(stats);
             });
-            console.log(results);
             this.options.results = results;
             this.element.html(can.view('deltaViewerView', this.options));
         }
