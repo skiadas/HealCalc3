@@ -1,24 +1,26 @@
-/*
-* CanJS - 1.1.3 (2012-12-11)
-* http://canjs.us/
-* Copyright (c) 2012 Bitovi
-* Licensed MIT
-*/
-define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'can/util/fragment', 'can/util/deferred', 'can/util/array/each'], function (can) {
+/*!
+ * CanJS - 1.1.7
+ * http://canjs.us/
+ * Copyright (c) 2013 Bitovi
+ * Wed, 24 Jul 2013 00:23:28 GMT
+ * Licensed MIT
+ * Includes: CanJS default build
+ * Download from: http://canjs.us/
+ */
+define(["can/util/can", "zepto", "can/util/object/isplain", "can/util/event", "can/util/fragment", "can/util/deferred", "can/util/array/each"], function (can) {
 	var $ = Zepto;
 
 	// data.js
 	// ---------
 	// _jQuery-like data methods._
-	var data = {},
-		dataAttr = $.fn.data,
+	var data = {}, dataAttr = $.fn.data,
 		uuid = $.uuid = +new Date(),
-		exp = $.expando = 'Zepto' + uuid;
+		exp  = $.expando = 'Zepto' + uuid;
 
 	function getData(node, name) {
-		var id = node[exp],
-			store = id && data[id];
-		return name === undefined ? store || setData(node) : (store && store[name]) || dataAttr.call($(node), name);
+		var id = node[exp], store = id && data[id];
+		return name === undefined ? store || setData(node) :
+			(store && store[name]) || dataAttr.call($(node), name);
 	}
 
 	function setData(node, name, value) {
@@ -28,15 +30,18 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 		return store;
 	};
 
-	$.fn.data = function (name, value) {
-		return value === undefined ? this.length == 0 ? undefined : getData(this[0], name) : this.each(function (idx) {
-			setData(this, name, $.isFunction(value) ? value.call(this, idx, getData(this, name)) : value);
-		});
+	$.fn.data = function(name, value) {
+		return value === undefined ?
+			this.length == 0 ? undefined : getData(this[0], name) :
+			this.each(function(idx){
+				setData(this, name, $.isFunction(value) ?
+					value.call(this, idx, getData(this, name)) : value);
+			});
 	};
-	$.cleanData = function (elems) {
-		for (var i = 0, elem;
-		(elem = elems[i]) !== undefined; i++) {
-			can.trigger(elem, "destroyed", [], false)
+	$.cleanData = function(elems){
+		for ( var i = 0, elem;
+		      (elem = elems[i]) !== undefined; i++ ) {
+			can.trigger(elem,"destroyed",[],false)
 			var id = elem[exp]
 			delete data[id];
 		}
@@ -45,6 +50,7 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 	// zepto.js
 	// ---------
 	// _Zepto node list._
+
 	var oldEach = can.each;
 	// Extend what you can out of Zepto.
 	$.extend(can, Zepto);
@@ -67,9 +73,7 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 
 		} else {
 			if (typeof event == "string") {
-				event = {
-					type: event
-				}
+				event = {type : event}
 			}
 			event.target = event.target || obj;
 			event.data = args;
@@ -122,6 +126,7 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 			return wrapped[name].apply(wrapped, can.makeArray(arguments).slice(1))
 		}
 	})
+
 
 	can.makeArray = function (arr) {
 		var ret = []
@@ -186,6 +191,7 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 		return d;
 	};
 
+
 	// Make destroyed and empty work.
 	$.fn.empty = function () {
 		return this.each(function () {
@@ -206,12 +212,15 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 		return this;
 	}
 
+
 	can.trim = function (str) {
 		return str.trim();
 	}
 	can.isEmptyObject = function (object) {
 		var name;
-		for (name in object) {};
+		for (name in object) {
+		}
+		;
 		return name === undefined;
 	}
 
@@ -228,6 +237,7 @@ define(['can/util/can', 'zepto', 'can/util/object/isplain', 'can/util/event', 'c
 	can.get = function (wrapped, index) {
 		return wrapped[index];
 	}
+
 
 	return can;
 });
