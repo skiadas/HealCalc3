@@ -820,7 +820,9 @@ define(['can'], function(can) {
         glyph_regrowth: true,
         glyph_rejuv: false,
         glyph_innervate: false,
-        t14_2p_druid: false
+        t14_2p_druid: false,
+        t16_2p_druid: false,
+        t16_4p_druid: false
     });
 
     // Lifebloom option for 1 or 3 stacks

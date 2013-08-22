@@ -2384,6 +2384,18 @@ define(['can'], function(can) {
     });
     
     spls.find('HealingTouch').attr({
+        fmana: function(delta) {
+            return( this.spec.t16_4p_druid ? 0 : this.base_mana );
+        },
+        fhpm: function(delta) {
+            return( this.spec.t16_4p_druid ? 0 : this.fheal(delta) / this.fmana(delta) );
+        },
+        fct: function(delta) {
+            return( 
+                (this.spec.t16_4p_druid ? 1.5 : this.base_ct) /
+                ( 1 + this.spec.fhastep(delta) )
+            );
+        },
         fheal: function(delta) {
             return( this.fheal_living_seed(delta) );
         }
