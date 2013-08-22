@@ -22,12 +22,22 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
     'update': function(self) {
         var imask = self.options.curr_mask;
         var filters = self.options.filters;
-        $('tr.spell', self.options.table).each(function(i, el) {
-            (($(el).data('spell').mask & imask) == 0) ? $(el).show() : $(el).hide();
-        });
-        $('div.spec', self.options.specs).each(function(i, el) {
-            filters[$(el).data('spec').name.toLowerCase()] ? $(el).show() : $(el).hide();
-        });
+        var cname = 'hidden'
+        var splList = $('tr.spell', self.options.table);
+        for (var i=splList.length; i--; ) {
+            // var elm = $(el);
+            var elm = $(splList[i]);
+            ((elm.data('spell').mask & imask) == 0) ? 
+                elm.removeClass(cname) :
+                elm.addClass(cname);
+        };
+        var specList = $('div.spec', self.options.specs);
+        for (var i=specList.length; i--; ) {
+            var elm = $(specList[i]);
+            filters[elm.data('spec').name.toLowerCase()] ? 
+                elm.removeClass(cname) :
+                elm.addClass(cname);
+        };
     },
     'input change': function(el, ev) {
         var filters = this.options.filters;

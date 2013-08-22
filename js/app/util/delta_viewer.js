@@ -13,7 +13,7 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
             this.sp = $(el).closest('tr').data('spell') || $(el).closest('tr').data('rotation');
             if (!this.scheduled) {
                 // Need to create event
-                window.setTimeout(this.delta_updater.bind(this), 100);
+                window.setTimeout(this.delta_updater.bind(this), 300);
             }
         },
         'input#input_delta change': function(el, ev) {
