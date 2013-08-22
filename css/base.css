@@ -5,7 +5,7 @@ body { font-family: Cambria, 'Gentium Basic', Gentium, Bookman, 'Palatino Linoty
 h1, h2 {
   font-family: Zapfino, 'Monotype Corsiva', 'Script Regular', 'Segoe Script', sans-serif;
   font-size: 1.5em;
-  margin: 2% 2%;
+  margin: 1% 2%;
   text-align: right;
 }
 h2 { font-size: 1.25em; text-align: left; }
@@ -208,7 +208,7 @@ td { text-align: right; }
 .name { text-align: left; }
 
 #filters, #rotations {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 	margin-left: 2.5%;
 	margin-right: 2.5%;
 	background-color: #C0B981;
