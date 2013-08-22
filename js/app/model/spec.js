@@ -881,7 +881,6 @@ define(['can'], function(can) {
     spcs[5].attr({
         mastery_factor: 0.8,
         uplift_targets: 8,
-        revival_targets: 10,
         tiger_power: true,
         muscle_memory: true,
         blackoutkick_extra: 0,

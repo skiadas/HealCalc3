@@ -3291,5 +3291,11 @@ define(['can'], function(can) {
         }
     });
     
+    spls.find('Revival').attr({
+        ftargets: function(delta) {
+            return( this.spec.raid25 ? 25 : 10 );
+        }
+    });
+    
     return spls;
 });
