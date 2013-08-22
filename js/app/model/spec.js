@@ -761,6 +761,8 @@ define(['can'], function(can) {
         t14_2p_holy: false,
         t15_2p_holy: false,
         t15_4p_holy: false,
+        t16_2p_holy: false,
+        t16_4p_holy: false,
         hfpm: 6,
         talent45_holy: 'mb'
     });

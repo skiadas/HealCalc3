@@ -2136,7 +2136,10 @@ define(['can'], function(can) {
     
     spls.find('HWSerenityHoly').attr({
         fbase: function(delta) {
-            return( this.fbase_holy_sth(delta) );
+            return(
+                this.fbase_holy_sth(delta) *
+                (this.spec.attr('t16_4p_holy') ? 2 : 1)
+            );
         },
         fmana: function(delta) {
             return( this.fmana_instant_priest(delta) );
@@ -2196,6 +2199,12 @@ define(['can'], function(can) {
         },
     });
     spls.find('HWSanctuaryHoly').attr({
+        fbase: function(delta) {
+            return(
+                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
+                (this.spec.attr('t16_4p_holy') ? 3.15 : 1)
+            );
+        },
         fheal: function(delta) {
             // The average heal amount, including crits and mastery.
             return(
