@@ -1663,7 +1663,8 @@ define(['can'], function(can) {
                     (this.fnticks(delta) || 1) * 
                     (this.ftargets(delta) || 1) *
                     this.spec.fmastp(delta) *
-                    ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c )
+                    ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c ) *
+                    ( this.spec.t16_2p_monk ? 1.45 : 1)
                 )
             );
         },
@@ -3195,6 +3196,33 @@ define(['can'], function(can) {
                     1 + 1.15 * ( 1 + 1.15 )
                 :
                     3
+            );
+        },
+        fheal: function(delta) {
+            return(
+                (
+                    1 +
+                        (
+                            -1 +
+                            2 * (this.spec.critmeta ? 1.03 : 1)
+                        ) *
+                        this.spec.fcritp(delta)
+                ) *
+                (
+                    this.fbase(delta) +
+                    (this.fnticks(delta) || 1) * 
+                    (this.ftargets(delta) || 1) *
+                    (
+                        this.mast_factor * 
+                        this.spec.fmastp(delta) *
+                        ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c ) *
+                        ( this.spec.t16_2p_monk ? 1.45 : 1) +
+                        ( this.spec.t16_4p_monk ?
+                            ( 0.04 * (295 + 0.54 * this.spec.fsp(delta)) ) :
+                            0
+                        )
+                    )
+                )
             );
         }
     });

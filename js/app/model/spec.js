@@ -880,6 +880,8 @@ define(['can'], function(can) {
         blackoutkick_extra: 0,
         glyph_targeted_explusion: false,
         t14_2p_monk: false,
+        t16_2p_monk: false,
+        t16_4p_monk: false,
         mast_B: 1.2 * 9985,
         mast_c: 1.2 * 0.7,
         mana_tea: true,
