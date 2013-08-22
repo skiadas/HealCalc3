@@ -2649,6 +2649,18 @@ define(['can'], function(can) {
 
     // PALLY Spells setup
     spls.find('HolyLight').attr({
+        fct: function(delta) {
+            return(
+                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        },
+        fbase: function(delta) {
+            return(
+                this.fbase_pally(delta) *
+                (this.spec.infusion_of_light && this.spec.t16_2p_pally ? 1.2 : 1)
+            )
+        },
         fheal: function(delta) {
             return(
                 this.fbase(delta) *
@@ -2668,6 +2680,21 @@ define(['can'], function(can) {
         }
     });
 
+    spls.find('DivineLight').attr({
+        fct: function(delta) {
+            return(
+                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        },
+        fbase: function(delta) {
+            return(
+                this.fbase_pally(delta) *
+                (this.spec.infusion_of_light && this.spec.t16_2p_pally ? 1.2 : 1)
+            )
+        }
+    });
+    
     spls.find('HolyShock').attr({
         fheal: function(delta) { 
             var crit = 0.25 + this.spec.fcritp(delta);
@@ -2723,6 +2750,12 @@ define(['can'], function(can) {
     });
 
     spls.find('HolyRadiance').attr({
+        fct: function(delta) {
+            return(
+                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        },
         fmana: function(delta) {
             return(
                 Math.roundn(
@@ -2730,6 +2763,12 @@ define(['can'], function(can) {
                     ( this.spec.attr('t14_2p_pally') ? 0.9 : 1 )
                 )
             );
+        },
+        fbase: function(delta) {
+            return(
+                this.fbase_pally(delta) *
+                (this.spec.infusion_of_light && this.spec.t16_2p_pally ? 1.2 : 1)
+            )
         },
         fheal: function(delta) {
             return(

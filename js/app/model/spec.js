@@ -774,11 +774,13 @@ define(['can'], function(can) {
             return( 1.1 * ( this.attr('buffs.haste') ? 1.05 : 1 ) );
         },
         daybreak: false,
+        infusion_of_light: false,
         bol: false,
         glyph_lod: false,
         t14_2p_pally: false,
         t15_2p_pally: false,
         t15_4p_pally: false,
+        t16_2p_pally: false,
         cs_to_hp: false,
         one_hp: false
     });
