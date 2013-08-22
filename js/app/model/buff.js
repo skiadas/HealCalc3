@@ -12,6 +12,7 @@ define(['can'], function(can) {
         intflask: true,
         crit_meta: false,
         mana_meta: false,
+        stat_trinket: false,
         focus_pot: true,
         darkglow: false,
         raid25: false,

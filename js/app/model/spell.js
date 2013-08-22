@@ -1518,7 +1518,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta ? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 ) *
@@ -1532,7 +1532,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) * 
                         this.spec.fcritp(delta)
                 ) *
@@ -1553,7 +1553,7 @@ define(['can'], function(can) {
                         (
                             -1 +
                                 2 * 
-                                (this.spec.critmeta? 1.03 : 1)
+                                (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 ) *
@@ -1571,7 +1571,7 @@ define(['can'], function(can) {
                     (
                         -1 +
                             2 *
-                            (this.spec.critmeta? 1.03 : 1) *
+                            (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
                             1.3
                     ) *
                     (crit || this.spec.fcritp(delta))
@@ -1587,7 +1587,7 @@ define(['can'], function(can) {
                         (
                             -1 +
                                 2 *
-                                (this.spec.critmeta? 1.03 : 1) *
+                                (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
                                 ( 1 + this.spec.fmastp(delta) )
                         ) *
                         this.spec.fcritp(delta)
@@ -1607,7 +1607,7 @@ define(['can'], function(can) {
                             (1 + 2 * this.spec.fmastp(delta))
                         ) *
                     this.spec.fcritp(delta) 
-                    * (this.spec.critmeta? 1.03 : 1)
+                    * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                 )
             );
         },
@@ -1625,7 +1625,7 @@ define(['can'], function(can) {
                 ( 1 +
                     (
                         -1 +
-                        2 * (this.spec.critmeta? 1.03 : 1)
+                        2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                     ) *
                     (
                         (this.spec.serenity ? 0.25 : 0) +
@@ -1644,7 +1644,7 @@ define(['can'], function(can) {
                     (
                         -1 +
                             2 *
-                            (this.spec.critmeta? 1.03 : 1) *
+                            (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
                             1.3
                     ) *
                     this.spec.fcritp(delta)
@@ -1657,7 +1657,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta ? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 ) *
@@ -1906,7 +1906,7 @@ define(['can'], function(can) {
         //             1 + 
         //                 (
         //                     -1 +
-        //                     2 * (this.spec.critmeta? 1.03 : 1)
+        //                     2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
         //                 ) *
         //                 this.spec.fcritp(delta)
         //         ) *
@@ -2227,7 +2227,7 @@ define(['can'], function(can) {
                    1 +
                        (
                            -1 +
-                           2 * (this.spec.critmeta ? 1.03 : 1)
+                           2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                        ) *
                        this.spec.fcritp(delta)
                ) *
@@ -2261,7 +2261,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta ? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 )
@@ -2328,7 +2328,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta ? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 )
@@ -2430,13 +2430,13 @@ define(['can'], function(can) {
                             (
                                 -1 +
                                     2 * crit *
-                                    (this.spec.critmeta ? 1.03 : 1)
+                                    (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                             )
                     ) + // Living seed only looks at direct heal part
                     // But should it not care about the glyph of regrowth?
                     // FIXME?
                     this.fdirect(delta) *
-                    (this.spec.critmeta ? 1.03 : 1) *
+                    (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
                     0.6 * crit
                 )
             ); 
@@ -2525,7 +2525,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta ? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 )
@@ -2562,13 +2562,13 @@ define(['can'], function(can) {
                     this.fbase(delta) *
                     (
                         1 + 
-                            ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                            ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                             this.spec.fcritp(delta)
                     ) +
                     
                     ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
                     0.6 *
-                    (this.spec.critmeta? 1.03 : 1) *
+                    (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
                     this.spec.fcritp(delta)
                 )
             );
@@ -2619,7 +2619,7 @@ define(['can'], function(can) {
                 ( 1 + this.spec.fmastp(delta) ) *
                 (
                     1 + 
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         this.spec.fcritp(delta)
                 )
             );
@@ -2642,7 +2642,7 @@ define(['can'], function(can) {
                 this.fbase(delta) *
                 (
                     1 + 
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         this.spec.fcritp(delta)
                 ) + 0.16 * sm
             );
@@ -2671,7 +2671,7 @@ define(['can'], function(can) {
                 this.fbase(delta) *
                 (
                     1 +
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) * 
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) * 
                         this.spec.fcritp(delta)
                 ) *
                 (
@@ -2714,7 +2714,7 @@ define(['can'], function(can) {
                 this.fbase(delta) *
                 (
                     1 +
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         crit
                 ) *
                 (
@@ -2747,7 +2747,7 @@ define(['can'], function(can) {
                     this.spec.fmastp(delta) * this.fdirect(delta) * 1.5 * 1.05
                 ) *
                 ( 1 +
-                    ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) * 
+                    ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) * 
                     this.spec.fcritp(delta)
                 )
             );
@@ -2780,7 +2780,7 @@ define(['can'], function(can) {
                 this.fbase(delta) *
                 (
                     1 +
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         this.spec.fcritp(delta)
                 ) *
                 (
@@ -2822,7 +2822,7 @@ define(['can'], function(can) {
                  this.fbase(delta) *
                  (
                      1 +
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         this.spec.fcritp(delta)
                 ) *
                 (
@@ -2844,7 +2844,7 @@ define(['can'], function(can) {
             return(
                 this.fbase(delta) *
                 ( 1 +
-                    ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) * 
+                    ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) * 
                     this.spec.fcritp(delta)
                 ) *
                 (
@@ -2900,7 +2900,7 @@ define(['can'], function(can) {
                 this.fbase(delta) *
                 (
                     1 +
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         this.spec.fcritp(delta)
                 ) *
                 (
@@ -2920,7 +2920,7 @@ define(['can'], function(can) {
                 this.fbase(delta) *
                 (
                     1 +
-                        ( -1 + 2 * (this.spec.critmeta? 1.03 : 1) ) *
+                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
                         this.spec.fcritp(delta)
                 ) *
                 (
@@ -3061,7 +3061,7 @@ define(['can'], function(can) {
                     (
                         -1 +
                             2 *
-                            (this.spec.critmeta? 1.03 : 1) *
+                            (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
                             1.3
                     ) *
                     this.spec.fcritp(delta)
@@ -3208,7 +3208,7 @@ define(['can'], function(can) {
                     1 +
                         (
                             -1 +
-                            2 * (this.spec.critmeta ? 1.03 : 1)
+                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
                         ) *
                         this.spec.fcritp(delta)
                 ) *

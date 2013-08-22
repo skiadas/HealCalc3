@@ -457,12 +457,15 @@ define(['can'], function(can) {
         },
         fspi: function(delta) {
             return(
-                ( this.attr('stats.bspi') || delta ) + 
-                ( this.attr('buffs.trinket1.spi') * 
-                        this.attr('buffs.trinket1.uptime') ) +
-                ( this.attr('buffs.trinket2.spi') * 
-                        this.attr('buffs.trinket2.uptime') ) +
-                ( this.attr('buffs.darkglow') ? 3000 * 15 / 60 : 0 )
+                (
+                    ( this.attr('stats.bspi') || delta ) + 
+                    ( this.attr('buffs.trinket1.spi') * 
+                            this.attr('buffs.trinket1.uptime') ) +
+                    ( this.attr('buffs.trinket2.spi') * 
+                            this.attr('buffs.trinket2.uptime') ) +
+                    ( this.attr('buffs.darkglow') ? 3000 * 15 / 60 : 0 )
+                ) *
+                ( this.attr('buffs.stat_trinket') ? 1.07 : 1 )
             );
         },
         fcrit: function(delta) {
@@ -483,9 +486,12 @@ define(['can'], function(can) {
             return(
                 Math.roundn(
                         (
-                            this.attr('stats.bmast') / 600 +
-                            ( (delta && delta.mast) || 0 ) / 600 +
-                            ( this.attr('buffs.mastery') ? 3000 : 0 ) / 600 +
+                            (
+                                this.attr('stats.bmast') / 600 +
+                                ( (delta && delta.mast) || 0 ) / 600 +
+                                ( this.attr('buffs.mastery') ? 3000 : 0 ) / 600
+                            ) *
+                            (this.attr('buffs.stat_trinket') ? 1.07 : 1) +
                             8
                         ) *
                         this.mastery_factor,
@@ -507,6 +513,7 @@ define(['can'], function(can) {
                                 this.attr('stats.bhaste') * 1 +
                                 ( (delta && delta.haste) || 0 )
                             ) *
+                            (this.attr('buffs.stat_trinket') ? 1.07 : 1) *
                             (this.attr('monk_haste') ? 1.5 : 1) /
                             425 / 100
                         ) *
