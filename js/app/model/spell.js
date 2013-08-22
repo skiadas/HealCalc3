@@ -1815,7 +1815,10 @@ define(['can'], function(can) {
         },
         ftargets: function(delta) {
             return(
-                this.spec.cascade_targets_disc *
+                Math.min(
+                    this.spec.cascade_targets_disc,
+                    this.spec.raid25 ? 25 : 10
+                ) *
                 (
                     0.4 +
                     Math.min(this.spec.cascade_range_disc, 30) * 0.02
@@ -1829,7 +1832,13 @@ define(['can'], function(can) {
             return( this.fmana_instant_priest(delta) );
         },
         ftargets: function(delta) {
-            return( this.spec.divinestar_targets_disc * 2 );
+            return(
+                Math.min(
+                    this.spec.divinestar_targets_disc,
+                    this.spec.raid25 ? 25 : 10
+                ) *
+                2
+            );
         }
     });
     spls.find('HaloDisc').attr({
@@ -1837,7 +1846,12 @@ define(['can'], function(can) {
             return( this.fmana_instant_priest(delta) );
         },
         ftargets: function(delta) {
-            return( this.spec.halo_targets_disc );
+            return( 
+                Math.min(
+                    this.spec.halo_targets_disc,
+                    this.spec.raid25 ? 25 : 10
+                )
+            );
         }
     });
     
@@ -2149,7 +2163,10 @@ define(['can'], function(can) {
     spls.find('CascadeHoly').attr({
         ftargets: function(delta) {
             return(
-                this.spec.cascade_targets_holy *
+                Math.min(
+                    this.spec.cascade_targets_holy,
+                    this.spec.raid25 ? 25 : 10
+                ) *
                 (
                     0.4 +
                     Math.min( this.spec.cascade_range_holy, 30 ) * 0.02
@@ -2159,12 +2176,23 @@ define(['can'], function(can) {
     });
     spls.find('DivineStarHoly').attr({
         ftargets: function(delta) {
-            return( this.spec.divinestar_targets_holy * 2 );
+            return(
+                Math.min(
+                    this.spec.divinestar_targets_holy,
+                    this.spec.raid25 ? 25 : 10
+                ) *
+                2
+            );
         }
     });
     spls.find('HaloHoly').attr({
         ftargets: function(delta) {
-            return( this.spec.halo_targets_holy );
+            return(
+                Math.min(
+                    this.spec.halo_targets_holy,
+                    this.spec.raid25 ? 25 : 10
+                )
+            );
         }
     });
     
