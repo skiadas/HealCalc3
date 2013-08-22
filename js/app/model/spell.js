@@ -2161,6 +2161,9 @@ define(['can'], function(can) {
     });
     
     spls.find('CascadeHoly').attr({
+        fmana: function(delta) {
+            return( this.fmana_instant_priest(delta) );
+        },
         ftargets: function(delta) {
             return(
                 Math.min(
@@ -2175,6 +2178,9 @@ define(['can'], function(can) {
         }
     });
     spls.find('DivineStarHoly').attr({
+        fmana: function(delta) {
+            return( this.fmana_instant_priest(delta) );
+        },
         ftargets: function(delta) {
             return(
                 Math.min(
@@ -2186,6 +2192,9 @@ define(['can'], function(can) {
         }
     });
     spls.find('HaloHoly').attr({
+        fmana: function(delta) {
+            return( this.fmana_instant_priest(delta) );
+        },
         ftargets: function(delta) {
             return(
                 Math.min(
@@ -2198,7 +2207,10 @@ define(['can'], function(can) {
     
     spls.find('CoHHoly').attr({
        fmana: function(delta) {
-           return( this.base_mana * (this.spec.glyph_coh ? 1.35 : 1) );
+           return(
+               this.fmana_instant_priest(delta) *
+               (this.spec.glyph_coh ? 1.35 : 1)
+           );
        },
        ftargets: function(delta) {
            return( this.targets + (this.spec.glyph_coh ? 1 : 0) );
@@ -2227,6 +2239,9 @@ define(['can'], function(can) {
         },
     });
     spls.find('HWSanctuaryHoly').attr({
+        fmana: function(delta) {
+            return( this.fmana_instant_priest(delta) );
+        },
         fbase: function(delta) {
             return(
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
