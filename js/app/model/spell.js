@@ -1502,7 +1502,11 @@ define(['can'], function(can) {
                 (
                     1 +
                     (4037.5*90 - 317117.5) /
-                    (24835 * (this.spec.tiger_power ? 0.7 : 1))
+                    (
+                        24835 *
+                        (this.spec.tiger_power ? 0.7 : 1) *
+                        (this.spec.armor ? 0.88 : 1)
+                    )
                 )
             );
         },
