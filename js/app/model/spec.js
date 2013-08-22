@@ -694,6 +694,18 @@ define(['can'], function(can) {
                 )
             );
         },
+        fcrit: function(delta) {
+            return (
+                Math.roundn(
+                        this.attr('stats.bcrit') /600 +
+                        ( (delta && delta.crit) || 0 ) /600 +
+                        this.fint(delta) * 0.0003951 +
+                        this.attr('bcrit') +
+                        ( this.attr('buffs.crit') ? 5 : 0 ), 
+                2 ) +
+                (this.attr('archangel') && this.attr('t16_2p_disc') ? 10 : 0)
+            );
+        },
         inner_fire: true,
         grace: false,
         evang_stacks: 5,
@@ -710,6 +722,8 @@ define(['can'], function(can) {
         t14_2p_disc: false,
         t15_2p_disc: false,
         t15_4p_disc: false,
+        t16_2p_disc: false,
+        t16_4p_disc: false,
         rapture_interval: 15,
         hfpm: 6,
         talent45_disc: 'solace'
