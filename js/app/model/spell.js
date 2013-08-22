@@ -2385,14 +2385,14 @@ define(['can'], function(can) {
     
     spls.find('HealingTouch').attr({
         fmana: function(delta) {
-            return( this.spec.t16_4p_druid ? 0 : this.base_mana );
+            return( this.spec.t16_2p_druid ? 0 : this.base_mana );
         },
         fhpm: function(delta) {
-            return( this.spec.t16_4p_druid ? 0 : this.fheal(delta) / this.fmana(delta) );
+            return( this.spec.t16_2p_druid ? 0 : this.fheal(delta) / this.fmana(delta) );
         },
         fct: function(delta) {
             return( 
-                (this.spec.t16_4p_druid ? 1.5 : this.base_ct) /
+                (this.spec.t16_2p_druid ? 1.5 : this.base_ct) /
                 ( 1 + this.spec.fhastep(delta) )
             );
         },
@@ -2507,7 +2507,27 @@ define(['can'], function(can) {
                 ) *
                 this.fnticks(delta)
             );
-        }
+        },
+        fheal: function(delta) {
+            // The average heal amount, including crits and mastery.
+            return(
+                (
+                    this.fbase(delta) *
+                    ( 1 + 1 * this.spec.fmastp(delta) ) +
+                    (this.spec.t16_4p_druid ? 0.33 * this.spec.sp : 0)
+                ) *
+                (
+                    1 +
+                        (
+                            -1 +
+                            2 * (this.spec.critmeta ? 1.03 : 1)
+                        ) *
+                        this.spec.fcritp(delta)
+                )
+                
+            );
+        },
+        
     });
     
     spls.find('Swiftmend').attr({
