@@ -8,9 +8,9 @@ define(['can', 'text!view/haste_bar.ejs', 'text!view/bpoint_rows.ejs'], function
             self.element.html(can.view('hasteBarView', {spec: spec}));
             self.update_bar();
         },
-        // '{spec} change': function() {
-        //     this.update_bar();
-        // },
+        '{spec} change': function() {
+            this.update_bar();
+        },
         update_bar: function() {
             var spec = this.options.spec;
             var haste_mul = spec.fhaste_mul();
