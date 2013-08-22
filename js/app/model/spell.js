@@ -2862,6 +2862,14 @@ define(['can'], function(can) {
     
     
     // SHAMAN Spells setup
+    spls.find('EarthShield').attr({
+        fheal: function(delta) {
+            return(
+                this.fbase(delta) *
+                (this.spec.t16_2p_shaman ? 4 : 1)
+            );
+        }
+    });
     spls.find('HW').attr({
         fmana: function(delta) {
             return( this.fmana_shaman_resurgence(delta) );
