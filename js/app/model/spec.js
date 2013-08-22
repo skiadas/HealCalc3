@@ -707,9 +707,9 @@ define(['can'], function(can) {
         glyph_renew_disc: false,
         glyph_penance: true,
         glyph_binding_disc: false,
-        t4_2p_disc: false,
-        t5_2p_disc: false,
-        t5_4p_disc: false,
+        t14_2p_disc: false,
+        t15_2p_disc: false,
+        t15_4p_disc: false,
         rapture_interval: 15,
         hfpm: 6,
         talent45_disc: 'solace'
@@ -744,9 +744,9 @@ define(['can'], function(can) {
         glyph_pom_holy: true,
         glyph_renew_holy: false,
         glyph_binding_holy: false,
-        t4_2p_holy: false,
-        t5_2p_holy: false,
-        t5_4p_holy: false,
+        t14_2p_holy: false,
+        t15_2p_holy: false,
+        t15_4p_holy: false,
         hfpm: 6,
         talent45_holy: 'mb'
     });
@@ -760,9 +760,9 @@ define(['can'], function(can) {
         daybreak: false,
         bol: false,
         glyph_lod: false,
-        t4_2p_pally: false,
-        t5_2p_pally: false,
-        t5_4p_pally: false,
+        t14_2p_pally: false,
+        t15_2p_pally: false,
+        t15_4p_pally: false,
         cs_to_hp: false,
         one_hp: false
     });
@@ -804,7 +804,7 @@ define(['can'], function(can) {
         glyph_regrowth: true,
         glyph_rejuv: false,
         glyph_innervate: false,
-        t4_2p_druid: false
+        t14_2p_druid: false
     });
 
     // Lifebloom option for 1 or 3 stacks
@@ -844,7 +844,7 @@ define(['can'], function(can) {
         health_deficit: 20,
         chain_heal_riptide: true,
         earth_shield_buff: true,
-        t4_2p_shaman: false,
+        t14_2p_shaman: false,
         glyph_water_shield: false,
         water_shield_ppm: 4,
         rushing_streams: false
@@ -859,7 +859,7 @@ define(['can'], function(can) {
         muscle_memory: true,
         blackoutkick_extra: 0,
         glyph_targeted_explusion: false,
-        t4_2p_monk: false,
+        t14_2p_monk: false,
         mast_B: 1.2 * 9985,
         mast_c: 1.2 * 0.7,
         mana_tea: true,
