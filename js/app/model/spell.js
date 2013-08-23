@@ -780,7 +780,7 @@ define(['can'], function(can) {
             base_mana: 0,
             B: (3268 + 3993)/2,
             c: 0.321,
-            targets: 7*8,
+            targets: 7 * 6,
             img: 'spell_paladin_lightshammer',
             aoe: true,
             instant: true,
@@ -2851,6 +2851,8 @@ define(['can'], function(can) {
                     1 +
                         (this.spec.bol ? 0.15 : 0) *
                         (this.spec.t15_4p_pally ? 1.2 : 1)
+                    +
+                    this.spec.fmastp(delta)
                 )
             );
         }
