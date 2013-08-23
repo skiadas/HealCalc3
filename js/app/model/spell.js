@@ -1343,6 +1343,57 @@ define(['can'], function(can) {
             mast_factor: 0.1,
             chi_gain: 1
         },
+        {
+            id: 83,
+            code: 'ChiWave',
+            name: 'Chi Wave',
+            specid: 6,
+            base_ct: 1,
+            base_mana: 0,
+            targets: 4,
+            B: 493,
+            c: 0.45 * 2,
+            img: 'ability_monk_cranekick_new',
+            aoe: true,
+            instant: true,
+            item: 115098,
+            mast_factor: 0.25
+        },
+        {
+            id: 84,
+            code: 'ZenSphere',
+            name: 'Zen Sphere',
+            specid: 6,
+            base_ct: 1,
+            base_mana: 0,
+            targets: 1,
+            Btick: 114,
+            ctick: 0.208,
+            B: 294,
+            c: 0.538,
+            img: 'ability_monk_forcesphere',
+            aoe: true,
+            instant: true,
+            item: 124081,
+            mast_factor: 0.25,
+            mast_factor_detonate: 0.15
+        },
+        {
+            id: 85,
+            code: 'ChiBurst',
+            name: 'Chi Burst',
+            specid: 6,
+            base_ct: 1,
+            base_mana: 0,
+            targets: 6,
+            B: 1095,
+            c: 2,
+            img: 'spell_arcane_arcanetorrent',
+            aoe: true,
+            instant: true,
+            item: 123986,
+            mast_factor: 0.15
+        },
     ];
 
      //
