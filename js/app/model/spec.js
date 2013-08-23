@@ -565,6 +565,9 @@ define(['can'], function(can) {
             };
             return total;
         },
+        fmana_pool: function(delta) {
+            return( ( this.attr('buffs.mana_meta') ? 1.02 : 1 ) * 300000 );
+        },
         fmonk_ap: function(delta) {
             return(
                 this.fsp(delta) * 2
@@ -627,7 +630,7 @@ define(['can'], function(can) {
                 'raid25': this.attr('buffs.raid25'),
                 'critmeta': this.attr('buffs.crit_meta'),
                 'manameta': this.attr('buffs.mana_meta'),
-                'mana_pool': ( this.attr('buffs.mana_meta') ? 1.02 : 1 ) * 300000,
+                'mana_pool': this.fmana_pool(),
                 'potmana':  this.attr('buffs.focus_pot') ? 45000 : 30000,
             });
             // Update mana sources
@@ -879,11 +882,19 @@ define(['can'], function(can) {
     
     // MONK
     spcs[5].attr({
+        fmana_pool: function(delta) {
+            return(
+                ( this.attr('buffs.mana_meta') ? 1.02 : 1 ) *
+                ( this.attr('ascension') ? 1.15 : 1 ) *
+                300000
+            );
+        },
         mastery_factor: 0.8,
         uplift_targets: 8,
         tiger_power: true,
         muscle_memory: true,
         blackoutkick_extra: 0,
+        ascension: false,
         glyph_targeted_explusion: false,
         t14_2p_monk: false,
         t16_2p_monk: false,
