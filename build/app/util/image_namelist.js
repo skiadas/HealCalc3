@@ -75,5 +75,9 @@ names = [
     'ability_monk_roundhousekick',
     'ability_monk_tigerpalm',
     'ability_monk_staffstrike',
-    'ability_monk_expelharm'
+    'ability_monk_expelharm',
+    'ability_monk_cranekick_new',
+    'spell_arcane_arcanetorrent',
+    'ability_monk_forcesphere',
+    'ability_monk_chiwave'
 ];
