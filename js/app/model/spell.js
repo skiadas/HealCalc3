@@ -3367,5 +3367,16 @@ define(['can'], function(can) {
         }
     });
     
+    spls.find('ChiWave').attr({
+        fhpm: function(delta) {
+            return( this.fhpm_nomana(delta) );
+        }
+    });
+    spls.find('ChiBurst').attr({
+        fhpm: function(delta) {
+            return( this.fhpm_nomana(delta) );
+        }
+    });
+    
     return spls;
 });
