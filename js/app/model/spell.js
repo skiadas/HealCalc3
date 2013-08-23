@@ -1353,7 +1353,7 @@ define(['can'], function(can) {
             targets: 4,
             B: 493,
             c: 0.45 * 2,
-            img: 'ability_monk_cranekick_new',
+            img: 'ability_monk_chiwave',
             aoe: true,
             instant: true,
             item: 115098,
