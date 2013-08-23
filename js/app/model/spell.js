@@ -1325,7 +1325,24 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 14914
-        }
+        },
+        {
+            id: 82,
+            code: 'SCK',
+            name: 'Spinning Crane Kick',
+            specid: 6,
+            base_ct: 2.25,
+            base_mana: 21600,
+            targets: 4 * 6,
+            B: 2809,
+            c: 0.096,
+            img: 'ability_monk_cranekick_new',
+            aoe: true,
+            instant: true,
+            item: 117640,
+            mast_factor: 0.1,
+            chi_gain: 1
+        },
     ];
 
      //
