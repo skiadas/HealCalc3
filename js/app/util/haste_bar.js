@@ -19,7 +19,10 @@ define(['can', 'text!view/haste_bar.ejs', 'text!view/bpoint_rows.ejs'], function
             var bpoints = spec.breakpoints;
             var rating_scale = 3000;
             bpoints.each(function(bpoint) {
-                bpoint.rating = Math.ceiln((bpoint.hastep/haste_mul -1) * 425 * 100);
+                bpoint.rating = Math.ceiln(
+                    (bpoint.hastep/haste_mul -1) * 425 * 100 /
+                    (spec.id === 6 ? 1.5 : 1) // Monks get more haste from rating
+                );
                 bpoint.rel_rating = bpoint.rating - haste_rat;
                 bpoint.percent = Math.roundn(0.5*(1+bpoint.rel_rating/rating_scale * 0.9) * 100) + "%";
                 bpoint.text = can.sub("You gain the {no} extra tick of {name} at {rating} rating.\nNeed {rel_rating} rating to reach that point.\n{hastep}", bpoint);
