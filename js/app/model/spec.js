@@ -352,9 +352,18 @@ define(['can'], function(can) {
             bint: 143,
             bpoints_info: [
                 {
-                    name: 'Surging Mist, Renewing Mist',
-                    img: 'ability_monk_surgingmist',
-                    nticks: 6
+                    name: 'Enveloping Mist',
+                    img: 'spell_shaman_spiritlink',
+                    nticks: 6,
+                    time_tick: 1,
+                    hfactor: 1
+                },
+                {
+                    name: 'Renewing Mist',
+                    img: 'ability_monk_renewingmists',
+                    nticks: 6,
+                    time_tick: 2,
+                    hfactor: 1
                 }
             ],
             mana_sources: [
