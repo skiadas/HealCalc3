@@ -361,7 +361,7 @@ define(['can'], function(can) {
                 {
                     name: 'Renewing Mist',
                     img: 'ability_monk_renewingmists',
-                    nticks: 6,
+                    nticks: 9,
                     time_tick: 2,
                     hfactor: 1
                 }
