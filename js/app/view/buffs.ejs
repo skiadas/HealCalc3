@@ -3,23 +3,28 @@
     <ul><li><a class="expandOff">Raid Buffs</a>
     <div>
       <label for="buff_stats">+5% all stats<input type="checkbox" id="buff_stats"  <%= buffs.attr('stats') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_mastery">+5 mastery<input type="checkbox" id="buff_mastery"  <%= buffs.attr('mastery') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_mastery">+550 mastery<input type="checkbox" id="buff_mastery"  <%= buffs.attr('mastery') ? 'checked="checked"' : '' %> /></label>
       <label for="buff_haste">+5% haste<input type="checkbox" id="buff_haste"  <%= buffs.attr('haste') ? 'checked="checked"' : '' %> /></label>
       <label for="buff_crit">+5% crit chance<input type="checkbox" id="buff_crit"  <%= buffs.attr('crit') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_mult">+5% multistrike<input type="checkbox" id="buff_mult"  <%= buffs.attr('mult') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_vers">+3% versatility<input type="checkbox" id="buff_vers"  <%= buffs.attr('vers') ? 'checked="checked"' : '' %> /></label>
       <label for="buff_sp">+10% spellpower<input type="checkbox" id="buff_sp"  <%= buffs.attr('sp') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_armor">-12% armor<input type="checkbox" id="buff_armor"  <%= buffs.attr('armor') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_spelldam">+5% spell damage<input type="checkbox" id="buff_spelldam"  <%= buffs.attr('spelldam') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_intfood">Pandaren Banquet<input type="checkbox" id="buff_intfood"  <%= buffs.attr('intfood') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_raid25">25 man raid<input type="checkbox" id="buff_raid25"  <%= buffs.attr('raid25') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_secondary_food">Food type<input type="checkbox" id="buff_secondary_food"  <%= buffs.attr('secondary_food') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_raidsize">Raid Size<input type="input" id="buff_raidsize"  value="<%= buffs.attr('raidsize'); %>" /></label>
     </div></li>
     <li><a class="expandOff">Personal Buffs</a>
     <div>
       <label for="buff_intflask">Int flask<input type="checkbox" id="buff_intflask"  <%= buffs.attr('intflask') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_crit_meta">Crit Effect Meta Gem<input type="checkbox" id="buff_crit_meta"  <%= buffs.attr('crit_meta') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_mana_meta">Extra Mana Meta Gem<input type="checkbox" id="buff_mana_meta"  <%= buffs.attr('mana_meta') ? 'checked="checked"' : '' %> /></label>
       <label for="buff_stat_trinket">Stat Increasing Trinket<input type="checkbox" id="buff_stat_trinket"  <%= buffs.attr('stat_trinket') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_focus_pot">Use Focus Pot Instead<input type="checkbox" id="buff_focus_pot"  <%= buffs.attr('focus_pot') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_darkglow">Darkglow Embroidery<input type="checkbox" id="buff_darkglow"  <%= buffs.attr('darkglow') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_channeled_pot">Use Focus Pot Instead<input type="checkbox" id="buff_channeled_pot"  <%= buffs.attr('channeled_pot') ? 'checked="checked"' : '' %> /></label>
+      <label for="buff_weapon_enchant">Weapon enchant<select name="weapon_enchant">
+        <option value="spirit" checked>Spirit</option>
+        <option value="crit">Critical Strike</option>
+        <option value="mast">Mastery</option>
+        <option value="haste">Haste</option>
+        <option value="multi">Multistrike</option>
+        <option value="vers">Versatility</option>
+      </select></label>
       <label for="trinket1">Trinket 1<select name="trinket1">
         <% buffs.trinkets.each(function(trinket, ind) { %>
           <option value="<%= ind %>"><%= trinket.name %></option>
