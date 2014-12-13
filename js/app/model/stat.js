@@ -1,16 +1,18 @@
 define(['can'], function(can) {
     var STATS = [
         {
-            id: 1, 
+            id: 1,
             name: 'standard',
-            bint: 21512,
-            bspi: 11460,
-            bmast: 3770,
-            bcrit: 6288,
-            bhaste: 2195,
-            bweapon: 8926,
-            bwspeed: 3.3,
-            bwdps: 1643
+            bint: 3222,
+            bspi: 1033,
+            bmast: 349,
+            bcrit: 574,
+            bhaste: 577,
+            bmult: 250,
+            bvers: 366,
+            bweapon: 956,
+            bwspeed: 3,
+            bwdps: 115
         }
     ],
         stat = new can.Observe(STATS[0]);
