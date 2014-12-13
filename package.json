@@ -1,0 +1,30 @@
+{
+   "name": "healcalc",
+   "version": "1.0.1",
+   "description": "HealCalc: The healing calculator for World of Warcraft",
+   "scripts": {
+      "lint": "eslint base",
+      "bundle": "browserify bundlePre.js -o bundle.js",
+      "start": "serv"
+   },
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/skiadas/HealCalc3.git"
+   },
+   "keywords": [
+   ],
+   "author": {
+      "name": "Haris Skiadas",
+      "url": "https://github.com/skiadas/"
+   },
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/skiadas/HealCalc3/issues"
+   },
+   "homepage": "https://github.com/HealCalc3",
+   "devDependencies": {
+   },
+   "dependencies": {
+      "browserify": "*"
+   }
+}
