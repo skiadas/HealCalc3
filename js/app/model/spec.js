@@ -638,7 +638,7 @@ define(['can'], function(can) {
 
     // DISC
     spcs[0].attr({
-        mastery_factor: 0.8,
+        mastery_factor: 1.6,
         evang_stacks: 5,
         archangel: false,
         cascade_targets_disc: 15,
