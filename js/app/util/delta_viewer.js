@@ -27,7 +27,11 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
             var el = this.el;
             var sp = this.sp;
             var del = this.options.delta;
-            var secondary_stats = { 'int': false, 'sp': false, 'crit': true, 'haste': true, 'mast': true, 'spi': true };
+            var secondary_stats = {
+                'int': false, 'sp': false, 'crit': true,
+                'haste': true, 'mast': true, 'spi': true,
+                'multi': true, 'vers': true
+            };
             this.options.measure = $(el).data('colinfo').name;
             var colfun = $(el).data('colinfo').fun;
             var base = sp[colfun]();
@@ -65,7 +69,7 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
                 delta['res'] = Math.roundn((newRes - base)/base * 100, 2);
                 return delta;
             };
-            $.each(['int','sp','crit','haste','mast', 'spi'], function(_, stat) {
+            $.each(['int','sp','crit','haste','mast', 'spi', 'multi', 'vers'], function(_, stat) {
                 var delta = {};
                 delta[stat] = del * ( secondary ? (secondary_stats[stat] ? 2 : 1): 1);
                 results[stat] = Math.roundn((sp[colfun](delta) - base)/base * 100, 2);
