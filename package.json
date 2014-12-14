@@ -4,7 +4,7 @@
    "description": "HealCalc: The healing calculator for World of Warcraft",
    "scripts": {
       "lint": "eslint base",
-      "bundle": "browserify bundlePre.js -o bundle.js",
+      "build": "node r.js -o build.js",
       "start": "serv"
    },
    "repository": {
