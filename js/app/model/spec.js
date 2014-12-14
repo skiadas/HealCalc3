@@ -373,7 +373,7 @@ define(['can'], function(can) {
                     1.05 *
                     (this.attr('buffs.stats') ? 1.05 : 1) *
                     (
-                        1042 +  // All classes get base int at lvl 100
+                        // 1042 +  // This should already be in the displayed value
                         this.attr('stats.bint') * 1 +
                         ( ( delta && delta.int ) || 0 ) +
                         ( this.attr('buffs.intflask') ? 250 : 0 ) +
