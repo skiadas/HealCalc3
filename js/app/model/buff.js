@@ -1,19 +1,19 @@
 define(['can'], function(can) {
 
     var buffs = new can.Observe({
-        stats: true,
-        mastery: true,
-        haste: true,
-        crit: true,
-        sp: true,
-        mult: true,
-        vers: true,
-        secondary_food: true,
-        intflask: true,
+        stats: false,
+        mastery: false,
+        haste: false,
+        crit: false,
+        sp: false,
+        multi: false,
+        vers: false,
+        secondary_food: false,
+        intflask: false,
         stat_trinket: false,
-        channeled_pot: true,
+        channeled_pot: false,
         weapon_enchant: 'spirit',
-        raidsize: 20,
+        raid_size: 20,
         trinkets: [
             {
                 name: 'None',
