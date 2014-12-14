@@ -11,7 +11,7 @@ define(['can'], function(can) {
         secondary_food: true,
         intflask: true,
         stat_trinket: false,
-        focus_pot: true,
+        channeled_pot: true,
         weapon_enchant: 'spirit',
         raidsize: 20,
         trinkets: [
