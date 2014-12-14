@@ -1,0 +1,15 @@
+<label for="evang_stacks">Evangelism Stacks<input name="evang_stacks" type="input" value="<%= spec.attr('evang_stacks')  %>" /></label>
+<label for="archangel">Assume Archangel<input name="archangel" type="checkbox" <%= spec.attr('archangel') ? 'checked="checked"' : ''  %>  /></label>
+<label for="cascade_range_disc">Avg Cascade Range<input name="cascade_range_disc" type="input" value="<%== spec.attr('cascade_range_disc') %>" title="Maximum effect at 30 yards" /></label>
+<label for="poh_targets_disc">PoH Targets<input name="poh_targets_disc" type="input" value="<%== spec.attr('poh_targets_disc') %>" /></label>
+<label for="glyph_pom_disc">Glyph of PoM<input name="glyph_pom_disc" type="checkbox" <%= spec.attr('glyph_pom_disc') ? 'checked="checked"' : ''  %> /></label>
+<label for="glyph_penance">Glyph of Penance<input name="glyph_penance" type="checkbox" <%= spec.attr('glyph_penance') ? 'checked="checked"' : ''  %> /></label>
+<label for="hfpm">Holy Fires per min: <input name="hfpm" type="input" value="<%== spec.attr('hfpm') %>" /></label>
+<label>Level 45 talent
+<select>
+  <option value="fdcl" <%= (spec.attr('talent45_disc') === 'fdcl') ? 'selected="selected"' : '' %>>FDCL</option>
+  <option value="mb" <%= (spec.attr('talent45_disc') === 'mb') ? 'selected="selected"' : '' %>>Mindbender</option>
+  <option value="solace" <%= (spec.attr('talent45_disc') === 'solace') ? 'selected="selected"' : '' %>>Solace</option>
+</select>
+</label>
+
