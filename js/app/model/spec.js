@@ -645,6 +645,19 @@ define(['can'], function(can) {
         mastery_factor: 1.6,
         evang_stacks: 5,
         archangel: false,
+        fcrit: function(delta) {
+            return (
+                Math.roundn(
+                    5 +   // 5% base crit
+                    (
+                        this.attr('stats.bcrit') * 0.00909 +
+                        ( (delta && delta.crit) || 0 ) * 0.00909 +
+                        ( this.attr('buffs.weapon_enchant') === 'crit' ? 500 * 0.35 : 0 ) +
+                        ( this.attr('buffs.crit') ? 5 : 0 )
+                    ) * 1.05,  // Disc gets more crit
+                2 )
+            );
+        },
         cascade_targets_disc: 15,
         divinestar_targets_disc: 8,
         halo_targets_disc: 15,
