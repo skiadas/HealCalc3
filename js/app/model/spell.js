@@ -188,7 +188,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2.5,
             base_mana: 5040,
-            c: 6,
+            c: 6 * 1.1 * 1.3,
             img: 'ability_priest_clarityofwill',
             aoe: false,
             instant: false,
