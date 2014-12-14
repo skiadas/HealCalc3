@@ -454,9 +454,11 @@ define(['can'], function(can) {
         },
         fmulti: function(delta) {
             return (
-                this.attr('stats.bmulti') * 0.01514 +
-                ( (delta && delta.multi) || 0 ) * 0.01514 +
-                ( this.attr('buffs.multi') ? 5 : 0 )
+                Math.roundn(
+                    this.attr('stats.bmulti') * 0.01514 +
+                    ( (delta && delta.multi) || 0 ) * 0.01514 +
+                    ( this.attr('buffs.multi') ? 5 : 0 ),
+                2 )
             );
         },
         fmultip: function(delta) {
@@ -464,9 +466,11 @@ define(['can'], function(can) {
         },
         fvers: function(delta) {
             return (
-                this.attr('stats.bvers') * 0.00769 +
-                ( (delta && delta.vers) || 0 ) * 0.00769 +
-                ( this.attr('buffs.vers') ? 3 : 0 )
+                Math.roundn(
+                    this.attr('stats.bvers') * 0.00769 +
+                    ( (delta && delta.vers) || 0 ) * 0.00769 +
+                    ( this.attr('buffs.vers') ? 3 : 0 ),
+                2 )
             );
         },
         fversp: function(delta) {
