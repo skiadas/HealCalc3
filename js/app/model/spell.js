@@ -207,19 +207,6 @@ define(['can'], function(can) {
             instant: false,
             item: 155274
         },
-        {
-            id: 16,
-            code: 'WordsOfMending',
-            name: 'Words of Mending',
-            specid: 1,
-            base_ct: 1.5,
-            base_mana: 0,
-            c: 6.3,
-            img: 'ability_priest_wordsofmeaning',
-            aoe: false,
-            instant: true,
-            item: 152117
-        },
     ]
     var FIXME = [
         //
