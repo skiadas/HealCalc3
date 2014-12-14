@@ -21,7 +21,11 @@ define(['can', 'text!view/buffs.ejs'], function(can, view) {
             var val = $(el).val(),
                 key = el.attr('name'),
                 buffs = this.options.buffs;
-            this.options.buffs.attr(key, buffs.trinkets[val]);
+            if (key == 'weapon_enchant') {
+                this.options.buffs.attr(key, val);
+            } else {
+                this.options.buffs.attr(key, buffs.trinkets[val]);
+            }
         },
     })
     return Buffs;
