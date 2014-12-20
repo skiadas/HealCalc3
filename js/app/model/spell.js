@@ -1742,6 +1742,15 @@ define(['can'], function(can) {
         ftargets: function(delta) {
             return ( 1 * this.spec.poh_targets_disc );
         },
+        fheal: function(delta) {
+            var crit = Math.min(this.spec.fcritp(delta) + 0.1, 1);
+            return (
+                this.fbase(delta) *
+                ( 1 + crit ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 + this.spec.fmastp(delta) * crit )
+            );
+        }
     });
 
     spls.find('HolyFireDisc').attr({
