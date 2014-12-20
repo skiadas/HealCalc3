@@ -707,43 +707,31 @@ define(['can'], function(can) {
     // DRUID
     spcs[3].attr({
         mastery_factor: 1.25,
-        fint: function(delta) {
+        fhaste: function(delta) {
             return (
-                Math.roundn(
+                (
                     (
-                        this.attr('bint') + // The base int does not get multiplied
-                        ( this.attr('buffs.stats') ? 1.1 : 1 ) *
+                        ( 1 +
                             (
-                                1 * this.attr('stats.bint') -
-                                this.attr('bint') +
-                                ( ( delta && delta.int ) || 0 ) +
-                                ( this.attr('buffs.secondary_food') ? 275 : 0 ) +
-                                ( this.attr('buffs.intflask') ? 1000 : 0 ) +
-                                ( this.attr('buffs.trinket1.int') *
-                                        this.attr('buffs.trinket1.uptime') ) +
-                                ( this.attr('buffs.trinket2.int') *
-                                        this.attr('buffs.trinket2.uptime') )
-                            )
-                    ) *
-                    1.05 *
-                    ( this.attr('hotw') ? 1.06 : 1 )   // But HotW does affect it!
-                )
+                                this.attr('stats.bhaste') * 1 +
+                                ( (delta && delta.haste) || 0 )
+                            ) *
+                            (this.attr('monk_haste') ? 1.5 : 1) *
+                            0.0001 *
+                            1.05 // Druids get more haste stat
+                        ) *
+                        this.fhaste_mul()
+                    ) - 1
+                ) * 100
             );
         },
         incarnation: false,
-        hotw: false,
-        wm_bloom_time: 15,
-        efflo_wm: true,
-        wm_rj: 1,
+        germination: true,
         glyph_wild_growth: true,
         glyph_blooming: false,
-        glyph_efflo: true,
         glyph_regrowth: true,
         glyph_rejuv: false,
-        glyph_innervate: false,
-        t14_2p_druid: false,
-        t16_2p_druid: false,
-        t16_4p_druid: false
+        healing_touch_with_ns: false
     });
 
     // Lifebloom option for 1 or 3 stacks

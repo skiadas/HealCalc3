@@ -207,6 +207,150 @@ define(['can'], function(can) {
             instant: false,
             item: 155274
         },
+        //
+        // DRUID
+        //
+        {
+            id: 201,
+            code: 'HealingTouch',
+            name: 'Healing Touch',
+            specid: 4,
+            base_ct: 2.5,
+            base_mana: 3312,
+            c: 3.6,
+            img: 'spell_nature_healingtouch',
+            aoe: false,
+            instant: false,
+            item: 5185
+        },
+        {
+            id: 202,
+            code: 'Regrowth',
+            name: 'Regrowth',
+            specid: 4,
+            base_ct: 1.5,
+            base_mana: 5962,
+            c: 2.1871,
+            ctick: 0.546264,
+            nticks: 6,
+            time_tick: 2,
+            img: 'spell_nature_resistnature',
+            aoe: false,
+            instant: false,
+            item: 8936
+        },
+        {
+            id: 203,
+            code: 'Rejuv',
+            name: 'Rejuvenation',
+            specid: 4,
+            base_ct: 1.5,
+            base_mana: 3024,
+            ctick: 2.28,
+            nticks: 5,
+            time_tick: 3,
+            img: 'spell_nature_rejuvenation',
+            aoe: false,
+            instant: true,
+            item: 774
+        },
+        {
+            id: 204,
+            code: 'Lifebloom',
+            name: 'Lifebloom',
+            specid: 4,
+            base_ct: 1.5,
+            base_mana: 1440,
+            c: 2.011,
+            ctick: 5.52,
+            nticks: 15,
+            time_tick: 1,
+            img: 'inv_misc_herb_felblossom',
+            aoe: false,
+            instant: true,
+            item: 94447
+        },
+        {
+            id: 205,
+            code: 'WildGrowth',
+            name: 'Wild Growth',
+            specid: 4,
+            base_ct: 1.5,
+            base_mana: 12080,
+            ctick: 2.8,
+            nticks: 7,
+            time_tick: 1,
+            targets: 5,
+            img: 'ability_druid_flourish',
+            aoe: true,
+            instant: true,
+            item: 48438
+        },
+        {
+            id: 206,
+            code: 'Swiftmend',
+            name: 'Swiftmend',
+            specid: 4,
+            base_ct: 1.5,
+            base_mana: 4160,
+            c: 3.5,
+            targets: 1,
+            img: 'inv_relics_idolofrejuvenation',
+            aoe: false,
+            instant: true,
+            item: 18562
+        },
+        {
+            id: 208,
+            code: 'Mushroom',
+            name: 'Wild Mushroom',
+            specid: 4,
+            base_ct: 1.5,
+            base_mana: 6912,
+            ctick: 7.15,
+            time_tick: 2,
+            nticks: 15,
+            targets: 3,
+            img: 'druid_ability_wildmushroom_b',
+            aoe: true,
+            instant: true,
+            item: 102792
+        },
+        {
+            id: 209,
+            code: 'Tranquility',
+            name: 'Tranquility',
+            specid: 4,
+            base_ct: 8,
+            base_mana: 5888,
+            ctick: 2.502,
+            nticks: 4,
+            time_tick: 2,
+            img: 'spell_nature_tranquility',
+            aoe: true,
+            instant: false,
+            item: 740
+        },
+        // {
+        //     id: 202,
+        //     code: 'ForceOfNature',
+        //     name: 'Force of Nature',
+        //     specid: 4,
+        //     base_ct: 1.5,
+        //     base_mana: 0,
+        //     Btick: 3501.6,
+        //     ctick: 0.3214,
+        //     nticks: 6,
+        //     time_tick: 2.5,
+        //     duration: 15,
+        //     targets: 1,
+        //     img: 'ability_druid_forceofnature',
+        //     aoe: true,
+        //     instant: true,
+        //     item: 106737
+        // },
+
+
     ]
     var FIXME = [
         //
@@ -466,176 +610,6 @@ define(['can'], function(can) {
             aoe: true,
             instant: true,
             item: 88686
-        },
-
-        //
-        // DRUID
-        //
-        {
-            id: 30,
-            code: 'HealingTouch',
-            name: 'Healing Touch',
-            specid: 4,
-            base_ct: 2.5,
-            base_mana: 17340,
-            B: 20130,
-            c: 1.86,
-            img: 'spell_nature_healingtouch',
-            aoe: false,
-            instant: false,
-            item: 5185
-        },
-        {
-            id: 31,
-            code: 'ForceOfNature',
-            name: 'Force of Nature',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 0,
-            Btick: 3501.6,
-            ctick: 0.3214,
-            nticks: 6,
-            time_tick: 2.5,
-            duration: 15,
-            targets: 1,
-            img: 'ability_druid_forceofnature',
-            aoe: true,
-            instant: true,
-            item: 106737
-        },
-        {
-            id: 32,
-            code: 'Nourish',
-            name: 'Nourish',
-            specid: 4,
-            base_ct: 2.5,
-            base_mana: 6120,
-            B: 6649.5,
-            c: 0.614,
-            img: 'ability_druid_nourish',
-            aoe: false,
-            instant: false,
-            item: 50464
-        },
-        {
-            id: 33,
-            code: 'Regrowth',
-            name: 'Regrowth',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 17820,
-            B: 10383.5,
-            c: 0.958,
-            Btick: 787,
-            ctick: 0.073,
-            nticks: 3,
-            time_tick: 2,
-            img: 'spell_nature_resistnature',
-            aoe: false,
-            instant: false,
-            item: 8936
-        },
-        {
-            id: 34,
-            code: 'Rejuv',
-            name: 'Rejuvenation',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 8700, // was 9600 before 5.2
-            Btick: 4234,
-            ctick: 0.392,
-            nticks: 4,
-            time_tick: 3,
-            img: 'spell_nature_rejuvenation',
-            aoe: false,
-            instant: true,
-            item: 774
-        },
-        {
-            id: 35,
-            code: 'Lifebloom',
-            name: 'Lifebloom',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 3540,
-            B: 8150,
-            c: 0.752,
-            Btick: 621,
-            ctick: 0.057,
-            nticks: 15,
-            time_tick: 1,
-            img: 'inv_misc_herb_felblossom',
-            aoe: false,
-            instant: true,
-            item: 94447
-        },
-        {
-            id: 36,
-            code: 'WildGrowth',
-            name: 'Wild Growth',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 13740,
-            Btick: 990,
-            ctick: 0.092,
-            nticks: 7,
-            time_tick: 1,
-            targets: 5,
-            img: 'ability_druid_flourish',
-            aoe: true,
-            instant: true,
-            item: 48438
-        },
-        {
-            id: 37,
-            code: 'Swiftmend',
-            name: 'Swiftmend',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 6120,
-            Btick: 13966,
-            ctick: 1.29,
-            nticks: 7,
-            time_tick: 1,
-            targets: 1,
-            img: 'inv_relics_idolofrejuvenation',
-            aoe: true,
-            instant: true,
-            item: 18562
-        },
-        {
-            id: 38,
-            code: 'Mushrooms',
-            name: 'Wild Mushrooms',
-            specid: 4,
-            base_ct: 1.5,
-            base_mana: 6120,
-            B: 13398,
-            c: 1.242,
-            targets: 6,
-            img: 'druid_ability_wildmushroom_b',
-            aoe: true,
-            instant: true,
-            item: 102792
-        },
-        {
-            id: 39,
-            code: 'Tranquility',
-            name: 'Tranquility',
-            specid: 4,
-            base_ct: 8,
-            base_mana: 16260,
-            B: 9037,
-            c: 0.835,
-            Btick: 1542,
-            ctick: 0.142,
-            nticks: 4,
-            time_tick: 2,
-            targets: 5,
-            img: 'spell_nature_tranquility',
-            aoe: true,
-            instant: false,
-            item: 740
         },
 
         //
@@ -1417,10 +1391,10 @@ define(['can'], function(can) {
                    1.3;  // Grace
         },
         fbase_druid: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                1.1   // Buff from 5.2
-            );
+            return (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
+                   ( 1 + this.spec.fmastp(delta) ) *
+                   ( 1 + 1 * this.spec.fversp(delta) ) *
+                   1.1;
         },
         fbase_holy_sth: function(delta) {
             return (
@@ -1487,7 +1461,7 @@ define(['can'], function(can) {
             );
         },
         fheal: function(delta) {
-            // The average heal amount, including crits and mastery.
+            // The average heal amount, including crits and multistrike.
             return (
                 this.fbase(delta) *
                 ( 1 + this.spec.fcritp(delta) ) *
@@ -1589,17 +1563,8 @@ define(['can'], function(can) {
         fheal_living_seed: function(delta) {
             return (
                 this.fbase(delta) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                (
-                    1 +
-                    (
-                        -1 +
-                            2 *
-                            (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
-                            1.3
-                    ) *
-                    this.spec.fcritp(delta)
-                )
+                ( 1 + 2 * this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) )
             );
         },
         fheal_monk: function(delta) {
@@ -2084,48 +2049,38 @@ define(['can'], function(can) {
         },
     });
     //END HOLY Spells setup
-
+*/
 
 
     //DRUID Spells setup
-    spls.find('Nourish').attr({
+    spls.find('HealingTouch').attr({
         fct: function(delta) {
             return (
-                (
-                    this.base_ct *
-                    (this.spec.attr('glyph_rejuv') ? 0.7 : 1)
+                ( this.spec.attr('healing_touch_with_ns') ?
+                    1.5 :
+                    (
+                        this.base_ct *
+                        (this.spec.attr('glyph_rejuv') ? 0.9 : 1)
+                    )
                 ) /
                 ( 1 + this.spec.fhastep(delta) )
             );
         },
+        fmana: function(delta) {
+            return ( this.spec.attr('healing_touch_with_ns') ? 0 : this.base_mana )
+        },
         fbase: function(delta) {
             return (
                 this.fdirect(delta) *
-                1.2 *   // Buff from 3 Rejuvs
-                1.1     // 5.2 buff
+                ( 1 + this.spec.fmastp(delta) ) *
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                1.1 *
+                ( this.spec.attr('healing_touch_with_ns') ? 1.5 : 1 )
             );
         },
         fheal: function(delta) {
             return ( this.fheal_living_seed(delta) );
         },
-    });
-
-    spls.find('HealingTouch').attr({
-        fmana: function(delta) {
-            return ( this.spec.t16_2p_druid ? 0 : this.base_mana );
-        },
-        fhpm: function(delta) {
-            return ( this.spec.t16_2p_druid ? 0 : this.fheal(delta) / this.fmana(delta) );
-        },
-        fct: function(delta) {
-            return (
-                (this.spec.t16_2p_druid ? 1.5 : this.base_ct) /
-                ( 1 + this.spec.fhastep(delta) )
-            );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_living_seed(delta) );
-        }
     });
 
     spls.find('Regrowth').attr({
@@ -2134,82 +2089,47 @@ define(['can'], function(can) {
                 (
                     this.fdirect(delta) +
                     (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta))
-                ) * 1.1  // 5.2 Buff
+                ) *
+                ( 1 + this.spec.fmastp(delta) ) *
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                1.1
             );
         },
         fheal: function(delta) {
             var crit = (
-                        this.spec.attr('glyph_regrowth') ?
-                        1 :
-                        ( Math.min(this.spec.fcritp(delta) + 0.6, 1) )
-                       );
+                this.spec.attr('glyph_regrowth') ?
+                1 :
+                ( Math.min(this.spec.fcritp(delta) + 0.6, 1) )
+            );
             return (
+                (
+                    this.fdirect(delta) * ( 1 + 2 * crit ) + // Living seed on direct
+                        (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta)) *
+                        ( 1 + this.spec.fcritp(delta) )
+                ) *
                 ( 1 + this.spec.fmastp(delta) ) *
-                (
-                    this.fbase(delta) *
-                    (
-                        1 +
-                            (
-                                -1 +
-                                    2 * crit *
-                                    (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                            )
-                    ) + // Living seed only looks at direct heal part
-                    // But should it not care about the glyph of regrowth?
-                    // FIXME?
-                    this.fdirect(delta) *
-                    (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
-                    0.6 * crit
-                )
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                1.1
             );
         },
-    });
-
-    spls.find('Rejuv').attr({
-        fmana: function(delta) {
-            return (
-                Math.roundn(
-                    this.base_mana *
-                    (this.spec.attr('t14_2p_druid') ? 0.9 : 1)
-                )
-            );
-        },
-        fct: function(delta) { return ( 1 ); },
-        fnticks: function(delta) {
-            var ntick = Math.roundn(
-                    this.nticks * this.time_tick / this.ftick_time(delta)
-                );
-                // If t15 set bonus, we count the ticks including the extra healing from the bonus
-                // FIXME: Does the initial heal get affected by that? Guess is no
-            return (
-                1 +
-                (
-                    this.spec.attr('t15_4p_druid')
-                    ?
-                        (Math.pow(1.06, ntick) - 1) / (1.06 - 1)   // Sum of powers of 1.06
-                    :
-                        ntick
-                )
-            );
-        }
     });
 
     spls.find('Lifebloom').attr({
-        fnticks: function(delta) {
+        fhot: function(delta) {
             return (
-                Math.roundn(
-                    (
-                        this.nticks -
-                        (this.spec.attr('glyph_blooming') ? 5 : 0)
-                    ) *
-                    this.time_tick /
-                    this.ftick_time(delta)
-                )
+                this.ctick *
+                (
+                    this.nticks -
+                    (this.spec.attr('glyph_blooming') ? 5 : 0)
+                ) / this.nticks *
+                 this.spec.fsp(delta) * this.ftargets(delta) *
+                (1 + this.spec.fhastep(delta))
             );
         },
         fdirect: function(delta) {
             return (
-                ( this.B + this.c * this.spec.fsp(delta)) *
+                this.c * this.spec.fsp(delta) * this.ftargets(delta) *
                 (this.spec.attr('glyph_blooming') ? 1.5 : 1)
             );
         },
@@ -2218,7 +2138,10 @@ define(['can'], function(can) {
                 (
                     this.fdirect(delta) +
                     this.fhot(delta)
-                ) * 1.1 // 5.2 Buff
+                ) *
+                ( 1 + this.spec.fmastp(delta) ) *
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                1.1
             );
         }
     });
@@ -2226,153 +2149,38 @@ define(['can'], function(can) {
     spls.find('WildGrowth').attr({
         fhot: function(delta) {
             return (
-                ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
-                (
-                    5 +
-                    (this.spec.attr('glyph_wild_growth') ? 1 : 0) +
-                    (this.spec.attr('incarnation') ? 2 : 0)
-                ) *
-                this.fnticks(delta)
+                this.ctick *
+                (1 + 1 / this.nticks) * // One extra tick
+                this.spec.fsp(delta) * this.ftargets(delta)
             );
         },
-        fheal: function(delta) {
-            // The average heal amount, including crits and mastery.
-            return (
-                (
-                    this.fbase(delta) *
-                    ( 1 + 1 * this.spec.fmastp(delta) ) +
-                    (this.spec.t16_4p_druid ? 0.33 * this.spec.sp : 0)
-                ) *
-                (
-                    1 +
-                        (
-                            -1 +
-                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
-                )
-
-            );
-        },
-
-    });
-
-    spls.find('Swiftmend').attr({
-        fnticks: function(delta) {
-            return (
-                1 +
-                    (
-                        this.spec.glyph_efflo ?
-                        0 :
-                        (
-                            0.12 *
-                            (this.spec.t15_2p_druid ? 4 : 3) *
-                            Math.roundn(
-                                this.nticks *
-                                this.time_tick /
-                                this.ftick_time(delta)
-                            )
-                        )
-                    )
-            );
-        },
-        fheal: function(delta) {
-            return (
-                (this.spec.glyph_efflo ? 1.2 : 1) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                (
-                    this.fbase(delta) *
-                    (
-                        1 +
-                            ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                            this.spec.fcritp(delta)
-                    ) +
-
-                    ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
-                    0.6 *
-                    (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
-                    this.spec.fcritp(delta)
-                )
-            );
-        }
-    });
-
-    spls.find('Efflorescence').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
-        fbase: function(delta) {
-            return (
-                ( this.Btick + this.ctick * this.spec.fsp(delta) )
-                * this.ftargets(delta)
-            );
-        }
-    });
-    spls.find('Mushrooms').attr({
-        fheal: function(delta) {
-            var rj = spls.find('Rejuv').fheal(delta);
-            var efflo = spls.find('Efflorescence').fheal(delta);
-            var efflo_tick = spls.find('Efflorescence').ftick_time(delta);
-            return (
-                ( 1 + this.spec.fmastp(delta) ) *
-                this.fbase(delta)
-                + this.spec.wm_rj * rj  // Include full rejuvs
-                + ( (this.spec.glyph_efflo && this.spec.efflo_wm) ?
-                    (efflo * (1 * this.spec.wm_bloom_time - 3) / efflo_tick) : 0
-                  )
-            );
+        ftargets: function(delta) {
+            return this.targets + (this.spec.attr('glyph_wild_growth') ? 1 : 0);
         }
     });
 
     spls.find('Tranquility').attr({
-        fheal: function(delta) {
-            var nticks = this.fnticks(delta);
+        fhot: function(delta) {
             return (
-                (
-                    this.fdirect(delta) * nticks +
-                        (
-                            -3 +
-                            3 * nticks +
-                            3 * nticks
-                        ) *
-                        ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
-                        ( this.spec.buffs.raid25 ? 12 : 5)
-                ) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                )
+                this.ctick * this.spec.fsp(delta) * this.ftargets(delta)
             );
+        },
+        ftargets: function(delta) {
+            return this.spec.buffs.raid_size * 1;
         }
     });
 
-    spls.find('ForceOfNature').attr({
-        fnticks: function(delta) {
-            return ( this.fnticks_shaman_aoe(delta) );
-        },
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
-        fbase: function(delta) {
-            return ( this.fhot(delta) );
-        },
-        fheal: function(delta) {
-            var sm = spls.find('Swiftmend').fheal(delta);
+    spls.find('Rejuv').attr({
+        fhot: function(delta) {
             return (
-                this.fbase(delta) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                ) + 0.16 * sm
+                this.ctick * this.spec.fsp(delta) * this.ftargets(delta) *
+                (this.spec.attr('germination') ? 1 + 2/4 : 1 + 1/4)
             );
-        }
+        },
     });
     //END DRUID Spells setup
 
-
+/*
 
     // PALLY Spells setup
     spls.find('HolyLight').attr({
