@@ -207,6 +207,35 @@ define(['can'], function(can) {
             instant: false,
             item: 155274
         },
+        {
+            id: 16,
+            code: 'EmpPoHDisc',
+            name: 'Empowered PoH',
+            specid: 1,
+            base_ct: 2.5,
+            base_mana: 11405,
+            targets: 5,
+            c: 2.21664,
+            img: 'spell_holy_prayerofhealing02',
+            aoe: true,
+            instant: false,
+            item: 596
+        },
+        {
+            id: 17,
+            code: 'EmpFhealDisc',
+            name: 'Empowered FH',
+            specid: 1,
+            base_ct: 1.5,
+            base_mana: 6560,
+            c: 3.32657 * 1.25 * 1.1,
+            img: 'spell_holy_flashheal',
+            aoe: false,
+            instant: false,
+            item: 2061
+        },
+
+
         //
         // DRUID
         //
@@ -1692,6 +1721,17 @@ define(['can'], function(can) {
     //
     //
     // DISC Spells setup
+    spls.find('EmpFhealDisc').attr({
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                2 *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 + this.spec.fmastp(delta) * 1 )
+            );
+        }
+    });
+
     spls.find('CascadeDisc').attr({
         ftargets: function(delta) {
             return (
@@ -1749,6 +1789,19 @@ define(['can'], function(can) {
                 ( 1 + crit ) *
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
                 ( 1 + this.spec.fmastp(delta) * crit )
+            );
+        }
+    });
+    spls.find('EmpPoHDisc').attr({
+        ftargets: function(delta) {
+            return ( 1 * this.spec.poh_targets_disc );
+        },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                2 *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 + this.spec.fmastp(delta) * 1 )
             );
         }
     });
