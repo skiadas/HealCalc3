@@ -643,8 +643,8 @@ define(['can'], function(can) {
     // DISC
     spcs[0].attr({
         mastery_factor: 1.6,
-        evang_stacks: 5,
-        archangel: false,
+        aa_stacks: 5,
+        aa_uptime: 0,
         fcrit: function(delta) {
             return (
                 Math.roundn(

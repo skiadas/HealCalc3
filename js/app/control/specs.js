@@ -1,8 +1,8 @@
 define(['can', 'text!view/specs.ejs',
     'text!view/specsDisc.ejs', 'text!view/specsHoly.ejs', 'text!view/specsDruid.ejs',
     'text!view/specsPally.ejs', 'text!view/specsMonk.ejs', 'text!view/specsShaman.ejs'
-], function(can, view, 
-    specsDiscView, specsHolyView, specsDruidView, 
+], function(can, view,
+    specsDiscView, specsHolyView, specsDruidView,
     specsPallyView, specsMonkView, specsShamanView
     ) {
     can.view.ejs('specsView', view);
@@ -29,17 +29,8 @@ define(['can', 'text!view/specs.ejs',
         'select change': function(el, ev) {
            var spec = el.closest('div.spec').data('spec');
            var val = $(el).val();
-           switch (val) {
-           case 'inner_fire':
-           case 'inner_will':
-               spec.attr('inner_fire', spec.attr('inner_fire') ? false : true);
-               break;
-           case 'mb':
-           case 'solace':
-           case 'fdcl':
-               spec.attr('talent45_' + spec.name.toLowerCase(), val);
-               break;
-           }
+           var attrName = $(el).attr('name');
+           spec.attr(attrName, val);
            this.options.specs.val_update();
         },
         'input change': function(el, ev) {
