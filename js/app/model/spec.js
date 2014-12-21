@@ -645,6 +645,7 @@ define(['can'], function(can) {
         mastery_factor: 1.6,
         aa_stacks: 5,
         aa_uptime: 0,
+        borrowed_time_uptime: 0,
         fcrit: function(delta) {
             return (
                 Math.roundn(
@@ -656,6 +657,23 @@ define(['can'], function(can) {
                         ( this.attr('buffs.crit') ? 5 : 0 )
                     ) * 1.05,  // Disc gets more crit
                 2 )
+            );
+        },
+        fhaste: function(delta) {
+            return (
+                (
+                    (
+                        ( 1 +
+                            (
+                                this.attr('stats.bhaste') * 1 +
+                                ( (delta && delta.haste) || 0 )
+                            ) *
+                            (1 + 0.4 * this.attr('borrowed_time_uptime')) *
+                            0.0001
+                        ) *
+                        this.fhaste_mul()
+                    ) - 1
+                ) * 100
             );
         },
         cascade_targets_disc: 15,
