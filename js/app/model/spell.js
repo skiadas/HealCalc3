@@ -234,7 +234,20 @@ define(['can'], function(can) {
             instant: false,
             item: 2061
         },
-
+        {
+            id: 18,
+            code: 'HolyNova',
+            name: 'Holy Nova',
+            specid: 1,
+            base_ct: 1.5,
+            base_mana: 2560,
+            targets: 5,
+            c: 0.7313,
+            img: 'spell_holy_holynova',
+            aoe: true,
+            instant: true,
+            item: 132157
+        },
 
         //
         // DRUID
