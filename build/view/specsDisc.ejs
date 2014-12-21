@@ -1,5 +1,12 @@
-<label for="evang_stacks">Evangelism Stacks<input name="evang_stacks" type="input" value="<%= spec.attr('evang_stacks')  %>" /></label>
-<label for="archangel">Assume Archangel<input name="archangel" type="checkbox" <%= spec.attr('archangel') ? 'checked="checked"' : ''  %>  /></label>
+<label for="aa_stacks">AA Stacks<input name="aa_stacks" type="input" value="<%= spec.attr('aa_stacks')  %>" /></label>
+<label>AA Uptime
+<select name="aa_uptime">
+  <option value="0"   <%= (spec.attr('aa_uptime') == '0') ? 'selected="selected"' : '' %>>None (0%)</option>
+  <option value="0.3" <%= (spec.attr('aa_uptime') == '0.3') ? 'selected="selected"' : '' %>>Half (30%)</option>
+  <option value="0.6" <%= (spec.attr('aa_uptime') == '0.6') ? 'selected="selected"' : '' %>>Max (60%)</option>
+  <option value="1" <%= (spec.attr('aa_uptime') == '1') ? 'selected="selected"' : '' %>>Full time (100%)</option>
+</select>
+</label>
 <label for="cascade_range_disc">Avg Cascade Range<input name="cascade_range_disc" type="input" value="<%== spec.attr('cascade_range_disc') %>" title="Maximum effect at 30 yards" /></label>
 <label for="poh_targets_disc">PoH Targets<input name="poh_targets_disc" type="input" value="<%== spec.attr('poh_targets_disc') %>" /></label>
 <label for="glyph_pom_disc">Glyph of PoM<input name="glyph_pom_disc" type="checkbox" <%= spec.attr('glyph_pom_disc') ? 'checked="checked"' : ''  %> /></label>
@@ -7,7 +14,7 @@
 <label for="hfpm">Holy Fires per min: <input name="hfpm" type="input" value="<%== spec.attr('hfpm') %>" /></label>
 <label>Level 45 talent
 <select>
-  <option value="fdcl" <%= (spec.attr('talent45_disc') === 'fdcl') ? 'selected="selected"' : '' %>>FDCL</option>
+  <option value="fdcl" <%= (spec.attr('aa_uptime') === 'fdcl') ? 'selected="selected"' : '' %>>FDCL</option>
   <option value="mb" <%= (spec.attr('talent45_disc') === 'mb') ? 'selected="selected"' : '' %>>Mindbender</option>
   <option value="solace" <%= (spec.attr('talent45_disc') === 'solace') ? 'selected="selected"' : '' %>>Solace</option>
 </select>
