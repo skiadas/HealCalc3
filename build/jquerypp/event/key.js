@@ -1,13 +1,26 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
+
+	// copied from jQuery 1.8.3
+	var uaMatch = function (ua) {
+		ua = ua.toLowerCase();
+
+		var match = /(chrome)[ \/]([\w.]+)/.exec(ua) || /(webkit)[ \/]([\w.]+)/.exec(ua) || /(opera)(?:.*version|)[ \/]([\w.]+)/.exec(ua) || /(msie) ([\w.]+)/.exec(ua) || ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua) || [];
+
+		return {
+			browser: match[1] || "",
+			version: match[2] || "0"
+		};
+	}
+
 	var keymap = {},
 		reverseKeyMap = {},
-		currentBrowser = jQuery.uaMatch(navigator.userAgent).browser;
+		currentBrowser = uaMatch(navigator.userAgent).browser;
 
 
 	$.event.key = function (browser, map) {
@@ -157,7 +170,7 @@ define(['jquery'], function ($) {
 	});
 
 
-	jQuery.Event.prototype.keyName = function () {
+	$.Event.prototype.keyName = function () {
 		var event = this,
 			test = /\w/,
 			// It can be either keyCode or charCode.

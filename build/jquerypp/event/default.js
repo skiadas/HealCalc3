@@ -1,7 +1,7 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
@@ -59,11 +59,11 @@ define(['jquery'], function ($) {
 			// Caller can pass in an Event, Object, or just an event type string
 			event = typeof event === "object" ?
 			// jQuery.Event object
-			event[jQuery.expando] ? event :
+			event[$.expando] ? event :
 			// Object literal
-			new jQuery.Event(type, event) :
+			new $.Event(type, event) :
 			// Just the event type (string)
-			new jQuery.Event(type),
+			new $.Event(type),
 			res = oldTrigger.call($.event, event, data, elem, onlyHandlers),
 			paused = event.isPaused && event.isPaused();
 

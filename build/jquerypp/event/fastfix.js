@@ -1,7 +1,7 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
@@ -66,10 +66,10 @@ define(['jquery'], function ($) {
 			};
 
 		// Get all properties that should be mapped
-		jQuery.each(jQuery.event.keyHooks.props.concat(jQuery.event.mouseHooks.props).concat(jQuery.event.props), function (i, prop) {
+		$.each($.event.keyHooks.props.concat($.event.mouseHooks.props).concat($.event.props), function (i, prop) {
 			if (prop !== "target") {
 				(function () {
-					Object.defineProperty(jQuery.Event.prototype, prop, {
+					Object.defineProperty($.Event.prototype, prop, {
 						get: function () {
 							// get the original value, undefined when there is no original event
 							var originalValue = this.originalEvent && this.originalEvent[prop];
@@ -91,13 +91,13 @@ define(['jquery'], function ($) {
 			}
 		});
 
-		jQuery.event.fix = function (event) {
-			if (event[jQuery.expando]) {
+		$.event.fix = function (event) {
+			if (event[$.expando]) {
 				return event;
 			}
 			// Create a jQuery event with at minimum a target and type set
 			var originalEvent = event,
-				event = jQuery.Event(originalEvent);
+				event = $.Event(originalEvent);
 			event.target = originalEvent.target;
 			// Fix target property, if necessary (#1925, IE 6/7/8 & Safari2)
 			if (!event.target) {

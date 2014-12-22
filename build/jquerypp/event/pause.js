@@ -1,7 +1,7 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery', 'jquerypp/event/default'], function ($) {
@@ -34,19 +34,19 @@ define(['jquery', 'jquerypp/event/default'], function ($) {
 		var handleObj = this.handleObj,
 			currentTarget = this.currentTarget;
 		// temporarily overwrite special handle
-		var origType = jQuery.event.special[handleObj.origType],
+		var origType = $.event.special[handleObj.origType],
 			origHandle = origType && origType.handle;
 
 		if (!origType) {
-			jQuery.event.special[handleObj.origType] = {};
+			$.event.special[handleObj.origType] = {};
 		}
-		jQuery.event.special[handleObj.origType].handle = function (ev) {
+		$.event.special[handleObj.origType].handle = function (ev) {
 			// remove this once we have passed the handleObj
 			if (ev.handleObj === handleObj && ev.currentTarget === currentTarget) {
 				if (!origType) {
-					delete jQuery.event.special[handleObj.origType];
+					delete $.event.special[handleObj.origType];
 				} else {
-					jQuery.event.special[handleObj.origType].handle = origHandle;
+					$.event.special[handleObj.origType].handle = origHandle;
 				}
 			}
 		}

@@ -1,12 +1,12 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
 
-	var event = jQuery.event,
+	var event = $.event,
 
 		//helper that finds handlers by type and calls back a function, this is basically handle
 		// events - the events object

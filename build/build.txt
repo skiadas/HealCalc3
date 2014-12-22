@@ -58,6 +58,9 @@ spin.js
 text!view/armory.ejs
 jquerypp/lang/json.js
 jquerypp/dom/cookie.js
+text!app/util/sampleData.json
+app/util/tooltipParams.js
+app/util/dataProcessing.js
 app/util/armory.js
 text!view/haste_bar.ejs
 text!view/bpoint_rows.ejs
