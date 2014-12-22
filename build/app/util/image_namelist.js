@@ -14,6 +14,7 @@ names = [
     'ability_priest_savinggrace',
     'ability_priest_clarityofwill',
     'ability_priest_flashoflight',
+    'spell_holy_holynova',
     'ability_shaman_astralshift',
     'ability_shaman_fortifyingwaters',
     'ability_shaman_healingtide',
