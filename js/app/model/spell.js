@@ -2244,7 +2244,9 @@ define(['can'], function(can) {
     spls.find('Tranquility').attr({
         fhot: function(delta) {
             return (
-                this.ctick * this.spec.fsp(delta) * this.ftargets(delta)
+                this.ctick *
+                this.nticks *
+                this.spec.fsp(delta) * this.ftargets(delta)
             );
         },
         ftargets: function(delta) {
