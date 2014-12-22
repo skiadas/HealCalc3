@@ -43,19 +43,29 @@ define(['./tooltipParams'], function(tooltipParams) {
             });
          }
       });
-      totals.spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 10: "monk"}[data['class']];
-      totals.talents = data.talents;
-      if (totals.spec === "disc") {
-         // Detecting Holy
-         var spec1 = totals.talents[0].spec.name,
-             spec2 = totals.talents[1].spec.name,
-             primary = totals.talents[0].selected ? spec1 : spec2,
-             secondary = totals.talents[0].selected ? spec2 : spec1,
-             specLong = (primary === 'Shadow') ? secondary : primary;
-         totals.spec = {'Discipline': 'disc', 'Holy': 'holy'}[specLong];
+      var specs = [
+         { name: 'disc', class: 5, tree: 0 },
+         { name: 'holy', class: 5, tree: 1 },
+         { name: 'pally', class: 2, tree: 0 },
+         { name: 'druid', class: 11, tree: 3 },
+         { name: 'shaman', class: 7, tree: 2 },
+         { name: 'monk', class: 10, tree: 1 }
+      ];
+      var specNo, spec;
+      for (var i = 0; i < specs.length; i += 1) {
+         if (data.class == specs[i].class) {
+            specNo = (data.talents[0].spec.order == specs[i].tree && (
+               data.talents[0].selected ||
+               (spec[i].class != 5 && data.talents[1].spec.order != specs[i].tree) ||
+               data.talents[1].spec.order == 3 // shadow
+            )) ? 0 : 1;
+            spec = specs[i];
+            break;
+         }
       }
-      totals.talents[0].spec = totals.talents[0].spec.name;
-      totals.talents[1].spec = totals.talents[1].spec.name;
+      totals.spec = spec.name;
+      totals.talents = data.talents[specNo].calcTalent.split('').map(function(x) { return parseInt(x) });
+      totals.glyphs  = data.talents[specNo].glyphs.major.map(function(glyph) { return glyph.glyph });
       delete(totals.name);
       return totals;
    };
