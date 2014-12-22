@@ -4,7 +4,7 @@ import os;
 import urllib;
 import urllib2;
 import cgi;
-# 
+#
 # try:
 form = cgi.FieldStorage();
 if not("region" in form and "server" in form and "character" in form):
@@ -21,7 +21,7 @@ if not(host == "192.168.1.4" or host =="192.168.1.2" or host == "www.healadinne.
     print
     cgi.print_environ()
     sys.exit()
-stringRequest = "http://" + urllib.quote(region + ".battle.net/api/wow/character/" + server + "/" + character) + "?fields=stats,talents"
+stringRequest = "http://" + urllib.quote(region + ".battle.net/api/wow/character/" + server + "/" + character) + "?fields=stats,talents,items"
 
 val = urllib2.urlopen(stringRequest).read()
 print "Content-Type: application/json; charset=utf-8"
