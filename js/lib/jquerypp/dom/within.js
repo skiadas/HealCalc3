@@ -1,7 +1,7 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
@@ -20,7 +20,7 @@ define(['jquery'], function ($) {
 			}
 
 			// uses either the cached offset or .offset()
-			var offset = useOffsetCache ? jQuery.data(this, "offsetCache") || jQuery.data(this, "offsetCache", q.offset()) : q.offset();
+			var offset = useOffsetCache ? $.data(this, "offsetCache") || $.data(this, "offsetCache", q.offset()) : q.offset();
 
 			// Check if the given coordinates are within the area of the current element
 			var res = withinBox(left, top, offset.left, offset.top, this.offsetWidth, this.offsetHeight);
@@ -31,7 +31,7 @@ define(['jquery'], function ($) {
 			}
 		});
 
-		return this.pushStack(jQuery.unique(ret), "within", left + "," + top);
+		return this.pushStack($.unique(ret), "within", left + "," + top);
 	}
 
 	$.fn.withinBox = function (left, top, width, height, useOffsetCache) {
@@ -42,7 +42,7 @@ define(['jquery'], function ($) {
 			if (this == document.documentElement) return ret.push(this);
 
 			// use cached offset or .offset()
-			var offset = useOffsetCache ? jQuery.data(this, "offset") || jQuery.data(this, "offset", q.offset()) : q.offset();
+			var offset = useOffsetCache ? $.data(this, "offset") || $.data(this, "offset", q.offset()) : q.offset();
 
 			var ew = q.width(),
 				eh = q.height(),
@@ -51,7 +51,7 @@ define(['jquery'], function ($) {
 
 			if (res) ret.push(this);
 		});
-		return this.pushStack(jQuery.unique(ret), "withinBox", jQuery.makeArray(arguments).join(","));
+		return this.pushStack($.unique(ret), "withinBox", $.makeArray(arguments).join(","));
 	}
 
 	return $;

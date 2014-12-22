@@ -1,10 +1,10 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
-define(['jquery', 'jquerypp/event/drag', 'jquerypp/dom/styles'], function ($) {
+define(['jquery', 'jquerypp/event/drag/core', 'jquerypp/dom/styles'], function ($) {
 	var round = function (x, m) {
 		return Math.round(x / m) * m;
 	}

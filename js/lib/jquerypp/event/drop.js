@@ -1,10 +1,10 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
-define(['jquery', 'jquerypp/event/drag', 'jquerypp/dom/within', 'jquerypp/dom/compare'], function ($) {
+define(['jquery', 'jquerypp/event/drag/core', 'jquerypp/dom/within', 'jquerypp/dom/compare'], function ($) {
 	var event = $.event;
 
 	var eventNames = [
@@ -23,7 +23,7 @@ define(['jquery', 'jquerypp/event/drag', 'jquerypp/dom/within', 'jquerypp/dom/co
 
 
 	$.Drop = function (callbacks, element) {
-		jQuery.extend(this, callbacks);
+		$.extend(this, callbacks);
 		this.element = $(element);
 	}
 	// add the elements ...

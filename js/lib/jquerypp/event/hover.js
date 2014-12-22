@@ -1,7 +1,7 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery', 'jquerypp/event/livehack'], function ($) {
@@ -44,11 +44,26 @@ define(['jquery', 'jquerypp/event/livehack'], function ($) {
 			// now start checking mousemoves to update location
 			var delegate = ev.delegateTarget || ev.currentTarget;
 			var selector = ev.handleObj.selector;
+			var pending = $.data(delegate, "_hover" + selector);
 			// prevents another mouseenter until current has run its course
-			if ($.data(delegate, "_hover" + selector)) {
+			if (pending) {
+				// Under some  circumstances, mouseleave may never fire
+				// (e.g., the element is removed while hovered)
+				// so if we've entered another element, wait the leave time,
+				// then force it to release.
+				if (!pending.forcing) {
+					pending.forcing = true;
+					clearTimeout(pending.leaveTimer);
+					var leaveTime = pending.leaving ? Math.max(0, pending.hover.leave - (new Date() - pending.leaving)) : pending.hover.leave;
+					var self = this;
+
+					setTimeout(function () {
+						pending.callHoverLeave();
+						onmouseenter.call(self, ev);
+					}, leaveTime);
+				}
 				return;
 			}
-			$.data(delegate, "_hover" + selector, true)
 			var loc = {
 				pageX: ev.pageX,
 				pageY: ev.pageY
@@ -91,7 +106,8 @@ define(['jquery', 'jquerypp/event/livehack'], function ($) {
 						} else {
 							clearTimeout(leaveTimer);
 							// leave the hover after the time set in hover.leave(time)
-							leaveTimer = setTimeout(function () {
+							pending.leaving = new Date();
+							leaveTimer = pending.leaveTimer = setTimeout(function () {
 								callHoverLeave();
 							}, hover._leave)
 						}
@@ -111,6 +127,11 @@ define(['jquery', 'jquerypp/event/livehack'], function ($) {
 					})
 					hovered = true;
 				};
+			pending = {
+				callHoverLeave: callHoverLeave,
+				hover: hover
+			};
+			$.data(delegate, "_hover" + selector, pending);
 
 			// Bind the mousemove event
 			$(enteredEl).bind("mousemove", mousemove).bind("mouseleave", mouseleave);

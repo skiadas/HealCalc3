@@ -1,7 +1,7 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery', 'jquerypp/dom/styles'], function ($) {
@@ -202,7 +202,7 @@ define(['jquery', 'jquerypp/dom/styles'], function ($) {
 			return oldanimate.apply(this, arguments);
 		}
 
-		var optall = jQuery.speed(speed, easing, callback);
+		var optall = $.speed(speed, easing, callback);
 
 		// Add everything to the animation queue
 		this.queue(optall.queue, function (done) {

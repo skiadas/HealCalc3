@@ -1,14 +1,14 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
 
 
 	// Store the old jQuery.cleanData
-	var oldClean = jQuery.cleanData;
+	var oldClean = $.cleanData;
 
 	// Overwrites cleanData which is called by jQuery on manipulation methods
 	$.cleanData = function (elems) {

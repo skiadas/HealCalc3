@@ -1,13 +1,13 @@
-/*
-* jQuery++ - 1.0.0 (2012-11-23)
+/*!
+* jQuery++ - 1.0.1 (2013-02-08)
 * http://jquerypp.com
-* Copyright (c) 2012 Bitovi
+* Copyright (c) 2013 Bitovi
 * Licensed MIT
 */
 define(['jquery'], function ($) {
 
 	// See http://ejohn.org/blog/comparing-document-position/
-	jQuery.fn.compare = function (element) { //usually 
+	$.fn.compare = function (element) { //usually
 		try {
 			// Firefox 3 throws an error with XUL - we can't use compare then
 			element = element.jquery ? element[0] : element;
