@@ -242,12 +242,13 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 2560,
             targets: 5,
-            c: 0.7313,
+            c: 1.125 / 2,
             img: 'spell_holy_holynova',
             aoe: true,
             instant: true,
             item: 132157
         },
+
 
         //
         // DRUID
