@@ -1,9 +1,11 @@
-define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'], function(can, Spinner, $, view) {
+define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 'text!./sampleData.json', './dataProcessing'], function(can, Spinner, $, view, _, sampleData, dataProcessing) {
     can.view.ejs('armoryView', view);
+    // sampleData = dataProcessing(JSON.parse(sampleData));
+    // console.log(sampleData);
     var spin_opts = {
-      lines: 13, length: 2, width: 3, radius: 4, corners: 1, 
-      rotate: 34, color: '#000', speed: 0.9, trail: 50, 
-      shadow: false, hwaccel: false, 
+      lines: 13, length: 2, width: 3, radius: 4, corners: 1,
+      rotate: 34, color: '#000', speed: 0.9, trail: 50,
+      shadow: false, hwaccel: false,
       className: 'spinner', zIndex: 2e9, // The z-index (defaults to 2000000000)
       top: '20', left: '30' // Left position relative to parent in px
     };
@@ -29,7 +31,7 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
             this.element.html(can.view('armoryView', this.options));
         },
         'input[type="input"] change': function(el, ev) {
-            this.options.character.attr($(el).attr('id'), $(el).attr('value'));
+            this.options.character.attr($(el).attr('id'), $(el).val());
         },
         'input[type="button"] click': function(el, ev) {
             this.readArmory();
@@ -45,7 +47,7 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
             var past_searches = this.options.past_searches;
             var self=this
             var call = can.sub('cgi-bin/armory.cgi?region={armory_region}&server={armory_realm}&character={armory_name}', character);
-            $.getJSON(call, function(json, a, b) { 
+            $.getJSON(call, function(json, a, b) {
                 // Add successful searches to the list
                 var search = _to_str(character);
                 var i = past_searches.indexOf(search);
@@ -56,39 +58,18 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie'],
                     past_searches.pop();
                 }
                 $.cookie('armory_searches', past_searches.join('&'));
-                var spec = {5: "disc", 2: "pally", 11: "druid", 7: "shaman", 10: "monk"}[json['class']];
-                var talents = json.talents;
-                if (spec === "disc") {
-                    // Detecting Holy
-                    var spec1 = talents[0].spec.name,
-                        spec2 = talents[1].spec.name,
-                        primary = talents[0].selected ? spec1 : spec2,
-                        secondary = talents[0].selected ? spec2 : spec1,
-                        specLong = (primary === 'Shadow') ? secondary : primary;
-                    spec = {'Discipline': 'disc', 'Holy': 'holy'}[specLong];
-                }
-                var stats = json.stats;
-                var armory_stats = {
-                    bint: Math.roundn(stats.int/1.05),
-                    bspi: stats.spr,
-                    bmast: stats.masteryRating,
-                    bcrit: stats.critRating,
-                    bhaste: stats.hasteRating,
-                    bweapon: stats.spellPower - stats.int + 10,
-                    // Melee haste different from spell haste:
-                    bwspeed: Math.roundn(stats.mainHandSpeed * (1 + stats.haste / 100), 2),
-                    bwdps: Math.roundn(stats.mainHandDps / (1 + stats.haste / 100) - stats.attackPower / 14, 2)
-                };
+                var armory_stats = dataProcessing(json);
                 can.Observe.startBatch();
-                $('#filters').data('controls')[0].setSpec(spec);
+                $('#filters').data('controls')[0].setSpec(armory_stats.spec);
                 $('div', $('#stats')).data('stat').attr(armory_stats);
                 can.Observe.stopBatch();
                 // Change filter to the appropriate spec
                 self.element.html(can.view('armoryView', self.options));
             }).error(function(json, a, b) {
+                console.log("Error in loading from armory:", json, a, b);
                 spinner.stop();
                 $("#armory_btn").children('input').show();
-                alert("There was a problem accessing armory. Armory may be down, or the character name or realm are incorrect.")
+                alert("There was a problem accessing armory. Armory may be down, or the character name or realm are incorrect. More information in the console.")
             });
         }
     });
