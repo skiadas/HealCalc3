@@ -21,7 +21,7 @@ define(['can'], function(can) {
             name: 'Flash Heal',
             specid: 1,
             base_ct: 1.5,
-            base_mana: 6560,
+            base_mana: 6624,
             c: 3.32657 * 1.25 * 1.1,
             img: 'spell_holy_flashheal',
             aoe: false,
