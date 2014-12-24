@@ -1794,7 +1794,7 @@ define(['can'], function(can) {
 
     spls.find('PoMDisc').attr({
         ftargets: function(delta) {
-            return ( this.spec.attr('glyph_pom_disc') ? 5.6 : 6 );
+            return this.targets - ( this.spec.attr('glyph_pom_disc') ? 0.4 : 0 );
         },
     });
 
