@@ -650,11 +650,11 @@ define(['can'], function(can) {
             return (
                 Math.roundn(
                     5 +   // 5% base crit
+                    ( this.attr('buffs.crit') ? 5 : 0 ) +
                     (
                         this.attr('stats.bcrit') * 0.00909 +
                         ( (delta && delta.crit) || 0 ) * 0.00909 +
-                        ( this.attr('buffs.weapon_enchant') === 'crit' ? 500 * 0.35 : 0 ) * 0.00909 +
-                        ( this.attr('buffs.crit') ? 5 : 0 )
+                        ( this.attr('buffs.weapon_enchant') === 'crit' ? 500 * 0.35 : 0 ) * 0.00909
                     ) * 1.05,  // Disc gets more crit
                 2 )
             );
