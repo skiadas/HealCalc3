@@ -1516,9 +1516,10 @@ define(['can'], function(can) {
         fheal_disc: function(delta) {
             return (
                 this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fmastp(delta) * this.spec.fcritp(delta) )
+                ( 1 + this.spec.fcritp(delta) *
+                    ( 1 + this.spec.fmastp(delta) )
+                )
             );
         },
         fheal_shield: function(delta) {
@@ -1741,9 +1742,8 @@ define(['can'], function(can) {
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
-                2 *
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fmastp(delta) * 1 )
+                ( 2 + this.spec.fmastp(delta) * 1 )
             );
         }
     });
@@ -1806,9 +1806,10 @@ define(['can'], function(can) {
             var crit = Math.min(this.spec.fcritp(delta) + 0.1, 1);
             return (
                 this.fbase(delta) *
-                ( 1 + crit ) *
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fmastp(delta) * crit )
+                ( 1 + crit *
+                    ( 1 + this.spec.fmastp(delta) )
+                )
             );
         }
     });
@@ -1819,9 +1820,8 @@ define(['can'], function(can) {
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
-                2 *
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fmastp(delta) * 1 )
+                ( 2 + this.spec.fmastp(delta) * 1 )
             );
         }
     });
