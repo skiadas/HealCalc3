@@ -1,0 +1,35 @@
+Yeah time has been my problem too. Between teaching 3 new classes and trying to maintain 2 raiding toons, time has been scarce.
+
+The very quick rundown would be this, and I should probably move this to somewhere in the repository. Those not interested in the development part close your eyes, or simply ignore this post.
+
+- In order to run HealCalc locally, apart from having cloned the repository locally, you may need to have Node.js installed and you'll need to be able to hit the "index-test.html" file as if it is running on a local server. In my system this typically means something along the lines of "localhost:8000/index-test.html". If you have Node installed, you should be able to do "npm start" from the folder where the project is situated, to get the above behavior.
+- All code meant to be edited is in 'js/app'.
+- Stuff concerning formulas and computations are in the 'model' subfolder. Particularly the spell.js and spec.js files therein contain the key code, and I'll talk about them a bit more further down.
+- The templates concerning the various parts of the screen are in the 'view' subfolder in ejs format. In order to add some more menu options, one of these files will need to be edited.
+- The 'control' subfolder contains controllers, and they should pretty much work as is. No need to mess with them for most things.
+- Similarly the 'utils' folder contains various odds and ends, and probably doesn't need to be messed with unless you are trying to change the delta viewer or something of the sort.
+- The 'model/spec.js' file contains information and formulas for each spec. There is an initial SPECS array with some basic info for each spec.
+    - Code of interest starts around line 368 with the 'spec_generic' object. This contains generic formulas for computing stats, in the form of functions named fint, fspi, fsp, fmulti etc. All such functions take as input a "delta" object, whose keys are meant to be any values to be added to the base values. The delta viewer uses this heavily.
+    - These computations would take into account raid buffs, potions, trinkets, racials etc. (not all of these added yet)
+    - On line 644, these generic settings are overwritten for each spec that exhibits a different behavior. This is where the special extra amounts that specs get are considered. So Disc overwrites fcrit because of spec specialization and fhaste because of borrowed time. At this point initial spec-specific settings are also added, like for example default glyph settings, targets for aoe spells etc. For instance one of the first pieces of business to get holy going would be to amend the Holy section there starting at line 691 to contain an overwrite for fmulti.
+    - One important parameter in those settings is the mastery_factor. Mastery computations are based around a base mastery of 8. This factor is the factor to turn this into the mastery percent for the spec. For instance for disc that factor would be 1.6 to reach the 12.8% base shield mastery, and it is set on line 645.
+- The 'model/spell.js' file contains information and formulas about all spells.
+    - Lines 2 through 1338 build a SPELLS array containing basic information about each spell. I have commented out spells for specs that are not yet implemented. Each spell must have a unique "code" name, and a unique "id" number, going up by 100 from one spec to the next. These numbers need to be adjusted for each new spell to be added. Discs were 1-99, Druids are 201-299. Holy would probably go 101-199.
+    - Each spell also needs to contain its full "name" to be used when showing the spell, a specid of the spec it corresponds to, base cast time, mana and coefficient, and optionally targets, ticks etc. You can see the examples in the Disc and Druid sections.
+    - Each spell also has a setup as to whether it is instant-cast, and whether it is aoe.
+    - Each spell also needs to have the item number as obtained from wowhead for example, and the name of the img used to show it, again obtained from wowhead.
+    - Around line 1341 an object called "spec_specific" is defined. It is badly named, just roll with it. This contains essentially all the main generic formulas for computing spell information (all these functions accept a delta object and they mostly pass it along):
+        - fct is cast time
+        - fmana computes mana cost
+        - ftargets computes number of targets
+        - fdirect computes the basic amount of "direct healing" based solely on coefficient, spellpower and number of targets.
+        - fhot computes the basic amount of hot healing produced by the spell, again based on coeffient, spellpower, number of targets and haste.
+        - fbase picks the correct one amongst fdirect and fhot, for the overall base healing of the spell, then buffs it further by mastery and versatility (assuming normal mastery behavior; some specs need to overwrite that)
+        - fheal computes the average healing, starting from fbase and accounting for crit, multistrike and any other side-effects (living seed, but those are only where it is overwritten). The result of fheal is what is used to populate the "Average Heal" column, and used to compute hps, hpm etc. It should be the total average effect of the spell.
+        - Both of these spells have various variations for different specs. Some of those are out of date atm. But you'll find them springled in there.
+        - fhps, fhpm, fmps, compute the obvious things based off the previous ones.
+    - On line 1709-1735, specific setting are made for spells coming from certain specs, to account for unusual behavior. For instance any spell that's filed under disc gets its sp.fbase replaced by sp.fbase_disc, and same for fheal.
+    - From line 1741 and on, any spells that exhibits some behavior that differs from the normal gets the appropriate "f.." function overwritten. For example the first overwrite happens for "EmpFhealDisc", and it overwrites fheal to instead do a guaranteed crit. Further down, "PenanceHeal" has its mana cost adjusted to account for the glyph if it is used.
+    - This is the section where a lot of the work is happening. To get Holy up and running for example we need to set up the spells back in order in the SPELLS array, as I have commented them out, then create any overwrites necessary further down. Fixing Disc things would probably also amount to messing with some of those lines there.
+
+Well that's the basics, I hope it sort of makes some sense, needless to say let me know if you have any questions. It would be great to have someone other than me looking at this stuff, it's got a fair number of layers.
