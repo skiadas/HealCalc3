@@ -1,6 +1,3 @@
-Yeah time has been my problem too. Between teaching 3 new classes and trying to maintain 2 raiding toons, time has been scarce.
-
-The very quick rundown would be this, and I should probably move this to somewhere in the repository. Those not interested in the development part close your eyes, or simply ignore this post.
 
 - In order to run HealCalc locally, apart from having cloned the repository locally, you may need to have Node.js installed and you'll need to be able to hit the "index-test.html" file as if it is running on a local server. In my system this typically means something along the lines of "localhost:8000/index-test.html". If you have Node installed, you should be able to do "npm start" from the folder where the project is situated, to get the above behavior.
 - All code meant to be edited is in 'js/app'.
