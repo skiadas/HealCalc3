@@ -32,7 +32,7 @@ define(['./tooltipParams'], function(tooltipParams) {
          });
       });
       var totals = {
-         bint: 1024, bspi: 782, bstam: 890, bcrit: 0, bhaste: 0,
+         bint: 1042, bspi: 782, bstam: 890, bcrit: 0, bhaste: 0,
          bweapon: 0, bvers: 0, bmulti: 0, bmast: 0
       };
       Object.keys(items).forEach(function(iName) {
