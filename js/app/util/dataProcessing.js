@@ -56,7 +56,7 @@ define(['./tooltipParams'], function(tooltipParams) {
          if (data.class == specs[i].class) {
             specNo = (data.talents[0].spec.order == specs[i].tree && (
                data.talents[0].selected ||
-               (spec[i].class != 5 && data.talents[1].spec.order != specs[i].tree) ||
+               (specs[i].class != 5 && data.talents[1].spec.order != specs[i].tree) ||
                data.talents[1].spec.order == 3 // shadow
             )) ? 0 : 1;
             spec = specs[i];
