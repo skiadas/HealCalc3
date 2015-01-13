@@ -37,7 +37,7 @@ define(['./tooltipParams'], function(tooltipParams) {
       };
       Object.keys(items).forEach(function(iName) {
          var item = items[iName];
-         if (!item.hasOwnProperty('uptime')) {
+         if (item != null && !item.hasOwnProperty('uptime')) {
             Object.keys(item).forEach(function(key) {
                totals[key] += item[key];
             });
