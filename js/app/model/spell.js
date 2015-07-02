@@ -1425,7 +1425,10 @@ define(['can'], function(can) {
         fbase_shield: function(delta) {
             return this.fdirect(delta) *
                    ( 1 + 1 * this.spec.fmastp(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
+                   ( 1 + 1 * this.spec.fversp(delta) ) *
+                   ( 1 + 1 * this.spec.attr('aa_uptime') *
+                             this.spec.attr('aa_stacks') * 0.05 ) *
+                   1.3;
         },
         fbase_disc: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
@@ -1773,9 +1776,7 @@ define(['can'], function(can) {
 
     spls.find('PWSDisc').attr({
         fbase: function(delta) {
-            return ( this.fbase_shield(delta) ) *
-                   ( 1 + 1 * this.spec.attr('aa_uptime') *
-                             this.spec.attr('aa_stacks') * 0.05 );
+            return ( this.fbase_shield(delta) );
         },
         fheal: function(delta) {
             return ( this.fheal_shield(delta) );
@@ -1783,9 +1784,7 @@ define(['can'], function(can) {
     });
     spls.find('ClarityOfWill').attr({
         fbase: function(delta) {
-            return ( this.fbase_shield(delta) ) *
-                   ( 1 + 1 * this.spec.attr('aa_uptime') *
-                             this.spec.attr('aa_stacks') * 0.05 );
+            return ( this.fbase_shield(delta) );
         },
         fheal: function(delta) {
             return ( this.fheal_shield(delta) );
