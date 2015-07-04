@@ -273,7 +273,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 5962,
-            c: 2.1871,
+            c: 2.1784,
             ctick: 0.546264,
             nticks: 6,
             time_tick: 2,
@@ -289,7 +289,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 3024,
-            ctick: 2.28,
+            ctick: 0.542, // Actual coef per tick, not total
             nticks: 5,
             time_tick: 3,
             img: 'spell_nature_rejuvenation',
@@ -320,7 +320,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 12080,
-            ctick: 2.8,
+            ctick: 3.2535,
             nticks: 7,
             time_tick: 1,
             targets: 5,
@@ -2228,13 +2228,6 @@ define(['can'], function(can) {
     });
 
     spls.find('WildGrowth').attr({
-        fhot: function(delta) {
-            return (
-                this.ctick *
-                (1 + 1 / this.nticks) * // One extra tick
-                this.spec.fsp(delta) * this.ftargets(delta)
-            );
-        },
         ftargets: function(delta) {
             return this.targets + (this.spec.attr('glyph_wild_growth') ? 1 : 0);
         }
@@ -2257,7 +2250,12 @@ define(['can'], function(can) {
         fhot: function(delta) {
             return (
                 this.ctick * this.spec.fsp(delta) * this.ftargets(delta) *
-                (this.spec.attr('germination') ? 1 + 2/4 : 1 + 1/4)
+            // Initial tick must not contribute to computation
+            // of extra ticks from haste
+                (1 +
+                    (this.nticks + (this.spec.attr('germination') ? 1 : 0)) *
+                    (1 + this.spec.fhastep(delta))
+                )
             );
         },
     });
