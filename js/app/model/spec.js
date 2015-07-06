@@ -694,6 +694,17 @@ define(['can'], function(can) {
         sanctuary: true,
         cascade_range_holy: 25,
         divinestar_targets_holy: 8,
+        fmulti: function(delta) {
+            return (
+                Math.roundn(
+                    (
+                        this.attr('stats.bmulti') * 0.01514 +
+                        ( (delta && delta.multi) || 0 ) * 0.01514 +
+                        ( this.attr('buffs.multi') ? 5 : 0 )
+                    ) * 1.05,
+                2 )
+            );
+        },
         poh_targets_holy: 5,
         lw_charges: 15,
         glyph_coh: false,
