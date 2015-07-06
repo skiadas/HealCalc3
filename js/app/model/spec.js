@@ -689,7 +689,7 @@ define(['can'], function(can) {
 
     // HOLY
     spcs[1].attr({
-        mastery_factor: 1.25,
+        mastery_factor: 1.3,
         serenity: true,
         sanctuary: true,
         cascade_range_holy: 25,
