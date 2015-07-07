@@ -690,8 +690,6 @@ define(['can'], function(can) {
     // HOLY
     spcs[1].attr({
         mastery_factor: 1.3,
-        serenity: true,
-        sanctuary: true,
         cascade_range_holy: 25,
         divinestar_targets_holy: 8,
         fmulti: function(delta) {
@@ -711,7 +709,6 @@ define(['can'], function(can) {
         glyph_pom_holy: true,
         glyph_renew_holy: false,
         glyph_binding_holy: false,
-        hfpm: 6,
         talent45_holy: 'mb'
     });
 

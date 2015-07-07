@@ -35,7 +35,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 3840,
-            c: 0.8305,
+            c: 0.432 * 1.1,
             img: 'ability_priest_cascade',
             aoe: true,
             instant: false,
@@ -48,6 +48,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 3200,
+            targets: 6 * 2,
             c:  0.6518,
             img: 'spell_priest_divinestar',
             aoe: true,
@@ -61,6 +62,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 5760,
+            targets: 6,
             c:  2.874,
             img: 'ability_priest_halo',
             aoe: true,
@@ -392,66 +394,14 @@ define(['can'], function(can) {
         //     instant: true,
         //     item: 106737
         // },
-
-
-    ]
-    var FIXME = [
-        //
-        // HOLY
-        //
         {
-            id: 74,
-            code: 'DivineStarHoly',
-            name: 'Divine Star',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 13500,
-            targets: 10,
-            B: 7861.5,
-            c:  0.758,
-            img: 'spell_priest_divinestar',
-            aoe: true,
-            instant: true,
-            item: 110744
-        },
-        {
-            id: 76,
-            code: 'HaloHoly',
-            name: 'Halo',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 40500,
-            targets: 10,
-            B: 33694,
-            c:  3.25,
-            img: 'ability_priest_halo',
-            aoe: true,
-            instant: true,
-            item: 120517
-        },
-        {
-            id: 16,
+            id: 17,
             code: 'HealHoly',
             name: 'Heal',
             specid: 2,
             base_ct: 2.5,
-            base_mana: 5700,
-            B: 10645,
-            c: 1.024,
-            img: 'spell_holy_heal',
-            aoe: false,
-            instant: false,
-            item: 2050
-        },
-        {
-            id: 17,
-            code: 'GhealHoly',
-            name: 'Greater Heal',
-            specid: 2,
-            base_ct: 2.5,
-            base_mana: 17700,
-            B: 22725.92,
-            c: 2.19,
+            base_mana: 3200,
+            c: 3.3264 * 1.25 * 1.1,
             img: 'spell_holy_greaterheal',
             aoe: false,
             instant: false,
@@ -463,9 +413,8 @@ define(['can'], function(can) {
             name: 'Flash Heal',
             specid: 2,
             base_ct: 1.5,
-            base_mana: 17700,
-            B: 17044.549,
-            c: 1.642,
+            base_mana: 6624,
+            c: 3.32657 * 1.25 * 1.1,
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
@@ -477,9 +426,8 @@ define(['can'], function(can) {
             name: 'Binding Heal',
             specid: 2,
             base_ct: 1.5,
-            base_mana: 16200,
-            B: 12452.174,
-            c: 1.124,
+            base_mana: 3440,
+            c: 1.32996 * 1.25 * 1.1,
             img: 'spell_holy_bindingheal',
             targets: 2,
             aoe: false,
@@ -492,16 +440,165 @@ define(['can'], function(can) {
             name: 'Renew',
             specid: 2,
             base_ct: 1.5,
-            base_mana: 7800,
-            nticks: 4,
+            base_mana: 2400,
+            nticks: 5,
             time_tick: 3,
-            Btick: 2690,
-            ctick: 0.259,
+            ctick: 0.44 * 1.25 * 1.15 * 1.1,
             img: 'spell_holy_renew',
             aoe: false,
             instant: true,
             item: 139
         },
+        {
+            id: 22,
+            code: 'PoMHoly',
+            name: 'Prayer of Mending',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 3840,
+            targets: 6,
+            c: 0.666 * 1.25 * 1.25 * 1.1,
+            img: 'spell_holy_prayerofmendingtga',
+            aoe: true,
+            instant: true,
+            item: 33076
+        },
+        {
+            id: 23,
+            code: 'PoHHoly',
+            name: 'Prayer of Healing',
+            specid: 2,
+            base_ct: 2.5,
+            base_mana: 11405,
+            targets: 5,
+            c: 2.21664 * 1.1,
+            img: 'spell_holy_prayerofhealing02',
+            aoe: true,
+            instant: false,
+            item: 596
+        },
+        {
+            id: 24,
+            code: 'CascadeHoly',
+            name: 'Cascade',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 3840,
+            c: 0.432 * 1.1,
+            img: 'ability_priest_cascade',
+            aoe: true,
+            instant: true,
+            item: 120785
+        },
+        {
+            id: 25,
+            code: 'CoHHoly',
+            name: 'Circle of Healing',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 5702,
+            targets: 5,
+            c: 2.2248,
+            img: 'spell_holy_circleofrenewal',
+            aoe: true,
+            instant: true,
+            item: 34861
+        },
+        {
+            id: 26,
+            code: 'DHHoly',
+            name: 'Divine Hymn',
+            specid: 2,
+            base_ct: 8,
+            base_mana: 7040,
+            targets: 5,
+            c: 1.4 * 1.1,
+            img: 'spell_holy_circleofrenewal',
+            aoe: true,
+            instant: false,
+            item: 64843
+        },
+        {
+            id: 27,
+            code: 'LWCastHoly',
+            name: 'Lightwell Cast',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 5920,
+            targets: 15,
+            ctick: 1.0989 * 1.15 * 1.1 * 3,
+            nticks: 3,
+            time_tick: 2,
+            img: 'spell_holy_summonlightwell',
+            aoe: true,
+            instant: true,
+            item: 724
+        },
+        {
+            id: 28,
+            code: 'HWSerenityHoly',
+            name: 'Holy Word: Serenity',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 2851,
+            targets: 1,
+            c: 4.15294 * 1.1,
+            img: 'spell_holy_persuitofjustice',
+            aoe: false,
+            instant: true,
+            item: 88684
+        },
+        {
+            id: 29,
+            code: 'HWSanctuaryHoly',
+            name: 'Holy Word: Sanctuary',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 4000,
+            targets: 6,
+            ctick: 0.0845775 * 15 * 1.1,
+            nticks: 15,
+            time_tick: 2,
+            img: 'spell_holy_divineprovidence',
+            aoe: true,
+            instant: true,
+            item: 88686
+        },
+        {
+            id: 74,
+            code: 'DivineStarHoly',
+            name: 'Divine Star',
+            specid: 2,
+            base_ct: 1.5,
+            targets: 6 * 2,
+            base_mana: 3200,
+            c:  0.6518,
+            img: 'spell_priest_divinestar',
+            aoe: true,
+            instant: true,
+            item: 110744
+        },
+        {
+            id: 76,
+            code: 'HaloHoly',
+            name: 'Halo',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 5760,
+            targets: 6,
+            c:  2.874,
+            img: 'ability_priest_halo',
+            aoe: true,
+            instant: true,
+            item: 120517
+        },
+
+    ];
+
+    var FIXME = [
+        //
+        // HOLY
+        //
         {
             id: 21,
             code: 'PWSHoly',
@@ -515,98 +612,6 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 17
-        },
-        {
-            id: 22,
-            code: 'PoMHoly',
-            name: 'Prayer of Mending',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 10500,
-            targets: 6,
-            B: 5919,
-            c: 0.571,
-            img: 'spell_holy_prayerofmendingtga',
-            aoe: true,
-            instant: true,
-            item: 33076
-        },
-        {
-            id: 23,
-            code: 'PoHHoly',
-            name: 'Prayer of Healing',
-            specid: 2,
-            base_ct: 2.5,
-            base_mana: 13500,
-            targets: 5,
-            B: 8687,
-            c: 0.8381,
-            img: 'spell_holy_prayerofhealing02',
-            aoe: true,
-            instant: false,
-            item: 596
-        },
-        {
-            id: 24,
-            code: 'CascadeHoly',
-            name: 'Cascade',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 27000,
-            targets: 10,
-            B: 10108,
-            c: 0.975,
-            img: 'ability_priest_cascade',
-            aoe: true,
-            instant: true,
-            item: 120785
-        },
-        {
-            id: 25,
-            code: 'CoHHoly',
-            name: 'Circle of Healing',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 9600,
-            targets: 5,
-            B: 4840.5,
-            c: 0.467,
-            img: 'spell_holy_circleofrenewal',
-            aoe: true,
-            instant: true,
-            item: 34861
-        },
-        {
-            id: 26,
-            code: 'DHHoly',
-            name: 'Divine Hymn',
-            specid: 2,
-            base_ct: 8,
-            base_mana: 18900,
-            targets: 5,
-            B: 7987,
-            c: 1.542,
-            img: 'spell_holy_circleofrenewal',
-            aoe: true,
-            instant: false,
-            item: 64843
-        },
-        {
-            id: 27,
-            code: 'LWCastHoly',
-            name: 'Lightwell Cast',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 16200,
-            targets: 15,
-            Btick: 5735,
-            ctick: 0.553,
-            nticks: 3,
-            time_tick: 2,
-            img: 'spell_holy_summonlightwell',
-            aoe: true,
-            instant: true,
-            item: 724
         },
         // {
         //     code: 'LWHealHoly',
@@ -622,39 +627,6 @@ define(['can'], function(can) {
         //     instant: true,
         //     item: 2050
         // },
-        {
-            id: 28,
-            code: 'HWSerenityHoly',
-            name: 'Holy Word: Serenity',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 6000,
-            targets: 1,
-            B: 13442,
-            c: 1.3,
-            img: 'spell_holy_persuitofjustice',
-            aoe: false,
-            instant: true,
-            item: 88684
-        },
-        {
-            id: 29,
-            code: 'HWSanctuaryHoly',
-            name: 'Holy Word: Sanctuary',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 11400,
-            targets: 6,
-            Btick: 504,
-            ctick: 0.0583,
-            nticks: 15,
-            time_tick: 2,
-            img: 'spell_holy_divineprovidence',
-            aoe: true,
-            instant: true,
-            item: 88686
-        },
-
         //
         // PALLY
         //
@@ -1250,24 +1222,6 @@ define(['can'], function(can) {
             mast_factor: 0
         },
         {
-            id: 81,
-            code: 'HolyFireHoly',
-            name: 'Holy Fire / Solace',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 5400,
-            B: 1135.52,
-            c: 1.11,
-            Btick: 57,
-            ctick: 0.0312,
-            nticks: 7,
-            time_tick: 1,
-            img: 'spell_holy_searinglight',
-            aoe: false,
-            instant: true,
-            item: 14914
-        },
-        {
             id: 82,
             code: 'SCK',
             name: 'Spinning Crane Kick',
@@ -1444,18 +1398,6 @@ define(['can'], function(can) {
                    ( 1 + 1 * this.spec.fversp(delta) ) *
                    1.1;
         },
-        fbase_holy_sth: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                (this.spec.serenity ? 1.25 : 1)
-            );
-        },
-        fbase_holy_aoe: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                (this.spec.sanctuary ? 1.25 : 1)
-            );
-        },
         fbase_pally: function(delta) {
             return (
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
@@ -1593,20 +1535,11 @@ define(['can'], function(can) {
                 ( 1+ 0.3 * this.spec.fcritp(delta))
             );
         },
-        fheal_sth_holy: function(delta) {
+        fheal_holy: function(delta) {
             return (
                 this.fbase(delta) *
-                ( 1 +
-                    (
-                        -1 +
-                        2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                    ) *
-                    (
-                        (this.spec.serenity ? 0.25 : 0) +
-                        this.spec.fcritp(delta)
-                    )
-                ) *
-                ( 1 + this.spec.fmastp(delta) )
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.72 * this.spec.fmultip(delta) )
             );
         },
         fheal_living_seed: function(delta) {
@@ -1717,6 +1650,8 @@ define(['can'], function(can) {
             // General Disc spell setup
             sp.fbase = sp.fbase_disc;   // To account for Grace
             sp.fheal = sp.fheal_disc;   // To account for DA formula
+        } else if (sp.specid == 2) {
+            sp.fheal = sp.fheal_holy;
         } else if ( sp.specid == 3 ) {
             // General Pally spell setup
             sp.fbase = sp.fbase_pally;
@@ -1754,23 +1689,12 @@ define(['can'], function(can) {
     spls.find('CascadeDisc').attr({
         ftargets: function(delta) {
             return (
-                this.spec.buffs.raid_size * 1 *
+                31 *
                 (
                     0.4 +
                     Math.min(this.spec.cascade_range_disc, 30) * 0.02
                 )
             );
-        }
-    });
-
-    spls.find('DivineStarDisc').attr({
-        ftargets: function(delta) {
-            return ( this.spec.buffs.raid_size * 2 );
-        }
-    });
-    spls.find('HaloDisc').attr({
-        ftargets: function(delta) {
-            return ( this.spec.buffs.raid_size * 1 );
         }
     });
 
@@ -1871,18 +1795,7 @@ define(['can'], function(can) {
 
     // END DISC Spells setup
 
-/* TODO
     // HOLY Spells setup
-    $.each(['HealHoly', 'FhealHoly', 'GhealHoly', 'BhealHoly'], function(i, spname) {
-        spls.find(spname).attr({
-            fbase: function(delta) {
-                return ( this.fbase_holy_sth(delta) );
-            },
-            fheal: function(delta) {
-                return ( this.fheal_sth_holy(delta) );
-            }
-        });
-    });
 
     spls.find('BhealHoly').attr({
         fmana: function(delta) {
@@ -1896,129 +1809,12 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('FhealHoly').attr({
-        fmana: function(delta) {
-            return (
-                Math.roundn(
-                    this.base_mana *
-                    (this.spec.attr('t14_2p_holy') ? 0.8 : 1)
-                )
-            )
-        }
-    });
-
-    spls.find('HolyFireHoly').attr({
+    // Does not benefit from mastery
+    spls.find('HWSanctuaryHoly').attr({
         fbase: function(delta) {
-            return (
-                (this.fhot(delta) + this.fdirect(delta)) *
-                ( 1 + (this.spec.evang_stacks || 5) * 0.04 )
-            );
-        },
-        fheal: this.fheal_sth_holy,
-        fmana: function(delta) {
-            return (
-                (
-                    (this.spec.talent45_holy === 'solace') ?
-                    0 :
-                    this.fmana_instant_priest(delta)
-                ) *
-                ( 1 - (this.spec.evang_stacks || 5) * 0.06 )
-            );
-        },
-        fhpm: function(delta) {
-            return (
-                (this.spec.talent45_holy === 'solace') ?
-                0 :
-                this.fheal(delta) / this.fmana(delta)
-            );
+            return this.fhot(delta) *
+                   ( 1 + 1 * this.spec.fversp(delta) );
         }
-    });
-
-    $.each(['PoHHoly', 'DHHoly', 'CoHHoly', 'PoMHoly', 'HWSanctuaryHoly', 'CascadeHoly', 'DivineStarHoly', 'HaloHoly'], function(i, spname) {
-        spls.find(spname).attr({
-            fbase: function(delta) {
-                return ( this.fbase_holy_aoe(delta) );
-            },
-        });
-    });
-
-    spls.find('DHHoly').attr({
-        ftargets: function(delta) {
-            return ( (this.spec.buffs.raid25 ? 12 : 5) * (4 + 2 * 0.1) );
-        }
-    });
-
-    spls.find('HWSerenityHoly').attr({
-        fbase: function(delta) {
-            return (
-                this.fbase_holy_sth(delta) *
-                (this.spec.attr('t16_4p_holy') ? 2 : 1)
-            );
-        },
-    });
-
-    spls.find('CascadeHoly').attr({
-        ftargets: function(delta) {
-            return (
-                Math.min(
-                    this.spec.cascade_targets_holy,
-                    this.spec.raid25 ? 25 : 10
-                ) *
-                (
-                    0.4 +
-                    Math.min( this.spec.cascade_range_holy, 30 ) * 0.02
-                )
-            );
-        }
-    });
-    spls.find('DivineStarHoly').attr({
-        ftargets: function(delta) {
-            return (
-                Math.min(
-                    this.spec.divinestar_targets_holy,
-                    this.spec.raid25 ? 25 : 10
-                ) *
-                2
-            );
-        }
-    });
-    spls.find('HaloHoly').attr({
-        ftargets: function(delta) {
-            return (
-                Math.min(
-                    this.spec.halo_targets_holy,
-                    this.spec.raid25 ? 25 : 10
-                )
-            );
-        }
-    });
-
-    spls.find('CoHHoly').attr({
-       fmana: function(delta) {
-           return (
-               this.fmana_instant_priest(delta) *
-               (this.spec.glyph_coh ? 1.35 : 1)
-           );
-       },
-       ftargets: function(delta) {
-           return ( this.targets + (this.spec.glyph_coh ? 1 : 0) );
-       },
-       fheal: function(delta) {
-           return (
-               this.fbase(delta) *
-               (
-                   1 +
-                       (
-                           -1 +
-                           2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                       ) *
-                       this.spec.fcritp(delta)
-               ) *
-               ( 1 + 1 * this.spec.fmastp(delta) ) +
-               (this.spec.attr('t15_4p_holy') ? 0.4 * 100000 : 0)
-           );
-
-       },
     });
 
     spls.find('PoHHoly').attr({
@@ -2026,28 +1822,76 @@ define(['can'], function(can) {
             return ( 1 * this.spec.poh_targets_holy );
         },
     });
-    spls.find('HWSanctuaryHoly').attr({
+
+    spls.find('CoHHoly').attr({
+        ftargets: function(delta) {
+            return this.targets + (this.spec.glyph_coh ? 1 : 0);
+        },
+        fmana: function(delta) {
+            return this.base_mana * (this.spec.glyph_coh ? 1.35 : 1);
+        }
+    });
+
+    spls.find('RenewHoly').attr({
+        fdirect: function(delta) {
+            return (
+                this.ctick * 0.5 *
+                this.spec.fsp(delta) * this.ftargets(delta)
+            );
+        }, // direct heal does not benefit from glyph
+        fhot: function(delta) {
+            return (
+                this.spec.fsp(delta) * this.ftargets(delta) *
+                this.ctick *
+                (this.spec.attr('glyph_renew_holy') ? 4 : 5) *
+                (1 + this.spec.fhastep(delta))
+            ) * (this.spec.attr('glyph_renew_holy') ? 1.25 : 1);
+        },
         fbase: function(delta) {
             return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                (this.spec.attr('t16_4p_holy') ? 3.15 : 1)
-            );
-        },
-        fheal: function(delta) {
-            // The average heal amount, including crits and mastery.
-            return (
-                this.fbase(delta) *
+                this.fhot(delta) +
                 (
-                    1 +
-                        (
-                            -1 +
-                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
+                    this.fdirect(delta) *
+                    ( 1 + 1 * this.spec.fmastp(delta) )
                 )
+            ) * ( 1 + 1 * this.spec.fversp(delta) );
+        }
+    });
+
+    spls.find('LWCastHoly').attr({
+        fbase: function(delta) {
+            return this.fhot(delta) *
+                 ( 1 + 1 * this.spec.fversp(delta) ); // No mastery
+        },
+        fhot: function(delta) {
+            return (
+                this.ctick * this.spec.fsp(delta) *
+                this.spec.lw_charges *
+                (1 + this.spec.fhastep(delta))
             );
         },
     });
+
+    spls.find('DHHoly').attr({
+        ftargets: function(delta) {
+            return ( this.spec.buffs.raid_size * (4 + 3 * 0.1) );
+        }
+    });
+
+    spls.find('CascadeHoly').attr({
+        ftargets: function(delta) {
+            return (
+                31 *
+                (
+                    0.4 +
+                    Math.min( this.spec.cascade_range_holy, 30 ) * 0.02
+                )
+            );
+        }
+    });
+
+/* TODO
+
     spls.find('PoMHoly').attr({
         fdirect: function(delta) {
             return (
@@ -2063,53 +1907,6 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('RenewHoly').attr({
-        fnticks: function(delta) {
-            return (
-                Math.roundn(
-                    (
-                        this.nticks -
-                        (this.spec.attr('glyph_renew_holy') ? 1 : 0)
-                    ) *
-                    this.time_tick /
-                    this.ftick_time(delta)
-                )
-            );
-        },
-        fhot: function(delta) {
-            return (
-                (this.spec.attr('glyph_renew_holy') ? (1+1/3) : 1) *
-                ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
-                this.ftargets(delta) *
-                this.fnticks(delta)
-            );
-        },
-        fbase: function(delta) {
-            return (
-                this.fhot(delta) *
-                1.15 *    // Renew Heals for 15%
-                1.15      // Renew instantly heals target for 15%
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                (
-                    // Need to add the mastery from the initial tick
-                    1 + 0.15 / 1.15 * this.spec.fmastp(delta)
-                ) *
-                (
-                    1 +
-                        (
-                            -1 +
-                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
-                )
-            );
-        },
-        fct: function(delta) { return ( 1 ); },
-    });
 
     spls.find('PWSHoly').attr({
         fheal: function(delta) {
@@ -2117,18 +1914,6 @@ define(['can'], function(can) {
         },
     });
 
-    spls.find('LWCastHoly').attr({
-        fheal: function(delta) {
-            return ( this.fbase(delta) );
-        },
-        fhot: function(delta) {
-            return (
-                ( this.Btick + this.ctick * this.spec.fsp(delta) ) *
-                this.spec.lw_charges *
-                this.fnticks(delta)
-            );
-        },
-    });
     //END HOLY Spells setup
 */
 
