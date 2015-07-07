@@ -34,9 +34,9 @@ define(['can', 'text!view/specs.ejs',
            this.options.specs.val_update();
         },
         'input change': function(el, ev) {
-            var attr = el.attr('name'),
-                val = (el.attr('type') == 'checkbox') ? (el.attr('checked') ? true : false) : el.attr('value');
-            el.closest('div.spec').data('spec').attr(attr, val);
+            var attrName = $(el).attr('name'),
+                val = $(el).attr('type') == 'checkbox' ? $(el).prop('checked') : $(el).val();
+            el.closest('div.spec').data('spec').attr(attrName, val);
             this.options.specs.val_update();
         },
         '{buffs} change': function() { this.options.specs.val_update(); },
