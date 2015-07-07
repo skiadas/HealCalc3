@@ -450,6 +450,19 @@ define(['can'], function(can) {
             item: 139
         },
         {
+            id: 21,
+            code: 'PWSHoly',
+            name: 'Power Word: Shield',
+            specid: 2,
+            base_ct: 1.5,
+            base_mana: 3840,
+            c: 4.59,
+            img: 'spell_holy_powerwordshield',
+            aoe: false,
+            instant: true,
+            item: 17
+        },
+       {
             id: 22,
             code: 'PoMHoly',
             name: 'Prayer of Mending',
@@ -599,20 +612,6 @@ define(['can'], function(can) {
         //
         // HOLY
         //
-        {
-            id: 21,
-            code: 'PWSHoly',
-            name: 'Power Word: Shield',
-            specid: 2,
-            base_ct: 1.5,
-            base_mana: 18300,
-            B: 19428,
-            c: 1.871,
-            img: 'spell_holy_powerwordshield',
-            aoe: false,
-            instant: true,
-            item: 17
-        },
         // {
         //     code: 'LWHealHoly',
         //     name: 'Lightwell Heal',
@@ -1890,6 +1889,13 @@ define(['can'], function(can) {
         }
     });
 
+    spls.find('PWSHoly').attr({
+        fbase: function(delta) {
+            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+                   ( 1 + 1 * this.spec.fversp(delta) );
+        }
+    });
+
 /* TODO
 
     spls.find('PoMHoly').attr({
@@ -1907,12 +1913,6 @@ define(['can'], function(can) {
         }
     });
 
-
-    spls.find('PWSHoly').attr({
-        fheal: function(delta) {
-            return ( this.fbase(delta) );
-        },
-    });
 
     //END HOLY Spells setup
 */
