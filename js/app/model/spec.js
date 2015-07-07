@@ -441,8 +441,8 @@ define(['can'], function(can) {
                                 this.attr('stats.bhaste') * 1 +
                                 ( (delta && delta.haste) || 0 )
                             ) *
-                            (this.attr('monk_haste') ? 1.5 : 1) *
-                            0.0001
+                            (this.attr('monk_haste') ? 1.5 : 1) /
+                            90 / 100
                         ) *
                         this.fhaste_mul()
                     ) - 1
@@ -668,8 +668,8 @@ define(['can'], function(can) {
                                 this.attr('stats.bhaste') * 1 +
                                 ( (delta && delta.haste) || 0 )
                             ) *
-                            (1 + 0.4 * this.attr('borrowed_time_uptime')) *
-                            0.0001
+                            (1 + 0.4 * this.attr('borrowed_time_uptime')) /
+                            90 / 100
                         ) *
                         this.fhaste_mul()
                     ) - 1
@@ -741,9 +741,7 @@ define(['can'], function(can) {
                             (
                                 this.attr('stats.bhaste') * 1 +
                                 ( (delta && delta.haste) || 0 )
-                            ) *
-                            (this.attr('monk_haste') ? 1.5 : 1) *
-                            0.0001 *
+                            ) / 90 / 100 *
                             1.05 // Druids get more haste stat
                         ) *
                         this.fhaste_mul()
