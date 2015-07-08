@@ -539,7 +539,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 5920,
             targets: 15,
-            ctick: 1.0989 * 1.15 * 1.1 * 3,
+            ctick: 1.0989 * 1.1 * 3,
             nticks: 3,
             time_tick: 2,
             img: 'spell_holy_summonlightwell',
