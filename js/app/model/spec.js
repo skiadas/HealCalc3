@@ -696,10 +696,10 @@ define(['can'], function(can) {
             return (
                 Math.roundn(
                     (
-                        this.attr('stats.bmulti') * 0.01514 +
-                        ( (delta && delta.multi) || 0 ) * 0.01514 +
-                        ( this.attr('buffs.multi') ? 5 : 0 )
-                    ) * 1.05,
+                        this.attr('stats.bmulti') +
+                        ( (delta && delta.multi) || 0 )
+                    ) * 0.01514 * 1.05 +
+                    ( this.attr('buffs.multi') ? 5 : 0 ),
                 2 )
             );
         },
