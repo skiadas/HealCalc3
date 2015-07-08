@@ -469,7 +469,7 @@ define(['can'], function(can) {
             specid: 2,
             base_ct: 1.5,
             base_mana: 3840,
-            targets: 6,
+            targets: 5,
             c: 0.666 * 1.25 * 1.25 * 1.1,
             img: 'spell_holy_prayerofmendingtga',
             aoe: true,
@@ -1896,22 +1896,19 @@ define(['can'], function(can) {
         }
     });
 
-/* TODO
-
     spls.find('PoMHoly').attr({
         fdirect: function(delta) {
             return (
-                ( this.B + this.c * this.spec.fsp(delta) ) *
+                this.c * this.spec.fsp(delta) *
                 (
-                    this.spec.attr('t15_2p_holy') ?
-                        1.1 * (1 + 1.1 * (1 + 1.1 * (1 + 1.1))) +  // The 2th through 5th heals
-                        (this.spec.attr('glyph_pom_holy') ? 1.6 : (1 + Math.pow(1.1, 5)))
-                    :
-                        (this.spec.attr('glyph_pom_holy') ? 5.6 : 6)
+                    this.targets -
+                    (this.spec.attr('glyph_pom_holy') ? 0.4 : 0)
                 )
             );
         }
     });
+
+/* TODO
 
 
     //END HOLY Spells setup
