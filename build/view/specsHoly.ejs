@@ -1,0 +1,16 @@
+<label for="cascade_range_holy">Avg Cascade Range<input name="cascade_range_holy" type="input" value="<%== spec.attr('cascade_range_holy') %>" title="Maximum effect at 30 yards" /></label>
+<label for="poh_targets_holy">PoH Targets<input name="poh_targets_holy" type="input" value="<%== spec.attr('poh_targets_holy') %>" /></label>
+<label for="lw_charges">LW Charges<input name="lw_charges" type="input" value="<%= spec.attr('lw_charges') %>" /></label>
+<label for="glyph_coh">Glyph of CoH<input name="glyph_coh" type="checkbox" <%= spec.attr('glyph_coh') ? 'checked="checked"' : ''  %>/></label>
+<label for="glyph_pom_holy">Glyph of PoM<input name="glyph_pom_holy" type="checkbox" <%= spec.attr('glyph_pom_holy') ? 'checked="checked"' : ''  %> /></label>
+<label for="glyph_renew_holy">Glyph of Renew<input name="glyph_renew_holy" type="checkbox" <%= spec.attr('glyph_renew_holy') ? 'checked="checked"' : ''  %> /></label>
+<label for="glyph_binding_holy">Glyph of Binding<input name="glyph_binding_holy" type="checkbox" <%= spec.attr('glyph_binding_holy') ? 'checked="checked"' : ''  %> /></label>
+<label for="t16_2p_holy">T16 2piece<input name="t16_2p_holy" type="checkbox" <%= spec.attr('t16_2p_holy') ? 'checked="checked"' : ''  %> /></label>
+<label for="t16_4p_holy">T16 4piece<input name="t16_4p_holy" type="checkbox" <%= spec.attr('t16_4p_holy') ? 'checked="checked"' : ''  %> /></label>
+<label>Level 45 talent
+<select>
+  <option value="fdcl" <%= spec.attr('talent45_holy') === 'fdcl' ? 'selected="selected"' : '' %>>FDCL</option>
+  <option value="mb" <%= spec.attr('talent45_holy') === 'mb' ? 'selected="selected"' : '' %>>Mindbender</option>
+  <option value="solace" <%= spec.attr('talent45_holy') === 'solace' ? 'selected="selected"' : '' %>>Solace</option>
+</select>
+</label>
