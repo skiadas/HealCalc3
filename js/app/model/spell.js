@@ -605,7 +605,145 @@ define(['can'], function(can) {
             instant: true,
             item: 120517
         },
-
+        //
+        // SHAMAN
+        //
+        {
+            id: 54,
+            code: 'HW',
+            name: 'Healing Wave',
+            specid: 5,
+            base_ct: 2.5,
+            base_mana: 3312,
+            c: 4.125 * 1.4,
+            res_factor: 1351,
+            img: 'spell_nature_healingwavelesser',
+            aoe: false,
+            instant: false,
+            item: 77472
+        },
+        {
+            id: 55,
+            code: 'HSurge',
+            name: 'Healing Surge',
+            specid: 5,
+            base_ct: 1.5,
+            base_mana: 6624,
+            c: 4.125 * 1.4,
+            res_factor: 811,
+            img: 'spell_nature_healingway',
+            aoe: false,
+            instant: false,
+            item: 8004
+        },
+        {
+            id: 56,
+            code: 'ChainHeal',
+            name: 'Chain Heal',
+            specid: 5,
+            base_ct: 2.5,
+            base_mana: 8960,
+            c: 2.03125 * 1.4,
+            targets: 4,
+            res_factor: 450 * 4,
+            img: 'spell_nature_healingway',
+            aoe: true,
+            instant: false,
+            item: 1064
+        },
+        {
+            id: 57,
+            code: 'Riptide',
+            name: 'Riptide',
+            specid: 5,
+            base_ct: 1.5,
+            base_mana: 2333,
+            c: 1.38 * 1.4,
+            ctick: 1.8 * 1.4,
+            nticks: 6,
+            time_tick: 3,
+            res_factor: 811,
+            img: 'spell_nature_riptide',
+            aoe: false,
+            instant: true,
+            item: 61295
+        },
+        {
+            id: 58,
+            code: 'UnleashLife',
+            name: 'Unleash Life',
+            specid: 5,
+            base_ct: 1.5,
+            base_mana: 2176,
+            c: 1.05 * 1.4,
+            res_factor: 811,
+            img: 'spell_shaman_unleashweapon_life',
+            aoe: false,
+            instant: true,
+            item: 73685
+        },
+        {
+            id: 59,
+            code: 'HST',
+            name: 'Healing Stream Totem',
+            specid: 5,
+            base_ct: 1.5,
+            base_mana: 2752,
+            ctick: 0.525 * 1.5 * 1.4,  // Per tick
+            nticks: 15 / 2,   // But there is an initial tick
+            time_tick: 2,
+            img: 'inv_spear_04',
+            aoe: false,
+            instant: true,
+            item: 5394
+        },
+        {
+            id: 60,
+            code: 'HTT',
+            name: 'Healing Tide Totem',
+            specid: 5,
+            base_ct: 1.5,
+            base_mana: 1792,
+            ctick: 0.6 * 1.5 * 1.4,   // Per tick
+            targets: 5,
+            nticks: 10 / 2,
+            time_tick: 2,
+            img: 'ability_shaman_healingtide',
+            aoe: true,
+            instant: true,
+            item: 108280
+        },
+        {
+            id: 61,
+            code: 'HealingRain',
+            name: 'Healing Rain',
+            specid: 5,
+            base_ct: 2,
+            base_mana: 6912,
+            ctick: 0.163882 * 1.4 * 2, // Each tick
+            targets: 6,
+            nticks: 10 / 2,
+            time_tick: 2,
+            duration: 10,
+            img: 'spell_nature_giftofthewaterspirit',
+            aoe: true,
+            instant: false,
+            item: 73920
+        },
+        {
+            id: 63,
+            code: 'EarthShield',
+            name: 'Earth Shield',
+            specid: 5,
+            base_ct: 1.5,
+            base_mana: 4032,
+            c: 0.63,  // No 1.4 multiplier needed
+            targets: 9,
+            img: 'spell_nature_skinofearth',
+            aoe: false,
+            instant: true,
+            item: 974
+        },
     ];
 
     var FIXME = [
@@ -820,186 +958,6 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 20925
-        },
-
-        //
-        // SHAMAN
-        //
-        {
-            id: 53,
-            code: 'HW',
-            name: 'Healing Wave',
-            specid: 5,
-            base_ct: 2.5,
-            base_mana: 5940,
-            B: (7790 + 8899)/2,
-            c: 0.756, res_factor: 1,
-            img: 'spell_nature_magicimmunity',
-            aoe: false,
-            instant: false,
-            item: 331
-        },
-        {
-            id: 54,
-            code: 'GHW',
-            name: 'Greater Healing Wave',
-            specid: 5,
-            base_ct: 2.5,
-            base_mana: 16140,
-            B: (14172 + 16190)/2,
-            c: 1.377, res_factor: 1,
-            img: 'spell_nature_healingwavelesser',
-            aoe: false,
-            instant: false,
-            item: 77472
-        },
-        {
-            id: 55,
-            code: 'HSurge',
-            name: 'Healing Surge',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 20580,
-            B: (11687 + 13351)/2,
-            c: 1.135, res_factor: 0.6,
-            img: 'spell_nature_healingway',
-            aoe: false,
-            instant: false,
-            item: 8004
-        },
-        {
-            id: 56,
-            code: 'ChainHeal',
-            name: 'Chain Heal',
-            specid: 5,
-            base_ct: 2.5,
-            base_mana: 13500,
-            B: (7086 + 8094)/2,
-            c: 0.6876,
-            targets: 4,
-            res_factor: 0.333*4,
-            img: 'spell_nature_healingway',
-            aoe: true,
-            instant: false,
-            item: 1064
-        },
-        {
-            id: 57,
-            code: 'Riptide',
-            name: 'Riptide',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 7200,
-            B: 3735,
-            c: 0.339,
-            Btick: 1764,
-            ctick: 0.16,
-            nticks: 6,
-            time_tick: 3,
-            res_factor: 0.6,
-            img: 'spell_nature_riptide',
-            aoe: false,
-            instant: true,
-            item: 61295
-        },
-        {
-            id: 58,
-            code: 'UnleashLife',
-            name: 'Unleash Life',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 4920,
-            B: (3028 + 3280)/2,
-            c: 0.286,
-            res_factor: 0.6,
-            img: 'spell_shaman_unleashweapon_life',
-            aoe: false,
-            instant: true,
-            item: 73685
-        },
-        {
-            id: 59,
-            code: 'HST',
-            name: 'Healing Stream Totem',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 14100,
-            Btick: 0,
-            ctick: 0.444,
-            nticks: 15/2,
-            time_tick: 2,
-            duration: 15,
-            img: 'inv_spear_04',
-            aoe: false,
-            instant: true,
-            item: 5394
-        },
-        {
-            id: 60,
-            code: 'HTT',
-            name: 'Healing Tide Totem',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 4800,
-            Btick: 4932,
-            ctick: 0.484,
-            targets: 5,
-            nticks: 11/2,
-            time_tick: 2,
-            duration: 11,
-            img: 'ability_shaman_healingtide',
-            aoe: true,
-            instant: true,
-            item: 108280
-        },
-        {
-            id: 61,
-            code: 'HealingRain',
-            name: 'Healing Rain',
-            specid: 5,
-            base_ct: 2,
-            base_mana: 21981,
-            Btick:  (1983 + 2358)/2,
-            ctick: 0.197,
-            targets: 6,
-            nticks: 10/2,
-            time_tick: 2,
-            duration: 10,
-            img: 'spell_nature_giftofthewaterspirit',
-            aoe: true,
-            instant: false,
-            item: 73920
-        },
-        {
-            id: 62,
-            code: 'Earthliving',
-            name: 'Earthliving',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 0,
-            Btick:  1094,
-            ctick: 0.0996,
-            nticks: 4,
-            time_tick: 3,
-            img: 'spell_shaman_giftearthmother',
-            aoe: false,
-            instant: true,
-            item: 51945
-        },
-        {
-            id: 63,
-            code: 'EarthShield',
-            name: 'Earth Shield',
-            specid: 5,
-            base_ct: 1.5,
-            base_mana: 11400,
-            B: 2461.4/1.25,  // To account for 1.25 baseline buff to shaman spells
-            c: 0.2413/1.25,
-            targets: 9,
-            img: 'spell_nature_skinofearth',
-            aoe: false,
-            instant: true,
-            item: 974
         },
 
         //
@@ -1318,8 +1276,7 @@ define(['can'], function(can) {
                 Math.roundn(
                     this.base_mana -
                     (
-                        8849 * 0.01 *
-                        this.spec.fcrit(delta) *
+                        this.spec.fcritp(delta) *
                         this.res_factor *
                         (this.spec.resurgence ? 1 : 0)
                     )
@@ -1413,10 +1370,8 @@ define(['can'], function(can) {
             );
         },
         fbase_shaman: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                1.25
-            );
+            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+                   ( 1 + 1 * this.spec.fversp(delta) );
         },
         fbase_monk: function(delta) {
             return (
@@ -1494,44 +1449,12 @@ define(['can'], function(can) {
             );
         },
         fheal_shaman: function(delta) {
+            // The average heal amount, including crits and multistrike.
             return (
                 this.fbase(delta) *
-                (
-                    1 +
-                        (
-                            -1 +
-                                2 *
-                                (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
-                ) *
-                this.spec.fmast_factor(delta)
-            );
-        },
-        fheal_shaman_aa: function(delta, crit) {
-            return (
-                (this.spec.earth_shield_buff ? 1.2 : 1) *
-                this.fbase(delta) *
-                this.spec.fmast_factor(delta) *
-                (
-                    1 +
-                    (this.spec.t15_4p_shaman ? 0.3 : 0) +
-                    (
-                        -1 +
-                            2 *
-                            (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
-                            1.3
-                    ) *
-                    (crit || this.spec.fcritp(delta))
-                )
-            );
-        },
-        fheal_spirit_shell: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fmastp(delta) ) *
                 ( 1 + this.spec.fcritp(delta) ) *
-                ( 1+ 0.3 * this.spec.fcritp(delta))
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                this.spec.fmast_factor(delta)
             );
         },
         fheal_holy: function(delta) {
@@ -2043,6 +1966,136 @@ define(['can'], function(can) {
     });
     //END DRUID Spells setup
 
+    // SHAMAN Spells setup
+
+    spls.find('ChainHeal').attr({
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        },
+        ftargets: function(delta) {
+            var targets = Math.min(1 * this.spec.ch_targets, this.targets);
+            if (this.spec.high_tide) { return targets + 0.5 + 2; }
+            var s = 0.5, f = 1;
+            for (var i = 0; i < targets; i += 1) {
+                s = s + f;
+                f = 0.9 * f;
+            }
+            return s;
+        },
+    });
+
+    spls.find('HW').attr({
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        },
+        fct: function(delta) {
+            return (
+                this.base_ct *
+                ( this.spec.attr('tidal_waves') ? 0.8 : 1) /
+                ( 1 + this.spec.fhastep(delta) )
+            );
+        }
+    });
+
+    spls.find('HSurge').attr({
+        fmana: function(delta) {
+            var crit = Math.min(
+                this.spec.fcritp(delta) +
+                (this.spec.attr('tidal_waves') ? 0.3 : 0),
+                1
+            );
+            return Math.roundn(
+                this.base_mana -
+                (
+                    crit *
+                    this.res_factor *
+                    (this.spec.resurgence ? 1 : 0)
+                )
+            );
+        },
+        fheal: function(delta) {
+            var crit = Math.min(
+                this.spec.fcritp(delta) +
+                (this.spec.attr('tidal_waves') ? 0.3 : 0),
+                1
+            );
+            return (
+                this.fbase(delta) *
+                ( 1 + crit ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                this.spec.fmast_factor(delta)
+            );
+        }
+    });
+
+    spls.find('UnleashLife').attr({
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        }
+    });
+
+    spls.find('Riptide').attr({
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        },
+        fdirect: function(delta) {
+            return (
+                ( this.c * this.spec.fsp(delta) ) *
+                (this.spec.attr('glyph_riptide') ? 0.25 : 1)
+            );
+        },
+        fbase: function(delta) {
+            return (
+                this.fhot(delta) + this.fdirect(delta)
+            );
+        }
+    });
+
+    spls.find('HST').attr({
+        fhot: function(delta) {
+            return (
+                this.spec.fsp(delta) * this.ftargets(delta) *
+                (1 +
+                    this.ctick * this.nticks *
+                    (1 + this.spec.fhastep(delta))
+                )
+            );
+        },
+        ftargets: function(delta) {
+            return ( this.spec.rushing_streams ? 1.15 * 2 : 1 );
+        }
+    });
+    spls.find('HTT').attr({
+        fhot: function(delta) {
+            return (
+                this.spec.fsp(delta) * this.ftargets(delta) *
+                (1 +
+                    this.ctick * this.nticks *
+                    (1 + this.spec.fhastep(delta))
+                )
+            );
+        },
+        ftargets: function(delta) {
+            return ( this.spec.buffs.raid_size );
+        }
+    });
+
+    spls.find('HealingRain').attr({
+        fhot: function(delta) {
+            return (
+                this.spec.fsp(delta) * this.ftargets(delta) *
+                (1 +
+                    this.ctick * this.nticks *
+                    (1 + this.spec.fhastep(delta))
+                )
+            );
+        },
+        ftargets: function(delta) {
+            return ( Math.min(1 * this.spec.hr_targets, this.targets) );
+        }
+    });
+
+    //END SHAMAN Spells Setup
 /*
 
     // PALLY Spells setup
@@ -2329,224 +2382,6 @@ define(['can'], function(can) {
         }
     });
     // END PALLY Spells setup
-
-
-
-    // SHAMAN Spells setup
-    spls.find('EarthShield').attr({
-        fbase: function(delta) {
-            return (
-                this.fbase_shaman(delta) *
-                (this.spec.t16_2p_shaman ? 4 : 1)
-            );
-        }
-    });
-    spls.find('HW').attr({
-        fmana: function(delta) {
-            return ( this.fmana_shaman_resurgence(delta) );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_shaman_aa(delta) );
-        },
-        fct: function(delta) {
-            return (
-                this.base_ct /
-                ( 1 + this.spec.fhastep(delta) ) *
-                (
-                    this.spec.attr('tidal_waves') ?
-                        0.7 - (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
-                    :
-                        1
-                )
-            );
-        }
-    });
-
-    spls.find('GHW').attr({
-        fmana: function(delta) {
-            return (
-                Math.roundn(
-                    (
-                        this.base_mana *
-                        (this.spec.attr('t14_2p_shaman') ? 0.9 : 1)
-                    ) -
-                    (
-                        8849 *
-                        this.spec.fcritp(delta) *
-                        this.res_factor *
-                        (this.spec.resurgence ? 1 : 0)
-                    )
-                )
-            )
-        },
-        fheal: function(delta) {
-            return ( this.fheal_shaman_aa(delta) );
-        },
-        fct: function(delta) {
-            return (
-                this.base_ct /
-                ( 1 + this.spec.fhastep(delta) ) *
-                (
-                    this.spec.attr('tidal_waves') ?
-                        0.7 - (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
-                    :
-                        1
-                )
-
-            );
-        }
-    });
-
-    spls.find('HSurge').attr({
-        fmana: function(delta) {
-            var crit = this.spec.fcritp(delta) +
-                       (
-                           this.spec.attr('tidal_waves') ?
-                               0.3 + (this.spec.attr('t14_4p_shaman') ? 0.05 : 0)
-                           :
-                               0
-                       );
-            return (
-                Math.roundn(
-                    this.base_mana -
-                    (
-                        crit *
-                        8849 *
-                        0.6 *
-                        (this.spec.attr('resurgence') ? 1 : 0)
-                    )
-                )
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fheal_shaman_aa(
-                    delta,
-                    this.spec.fcritp(delta) +
-                    (this.spec.attr('tidal_waves') ? 0.3 : 0)
-                )
-            );
-        }
-    });
-
-    spls.find('ChainHeal').attr({
-        fmana: function(delta) {
-            return ( this.fmana_shaman_resurgence(delta) );
-        },
-        ftargets: function(delta) {
-            return (
-                Math.min(1 * this.spec.ch_targets, this.targets) +
-                (this.spec.earth_shield_buff ? 0.2 : 0)
-            );
-        },
-        fbase: function(delta) {
-            return (
-                this.fdirect(delta) *
-                1.25 *
-                (this.spec.attr('chain_heal_riptide') ? 1.25 : 1)
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                this.spec.fmast_factor(delta) *
-                (
-                    1 +
-                    (this.spec.t15_4p_shaman ? 0.3 : 0) +
-                    (
-                        -1 +
-                            2 *
-                            (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) *
-                            1.3
-                    ) *
-                    this.spec.fcritp(delta)
-                )
-            );
-        }
-    });
-
-    spls.find('Riptide').attr({
-        fmana: function(delta) {
-            return ( this.fmana_shaman_resurgence(delta) );
-        },
-        fdirect: function(delta) {
-            return (
-                ( this.B + this.c * this.spec.fsp(delta) ) *
-                (this.spec.attr('glyph_riptide') ? 0.25 : 1)
-            );
-        },
-        fbase: function(delta) {
-            return (
-                (
-                    this.fhot(delta) +
-                    this.fdirect(delta)
-                ) * 1.25
-            );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_shaman_aa(delta) );
-        }
-    });
-
-    spls.find('UnleashLife').attr({
-        fmana: function(delta) {
-            return ( this.fmana_shaman_resurgence(delta) );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_shaman_aa(delta) );
-        }
-    });
-
-    spls.find('HST').attr({
-        fnticks: function(delta) {
-            return ( this.fnticks_shaman_aoe(delta) );
-        },
-        ftargets: function(delta) {
-            return ( (this.spec.t15_2p_shaman ? 1.25 : 1) * (this.spec.rushing_streams ? 1.15 * 2 : 1));
-        },
-        fbase: function(delta) {
-            return ( this.fbase_shaman(delta) * 1.5 ); // 50% extra buff to HST from purification
-        }
-    });
-
-    spls.find('HTT').attr({
-        fnticks: function(delta) {
-            return ( this.fnticks_shaman_aoe(delta) );
-        },
-        fbase: function(delta) {
-            return ( this.fbase_shaman(delta) * 1.5 ); // 50% extra buff to HST from purification
-        },
-        ftargets: function(delta) {
-            return ( this.spec.buffs.raid25 ? 12 : 5 );
-        }
-    });
-    spls.find('HealingRain').attr({
-        fnticks: function(delta) {
-            return (
-                1 +
-                Math.ceiln(
-                    (this.duration + this.spec.conductivity * 2) *
-                    (1 + this.spec.fhastep(delta)) /
-                    this.time_tick
-                )
-            );
-        },
-        ftargets: function(delta) {
-            return ( Math.min(1 * this.spec.hr_targets, this.targets) );
-        },
-        fbase: function(delta) {
-            return ( this.fbase_shaman(delta) * 2 ); // 100% extra buff to HST from purification
-        }
-    });
-
-    spls.find('Earthliving').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
-    //  END SHAMAN Spells setup
-
-
 
     // MONK Spells setup
     $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {

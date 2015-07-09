@@ -6,15 +6,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_powerwordshield',
             active: true,
             bcrit: 1.235,
-            bpoints_info: [
-                {
-                    name: 'Holy Fire',
-                    img: 'spell_holy_searinglight',
-                    nticks: 7,
-                    time_tick: 1,
-                    hfactor: 1
-                },
-            ],
+            bpoints_info: [],
             mana_sources: [
                 {
                     name: 'Passive Regen',
@@ -54,32 +46,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_guardianspirit',
             active: false,
             bcrit: 1.235,
-            bpoints_info: [
-                {
-                    name: 'Renew',
-                    img: 'spell_holy_renew',
-                    nticks: 4,
-                    time_tick: 3
-                },
-                {
-                    name: 'Glyphed Renew',
-                    img: 'spell_holy_renew',
-                    nticks: 3,
-                    time_tick: 3
-                },
-                {
-                    name: 'HW:Sanc',
-                    img: 'spell_holy_divineprovidence',
-                    nticks: 15,
-                    time_tick: 2
-                },
-                {
-                    name: 'LW/LS',
-                    img: 'spell_holy_summonlightwell',
-                    nticks: 3,
-                    time_tick: 2
-                },
-            ],
+            bpoints_info: [],
             mana_sources: [
                 {
                     name: 'Spirit Based',
@@ -120,20 +87,7 @@ define(['can'], function(can) {
             icon: 'spell_holy_holybolt',
             active: false,
             bcrit: 3.335,
-            bpoints_info: [
-                {
-                    name: 'EF',
-                    img: 'inv_torch_thrown',
-                    nticks: 10,
-                    time_tick: 3
-                },
-                {
-                    name: 'SS',
-                    img: 'ability_paladin_blessedmending',
-                    nticks: 5,
-                    time_tick: 6
-                },
-            ],
+            bpoints_info: [],
             mana_sources: [
                 {
                     name: 'Spirit Based',
@@ -162,44 +116,7 @@ define(['can'], function(can) {
             icon: 'spell_nature_healingtouch',
             active: false,
             bcrit: 1.85,
-            bpoints_info: [
-                {
-                    name: 'LB',
-                    img: 'inv_misc_herb_felblossom',
-                    nticks: 15,
-                    time_tick: 1
-                },
-                {
-                    name: 'Glyphed LB',
-                    img: 'inv_misc_herb_felblossom',
-                    nticks: 10,
-                    time_tick: 1
-                },
-                {
-                    name: 'Wild Growth',
-                    img: 'ability_druid_flourish',
-                    nticks: 7,
-                    time_tick: 1
-                },
-                {
-                    name: 'Rejuv',
-                    img: 'spell_nature_rejuvenation',
-                    nticks: 4,
-                    time_tick: 3
-                },
-                {
-                    name: 'Tranq',
-                    img: 'spell_nature_rejuvenation',
-                    nticks: 4,
-                    time_tick: 2
-                },
-                {
-                    name: 'Regrowth',
-                    img: 'spell_nature_resistnature',
-                    nticks: 3,
-                    time_tick: 2
-                },
-            ],
+            bpoints_info: [],
             mana_sources: [
                 {
                     name: 'Spirit Based',
@@ -228,12 +145,7 @@ define(['can'], function(can) {
             icon: 'spell_nature_healingwavegreater',
             active: false,
             bcrit: 1.235,
-            bpoints_info: [
-                { name: 'Riptide', img: 'spell_nature_riptide', nticks: 6, time_tick: 3 },
-                { name: 'Healing Rain', img: 'spell_nature_giftofthewaterspirit', nticks: 5, time_tick: 2 },
-                { name: 'HTT', img: 'ability_shaman_healingtide', nticks: 11/2, time_tick: 2 },
-                { name: 'HST', img: 'inv_spear_04', nticks: 15/2, time_tick: 2 },
-            ],
+            bpoints_info: [],
             mana_sources: [
                 {
                     name: 'Spirit Based',
@@ -275,22 +187,7 @@ define(['can'], function(can) {
             icon: 'spell_monk_mistweaver_spec',
             active: false,
             bcrit: 2.19,
-            bpoints_info: [
-                {
-                    name: 'Enveloping Mist',
-                    img: 'spell_shaman_spiritlink',
-                    nticks: 6,
-                    time_tick: 1,
-                    hfactor: 1
-                },
-                {
-                    name: 'Renewing Mist',
-                    img: 'ability_monk_renewingmists',
-                    nticks: 9,
-                    time_tick: 2,
-                    hfactor: 1
-                }
-            ],
+            bpoints_info: [],
             mana_sources: [
                 {
                     name: 'Spirit Based',
@@ -758,7 +655,6 @@ define(['can'], function(can) {
         healing_touch_with_ns: false
     });
 
-    // Lifebloom option for 1 or 3 stacks
     // SHAMAN
     spcs[4].attr({
         mastery_factor: 3,
@@ -768,17 +664,19 @@ define(['can'], function(can) {
                 ( this.attr('buffs.haste') ? 1.05 : 1 )
             );
         },
-        fsp: function(delta) {
+        fmast: function(delta) {
             return (
                 Math.roundn(
                     (
-                        1 * this.fint(delta) - 10 +
-                        1 * this.attr('stats.bweapon') +
-                        ( delta && delta.sp || 0 ) +
-                        2873
+                        (
+                            this.attr('stats.bmast') * 0.00909 +
+                            ( (delta && delta.mast) || 0 )  * 0.00909 +
+                            ( this.attr('buffs.mastery') ? 550 : 0 )  * 0.00909
+                        ) * 1.05 +
+                        8
                     ) *
-                    ( this.attr('buffs.sp') ? 1.1 : 1 )
-                )
+                    this.mastery_factor,
+                2 )
             );
         },
         fmast_factor: function(delta) {
@@ -787,16 +685,13 @@ define(['can'], function(can) {
         resurgence: true,
         tidal_waves: true,
         conductivity: 0,
-        echo_elements: false,
         ancestral_swiftness: false,
         hr_targets: 6,
         ch_targets: 4,
         glyph_riptide: false,
         health_deficit: 20,
-        chain_heal_riptide: true,
-        earth_shield_buff: true,
-        t14_2p_shaman: false,
         glyph_water_shield: false,
+        high_tide: true,
         water_shield_ppm: 4,
         rushing_streams: false
     });
