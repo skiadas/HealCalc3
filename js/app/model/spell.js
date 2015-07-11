@@ -394,6 +394,10 @@ define(['can'], function(can) {
         //     instant: true,
         //     item: 106737
         // },
+
+        //
+        // HOLY
+        //
         {
             id: 17,
             code: 'HealHoly',
@@ -606,6 +610,183 @@ define(['can'], function(can) {
             item: 120517
         },
         //
+        // PALLY
+        //
+        {
+            id: 41,
+            code: 'HolyLight',
+            name: 'Holy Light',
+            specid: 3,
+            base_ct: 2.5,
+            base_mana: 3300,
+            c: 3 * 1.25,
+            img: 'spell_holy_surgeoflight',
+            aoe: false,
+            instant: false,
+            item: 82326
+        },
+        {
+            id: 42,
+            code: 'FlashLight',
+            name: 'Flash of Light',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 6400,
+            c: 3 * 1.25,
+            img: 'spell_holy_flashheal',
+            aoe: false,
+            instant: false,
+            item: 19750
+        },
+        {
+            id: 43,
+            code: 'HolyRadiance',
+            name: 'Holy Radiance',
+            specid: 3,
+            base_ct: 2.5,
+            base_mana: 11405,
+            c: 1.5131 * 1.25,
+            targets: 1 + 6 * 0.5,
+            img: 'spell_paladin_divinecircle',
+            aoe: true,
+            beaconPercent: 0.15,
+            instant: false,
+            item: 82327
+        },
+        {
+            id: 44,
+            code: 'HolyShock',
+            name: 'Holy Shock',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 2352,
+            c: 1.4 * 1.25,
+            img: 'spell_holy_searinglight',
+            aoe: false,
+            instant: true,
+            item: 20473
+        },
+        {
+            id: 45,
+            code: 'WoG',
+            name: 'Word of Glory',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 0,
+            c: 1.1 * 3 * 1.2,
+            img: 'inv_helmet_96',
+            aoe: false,
+            instant: false,
+            item: 130551
+        },
+        {
+            id: 46,
+            code: 'LoD',
+            name: 'Light of Dawn',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 0,
+            c: 0.245 * 3 * 1.5,
+            targets: 6,
+            img: 'spell_paladin_lightofdawn',
+            beaconPercent: 0.15,
+            aoe: true,
+            instant: false,
+            item: 85222
+        },
+        {
+            id: 47,
+            code: 'HolyPrism',
+            name: 'Holy Prism Single',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 5440,
+            c: 4 * 1.25, // In-game tooltip value misses the 25% factor
+            img: 'spell_paladin_holyprism',
+            beaconPercent: 0.15,
+            aoe: false,
+            instant: true,
+            item: 114165
+        },
+        {
+            id: 48,
+            code: 'HolyPrismAoE',
+            name: 'Holy Prism AoE',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 5440,
+            c: 3 * 1.25, // In-game tooltip value misses the 25% factor
+            targets: 5,
+            img: 'spell_paladin_holyprism',
+            beaconPercent: 0.15,
+            aoe: true,
+            instant: true,
+            item: 114165
+        },
+        {
+            id: 49,
+            code: 'LightsHammer',
+            name: 'Light\'s Hammer',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 16608,
+            ctick: 0.67 * 7 * 1.25, // All ticks. Tooltip includes 25%
+            nticks: 7,
+            time_tick: 2,
+            duration: 14,
+            targets: 6,
+            img: 'spell_paladin_lightshammer',
+            aoe: true,
+            beaconPercent: 0.15,
+            instant: true,
+            item: 114158
+        },
+        {
+            id: 50,
+            code: 'Execution',
+            name: 'Execution Sentence',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 4096,
+            c: 0.594 * 27.906 * 1.25,
+            img: 'spell_paladin_executionsentence',
+            aoe: false,
+            instant: true,
+            item: 114157
+        },
+        {
+            id: 51,
+            code: 'EternalFlame',
+            name: 'Eternal Flame',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 0,
+            c: 1.1 * 3 * 1.2,
+            ctick: 0.1 * 1.25 * 1.2 * 15,  // all 15 ticks
+            nticks: 15,
+            time_tick: 2,
+            img: 'inv_torch_thrown',
+            aoe: false,
+            instant: true,
+            item: 114163
+        },
+        {
+            id: 52,
+            code: 'SacredShield',
+            name: 'Sacred Shield',
+            specid: 3,
+            base_ct: 1.5,
+            base_mana: 3040,
+            ctick: 0.995 * 5, // All 5 ticks
+            nticks: 5,
+            time_tick: 6,
+            img: 'ability_paladin_blessedmending',
+            aoe: false,
+            instant: true,
+            item: 20925
+        },
+
+        //
         // SHAMAN
         //
         {
@@ -747,219 +928,6 @@ define(['can'], function(can) {
     ];
 
     var FIXME = [
-        //
-        // HOLY
-        //
-        // {
-        //     code: 'LWHealHoly',
-        //     name: 'Lightwell Heal',
-        //     specid: 2,
-        //     base_ct: 1.5,
-        //     base_mana: 16200,
-        //     targets: 3,
-        //     B: 5735,
-        //     c: 0.553,
-        //     img: 'spell_holy_summonlightwell',
-        //     aoe: false,
-        //     instant: true,
-        //     item: 2050
-        // },
-        //
-        // PALLY
-        //
-        {
-            id: 40,
-            code: 'HolyLight',
-            name: 'Holy Light',
-            specid: 3,
-            base_ct: 2.5,
-            base_mana: 7560,
-            B: 8868.5,
-            c: 0.785,
-            img: 'spell_holy_holybolt',
-            aoe: false,
-            instant: false,
-            item: 635
-        },
-        {
-            id: 41,
-            code: 'DivineLight',
-            name: 'Divine Light',
-            specid: 3,
-            base_ct: 2.5,
-            base_mana: 21600,
-            B: 16817.5,
-            c: 1.49,
-            img: 'spell_holy_surgeoflight',
-            aoe: false,
-            instant: false,
-            item: 82326
-        },
-        {
-            id: 42,
-            code: 'FlashLight',
-            name: 'Flash of Light',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 22680,
-            B: 12606.5,
-            c: 1.12,
-            img: 'spell_holy_flashheal',
-            aoe: false,
-            instant: false,
-            item: 19750
-        },
-        {
-            id: 43,
-            code: 'HolyRadiance',
-            name: 'Holy Radiance',
-            specid: 3,
-            base_ct: 2.5,
-            base_mana: 21600,
-            B: 5664,
-            c: 0.675,
-            targets: 1+6*0.5,
-            img: 'spell_paladin_divinecircle',
-            aoe: true,
-            instant: false,
-            item: 82327
-        },
-        {
-            id: 44,
-            code: 'HolyShock',
-            name: 'Holy Shock',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 4800,
-            B: 9389,
-            c: 0.833,
-            img: 'spell_holy_searinglight',
-            aoe: false,
-            instant: true,
-            item: 20473
-        },
-        {
-            id: 45,
-            code: 'WoG',
-            name: 'Word of Glory',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 0,
-            B: 5539,
-            c: 0.49,
-            img: 'inv_helmet_96',
-            aoe: false,
-            instant: true,
-            item: 130551
-        },
-        {
-            id: 46,
-            code: 'LoD',
-            name: 'Light of Dawn',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 0,
-            B: (1627+1812)/2,
-            c: 0.152,
-            targets: 6,
-            img: 'spell_paladin_lightofdawn',
-            aoe: true,
-            instant: true,
-            item: 85222
-        },
-        {
-            id: 47,
-            code: 'HolyPrism',
-            name: 'Holy Prism Single',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 3240,
-            B: (14523 + 17750)/2 / 1.05,
-            c: 1.428 / 1.05,
-            img: 'spell_paladin_holyprism',
-            aoe: false,
-            instant: true,
-            item: 114165
-        },
-        {
-            id: 48,
-            code: 'HolyPrismAoE',
-            name: 'Holy Prism AoE',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 3240,
-            B: (9794 + 11969)/2  / 1.05,
-            c: 0.962 / 1.05,
-            targets: 5,
-            img: 'spell_paladin_holyprism',
-            aoe: true,
-            instant: true,
-            item: 114165
-        },
-        {
-            id: 49,
-            code: 'LightsHammer',
-            name: 'Light\'s Hammer',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 0,
-            B: (3268 + 3993)/2 / 1.05,
-            c: 0.321 / 1.05,
-            targets: 7 * 6,
-            img: 'spell_paladin_lightshammer',
-            aoe: true,
-            instant: true,
-            item: 114158
-        },
-        {
-            id: 50,
-            code: 'Execution',
-            name: 'Execution Sentence',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 0,
-            B: 12989.4 / 1.05,
-            c: 5.936 / 1.05,
-            img: 'spell_paladin_executionsentence',
-            aoe: false,
-            instant: true,
-            item: 114157
-        },
-        {
-            id: 51,
-            code: 'EternalFlame',
-            name: 'Eternal Flame',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 0,
-            B: 5539,
-            c: 0.49,
-            Btick: 711,
-            ctick: 0.0819,
-            nticks: 10,
-            time_tick: 3,
-            img: 'inv_torch_thrown',
-            aoe: false,
-            instant: true,
-            item: 114163
-        },
-        {
-            id: 52,
-            code: 'SacredShield',
-            name: 'Sacred Shield',
-            specid: 3,
-            base_ct: 1.5,
-            base_mana: 9600,
-            Btick: 340,
-            ctick: 1.17,
-            nticks: 5,
-            time_tick: 6,
-            img: 'ability_paladin_blessedmending',
-            aoe: false,
-            instant: true,
-            item: 20925
-        },
-
         //
         // MONK
         //
@@ -1253,15 +1221,6 @@ define(['can'], function(can) {
         fct: function(delta) {
             return ( this.base_ct / (1+this.spec.fhastep(delta)) );
         },
-        fct_hp_pally: function(delta) {
-            return (
-                (
-                    this.base_ct +
-                    (this.spec.cs_to_hp? 1.5 : 0) * (this.spec.one_hp ? 1 : 3)
-                ) /
-                (1+this.spec.fhastep(delta))
-            );
-        },
         fct_monk: function(delta) {
             return (
                 ((this.base_ct > 1.5) ? this.base_ct / (1 + this.spec.fhastep(delta)) : 1) +
@@ -1281,12 +1240,6 @@ define(['can'], function(can) {
                         (this.spec.resurgence ? 1 : 0)
                     )
                 )
-            );
-        },
-        fmana_hp_pally: function(delta) {
-            return (
-                (this.spec.cs_to_hp? 9000 : 0) *
-                (this.spec.one_hp ? 1 : 3)
             );
         },
         fmana_monk: function(delta) {
@@ -1357,16 +1310,8 @@ define(['can'], function(can) {
         fbase_pally: function(delta) {
             return (
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                1.05 *
-                1.25
-            );
-        },
-        fbase_pally_hp: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                1.05 *
-                1.5 *
-                (this.spec.one_hp ? 1 : 3)
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                1.05 // Seal of Insight
             );
         },
         fbase_shaman: function(delta) {
@@ -1431,20 +1376,12 @@ define(['can'], function(can) {
         fheal_pally: function(delta) {
             return (
                 this.fbase(delta) *
-                (
-                    1 +
-                        (
-                            -1 +
-                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    1 +
-                        (this.spec.bol ? 0.5 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                    +
-                    this.spec.fmastp(delta)
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 +
+                  this.spec.fmastp(delta) +  // Mastery not on beacon
+                  (this.spec.bol ? (this.beaconPercent || 0.5) : 0) +
+                  (this.spec.bof ? (this.beaconPercent || 0.5) : 0)
                 )
             );
         },
@@ -1500,11 +1437,6 @@ define(['can'], function(can) {
         },
         fhpm_nomana: function(delta) {
             return ( 0 );
-        },
-        fhpm_hp_pally_nomana: function(delta) {
-            return (
-                this.spec.cs_to_hp ? (this.fheal(delta) / this.fmana()) : 0
-            );
         },
         fmps: function(delta) {
             return ( this.fmana(delta) / this.fct(delta) );
@@ -2096,7 +2028,6 @@ define(['can'], function(can) {
     });
 
     //END SHAMAN Spells Setup
-/*
 
     // PALLY Spells setup
     spls.find('HolyLight').attr({
@@ -2106,95 +2037,70 @@ define(['can'], function(can) {
                 (1 + this.spec.fhastep(delta))
             );
         },
-        fbase: function(delta) {
+        fmana: function(delta) {
             return (
-                this.fbase_pally(delta) *
-                (this.spec.infusion_of_light && this.spec.t16_2p_pally ? 1.2 : 1)
-            )
+                this.base_mana *
+                ( this.spec.bol && this.spec.beacon_heals ? 0.6 : 1 )
+            );
         },
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    1 +
-                        (this.spec.bol ? 1 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                     +
-                    this.spec.fmastp(delta)
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
+                ( 1 +
+                  this.spec.fmastp(delta) +  // Mastery not on beacon
+                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                  ( this.spec.bof ? 0.5 : 0 )
                 )
             );
         }
     });
-
-    spls.find('DivineLight').attr({
-        fct: function(delta) {
+    spls.find('FlashLight').attr({
+        fmana: function(delta) {
             return (
-                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
-                (1 + this.spec.fhastep(delta))
+                this.base_mana *
+                ( this.spec.bol && this.spec.beacon_heals ? 0.6 : 1 )
             );
         },
         fbase: function(delta) {
             return (
-                this.fbase_pally(delta) *
-                (this.spec.infusion_of_light && this.spec.t16_2p_pally ? 1.2 : 1)
-            )
+                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                (this.spec.infusion_of_light ? 1.5 : 1) *
+                1.05 // Seal of Insight
+            );
+        },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
+                ( 1 +
+                  this.spec.fmastp(delta) +  // Mastery not on beacon
+                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                  ( this.spec.bof ? 0.5 : 0 )
+                )
+            );
         }
     });
 
     spls.find('HolyShock').attr({
         fheal: function(delta) {
-            var crit = 0.25 + this.spec.fcritp(delta);
+            var crit = Math.min(2 * this.spec.fcritp(delta), 1);
             return (
-                (
-                    1 +
-                        (this.spec.bol ? 0.5 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                     +
-                    this.spec.fmastp(delta)
-                ) *
                 this.fbase(delta) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        crit
-                ) *
-                (
-                    this.spec.attr('daybreak') ?
-                        (this.spec.attr('t15_2p_pally') ? 2.5 : 2)
-                    :
-                        1
-                )
-            );
-        }
-    });
-
-    spls.find('WoG').attr({
-        fct: function(delta) {
-            return ( this.fct_hp_pally(delta) );
-        },
-        fmana: function(delta) {
-            return ( this.fmana_hp_pally(delta) );
-        },
-        fhpm: function(delta) {
-            return ( this.fhpm_hp_pally_nomana(delta) );
-        },
-        fbase: function(delta) {
-            return ( this.fbase_pally_hp(delta) );
-        },
-        fheal: function(delta) {
-            return (
-                (
-                    this.fbase(delta) +
-                    this.spec.fmastp(delta) * this.fdirect(delta) * 1.5 * 1.05
-                ) *
-                ( 1 +
-                    ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                    this.spec.fcritp(delta)
+                ( 1 + crit ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
+                ( (
+                    ( 1 + this.spec.fmastp(delta) ) *
+                    (this.spec.daybreak ? 1 + 6 * 0.3 : 1)
+                  ) +  // Mastery not on beacon
+                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                  ( this.spec.bof ? 0.5 : 0 )
                 )
             );
         }
@@ -2240,124 +2146,83 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('LoD').attr({
-        fct: function(delta) {
-            return ( this.fct_hp_pally(delta) );
-        },
-        fmana: function(delta) {
-            return ( this.fmana_hp_pally(delta) );
-        },
+    spls.find('WoG').attr({
         fhpm: function(delta) {
-            return ( this.fhpm_hp_pally_nomana(delta) );
+            return ( this.fhpm_nomana(delta) );
         },
-        fbase: function(delta) {
-            return ( this.fbase_pally_hp(delta) );
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
+                ( 1 +
+                  this.spec.fmastp(delta) +  // Mastery not on beacon
+                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                  ( this.spec.bof ? 0.5 : 0 )
+                )
+            );
+        }
+    });
+
+    spls.find('LoD').attr({
+        fhpm: function(delta) {
+            return ( this.fhpm_nomana(delta) );
         },
         ftargets: function(delta) {
             return ( this.targets - (this.spec.attr('glyph_lod') ? 2 : 0) )
         },
         fdirect: function(delta) {
             return (
-                ( this.B + this.c * this.spec.fsp(delta) ) *
+                this.c * this.spec.fsp(delta) *
                 this.ftargets(delta) *
                 (this.spec.attr('glyph_lod') ? 1.25 : 1)
             );
-        },
-        fheal: function(delta) {
-             return (
-                 this.fbase(delta) *
-                 (
-                     1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    1 +
-                        (this.spec.bol ? 0.15 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                     +
-                    this.spec.fmastp(delta)
-                )
-            );
-        }
-    });
-
-    spls.find('LightsHammer').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 +
-                    ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                    this.spec.fcritp(delta)
-                ) *
-                (
-                    1 +
-                        (this.spec.bol ? 0.15 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                    +
-                    this.spec.fmastp(delta)
-                )
-            );
-        }
-    });
-
-    spls.find('Execution').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
         }
     });
 
     spls.find('EternalFlame').attr({
-        fct: function(delta) {
-            return ( this.fct_hp_pally(delta) );
-        },
-        fmana: function(delta) {
-            return ( this.fmana_hp_pally(delta) );
-        },
         fhpm: function(delta) {
-            return ( this.fhpm_hp_pally_nomana(delta) );
+            return ( this.fhpm_nomana(delta) );
         },
         fbase: function(delta) {
             return (
+                ( this.fhot(delta) + this.fdirect(delta) ) *
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                1.05 // Seal of Insight
+            );
+        },
+        fheal: function(delta) {
+            return (
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
                 (
-                    this.fhot(delta) +
-                    this.fdirect(delta)
-                ) *
-                1.05 *
-                1.5 *
-                (this.spec.one_hp ? 1 : 3)
+                    this.fbase(delta) *
+                    ( 1 + // Only direct heal has mastery
+                        ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                        ( this.spec.bof ? 0.5 : 0 )
+                    ) +
+                    this.fdirect(delta) * // The direct heal adds mastery
+                    ( 1 + 1 * this.spec.fversp(delta) ) *
+                    this.spec.fmastp(delta) *
+                    1.05
+                )
             );
         }
     });
-
     spls.find('SacredShield').attr({
         fbase: function(delta) {
-            return ( this.fhot(delta) );
+            return (
+                this.fhot(delta) *
+                ( 1 + 1 * this.spec.fversp(delta) )
+            );
         },
-        fheal: function(delta) {
-            return ( this.fbase(delta) );
-        }
-    });
-
-    spls.find('HolyPrism').attr({
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    1 +
-                        (this.spec.bol ? 0.15 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                    +
-                    this.spec.fmastp(delta)
-                )
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) )
             );
         }
     });
@@ -2366,22 +2231,47 @@ define(['can'], function(can) {
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    1+
-                        (this.spec.bol ? 0.15 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                    +
-                    this.spec.fmastp(delta)
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 +
+                  this.spec.fmastp(delta) +  // Mastery not on beacon
+                  (
+                    this.targets -
+                    ( this.spec.bol ? 1 : 0 ) -
+                    ( this.spec.bof ? 1 : 0 )
+                  ) / this.targets * // Percent of non-beaconed targets
+                    this.beaconPercent *
+                    (this.spec.bol ? 1 : 0) * // Only apply if bol on
+                    (this.spec.bof ? 2 : 1)
                 )
             );
         }
     });
-    // END PALLY Spells setup
+
+    spls.find('LightsHammer').attr({
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 +
+                  this.spec.fmastp(delta) +  // Mastery not on beacon
+                  (
+                    this.targets -
+                    ( this.spec.bol ? 1 : 0 ) -
+                    ( this.spec.bof ? 1 : 0 )
+                  ) / this.targets * // Percent of non-beaconed targets
+                    this.beaconPercent *
+                    (this.spec.bol ? 1 : 0) * // Only apply if bol on
+                    (this.spec.bof ? 2 : 1)
+                )
+            );
+        }
+    });
+
+   // END PALLY Spells setup
+
+/*
 
     // MONK Spells setup
     $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {

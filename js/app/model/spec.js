@@ -615,16 +615,26 @@ define(['can'], function(can) {
         fhaste_mul: function() {
             return ( 1.1 * ( this.attr('buffs.haste') ? 1.05 : 1 ) );
         },
+        fcrit: function(delta) {
+            return (
+                Math.roundn(
+                    5 +   // 5% base crit
+                    ( this.attr('buffs.crit') ? 5 : 0 ) +
+                    (
+                        this.attr('stats.bcrit') * 0.00909 +
+                        ( (delta && delta.crit) || 0 ) * 0.00909 +
+                        ( this.attr('buffs.weapon_enchant') === 'crit' ? 500 * 0.35 : 0 ) * 0.00909
+                    ) * 1.05,  // Disc gets more crit
+                2 )
+            );
+        },
         daybreak: false,
         infusion_of_light: false,
-        bol: false,
+        beacon_heals: false,
+        bol: true,
+        bof: true,
         glyph_lod: false,
-        t14_2p_pally: false,
-        t15_2p_pally: false,
-        t15_4p_pally: false,
-        t16_2p_pally: false,
-        cs_to_hp: false,
-        one_hp: false
+        t16_2p_pally: false
     });
 
     // DRUID
