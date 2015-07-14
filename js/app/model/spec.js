@@ -662,7 +662,8 @@ define(['can'], function(can) {
         glyph_blooming: false,
         glyph_regrowth: true,
         glyph_rejuv: false,
-        healing_touch_with_ns: false
+        healing_touch_with_ns: false,
+        t17_4p_druid: false
     });
 
     // SHAMAN

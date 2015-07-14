@@ -1865,6 +1865,9 @@ define(['can'], function(can) {
     });
 
     spls.find('WildGrowth').attr({
+        fmana: function(delta) {
+            return this.base_mana * (this.spec.t17_4p_druid ? 0.75 : 1);
+        },
         ftargets: function(delta) {
             return this.targets + (this.spec.attr('glyph_wild_growth') ? 1 : 0);
         }
