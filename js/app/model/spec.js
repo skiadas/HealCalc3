@@ -582,7 +582,8 @@ define(['can'], function(can) {
         glyph_penance: true,
         hfpm: 6,   // Holy fires per minute
         talent45_disc: 'solace',
-        t17_2p_disc: false
+        t17_2p_disc: false,
+        t17_4p_disc: false
     });
 
     // HOLY

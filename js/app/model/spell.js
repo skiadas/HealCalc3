@@ -1576,6 +1576,9 @@ define(['can'], function(can) {
     });
 
     spls.find('PoHDisc').attr({
+        fmana: function(delta) {
+            return this.base_mana * (this.spec.t17_4p_disc ? 0.5 : 1);
+        },
         ftargets: function(delta) {
             return ( 1 * this.spec.poh_targets_disc );
         },
@@ -1591,6 +1594,9 @@ define(['can'], function(can) {
         }
     });
     spls.find('EmpPoHDisc').attr({
+        fmana: function(delta) {
+            return this.base_mana * (this.spec.t17_4p_disc ? 0.5 : 1);
+        },
         ftargets: function(delta) {
             return ( 1 * this.spec.poh_targets_disc );
         },
