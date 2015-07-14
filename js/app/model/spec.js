@@ -603,6 +603,12 @@ define(['can'], function(can) {
                 2 )
             );
         },
+        fhaste_mul: function() {
+            return (
+                (this.attr('buffs.haste') ? 1.05 : 1) *
+                (this.attr('t18_2p_holy') ? 1.06 : 1)
+            );
+        },
         poh_targets_holy: 5,
         lw_charges: 15,
         glyph_coh: false,
@@ -610,7 +616,8 @@ define(['can'], function(can) {
         glyph_renew_holy: false,
         glyph_binding_holy: false,
         talent45_holy: 'mb',
-        t17_2p_holy: false
+        t17_2p_holy: false,
+        t18_2p_holy: false
     });
 
     // PALLY
