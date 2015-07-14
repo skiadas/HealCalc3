@@ -650,6 +650,7 @@ define(['can'], function(can) {
         bol: true,
         bof: true,
         glyph_lod: false,
+        t18_2p_pally: false,
         t18_4p_pally: false
     });
 

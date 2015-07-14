@@ -1380,8 +1380,11 @@ define(['can'], function(can) {
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
                 ( 1 +
                   this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (this.spec.bol ? (this.beaconPercent || 0.5) : 0) +
-                  (this.spec.bof ? (this.beaconPercent || 0.5) : 0)
+                  (
+                    (this.spec.bol ? (this.beaconPercent || 0.5) : 0) +
+                    (this.spec.bof ? (this.beaconPercent || 0.5) : 0)
+                  ) *
+                  (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         },
@@ -2120,8 +2123,11 @@ define(['can'], function(can) {
                 ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
                 ( 1 +
                   this.spec.fmastp(delta) +  // Mastery not on beacon
-                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                  ( this.spec.bof ? 0.5 : 0 )
+                  (
+                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                    ( this.spec.bof ? 0.5 : 0 )
+                  ) *
+                  (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         }
@@ -2149,8 +2155,11 @@ define(['can'], function(can) {
                 ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
                 ( 1 +
                   this.spec.fmastp(delta) +  // Mastery not on beacon
-                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                  ( this.spec.bof ? 0.5 : 0 )
+                  (
+                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                    ( this.spec.bof ? 0.5 : 0 )
+                  ) *
+                  (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         }
@@ -2168,8 +2177,11 @@ define(['can'], function(can) {
                     ( 1 + this.spec.fmastp(delta) ) *
                     (this.spec.daybreak ? 1 + 6 * 0.3 : 1)
                   ) +  // Mastery not on beacon
-                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                  ( this.spec.bof ? 0.5 : 0 )
+                  (
+                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                    ( this.spec.bof ? 0.5 : 0 )
+                  ) *
+                  (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         }
@@ -2192,7 +2204,8 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                    (this.spec.bol ? 0.15 : 0) +
+                    (this.spec.bol ? 0.15 : 0) *
+                    (this.spec.t18_2p_pally ? 1.25 : 1) +
                     this.spec.fmastp(delta)
                 )
             );
@@ -2211,8 +2224,11 @@ define(['can'], function(can) {
                 ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
                 ( 1 +
                   this.spec.fmastp(delta) +  // Mastery not on beacon
-                  ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                  ( this.spec.bof ? 0.5 : 0 )
+                  (
+                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                    ( this.spec.bof ? 0.5 : 0 )
+                  ) *
+                  (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         }
@@ -2253,8 +2269,11 @@ define(['can'], function(can) {
                 (
                     this.fbase(delta) *
                     ( 1 + // Only direct heal has mastery
-                        ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                        ( this.spec.bof ? 0.5 : 0 )
+                        (
+                            ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
+                            ( this.spec.bof ? 0.5 : 0 )
+                        ) *
+                        (this.spec.t18_2p_pally ? 1.25 : 1)
                     ) +
                     this.fdirect(delta) * // The direct heal adds mastery
                     ( 1 + 1 * this.spec.fversp(delta) ) *
@@ -2295,7 +2314,8 @@ define(['can'], function(can) {
                   ) / this.targets * // Percent of non-beaconed targets
                     this.beaconPercent *
                     (this.spec.bol ? 1 : 0) * // Only apply if bol on
-                    (this.spec.bof ? 2 : 1)
+                    (this.spec.bof ? 2 : 1) *
+                    (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         }
@@ -2316,7 +2336,8 @@ define(['can'], function(can) {
                   ) / this.targets * // Percent of non-beaconed targets
                     this.beaconPercent *
                     (this.spec.bol ? 1 : 0) * // Only apply if bol on
-                    (this.spec.bof ? 2 : 1)
+                    (this.spec.bof ? 2 : 1) *
+                    (this.spec.t18_2p_pally ? 1.25 : 1)
                 )
             );
         }
