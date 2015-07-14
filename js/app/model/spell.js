@@ -2182,20 +2182,6 @@ define(['can'], function(can) {
                 (1 + this.spec.fhastep(delta))
             );
         },
-        fmana: function(delta) {
-            return (
-                Math.roundn(
-                    this.base_mana *
-                    ( this.spec.attr('t14_2p_pally') ? 0.9 : 1 )
-                )
-            );
-        },
-        fbase: function(delta) {
-            return (
-                this.fbase_pally(delta) *
-                (this.spec.infusion_of_light && this.spec.t16_2p_pally ? 1.2 : 1)
-            )
-        },
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
@@ -2206,9 +2192,7 @@ define(['can'], function(can) {
                 ) *
                 (
                     1 +
-                        (this.spec.bol ? 0.15 : 0) *
-                        (this.spec.t15_4p_pally ? 1.2 : 1)
-                    +
+                    (this.spec.bol ? 0.15 : 0) +
                     this.spec.fmastp(delta)
                 )
             );
