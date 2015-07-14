@@ -625,7 +625,11 @@ define(['can'], function(can) {
     spcs[2].attr({
         mastery_factor: 1.25,
         fhaste_mul: function() {
-            return ( 1.1 * ( this.attr('buffs.haste') ? 1.05 : 1 ) );
+            return (
+                1.1 *
+                ( this.attr('buffs.haste') ? 1.05 : 1 ) *
+                ( this.attr('t18_4p_pally') ? 1.08 : 1 )
+            );
         },
         fcrit: function(delta) {
             return (
@@ -646,7 +650,7 @@ define(['can'], function(can) {
         bol: true,
         bof: true,
         glyph_lod: false,
-        t16_2p_pally: false
+        t18_4p_pally: false
     });
 
     // DRUID
