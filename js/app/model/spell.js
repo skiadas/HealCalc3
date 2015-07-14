@@ -2035,6 +2035,20 @@ define(['can'], function(can) {
             return (
                 this.fhot(delta) + this.fdirect(delta)
             );
+        },
+        fheal: function(delta) {
+            var crit = Math.min(
+                (this.spec.t18_2p_shaman ? 0.25 : 0) +
+                 this.spec.fcritp(delta),
+                1
+            );
+
+            return (
+                this.fbase(delta) *
+                ( 1 + crit ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                this.spec.fmast_factor(delta)
+            );
         }
     });
 

@@ -716,7 +716,8 @@ define(['can'], function(can) {
         glyph_water_shield: false,
         high_tide: true,
         water_shield_ppm: 4,
-        rushing_streams: false
+        rushing_streams: false,
+        t18_2p_shaman: false
     });
 
     // MONK
