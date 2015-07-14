@@ -584,7 +584,8 @@ define(['can'], function(can) {
         talent45_disc: 'solace',
         t17_2p_disc: false,
         t17_4p_disc: false,
-        t18_2p_disc: false
+        t18_2p_disc: false,
+        t18_4p_disc: false
     });
 
     // HOLY

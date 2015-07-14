@@ -1657,6 +1657,16 @@ define(['can'], function(can) {
                 (this.spec.glyph_penance ? 1.2 : 1)
             )
         },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 + this.spec.fcritp(delta) *
+                    ( 1 + this.spec.fmastp(delta) )
+                ) *
+                (this.spec.t18_4p_disc ? 1.5 : 1)
+            );
+        }
     });
 
     spls.find('SmiteDisc').attr({
@@ -1692,6 +1702,16 @@ define(['can'], function(can) {
                              this.spec.attr('aa_stacks') * 0.05 ) *
                    ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0)) *
                    1.3;  // Grace
+        },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+                ( 1 + this.spec.fcritp(delta) *
+                    ( 1 + this.spec.fmastp(delta) )
+                ) *
+                (this.spec.t18_4p_disc ? 1.5 : 1)
+            );
         }
     });
 
