@@ -1803,7 +1803,16 @@ define(['can'], function(can) {
                 (this.spec.attr('glyph_pom_holy') ? 0.4 : 0) +
                 (this.spec.t17_2p_holy ? 4 : 0)
             );
-        }
+        },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.72 * this.spec.fmultip(delta) ) *
+                (this.spec.t18_4p_holy ? 1.1 : 1)
+            );
+        },
+
     });
 
 /* TODO
