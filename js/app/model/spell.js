@@ -1916,6 +1916,25 @@ define(['can'], function(can) {
                 ( 1 + 1 * this.spec.fversp(delta) ) *
                 1.1
             );
+        },
+        fheal: function(delta) {
+            var bloom = this.c * this.spec.fsp(delta) * this.ftargets(delta) *
+                        ( 1 + this.spec.fmastp(delta) ) *
+                        ( 1 + 1 * this.spec.fversp(delta) ) *
+                        1.1;
+            return (
+                (
+                    this.fbase(delta) +
+                    (this.spec.t18_2p_druid ? 0.3 : 0) *
+                    bloom *
+                    Math.ceiln(
+                        this.nticks *
+                        (1 + this.spec.fhastep(delta))
+                    )
+                ) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) )
+            );
         }
     });
 
