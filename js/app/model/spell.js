@@ -1571,8 +1571,11 @@ define(['can'], function(can) {
 
     spls.find('PoMDisc').attr({
         ftargets: function(delta) {
-            return this.targets - ( this.spec.attr('glyph_pom_disc') ? 0.4 : 0 );
-        },
+            return (
+                this.targets -
+                (this.spec.attr('glyph_pom_disc') ? 0.4 : 0)
+            );
+        }
     });
 
     spls.find('PoHDisc').attr({
@@ -1782,13 +1785,10 @@ define(['can'], function(can) {
     });
 
     spls.find('PoMHoly').attr({
-        fdirect: function(delta) {
+        ftargets: function(delta) {
             return (
-                this.c * this.spec.fsp(delta) *
-                (
-                    this.targets -
-                    (this.spec.attr('glyph_pom_holy') ? 0.4 : 0)
-                )
+                this.targets -
+                (this.spec.attr('glyph_pom_holy') ? 0.4 : 0)
             );
         }
     });
