@@ -583,7 +583,8 @@ define(['can'], function(can) {
         hfpm: 6,   // Holy fires per minute
         talent45_disc: 'solace',
         t17_2p_disc: false,
-        t17_4p_disc: false
+        t17_4p_disc: false,
+        t18_2p_disc: false
     });
 
     // HOLY

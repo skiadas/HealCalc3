@@ -1643,7 +1643,10 @@ define(['can'], function(can) {
             return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
         },
         fbase: function(delta) {
-            return this.fbase_offensive_disc(delta);
+            return (
+                this.fbase_offensive_disc(delta) *
+                ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0))
+            );
         },
         fmana: function(delta) {
             return (
@@ -1678,6 +1681,15 @@ define(['can'], function(can) {
                 (this.spec.glyph_penance ? 1.2 : 1)
             )
         },
+        fbase: function(delta) {
+            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+                   ( 1 + 0.5 * this.spec.fmastp(delta) ) *
+                   ( 1 + 1 * this.spec.fversp(delta) ) *
+                   ( 1 + 1 * this.spec.attr('aa_uptime') *
+                             this.spec.attr('aa_stacks') * 0.05 ) *
+                   ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0)) *
+                   1.3;  // Grace
+        }
     });
 
     // END DISC Spells setup
