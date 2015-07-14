@@ -608,7 +608,8 @@ define(['can'], function(can) {
         glyph_pom_holy: true,
         glyph_renew_holy: false,
         glyph_binding_holy: false,
-        talent45_holy: 'mb'
+        talent45_holy: 'mb',
+        t17_2p_holy: false
     });
 
     // PALLY

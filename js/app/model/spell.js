@@ -1788,7 +1788,8 @@ define(['can'], function(can) {
         ftargets: function(delta) {
             return (
                 this.targets -
-                (this.spec.attr('glyph_pom_holy') ? 0.4 : 0)
+                (this.spec.attr('glyph_pom_holy') ? 0.4 : 0) +
+                (this.spec.t17_2p_holy ? 4 : 0)
             );
         }
     });
