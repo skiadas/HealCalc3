@@ -1621,6 +1621,18 @@ define(['can'], function(can) {
     });
 
     spls.find('PenanceDisc').attr({
+        fct: function(delta) {
+            return (
+                (
+                    this.base_ct +
+                    (this.spec.t17_2p_disc ? 1 : 0)
+                ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        },
+        ftargets: function(delta) {
+            return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
+        },
         fbase: function(delta) {
             return this.fbase_offensive_disc(delta);
         },
@@ -1639,6 +1651,18 @@ define(['can'], function(can) {
     });
 
     spls.find('PenanceHealDisc').attr({
+        fct: function(delta) {
+            return (
+                (
+                    this.base_ct +
+                    (this.spec.t17_2p_disc ? 1 : 0)
+                ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        },
+        ftargets: function(delta) {
+            return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
+        },
         fmana: function(delta) {
             return (
                 this.base_mana *
