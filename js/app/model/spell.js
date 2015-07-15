@@ -1658,13 +1658,17 @@ define(['can'], function(can) {
             )
         },
         fheal: function(delta) {
+            var healPenance = spls.find('PenanceHealDisc');
             return (
-                this.fbase(delta) *
+                (
+                    this.fbase(delta) +
+                    healPenance.fbase(delta) *
+                    (this.spec.t18_4p_disc ? 0.5 : 0)
+                ) *
                 ( 1 + 0.6 * this.spec.fmultip(delta) ) *
                 ( 1 + this.spec.fcritp(delta) *
                     ( 1 + this.spec.fmastp(delta) )
-                ) *
-                (this.spec.t18_4p_disc ? 1.5 : 1)
+                )
             );
         }
     });
