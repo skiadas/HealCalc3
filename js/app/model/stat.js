@@ -11,6 +11,7 @@ define(['can'], function(can) {
             bmulti: 350,
             bvers: 172,
             bweapon: 956,
+            bwdam: 1000,
             bwspeed: 3,
             bwdps: 115
         }

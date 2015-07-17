@@ -925,38 +925,29 @@ define(['can'], function(can) {
             instant: true,
             item: 974
         },
-    ];
-
-    var FIXME = [
-        //
-        // MONK
-        //
         {
             id: 64,
             code: 'SoothingMist',
             name: 'Soothing Mist',
             specid: 6,
             base_ct: 1,
-            base_mana: 3000,
-            B: 2776.5,
-            c: 0.1792,
-            targets: 1,
+            base_mana: 1120,
+            c: 1.1475 * 1.2,
+            targets: 2, // Statue
             img: 'ability_monk_soothingmists',
             aoe: false,
             instant: true,
             item: 125953,
-            mast_factor: 0.3+0.15, // Spell and statue
-            chi_gain: 0.3
+            mast_factor: (0.67 + 0.33) / 2 // Spell and statue
         },
-        {
+         {
             id: 65,
             code: 'SurgingMist',
             name: 'Surging Mist',
             specid: 6,
             base_ct: 1.5,
-            base_mana: 24000,
-            B: 17242.2,
-            c: 1.8,
+            base_mana: 7520,
+            c: 2.97 * 1.2,
             img: 'ability_monk_surgingmist',
             aoe: false,
             instant: true,
@@ -971,15 +962,15 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1.5,
             base_mana: 0,
-            Btick: 44448/6,
-            ctick: 2.7/6,
+            ctick: 9.9 * 1.2,
             nticks: 6,
+            duration: 6,
             time_tick: 1,
             img: 'spell_shaman_spiritlink',
             aoe: false,
             instant: true,
             item: 132120,
-            mast_factor: 0.2,
+            mast_factor: 0.25,
             chi_use: 3
         },
         {
@@ -988,17 +979,17 @@ define(['can'], function(can) {
             name: 'Renewing Mist',
             specid: 6,
             base_ct: 1.5,
-            base_mana: 13800,
-            Btick: 2266,
-            ctick: 0.107,
-            nticks: 9,
+            base_mana: 6400,
+            ctick: 0.13748 * 10 * 1.2,
+            nticks: 10,
+            duration: 20,
             time_tick: 2,
             targets: 3,
             img: 'ability_monk_renewingmists',
             aoe: true,
             instant: true,
             item: 119611,
-            mast_factor: 0.15,
+            mast_factor: 0.25,
             chi_gain: 1
         },
         {
@@ -1007,9 +998,8 @@ define(['can'], function(can) {
             name: 'Life Cocoon',
             specid: 6,
             base_ct: 1.5,
-            base_mana: 15000,
-            B: 79916/1.2,
-            c: 11/1.2,
+            base_mana: 3840,
+            c: 31.164,
             img: 'ability_monk_chicocoon',
             aoe: false,
             instant: true,
@@ -1023,14 +1013,13 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1.5,
             base_mana: 0,
-            B: (7210 + 8379)/2,
-            c: 0.68,
+            c: 1.65 * 1.2,
             img: 'ability_monk_uplift',
             targets: 8,
             aoe: true,
             instant: true,
             item: 116670,
-            mast_factor: 0.25,
+            mast_factor: 0.4,
             chi_use: 2
         },
         {
@@ -1039,32 +1028,14 @@ define(['can'], function(can) {
             name: 'Revival',
             specid: 6,
             base_ct: 1.5,
-            base_mana: 21000,
-            B: 13684,
-            c: 5,
+            base_mana: 6998,
+            c: 8.95 * 1.2,
             img: 'spell_shaman_blessingofeternals',
             targets: 10,
             aoe: true,
             instant: true,
             item: 115310,
-            mast_factor: 0.15
-        },
-        {
-            id: 72,
-            code: 'Efflorescence',
-            name: 'Efflorescence',
-            specid: 4,
-            base_ct: 1,
-            base_mana: 0,
-            Btick: 13966 * 0.12,
-            ctick: 1.29 * 0.12,
-            nticks: 7,
-            time_tick: 1,
-            targets: 3,
-            img: 'spell_shaman_giftearthmother',
-            aoe: false,
-            instant: true,
-            item: 81262
+            mast_factor: 1
         },
         {
             id: 76,
@@ -1072,8 +1043,8 @@ define(['can'], function(can) {
             name: 'Expel Harm',
             specid: 6,
             base_ct: 1.5,
-            base_mana: 7500,
-            melee_coeff: 7,
+            base_mana: 4800,
+            c: 7.5 / 3.5 * 1.2,
             targets: 1,
             img: 'ability_monk_expelharm',
             aoe: false,
@@ -1082,6 +1053,12 @@ define(['can'], function(can) {
             mast_factor: 1,
             chi_gain: 1
         },
+   ];
+
+    var FIXME = [
+        //
+        // MONK
+        //
         {
             id: 77,
             code: 'Jab',
@@ -1129,22 +1106,6 @@ define(['can'], function(can) {
             item: 100784,
             mast_factor: 0.2 + 0.1,  // Eminence and Statue
             chi_use: 2
-        },
-        {
-            id: 80,
-            code: 'HealingSphere',
-            name: 'Healing Sphere',
-            specid: 6,
-            base_ct: 1.5,
-            base_mana: 6000,
-            B: 9984.5,
-            c: 1.5,
-            img: 'ability_monk_healthsphere',
-            targets: 1,
-            aoe: false,
-            instant: true,
-            item: 115460,
-            mast_factor: 0
         },
         {
             id: 82,
@@ -1223,7 +1184,7 @@ define(['can'], function(can) {
         },
         fct_monk: function(delta) {
             return (
-                ((this.base_ct > 1.5) ? this.base_ct / (1 + this.spec.fhastep(delta)) : 1) +
+                (this.base_ct / (1 + this.spec.fhastep(delta))) +
                 (this.spec.mana_tea ? (this.chi_gain || 0) * 0.25 * 0.5 : 0)
             );
         },
@@ -1319,10 +1280,8 @@ define(['can'], function(can) {
                    ( 1 + 1 * this.spec.fversp(delta) );
         },
         fbase_monk: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                1.2
-            );
+            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+                   ( 1 + 1 * this.spec.fversp(delta) );
         },
         fbase_monk_melee: function(delta) {
             return (
@@ -1412,25 +1371,19 @@ define(['can'], function(can) {
             );
         },
         fheal_monk: function(delta) {
-            return (
-                (
-                    1 +
-                        (
-                            -1 +
-                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    this.fbase(delta) +
-                    this.mast_factor *
-                    (this.fnticks(delta) || 1) *
-                    (this.ftargets(delta) || 1) *
-                    this.spec.fmastp(delta) *
-                    ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c ) *
-                    ( this.spec.t16_2p_monk ? 1.45 : 1)
-                )
+            var sphere = this.spec.fsp(delta) * this.spec.mast_c *
+                         (1 + this.spec.fversp(delta));
+            var nticks = Math.ceiln(
+                this.duration *
+                (1 + this.spec.fhastep(delta)) / this.time_tick
             );
+            var proc_chance = this.mast_factor *
+                (this.ctick ? nticks : 1) *
+                (this.ftargets(delta) || 1) *
+                this.spec.fmastp(delta);
+            return ( this.fbase(delta) + proc_chance * sphere ) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) );
         },
         fhps: function(delta) {
             return ( this.fheal(delta) / this.fct(delta) );
@@ -2386,11 +2339,49 @@ define(['can'], function(can) {
         }
     });
 
-   // END PALLY Spells setup
+    // END PALLY Spells setup
+
+    // MONK Spells setup
+    spls.find('EnvelopingMist').attr({
+        fhpm: function(delta) {
+            return ( this.fhpm_nomana(delta) );
+        }
+    });
+
+    spls.find('Uplift').attr({
+        fhpm: function(delta) {
+            return ( this.fhpm_nomana(delta) );
+        },
+        ftargets: function(delta) {
+            return this.spec.uplift_targets;
+        }
+    });
+
+    spls.find('Revival').attr({
+        ftargets: function(delta) {
+            return this.spec.raid_size;
+        }
+    });
+
+    spls.find('LifeCocoon').attr({
+        fheal: function(delta) {
+            return this.fbase(delta);
+        }
+    });
+
+    spls.find('ExpelHarm').attr({
+        fbase: function(delta) {
+            return (
+                (
+                    this.fdirect(delta) +
+                    1.2 * this.spec.stats.bwdam
+                ) * (this.spec.expelHarm_other ? 0.5 : 1)
+            );
+        }
+    });
 
 /*
 
-    // MONK Spells setup
     $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {
         spls.find(spname).attr({
             fbase: function(delta) {
@@ -2399,90 +2390,9 @@ define(['can'], function(can) {
         });
     });
 
-    spls.find('SoothingMist').attr({
-        fbase: function(delta) {
-            return ( this.fbase_monk(delta) * 1.5 );
-        }
-    });
-    spls.find('EnvelopingMist').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
 
-    spls.find('SurgingMist').attr({
-        fmana: function(delta) {
-            return (
-                this.base_mana *
-                (this.spec.attr('t14_2p_monk') ? 0.9 : 1) -
-                (
-                    this.spec.mana_tea ?
-                    ( (this.chi_gain || 0) * 0.01 * this.spec.mana_pool ) :
-                    0
-                )
-            );
-        }
-    });
 
-    spls.find('Uplift').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
 
-    spls.find('RenewingMist').attr({
-        ftargets: function(delta) {
-            return (
-                this.spec.attr('t15_2p_monk') ?
-                    1 + 1.15 * ( 1 + 1.15 )
-                :
-                    3
-            );
-        },
-        fheal: function(delta) {
-            return (
-                (
-                    1 +
-                        (
-                            -1 +
-                            2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) )
-                        ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    this.fbase(delta) +
-                    (this.fnticks(delta) || 1) *
-                    (this.ftargets(delta) || 1) *
-                    (
-                        this.mast_factor *
-                        this.spec.fmastp(delta) *
-                        ( this.spec.mast_B + this.spec.fsp(delta) * this.spec.mast_c ) *
-                        ( this.spec.t16_2p_monk ? 1.45 : 1) +
-                        ( this.spec.t16_4p_monk ?
-                            ( 0.04 * (295 + 0.54 * this.spec.fsp(delta)) ) :
-                            0
-                        )
-                    )
-                )
-            );
-        }
-    });
-
-    spls.find('ExpelHarm').attr({
-        ftargets: function(delta) {
-            return (
-                this.spec.attr('glyph_targeted_expulsion') ? 0.5 : 1
-            );
-        },
-        fbase: function(delta) {
-            return (
-                1.2 *
-                this.melee_coeff *
-                this.spec.fmonk_melee_factor(delta) *
-                this.ftargets(delta)
-            );
-        }
-    });
 
     spls.find('Jab').attr({
         fmana: function(delta) {
@@ -2528,11 +2438,6 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('Revival').attr({
-        ftargets: function(delta) {
-            return ( this.spec.raid25 ? 25 : 10 );
-        }
-    });
 
     spls.find('ChiWave').attr({
         fhpm: function(delta) {

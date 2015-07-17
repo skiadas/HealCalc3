@@ -731,25 +731,29 @@ define(['can'], function(can) {
     spcs[5].attr({
         fmana_pool: function(delta) {
             return (
-                ( this.attr('buffs.mana_meta') ? 1.02 : 1 ) *
                 ( this.attr('ascension') ? 1.15 : 1 ) *
-                300000
+                160000
             );
         },
-        mastery_factor: 0.8,
+        fmulti: function(delta) {
+            return (
+                Math.roundn(
+                    (
+                        this.attr('stats.bmulti') +
+                        ( (delta && delta.multi) || 0 )
+                    ) * 0.01514 * 1.05 +
+                    ( this.attr('buffs.multi') ? 5 : 0 ),
+                2 )
+            );
+        },
+        mastery_factor: 1.25,
         uplift_targets: 8,
-        tiger_power: true,
-        muscle_memory: true,
-        blackoutkick_extra: 0,
-        ascension: false,
-        glyph_targeted_explusion: false,
-        t14_2p_monk: false,
+        ascension: true,
+        expelHarm_other: true,
         t16_2p_monk: false,
         t16_4p_monk: false,
-        mast_B: 1.2 * 9985,
-        mast_c: 1.2 * 0.7,
-        mana_tea: true,
-        monk_haste: true
+        mast_c: 1.2 * 0.75,
+        mana_tea: true
     });
 
     return spcs;
