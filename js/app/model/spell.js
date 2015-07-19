@@ -1053,6 +1053,22 @@ define(['can'], function(can) {
             mast_factor: 1,
             chi_gain: 1
         },
+        {
+            id: 82,
+            code: 'SCK',
+            name: 'Spinning Crane Kick',
+            specid: 6,
+            base_ct: 2.25,
+            base_mana: 14080,
+            targets: 6,
+            c: 4 * 0.49375 * 1.2,
+            img: 'ability_monk_cranekick_new',
+            aoe: true,
+            instant: true,
+            item: 117640,
+            mast_factor: 0.15,
+            chi_gain: 1
+        },
    ];
 
     var FIXME = [
@@ -1106,23 +1122,6 @@ define(['can'], function(can) {
             item: 100784,
             mast_factor: 0.2 + 0.1,  // Eminence and Statue
             chi_use: 2
-        },
-        {
-            id: 82,
-            code: 'SCK',
-            name: 'Spinning Crane Kick',
-            specid: 6,
-            base_ct: 2.25,
-            base_mana: 21600,
-            targets: 4 * 6,
-            B: 2809,
-            c: 0.096,
-            img: 'ability_monk_cranekick_new',
-            aoe: true,
-            instant: true,
-            item: 117640,
-            mast_factor: 0.1,
-            chi_gain: 1
         },
         {
             id: 83,
