@@ -1069,6 +1069,52 @@ define(['can'], function(can) {
             mast_factor: 0.15,
             chi_gain: 1
         },
+        {
+            id: 83,
+            code: 'ChiWave',
+            name: 'Chi Wave',
+            specid: 6,
+            base_ct: 1,
+            base_mana: 0,
+            targets: 4,
+            c: 0.5 * 1.2,
+            img: 'ability_monk_chiwave',
+            aoe: true,
+            instant: true,
+            item: 115098,
+            mast_factor: 0.25
+        },
+        {
+            id: 84,
+            code: 'ZenSphere',
+            name: 'Zen Sphere',
+            specid: 6,
+            base_ct: 1,
+            base_mana: 0,
+            targets: 1,
+            c: 8 * 0.095 * 1.2,
+            c_det: 1.25 * 1.2, // Tooltip does not show the 1.2 factor
+            img: 'ability_monk_forcesphere',
+            aoe: true,
+            instant: true,
+            item: 124081,
+            mast_factor: 0.2
+        },
+        {
+            id: 85,
+            code: 'ChiBurst',
+            name: 'Chi Burst',
+            specid: 6,
+            base_ct: 1,
+            base_mana: 0,
+            targets: 6,
+            c: 2.75 * 1.2,
+            img: 'spell_arcane_arcanetorrent',
+            aoe: true,
+            instant: true,
+            item: 123986,
+            mast_factor: 0.2
+        },
    ];
 
     var FIXME = [
@@ -1122,57 +1168,6 @@ define(['can'], function(can) {
             item: 100784,
             mast_factor: 0.2 + 0.1,  // Eminence and Statue
             chi_use: 2
-        },
-        {
-            id: 83,
-            code: 'ChiWave',
-            name: 'Chi Wave',
-            specid: 6,
-            base_ct: 1,
-            base_mana: 0,
-            targets: 4,
-            B: 493,
-            c: 0.45 * 2,
-            img: 'ability_monk_chiwave',
-            aoe: true,
-            instant: true,
-            item: 115098,
-            mast_factor: 0.25
-        },
-        // {
-        //     id: 84,
-        //     code: 'ZenSphere',
-        //     name: 'Zen Sphere',
-        //     specid: 6,
-        //     base_ct: 1,
-        //     base_mana: 0,
-        //     targets: 1,
-        //     Btick: 114,
-        //     ctick: 0.208,
-        //     B: 294,
-        //     c: 0.538,
-        //     img: 'ability_monk_forcesphere',
-        //     aoe: true,
-        //     instant: true,
-        //     item: 124081,
-        //     mast_factor: 0.25,
-        //     mast_factor_detonate: 0.15
-        // },
-        {
-            id: 85,
-            code: 'ChiBurst',
-            name: 'Chi Burst',
-            specid: 6,
-            base_ct: 1,
-            base_mana: 0,
-            targets: 6,
-            B: 1095,
-            c: 2,
-            img: 'spell_arcane_arcanetorrent',
-            aoe: true,
-            instant: true,
-            item: 123986,
-            mast_factor: 0.15
         },
     ];
 
@@ -1793,13 +1788,7 @@ define(['can'], function(can) {
         },
 
     });
-
-/* TODO
-
-
     //END HOLY Spells setup
-*/
-
 
     //DRUID Spells setup
     spls.find('HealingTouch').attr({
@@ -2376,6 +2365,41 @@ define(['can'], function(can) {
                     1.2 * this.spec.stats.bwdam
                 ) * (this.spec.expelHarm_other ? 0.5 : 1)
             );
+        }
+    });
+
+    spls.find('ChiWave').attr({
+        fhpm: function(delta) {
+            return this.fhpm_nomana(delta);
+        }
+    });
+
+    spls.find('ZenSphere').attr({
+        fhpm: function(delta) {
+            return this.fhpm_nomana(delta);
+        },
+        fbase: function(delta) {
+            return (
+                ( this.c + 6 * this.c_det ) *
+                this.spec.fsp(delta) *
+                ( 1 + 1 * this.spec.fversp(delta) )
+            );
+        },
+        fheal: function(delta) {
+            var sphere = this.spec.fsp(delta) * this.spec.mast_c *
+                         (1 + this.spec.fversp(delta));
+            var proc_chance = this.mast_factor *
+                ( 8 + 6 ) *
+                this.spec.fmastp(delta);
+            return ( this.fbase(delta) + proc_chance * sphere ) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) );
+        }
+    });
+
+    spls.find('ChiBurst').attr({
+        fhpm: function(delta) {
+            return this.fhpm_nomana(delta);
         }
     });
 
