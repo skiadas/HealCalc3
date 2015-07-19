@@ -729,12 +729,6 @@ define(['can'], function(can) {
 
     // MONK
     spcs[5].attr({
-        fmana_pool: function(delta) {
-            return (
-                ( this.attr('ascension') ? 1.15 : 1 ) *
-                160000
-            );
-        },
         fmulti: function(delta) {
             return (
                 Math.roundn(
@@ -748,7 +742,7 @@ define(['can'], function(can) {
         },
         mastery_factor: 1.25,
         uplift_targets: 8,
-        ascension: true,
+        talent45_monk: 'chi_brew',
         expelHarm_other: true,
         t16_2p_monk: false,
         t16_4p_monk: false,

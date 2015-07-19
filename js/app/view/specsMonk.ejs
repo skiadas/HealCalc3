@@ -1,4 +1,11 @@
 <label for="mana_tea">Chi as Mana Tea<input name="mana_tea" type="checkbox" <%= spec.attr('mana_tea') ? 'checked="checked"' : ''  %> /></label>
+<label for="talent45_monk">BT Uptime
+<select name="talent45_monk">
+  <option value="power_strikes"   <%= (spec.attr('talent45_monk') == 'power_strikes') ? 'selected="selected"' : '' %>>Power Strikes</option>
+  <option value="ascendance" <%= (spec.attr('talent45_monk') == 'ascendance') ? 'selected="selected"' : '' %>>Ascendance</option>
+  <option value="chi_brew" <%= (spec.attr('talent45_monk') == 'chi_brew') ? 'selected="selected"' : '' %>>Chi Brew</option>
+</select>
+</label>
 <label for="ascension">Ascension<input name="ascension" type="checkbox" <%= spec.attr('ascension') ? 'checked="checked"' : ''  %> /></label>
 <label for="blackoutkick_extra">Extra Blackout Kick Targets<input name="blackoutkick_extra" type="input" value="<%== spec.attr('blackoutkick_extra') %>" /></label>
 <label for="uplift_targets">Uplift Targets<input name="uplift_targets" type="input" value="<%== spec.attr('uplift_targets') %>" /></label>
