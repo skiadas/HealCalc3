@@ -6,7 +6,7 @@ define(['text!app/util/image_namelist.js','text!app/util/big_one.jpg'], function
         for (var i = 0, len = imageList.length; i < len; i++) {
             retList[names[i]] = '<img src="data:image/jpeg;base64,' + imageList[i] + '" />';
         }
-        ret = function(name) {
+        var ret = function(name) {
             return retList[name.replace('_large.jpg', '')];
         }
         return ret;
