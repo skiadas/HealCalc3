@@ -7,9 +7,10 @@
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="css/base.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/haste_bar.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   <body>
-    <a href="#openModal" class="modalLink">Tips Window</a>
+    <a href="#openModal" class="modalLink help" title="Learn about HealCalc!"><i class="fa fa-question-circle"></i></a>
     <div id="openModal" class="modalDialog">
       <div>
       		<a href="#close" title="Close" class="close">X</a>
@@ -21,42 +22,44 @@
       	</div>
     </div>
     <div id="header">
-      <h1>Heal Adinne</h1>
-      <h2>home of <em>HealCalc</em></h2>
+      <h1>HealCalc</h1>
+      <h2>by Heal Adinne</h2>
 
       <p>A healing calculator for World of Warcraft.</p>
     </div>
     <div id="main">
-      <div id="subcontainer">
-        <div id="character">
-          <div id="armory" class="section">
+      <div id="character">
+        <ul class="tab-bar">
+          <li data-target="#armory">Armory</li>
+          <li data-target="#stats">Stats</li>
+          <li data-target="#buffs">Buffs</li>
+          <li data-target="#specs">Specs</li>
+        </ul>
+        <ul class="tab-contents">
+          <li id="armory" class=""></li>
+          <li id="stats" class=""></li>
+          <li id="buffs" class="selected"></li>
+          <li id="specs" class="">
+            <div class="horiz">
+              <h4>Disc Priest</h4>
+              <h4>Holy Priest</h4>
+              <h4>Pally</h4>
+              <h4>Druid</h4>
+              <h4>Shaman</h4>
+              <h4>Monk</h4>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="spellsCont">
+        <div id="filters" class="section">
 
-          </div>
-          <div id="stats" class="section">
-
-          </div>
-          <div id="buffs" class="section"><h4>Buffs</h4>
-
-          </div>
-          <div id="specs" class="section">
-            <h4>Disc Priest</h4>
-            <h4>Holy Priest</h4>
-            <h4>Pally</h4>
-            <h4>Druid</h4>
-            <h4>Shaman</h4>
-            <h4>Monk</h4>
-          </div>
         </div>
-        <div id="spellsCont">
-          <div id="filters" class="section">
+        <div id="rotations" class="section">
+        </div>
+        Click on a column header to sort spells. Click again to change sort order.
+        <div id="spells">
 
-          </div>
-          <div id="rotations" class="section">
-          </div>
-          Click on a column header to sort spells. Click again to change sort order.
-          <div id="spells">
-
-          </div>
         </div>
       </div>
       <div id="right">

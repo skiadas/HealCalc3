@@ -140,7 +140,7 @@ table.rotation .result { width: 30em; }
 }
 
 body > .modalLink {
-    float: left;
+    float: right;
 }
 .modalDialog {
     position: fixed;

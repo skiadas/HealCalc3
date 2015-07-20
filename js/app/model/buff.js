@@ -10,7 +10,6 @@ define(['can'], function(can) {
         vers: false,
         secondary_food: false,
         intflask: false,
-        stat_trinket: false,
         channeled_pot: false,
         weapon_enchant: 'spirit',
         raid_size: 20,

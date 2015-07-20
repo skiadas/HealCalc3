@@ -1,41 +1,33 @@
-<div <%= (el) -> can.data(el, 'buffs', buffs[0]) %>><a class="expandOff"><h4>Buffs</h4></a>
-  <div>
-    <ul><li><a class="expandOff">Raid Buffs</a>
-    <div>
-      <label for="buff_stats">+5% all stats<input type="checkbox" id="buff_stats"  <%= buffs.attr('stats') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_mastery">+550 mastery<input type="checkbox" id="buff_mastery"  <%= buffs.attr('mastery') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_haste">+5% haste<input type="checkbox" id="buff_haste"  <%= buffs.attr('haste') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_crit">+5% crit chance<input type="checkbox" id="buff_crit"  <%= buffs.attr('crit') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_multi">+5% multistrike<input type="checkbox" id="buff_multi"  <%= buffs.attr('multi') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_vers">+3% versatility<input type="checkbox" id="buff_vers"  <%= buffs.attr('vers') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_sp">+10% spellpower<input type="checkbox" id="buff_sp"  <%= buffs.attr('sp') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_secondary_food">Food type<input type="checkbox" id="buff_secondary_food"  <%= buffs.attr('secondary_food') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_raid_size">Raid Size<input type="input" id="buff_raid_size"  value="<%= buffs.attr('raid_size'); %>" /></label>
-    </div></li>
-    <li><a class="expandOff">Personal Buffs</a>
-    <div>
-      <label for="buff_intflask">Int flask<input type="checkbox" id="buff_intflask"  <%= buffs.attr('intflask') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_stat_trinket">Stat Increasing Trinket<input type="checkbox" id="buff_stat_trinket"  <%= buffs.attr('stat_trinket') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_channeled_pot">Use Channeled Pot Instead<input type="checkbox" id="buff_channeled_pot"  <%= buffs.attr('channeled_pot') ? 'checked="checked"' : '' %> /></label>
-      <label for="buff_weapon_enchant">Weapon enchant<select name="weapon_enchant">
-        <option value="spirit" checked>Spirit</option>
-        <option value="crit">Critical Strike</option>
-        <option value="mast">Mastery</option>
-        <option value="haste">Haste</option>
-        <option value="multi">Multistrike</option>
-        <option value="vers">Versatility</option>
-      </select></label>
-      <label for="trinket1">Trinket 1<select name="trinket1">
-        <% buffs.trinkets.each(function(trinket, ind) { %>
-          <option value="<%= ind %>"><%= trinket.name %></option>
-        <% }); %>
-      </select></label>
-      <label for="trinket2">Trinket 2<select name="trinket2">
-        <% buffs.trinkets.each(function(trinket, ind) { %>
-          <option value="<%= ind %>"><%= trinket.name %></option>
-        <% }); %>
-      </select></label>
-    </div></li>
-    </ul>
-  </div>
+<div><h4>Raid Buffs</h4>
+  <label for="buff_stats"><span>+5% stats</span><div class="chkbox"><input type="checkbox" id="buff_stats"  <%= buffs.attr('stats') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_mastery"><span>+550 mastery</span><div class="chkbox"><input type="checkbox" id="buff_mastery"  <%= buffs.attr('mastery') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_haste"><span>+5% haste</span><div class="chkbox"><input type="checkbox" id="buff_haste"  <%= buffs.attr('haste') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_crit"><span>+5% crit chance</span><div class="chkbox"><input type="checkbox" id="buff_crit"  <%= buffs.attr('crit') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_multi"><span>+5% multistrike</span><div class="chkbox"><input type="checkbox" id="buff_multi"  <%= buffs.attr('multi') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_vers"><span>+3% versatility</span><div class="chkbox"><input type="checkbox" id="buff_vers"  <%= buffs.attr('vers') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_sp"><span>+10% spellpower</span><div class="chkbox"><input type="checkbox" id="buff_sp"  <%= buffs.attr('sp') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_secondary_food"><span>Food type</span><div class="chkbox"><input type="checkbox" id="buff_secondary_food"  <%= buffs.attr('secondary_food') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_raid_size"><span>Raid Size</span><input type="input" id="buff_raid_size"  value="<%= buffs.attr('raid_size'); %>" /></label>
+</div>
+<div><h4>Personal Buffs</h4>
+  <label for="buff_intflask"><span>Int flask</span><div class="chkbox"><input type="checkbox" id="buff_intflask"  <%= buffs.attr('intflask') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_channeled_pot"><span>Focus Pot</span><div class="chkbox"><input type="checkbox" id="buff_channeled_pot"  <%= buffs.attr('channeled_pot') ? 'checked="checked"' : '' %> /><span></span></div></label>
+  <label for="buff_weapon_enchant"><span>Weapon enchant</span><select name="weapon_enchant">
+    <option value="spirit" checked>Spirit</option>
+    <option value="crit">Critical Strike</option>
+    <option value="mast">Mastery</option>
+    <option value="haste">Haste</option>
+    <option value="multi">Multistrike</option>
+    <option value="vers">Versatility</option>
+  </select></label>
+  <label for="trinket1"><span>Trinket 1</span><select name="trinket1">
+    <% buffs.trinkets.each(function(trinket, ind) { %>
+      <option value="<%= ind %>"><%= trinket.name %></option>
+    <% }); %>
+  </select></label>
+  <label for="trinket2"><span>Trinket 2</span><select name="trinket2">
+    <% buffs.trinkets.each(function(trinket, ind) { %>
+      <option value="<%= ind %>"><%= trinket.name %></option>
+    <% }); %>
+  </select></label>
 </div>

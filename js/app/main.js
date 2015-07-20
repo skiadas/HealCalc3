@@ -25,11 +25,11 @@ Math.roundn = function(x, d) {
 //
 requirejs(['jquery', 'can', 'app/setup', 'app/util/twitterLoader', 'app/util/wowheadLoader'], function($, can) {
     $(document).ready(function() {
-        var _expand_fun = function(el,ev) {
-            $(this).toggleClass('expandOff expandOn').siblings('div').toggle(200);
-        }
-        $('body').delegate('.expandOff, .expandOn', 'click', _expand_fun);
-        $('.expandOff').siblings('div').hide(200);
+        $('body').delegate('.tab-bar li', 'click', function(ev) {
+            var target = $(ev.target).data('target');
+            $(target).addClass('selected').siblings('li').removeClass('selected');
+        });
+        $('.tab-contents li.selected');
     });
 });
 

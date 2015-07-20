@@ -1,17 +1,13 @@
-<div <%= (el) -> can.data(el, 'character', character) %> ><a class="expandOff"><h4>Armory</h4></a>
-<div hidden>
 <form>
-  <label for="armory_name">Name: <input id="armory_name" type="input" value="<%= character.attr('armory_name') %>" /></label>
-  <label for="realm">Realm: <input id="armory_realm" type="input" value="<%= character.attr('armory_realm') %>" /></label>
-  <label for="region">Region: <input id="armory_region" type="input" value="<%= character.attr('armory_region') %>" /></label>
-  <label>
+  <label for="armory_name"><span class="lbl">Name:</span><input id="armory_name" type="input" value="<%= character.attr('armory_name') %>" /></label>
+  <label for="realm"><span class="lbl">Realm:</span><input id="armory_realm" type="input" value="<%= character.attr('armory_realm') %>" /></label>
+  <label for="region"><span class="lbl">Region:</span><input id="armory_region" type="input" value="<%= character.attr('armory_region') %>" /></label>
+  <label class="newLine long"><span class="lbl">Known characters:</span>
   <select>
     <% can.each(past_searches, function(search) { %>
       <option value="<%= search %>"><%= search %></option>
     <% }) %>
   </select>
-  <div id="armory_btn"><input type="button" value="OK" /></div>
   </label>
+  <input id="armory_btn" type="button" value="OK" />
 </form>
-</div>
-</div>

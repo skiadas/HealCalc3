@@ -1,37 +1,58 @@
 /* Basics */
 * { margin: 0; padding: 0; font-size: 16px; font-weight: normal; line-height: 1.2em; }
 html body { margin: 0; padding: 0; }
-body { font-family: Cambria, 'Gentium Basic', Gentium, Bookman, 'Palatino Linotype', Palatino, Georgia, serif; }
-h1, h2 {
-  font-family: Zapfino, 'Monotype Corsiva', 'Script Regular', 'Segoe Script', sans-serif;
-  font-size: 1.5em;
-  margin: 1% 2%;
-  text-align: right;
+body {
+    font-family: Cambria, 'Gentium Basic', Gentium, Bookman, 'Palatino Linotype', Palatino, Georgia, serif;
+    background-color: #E1FAF5;
 }
-h2 { font-size: 1.25em; text-align: left; }
+h1, h2 {
+  font-family: Helvetica, sans-serif;
+  text-align: left;
+  display: inline;
+  font-style: normal;
+}
+h1 { font-size: 3em; line-height: 1; text-shadow: 1px 1px 2px #999; }
+h2 { font-size: 1.25em; margin-left: 0.5em; font-style: italic; color: #555; }
 h4 { font-size: 1.15em; font-weight: bold; text-align: center; }
-em { font-weight: bold; }
-#header { background-color: #D1FBF2; border-bottom: 1px solid #3F3F3F; padding-top: 2em; padding-bottom: 1em; }
+em {
+    font-style: normal;
+    font-variant: small-caps;
+    font-size: inherit;
+}
+#header {
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    padding-left: 0.5em;
+}
 
+.help:hover {
+    color: #F78D02;
+}
+.help i.fa {
+    font-size: 2em;
+    padding: 0.5em;
+}
+
+#header p {
+    margin-top: 0.5em;
+    /*margin-left: 1.5em;*/
+}
 #main, #header, #footer { width: 100%; }
 #main {
     height: 1%;
     overflow: auto;
-    background-color: #79AFAD;
 }
 #subcontainer {
-    float: left;
+    /*float: left;*/
     width: 80%;
-    background-color: #79AFAD;
-    border-right: 1px solid #3F3F3F;
     height: 1%;
     overflow: auto;
 }
 #character {
-    float: left;
-    width: 25%;
+    /*float: left;*/
+    width: 100%;
     min-width: 200px;
-    height: 100%;
+    /*height: 100%;*/
     overflow: auto;
 }
 #right {
@@ -43,33 +64,193 @@ em { font-weight: bold; }
 #spellsCont {
     margin-left: 25%;
     margin-top: 0;
-    background-color: #D5CC8F;
     height: 1%;
     overflow: auto;
-    border-left: 1px solid #3F3F3F;
-/*    min-width: 650px;*/
+}
+#spellsCont a {
+    text-decoration: none;
 }
 #footer {
     clear: both;
-    background-color: #D1FBF2;
-    border-top: 1px solid #3F3F3F;
     height: 2em;
 }
-div.section { margin: 1em 5%; }
-div.section {
-    background-color: #618C8B;
-    border: 1px solid #5C5C5C;
-    border-bottom: 1px solid #323232;
-    border-right: 1px solid #323232;
+
+.tab-bar {
+    width: 100%;
     height: 1%;
     overflow: auto;
+    padding: 0.5em;
+}
+.tab-bar li {
+    float: left;
+    display: block;
+    border: 1px solid #555;
+    border-radius: 0.3em;
+    background-color: #04DEC1;
+    padding: 0.2em 0.4em;
+    margin: 0.2em;
+}
+.tab-bar li:hover {
+    cursor: pointer;
+    background-color: #00CCB1;
+}
+.tab-contents li { display: none; }
+.tab-contents li.selected {
+    display: block;
+    border: 1px solid #555;
+    border-radius: 0.3em;
+    padding: 1em 1em;
+    margin: 0 1em 1em 1em;
+    height: 1%;
+    overflow: auto;
+}
+
+.tab-contents label {
+    display: block;
+    width: 20%;
+    float: left;
+    margin-bottom: 2px;
+    padding-left: 1em;
+    text-align: left;
+}
+.tab-contents label.long {
+    width: 60%;
+}
+.tab-contents label.long .lbl {
+    width: 30%;
+}
+.tab-contents label.long select {
+    width: 60%;
+    /*-webkit-appearance: none;*/
+}
+
+#armory .lbl {
+    width: 40%;
+}
+#armory label.long .lbl {
+    width: 30%;
+}
+#armory input {
+    width: 50%;
+}
+input#armory_btn[type="button"] {
+    /*padding: 5em;*/
+    width: 3em;
+    position: relative;
+    -webkit-appearance: none;
+    left: 2em;
+    font-size: 1.5em;
+    height: 2em;
+    border: 2px solid #555;
+    border-radius: 0.5em;
+    background-color: #33FF00;
+}
+input#armory_btn[type="button"]:hover {
+    background-color: #229C03;
+}
+
+.tab-contents label .lbl {
+    width: 60%;
+    /*max-width: 65%;*/
+    padding-top: 5px;
+    float: left;
+    overflow: hidden;
+    vertical-align: center;
+}
+
+.tab-contents label input, .tab-contents label select {
+    font-size: 0.9em;
+    float: right;
+    width: 30%;
+    margin: 0;
+    margin-left: 0.5em;
+    text-align: right;
+    vertical-align: baseline;
+    border: 2px solid #888;
+    border-radius: 2px;
+    padding: 2px;
+    font-size: 1em;
+    background-color: #F8F8F8;
+}
+
+.tab-contents .newLine {
+    margin-top: 1em;
     clear: both;
 }
-div.section h4, #note .title {
-	border-bottom: 1px solid #5C5C5C;
+
+.tab-contents div {
+    display: block;
+    float: left;
+    width: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
+
+.tab-contents div h4 {
+    margin-bottom: 0.5em;
+}
+
+.tab-contents div label {
+    width: 90%;
+}
+
+
+/* Checkbox settings, phew */
+div.chkbox {
+  width: 1em;
+  position: relative;
+  margin: 0;
+  float: right;
+}
+.chkbox input + span {
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fcfff4;
+  background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 4px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.chkbox span:after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #333;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.chkbox span:hover::after {
+  opacity: 0.5;
+}
+.chkbox input[type=checkbox] {
+  visibility: hidden;
+}
+.chkbox input[type=checkbox]:checked + span:after {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
 /* Image settings */
-#character > div span {
+/*#character > div span {
     width: 15%;
     margin: 0.2em 2.5%;
 }
@@ -79,49 +260,40 @@ div.section h4, #note .title {
     border: 1px solid #000;
     float: left;
 }
-div.section h4 {
+*/
+/*.tab-contents h4, div.section h4 {
 	cursor: pointer;
 	height: 1%;
 	overflow: auto;
 	line-height: 1.2em;
 	padding: 1%;
-	vertical-align: baseline;
 }
-#character > div input[type="input"], #character > div input[type="checkbox"], #character > div label {
+*/
+/*#character > div input[type="input"], #character > div input[type="checkbox"], #character > div label {
     float: right;
     margin: 0 1%;
     height: auto;
-/*    height: 1.3em;*/
 }
-#character > div label {
-    margin: 0.15em 1%;
-}
-#character #armory select {
-    float: left;
-    width: 60%;
-}
-#character #armory input[type="input"] {
-    width: 60%;
-}
-div#armory_btn {
+*/
+
+
+/*div#armory_btn {
     float: right;
     position: relative;
-/*    top: 90%;
-*/
     left: -20px;
     width: 10%;
     height: 5%;
 }
+*/
 div.spinner {
     left: 22px;
     top: 8px;
 }
-#character > div input[type="button"] {
-/*    float: right;*/
+/*#character > div input[type="button"] {
+    float: right;
 }
 #character > div input[type="input"], #character > div input[type="checkbox"] {
     width: auto;
-    text-align: right;
     background-color: #FFFCD1;
     border: 1px solid #5C5C5C;
     border-top: 1px solid #323232;
@@ -138,7 +310,8 @@ div.spinner {
 #character > div option {
     font-size: 0.85em;
 }
-#character > div label { width: 98%; clear: left; }
+
+*//*#character > div label { width: 98%; clear: left; }*/
 #spec_specific label { width: auto; font-size: 0.8em; }
 #character > div input[disabled] {
     border: 1px solid #697C6A;
@@ -186,7 +359,7 @@ div li a {
 }
 
 .inactive img, img.inactive { opacity: 0.4; }
-table { 
+table {
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -211,7 +384,7 @@ td { text-align: right; }
 	margin-bottom: 1em;
 	margin-left: 2.5%;
 	margin-right: 2.5%;
-	background-color: #C0B981;
+	/*background-color: #C0B981;*/
 	width: 95%;
 }
 #filters div div { padding: 0.2em; }
