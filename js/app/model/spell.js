@@ -1132,6 +1132,21 @@ define(['can'], function(can) {
             mast_factor_tick: 0.02 * 6,
             chi_use: 2
         },
+        {
+            id: 87,
+            code: 'BreathSerpent',
+            name: 'Breath of the Serpent',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 0,
+            targets: 6,
+            c: 0.58 * 10 * 1.2,
+            img: 'ability_monk_jadeserpentbreath',
+            aoe: false,
+            instant: true,
+            item: 157535,
+            mast_factor: 0.2
+        },
    ];
 
     var FIXME = [
@@ -2458,6 +2473,13 @@ define(['can'], function(can) {
                 ( 1 + 0.6 * this.spec.fmultip(delta) );
         }
     });
+
+    spls.find('BreathSerpent').attr({
+        fhpm: function(delta) {
+            return this.fhpm_nomana(delta);
+        }
+    });
+
 /*
 
     $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {
@@ -2505,24 +2527,6 @@ define(['can'], function(can) {
                 (1 + this.spec.blackoutkick_extra * 1)
             );
         },
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
-
-    spls.find('HealingSphere').attr({
-        fct: function(delta) {
-            return ( 0.5 );
-        }
-    });
-
-
-    spls.find('ChiWave').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
-    spls.find('ChiBurst').attr({
         fhpm: function(delta) {
             return ( this.fhpm_nomana(delta) );
         }
