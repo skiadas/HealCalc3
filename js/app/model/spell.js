@@ -1115,6 +1115,23 @@ define(['can'], function(can) {
             item: 123986,
             mast_factor: 0.2
         },
+        {
+            id: 86,
+            code: 'ChiExplosion',
+            name: 'Chi Explosion',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 0,
+            targets: 1,
+            c: 1.7 * 1.2,
+            img: 'ability_monk_chiexplosion',
+            aoe: false,
+            instant: true,
+            item: 157675,
+            mast_factor: 0.3,
+            mast_factor_tick: 0.02 * 6,
+            chi_use: 2
+        },
    ];
 
     var FIXME = [
@@ -2403,6 +2420,36 @@ define(['can'], function(can) {
         }
     });
 
+    spls.find('ChiExplosion').attr({
+        fbase: function(delta) {
+            var chi = 1 * this.spec.chi_expl;
+            return this.fdirect(delta) *
+                   (
+                    ( 1 + chi ) +
+                    ( // hots seem to get double vers
+                        chi === 4 ? 3.5 :
+                        chi === 3 ? 2 :
+                        chi === 2 ? 1 :
+                        0
+                    ) * ( 1 + 1 * this.spec.fversp(delta) )
+                   ) * ( 1 + 1 * this.spec.fversp(delta) );
+        },
+        fheal: function(delta) {
+            var sphere = this.spec.fsp(delta) * this.spec.mast_c *
+                         (1 + this.spec.fversp(delta));
+            var chi = 1 * this.spec.chi_expl;
+            var proc_chance =
+                (chi >= 3 ? 7 : 1) * // Assuming 7 targets hardcoded
+                (
+                    this.mast_factor +
+                    (chi >= 2 ? this.mast_factor_tick : 0)
+                ) *
+                this.spec.fmastp(delta);
+            return ( this.fbase(delta) + proc_chance * sphere ) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) );
+        }
+    });
 /*
 
     $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {

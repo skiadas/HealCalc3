@@ -6,9 +6,17 @@
   <option value="chi_brew" <%= (spec.attr('talent45_monk') == 'chi_brew') ? 'selected="selected"' : '' %>>Chi Brew</option>
 </select>
 </label>
-<label for="ascension">Ascension<input name="ascension" type="checkbox" <%= spec.attr('ascension') ? 'checked="checked"' : ''  %> /></label>
 <label for="blackoutkick_extra">Extra Blackout Kick Targets<input name="blackoutkick_extra" type="input" value="<%== spec.attr('blackoutkick_extra') %>" /></label>
 <label for="uplift_targets">Uplift Targets<input name="uplift_targets" type="input" value="<%== spec.attr('uplift_targets') %>" /></label>
 <label for="expelHarm_other">Expel Harm on other<input name="expelHarm_other" type="checkbox" <%= spec.attr('expelHarm_other') ? 'checked="checked"' : ''  %> /></label>
+<label for="chi_expl">Chi Explosion
+<select name="chi_expl">
+  <option value="1"   <%= (spec.attr('chi_expl') == '1') ? 'selected="selected"' : '' %>>1 Chi</option>
+  <option value="2"   <%= (spec.attr('chi_expl') == '2') ? 'selected="selected"' : '' %>>2 Chi</option>
+  <option value="3"   <%= (spec.attr('chi_expl') == '3') ? 'selected="selected"' : '' %>>3 Chi</option>
+  <option value="4"   <%= (spec.attr('chi_expl') == '4') ? 'selected="selected"' : '' %>>4 Chi</option>
+</select>
+</label>
+
 <label for="t16_2p_monk">T16 2piece<input name="t16_2p_monk" type="checkbox" <%= spec.attr('t16_2p_monk') ? 'checked="checked"' : ''  %> /></label>
 <label for="t16_4p_monk">T16 4piece<input name="t16_4p_monk" type="checkbox" <%= spec.attr('t16_4p_monk') ? 'checked="checked"' : ''  %> /></label>

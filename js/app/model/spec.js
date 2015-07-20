@@ -746,6 +746,8 @@ define(['can'], function(can) {
         expelHarm_other: true,
         t16_2p_monk: false,
         t16_4p_monk: false,
+        pool_mists: true,
+        chi_expl: 2,  // Number of chi stacks to use Chi Explosion at
         mast_c: 1.2 * 0.75,
         mana_tea: true
     });
