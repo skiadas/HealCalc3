@@ -1,5 +1,5 @@
 define(['text!app/util/image_namelist.js','text!app/util/big_one.jpg'], function(names, big_one) {
-    ImageLoader = (function() {
+    var ImageLoader = (function() {
         eval(names);
         var imageList = big_one.split("\u0001");
         var retList = {};
