@@ -2444,6 +2444,9 @@ define(['can'], function(can) {
     });
 
     spls.find('ChiExplosion').attr({
+        fhpm: function(delta) {
+            return this.fhpm_nomana(delta);
+        },
         fbase: function(delta) {
             var chi = 1 * this.spec.chi_expl;
             return this.fdirect(delta) *
