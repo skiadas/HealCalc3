@@ -76,4 +76,5 @@ text!view/rotations.ejs
 app/control/rotations.js
 app/setup.js
 app/util/twitterLoader.js
+app/util/wowheadLoader.js
 app/main.js

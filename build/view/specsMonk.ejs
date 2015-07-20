@@ -1,11 +1,23 @@
-<label for="mana_tea">Chi as Mana Tea<input name="mana_tea" type="checkbox" <%= spec.attr('mana_tea') ? 'checked="checked"' : ''  %> /></label> 
-<label for="tiger_power">Tiger Power<input name="tiger_power" type="checkbox" <%= spec.attr('tiger_power') ? 'checked="checked"' : ''  %> /></label>
-<label for="muscle_memory">Muscle Memory<input name="muscle_memory" type="checkbox" <%= spec.attr('muscle_memory') ? 'checked="checked"' : ''  %> /></label>
-<label for="ascension">Ascension<input name="ascension" type="checkbox" <%= spec.attr('ascension') ? 'checked="checked"' : ''  %> /></label>
+<label for="mana_tea">Chi as Mana Tea<input name="mana_tea" type="checkbox" <%= spec.attr('mana_tea') ? 'checked="checked"' : ''  %> /></label>
+<label for="talent45_monk">BT Uptime
+<select name="talent45_monk">
+  <option value="power_strikes"   <%= (spec.attr('talent45_monk') == 'power_strikes') ? 'selected="selected"' : '' %>>Power Strikes</option>
+  <option value="ascendance" <%= (spec.attr('talent45_monk') == 'ascendance') ? 'selected="selected"' : '' %>>Ascendance</option>
+  <option value="chi_brew" <%= (spec.attr('talent45_monk') == 'chi_brew') ? 'selected="selected"' : '' %>>Chi Brew</option>
+</select>
+</label>
 <label for="blackoutkick_extra">Extra Blackout Kick Targets<input name="blackoutkick_extra" type="input" value="<%== spec.attr('blackoutkick_extra') %>" /></label>
 <label for="uplift_targets">Uplift Targets<input name="uplift_targets" type="input" value="<%== spec.attr('uplift_targets') %>" /></label>
-<label for="glyph_targeted_expulsion">Glyph of Targeted Expulsion<input name="glyph_targeted_expulsion" type="checkbox" <%= spec.attr('glyph_targeted_expulsion') ? 'checked="checked"' : ''  %> /></label> 
-<label for="t14_2p_monk">T14 2piece<input name="t14_2p_monk" type="checkbox" <%= spec.attr('t14_2p_monk') ? 'checked="checked"' : ''  %> /></label> 
-<label for="t15_2p_monk">T15 2piece<input name="t15_2p_monk" type="checkbox" <%= spec.attr('t15_2p_monk') ? 'checked="checked"' : ''  %> /></label> 
-<label for="t16_2p_monk">T16 2piece<input name="t16_2p_monk" type="checkbox" <%= spec.attr('t16_2p_monk') ? 'checked="checked"' : ''  %> /></label> 
-<label for="t16_4p_monk">T16 4piece<input name="t16_4p_monk" type="checkbox" <%= spec.attr('t16_4p_monk') ? 'checked="checked"' : ''  %> /></label> 
+<label for="expelHarm_other">Expel Harm on other<input name="expelHarm_other" type="checkbox" <%= spec.attr('expelHarm_other') ? 'checked="checked"' : ''  %> /></label>
+<label for="chi_expl">Chi Explosion
+<select name="chi_expl">
+  <option value="1"   <%= (spec.attr('chi_expl') == '1') ? 'selected="selected"' : '' %>>1 Chi</option>
+  <option value="2"   <%= (spec.attr('chi_expl') == '2') ? 'selected="selected"' : '' %>>2 Chi</option>
+  <option value="3"   <%= (spec.attr('chi_expl') == '3') ? 'selected="selected"' : '' %>>3 Chi</option>
+  <option value="4"   <%= (spec.attr('chi_expl') == '4') ? 'selected="selected"' : '' %>>4 Chi</option>
+</select>
+</label>
+
+<label for="pool_mists">Pool of Mists<input name="pool_mists" type="checkbox" <%= spec.attr('pool_mists') ? 'checked="checked"' : ''  %> /></label>
+<label for="t16_2p_monk">T16 2piece<input name="t16_2p_monk" type="checkbox" <%= spec.attr('t16_2p_monk') ? 'checked="checked"' : ''  %> /></label>
+<label for="t16_4p_monk">T16 4piece<input name="t16_4p_monk" type="checkbox" <%= spec.attr('t16_4p_monk') ? 'checked="checked"' : ''  %> /></label>
