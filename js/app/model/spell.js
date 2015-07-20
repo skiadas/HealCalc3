@@ -2353,6 +2353,14 @@ define(['can'], function(can) {
         }
     });
 
+    spls.find('RenewingMist').attr({
+        fbase: function(delta) {
+            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+                ( this.spec.pool_mists ? 1.15 : 1 ) *
+                ( 1 + 1 * this.spec.fversp(delta) );
+        }
+    });
+
     spls.find('Uplift').attr({
         fhpm: function(delta) {
             return ( this.fhpm_nomana(delta) );
