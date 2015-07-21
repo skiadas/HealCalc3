@@ -743,13 +743,13 @@ define(['can'], function(can) {
         mastery_factor: 1.25,
         uplift_targets: 8,
         talent45_monk: 'chi_brew',
-        expelHarm_other: true,
+        expelHarm_other_monk: true,
         t16_2p_monk: false,
         t16_4p_monk: false,
-        pool_mists: true,
-        chi_expl: 2,  // Number of chi stacks to use Chi Explosion at
+        pool_mists_monk: true,
+        chi_expl_monk: 2,  // Number of chi stacks to use Chi Explosion at
         mast_c: 1.2 * 0.75,
-        mana_tea: true
+        mana_tea_monk: true
     });
 
     return spcs;

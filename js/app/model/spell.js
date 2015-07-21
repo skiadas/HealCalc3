@@ -1211,7 +1211,7 @@ define(['can'], function(can) {
         fct_monk: function(delta) {
             return (
                 (this.base_ct / (1 + this.spec.fhastep(delta))) +
-                (this.spec.mana_tea ? (this.chi_gain || 0) * 0.25 * 0.5 : 0)
+                (this.spec.mana_tea_monk ? (this.chi_gain || 0) * 0.25 * 0.5 : 0)
             );
         },
         fmana: function(delta) {
@@ -1233,7 +1233,7 @@ define(['can'], function(can) {
             return (
                 this.base_mana -
                 (
-                    this.spec.mana_tea ?
+                    this.spec.mana_tea_monk ?
                     ( (this.chi_gain || 0) * 0.01 * this.spec.mana_pool ) :
                     0
                 )
@@ -2371,7 +2371,7 @@ define(['can'], function(can) {
     spls.find('RenewingMist').attr({
         fbase: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                ( this.spec.pool_mists ? 1.15 : 1 ) *
+                ( this.spec.pool_mists_monk ? 1.15 : 1 ) *
                 ( 1 + 1 * this.spec.fversp(delta) );
         }
     });
@@ -2448,7 +2448,7 @@ define(['can'], function(can) {
             return this.fhpm_nomana(delta);
         },
         fbase: function(delta) {
-            var chi = 1 * this.spec.chi_expl;
+            var chi = 1 * this.spec.chi_expl_monk;
             return this.fdirect(delta) *
                    (
                     ( 1 + chi ) +
@@ -2463,7 +2463,7 @@ define(['can'], function(can) {
         fheal: function(delta) {
             var sphere = this.spec.fsp(delta) * this.spec.mast_c *
                          (1 + this.spec.fversp(delta));
-            var chi = 1 * this.spec.chi_expl;
+            var chi = 1 * this.spec.chi_expl_monk;
             var proc_chance =
                 (chi >= 3 ? 7 : 1) * // Assuming 7 targets hardcoded
                 (
