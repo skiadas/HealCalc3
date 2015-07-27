@@ -612,6 +612,7 @@ define(['can'], function(can) {
         },
         poh_targets_holy: 5,
         lw_charges: 15,
+        eol_overheal: 40,   // Overheal percent
         glyph_coh: false,
         glyph_pom_holy: true,
         glyph_renew_holy: false,

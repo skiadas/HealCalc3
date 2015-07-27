@@ -1531,6 +1531,12 @@ define(['can'], function(can) {
                    ( 1 + 1 * this.spec.fversp(delta) ) *
                    1.1;
         },
+        fbase_holy: function(delta) {
+            return (
+                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
+                ( 1 + 1 * this.spec.fversp(delta) )
+            );
+        },
         fbase_pally: function(delta) {
             return (
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
@@ -1623,6 +1629,7 @@ define(['can'], function(can) {
             return (
                 this.fbase(delta) *
                 ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + (1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) ) *
                 ( 1 + 0.72 * this.spec.fmultip(delta) )
             );
         },
@@ -1727,6 +1734,7 @@ define(['can'], function(can) {
             sp.fbase = sp.fbase_disc;   // To account for Grace
             sp.fheal = sp.fheal_disc;   // To account for DA formula
         } else if (sp.specid == 2) {
+            sp.fbase = sp.fbase_holy;
             sp.fheal = sp.fheal_holy;
         } else if ( sp.specid == 3 ) {
             // General Pally spell setup
@@ -1956,9 +1964,16 @@ define(['can'], function(can) {
 
     // Does not benefit from mastery
     spls.find('HWSanctuaryHoly').attr({
-        fbase: function(delta) {
-            return this.fhot(delta) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
+        // fbase: function(delta) {
+        //     return this.fhot(delta) *
+        //            ( 1 + 1 * this.spec.fversp(delta) );
+        // }
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.72 * this.spec.fmultip(delta) )
+            );
         }
     });
 
@@ -1995,18 +2010,33 @@ define(['can'], function(can) {
         fbase: function(delta) {
             return (
                 this.fhot(delta) +
-                (
-                    this.fdirect(delta) *
-                    ( 1 + 1 * this.spec.fmastp(delta) )
-                )
+                this.fdirect(delta)
             ) * ( 1 + 1 * this.spec.fversp(delta) );
+        },
+        fheal: function(delta) {
+            return (
+                (
+                    this.fbase(delta) +
+                    this.fdirect(delta) * // mastery on direct part
+                    ((1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) )
+                ) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.72 * this.spec.fmultip(delta) )
+            );
         }
     });
 
     spls.find('LWCastHoly').attr({
-        fbase: function(delta) {
-            return this.fhot(delta) *
-                 ( 1 + 1 * this.spec.fversp(delta) ); // No mastery
+        // fbase: function(delta) {
+        //     return this.fhot(delta) *
+        //          ( 1 + 1 * this.spec.fversp(delta) ); // No mastery
+        // },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.72 * this.spec.fmultip(delta) )
+            );
         },
         fhot: function(delta) {
             return (
@@ -2039,6 +2069,13 @@ define(['can'], function(can) {
         fbase: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
                    ( 1 + 1 * this.spec.fversp(delta) );
+        },
+        fheal: function(delta) {
+            return (
+                this.fbase(delta) *
+                ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + 0.72 * this.spec.fmultip(delta) )
+            );
         }
     });
 
@@ -2054,6 +2091,7 @@ define(['can'], function(can) {
             return (
                 this.fbase(delta) *
                 ( 1 + this.spec.fcritp(delta) ) *
+                ( 1 + (1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) ) *
                 ( 1 + 0.72 * this.spec.fmultip(delta) ) *
                 (this.spec.t18_4p_holy ? 1.1 : 1)
             );
