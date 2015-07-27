@@ -13,7 +13,10 @@ define(['can'], function(can) {
             img: 'spell_holy_greaterheal',
             aoe: false,
             instant: false,
-            item: 2060
+            item: 2060,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 2,
@@ -26,7 +29,10 @@ define(['can'], function(can) {
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
-            item: 2061
+            item: 2061,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 3,
@@ -39,7 +45,10 @@ define(['can'], function(can) {
             img: 'ability_priest_cascade',
             aoe: true,
             instant: false,
-            item: 121148
+            item: 121148,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 4,
@@ -53,7 +62,10 @@ define(['can'], function(can) {
             img: 'spell_priest_divinestar',
             aoe: true,
             instant: true,
-            item: 110744
+            item: 110744,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 5,
@@ -67,7 +79,10 @@ define(['can'], function(can) {
             img: 'ability_priest_halo',
             aoe: true,
             instant: false,
-            item: 120517
+            item: 120517,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 6,
@@ -80,7 +95,10 @@ define(['can'], function(can) {
             img: 'spell_holy_powerwordshield',
             aoe: false,
             instant: true,
-            item: 17
+            item: 17,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 7,
@@ -94,7 +112,10 @@ define(['can'], function(can) {
             img: 'spell_holy_prayerofmendingtga',
             aoe: true,
             instant: true,
-            item: 33076
+            item: 33076,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 8,
@@ -108,7 +129,10 @@ define(['can'], function(can) {
             img: 'spell_holy_prayerofhealing02',
             aoe: true,
             instant: false,
-            item: 596
+            item: 596,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 9,
@@ -124,7 +148,10 @@ define(['can'], function(can) {
             img: 'spell_holy_searinglight',
             aoe: false,
             instant: true,
-            item: 14914
+            item: 14914,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 10,
@@ -140,7 +167,10 @@ define(['can'], function(can) {
             img: 'ability_priest_flashoflight',
             aoe: false,
             instant: true,
-            item: 14914
+            item: 14914,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 11,
@@ -153,7 +183,10 @@ define(['can'], function(can) {
             img: 'spell_holy_holysmite',
             aoe: false,
             instant: false,
-            item: 585
+            item: 585,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 12,
@@ -167,7 +200,10 @@ define(['can'], function(can) {
             img: 'spell_holy_penance',
             aoe: false,
             instant: false,
-            item: 47540
+            item: 47540,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 13,
@@ -181,7 +217,10 @@ define(['can'], function(can) {
             img: 'spell_holy_penance',
             aoe: false,
             instant: false,
-            item: 47540
+            item: 47540,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 14,
@@ -194,7 +233,10 @@ define(['can'], function(can) {
             img: 'ability_priest_clarityofwill',
             aoe: false,
             instant: false,
-            item: 152118
+            item: 152118,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 15,
@@ -207,7 +249,10 @@ define(['can'], function(can) {
             img: 'ability_priest_savinggrace',
             aoe: false,
             instant: false,
-            item: 155274
+            item: 155274,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 16,
@@ -221,7 +266,10 @@ define(['can'], function(can) {
             img: 'spell_holy_prayerofhealing02',
             aoe: true,
             instant: false,
-            item: 596
+            item: 596,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 17,
@@ -234,7 +282,10 @@ define(['can'], function(can) {
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
-            item: 2061
+            item: 2061,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 18,
@@ -248,7 +299,10 @@ define(['can'], function(can) {
             img: 'spell_holy_holynova',
             aoe: true,
             instant: true,
-            item: 132157
+            item: 132157,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
 
 
@@ -266,7 +320,10 @@ define(['can'], function(can) {
             img: 'spell_nature_healingtouch',
             aoe: false,
             instant: false,
-            item: 5185
+            item: 5185,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 202,
@@ -282,7 +339,10 @@ define(['can'], function(can) {
             img: 'spell_nature_resistnature',
             aoe: false,
             instant: false,
-            item: 8936
+            item: 8936,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 203,
@@ -297,7 +357,10 @@ define(['can'], function(can) {
             img: 'spell_nature_rejuvenation',
             aoe: false,
             instant: true,
-            item: 774
+            item: 774,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 204,
@@ -313,7 +376,10 @@ define(['can'], function(can) {
             img: 'inv_misc_herb_felblossom',
             aoe: false,
             instant: true,
-            item: 33763
+            item: 33763,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 205,
@@ -329,7 +395,10 @@ define(['can'], function(can) {
             img: 'ability_druid_flourish',
             aoe: true,
             instant: true,
-            item: 48438
+            item: 48438,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 206,
@@ -343,7 +412,10 @@ define(['can'], function(can) {
             img: 'inv_relics_idolofrejuvenation',
             aoe: false,
             instant: true,
-            item: 18562
+            item: 18562,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 208,
@@ -359,7 +431,10 @@ define(['can'], function(can) {
             img: 'druid_ability_wildmushroom_b',
             aoe: true,
             instant: true,
-            item: 145205
+            item: 145205,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 209,
@@ -374,7 +449,10 @@ define(['can'], function(can) {
             img: 'spell_nature_tranquility',
             aoe: true,
             instant: false,
-            item: 740
+            item: 740,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
         // {
         //     id: 202,
@@ -409,7 +487,10 @@ define(['can'], function(can) {
             img: 'spell_holy_greaterheal',
             aoe: false,
             instant: false,
-            item: 2060
+            item: 2060,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 18,
@@ -422,7 +503,10 @@ define(['can'], function(can) {
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
-            item: 2061
+            item: 2061,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 19,
@@ -436,7 +520,10 @@ define(['can'], function(can) {
             targets: 2,
             aoe: false,
             instant: false,
-            item: 32546
+            item: 32546,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 20,
@@ -451,7 +538,10 @@ define(['can'], function(can) {
             img: 'spell_holy_renew',
             aoe: false,
             instant: true,
-            item: 139
+            item: 139,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 21,
@@ -464,7 +554,10 @@ define(['can'], function(can) {
             img: 'spell_holy_powerwordshield',
             aoe: false,
             instant: true,
-            item: 17
+            item: 17,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
        {
             id: 22,
@@ -478,7 +571,10 @@ define(['can'], function(can) {
             img: 'spell_holy_prayerofmendingtga',
             aoe: true,
             instant: true,
-            item: 33076
+            item: 33076,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 23,
@@ -492,7 +588,10 @@ define(['can'], function(can) {
             img: 'spell_holy_prayerofhealing02',
             aoe: true,
             instant: false,
-            item: 596
+            item: 596,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 24,
@@ -505,7 +604,10 @@ define(['can'], function(can) {
             img: 'ability_priest_cascade',
             aoe: true,
             instant: true,
-            item: 121148
+            item: 121148,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 25,
@@ -519,7 +621,10 @@ define(['can'], function(can) {
             img: 'spell_holy_circleofrenewal',
             aoe: true,
             instant: true,
-            item: 34861
+            item: 34861,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 26,
@@ -533,7 +638,10 @@ define(['can'], function(can) {
             img: 'spell_holy_circleofrenewal',
             aoe: true,
             instant: false,
-            item: 64843
+            item: 64843,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
         {
             id: 27,
@@ -549,7 +657,10 @@ define(['can'], function(can) {
             img: 'spell_holy_summonlightwell',
             aoe: true,
             instant: true,
-            item: 724
+            item: 724,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
         {
             id: 28,
@@ -563,7 +674,10 @@ define(['can'], function(can) {
             img: 'spell_holy_persuitofjustice',
             aoe: false,
             instant: true,
-            item: 88684
+            item: 88684,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 29,
@@ -579,7 +693,10 @@ define(['can'], function(can) {
             img: 'spell_holy_divineprovidence',
             aoe: true,
             instant: true,
-            item: 88686
+            item: 88686,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 74,
@@ -593,7 +710,10 @@ define(['can'], function(can) {
             img: 'spell_priest_divinestar',
             aoe: true,
             instant: true,
-            item: 110744
+            item: 110744,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 76,
@@ -607,7 +727,10 @@ define(['can'], function(can) {
             img: 'ability_priest_halo',
             aoe: true,
             instant: true,
-            item: 120517
+            item: 120517,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         //
         // PALLY
@@ -623,7 +746,10 @@ define(['can'], function(can) {
             img: 'spell_holy_surgeoflight',
             aoe: false,
             instant: false,
-            item: 82326
+            item: 82326,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 42,
@@ -636,7 +762,10 @@ define(['can'], function(can) {
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
-            item: 19750
+            item: 19750,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 43,
@@ -651,7 +780,10 @@ define(['can'], function(can) {
             aoe: true,
             beaconPercent: 0.15,
             instant: false,
-            item: 82327
+            item: 82327,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 44,
@@ -664,7 +796,10 @@ define(['can'], function(can) {
             img: 'spell_holy_searinglight',
             aoe: false,
             instant: true,
-            item: 20473
+            item: 20473,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 45,
@@ -677,7 +812,10 @@ define(['can'], function(can) {
             img: 'inv_helmet_96',
             aoe: false,
             instant: false,
-            item: 130551
+            item: 130551,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 46,
@@ -692,7 +830,10 @@ define(['can'], function(can) {
             beaconPercent: 0.15,
             aoe: true,
             instant: false,
-            item: 85222
+            item: 85222,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 47,
@@ -706,7 +847,10 @@ define(['can'], function(can) {
             beaconPercent: 0.15,
             aoe: false,
             instant: true,
-            item: 114165
+            item: 114165,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 48,
@@ -721,7 +865,10 @@ define(['can'], function(can) {
             beaconPercent: 0.15,
             aoe: true,
             instant: true,
-            item: 114165
+            item: 114165,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 49,
@@ -739,7 +886,10 @@ define(['can'], function(can) {
             aoe: true,
             beaconPercent: 0.15,
             instant: true,
-            item: 114158
+            item: 114158,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 50,
@@ -752,7 +902,10 @@ define(['can'], function(can) {
             img: 'spell_paladin_executionsentence',
             aoe: false,
             instant: true,
-            item: 114157
+            item: 114157,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 51,
@@ -768,7 +921,10 @@ define(['can'], function(can) {
             img: 'inv_torch_thrown',
             aoe: false,
             instant: true,
-            item: 114163
+            item: 114163,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 52,
@@ -783,7 +939,10 @@ define(['can'], function(can) {
             img: 'ability_paladin_blessedmending',
             aoe: false,
             instant: true,
-            item: 20925
+            item: 20925,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
 
         //
@@ -801,7 +960,10 @@ define(['can'], function(can) {
             img: 'spell_nature_healingwavelesser',
             aoe: false,
             instant: false,
-            item: 77472
+            item: 77472,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 55,
@@ -815,7 +977,10 @@ define(['can'], function(can) {
             img: 'spell_nature_healingway',
             aoe: false,
             instant: false,
-            item: 8004
+            item: 8004,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 56,
@@ -830,7 +995,10 @@ define(['can'], function(can) {
             img: 'spell_nature_healingway',
             aoe: true,
             instant: false,
-            item: 1064
+            item: 1064,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 57,
@@ -847,7 +1015,10 @@ define(['can'], function(can) {
             img: 'spell_nature_riptide',
             aoe: false,
             instant: true,
-            item: 61295
+            item: 61295,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 58,
@@ -861,7 +1032,10 @@ define(['can'], function(can) {
             img: 'spell_shaman_unleashweapon_life',
             aoe: false,
             instant: true,
-            item: 73685
+            item: 73685,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 59,
@@ -876,7 +1050,10 @@ define(['can'], function(can) {
             img: 'inv_spear_04',
             aoe: false,
             instant: true,
-            item: 5394
+            item: 5394,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 60,
@@ -892,7 +1069,10 @@ define(['can'], function(can) {
             img: 'ability_shaman_healingtide',
             aoe: true,
             instant: true,
-            item: 108280
+            item: 108280,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
         {
             id: 61,
@@ -909,7 +1089,10 @@ define(['can'], function(can) {
             img: 'spell_nature_giftofthewaterspirit',
             aoe: true,
             instant: false,
-            item: 73920
+            item: 73920,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 63,
@@ -923,7 +1106,10 @@ define(['can'], function(can) {
             img: 'spell_nature_skinofearth',
             aoe: false,
             instant: true,
-            item: 974
+            item: 974,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 64,
@@ -938,7 +1124,10 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 115175,
-            mast_factor: (0.67 + 0.33) / 2 // Spell and statue
+            mast_factor: (0.67 + 0.33) / 2, // Spell and statue
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
          {
             id: 65,
@@ -953,7 +1142,10 @@ define(['can'], function(can) {
             instant: true,
             item: 116995,
             mast_factor: 1,
-            chi_gain: 1
+            chi_gain: 1,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 66,
@@ -971,7 +1163,10 @@ define(['can'], function(can) {
             instant: true,
             item: 132120,
             mast_factor: 0.25,
-            chi_use: 3
+            chi_use: 3,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 67,
@@ -990,7 +1185,10 @@ define(['can'], function(can) {
             instant: true,
             item: 119611,
             mast_factor: 0.25,
-            chi_gain: 1
+            chi_gain: 1,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 68,
@@ -1004,7 +1202,10 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 116849,
-            mast_factor: 0
+            mast_factor: 0,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
         {
             id: 69,
@@ -1020,7 +1221,10 @@ define(['can'], function(can) {
             instant: true,
             item: 116670,
             mast_factor: 0.4,
-            chi_use: 2
+            chi_use: 2,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 70,
@@ -1035,7 +1239,10 @@ define(['can'], function(can) {
             aoe: true,
             instant: true,
             item: 115310,
-            mast_factor: 1
+            mast_factor: 1,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
         {
             id: 76,
@@ -1051,7 +1258,10 @@ define(['can'], function(can) {
             instant: true,
             item: 115072,
             mast_factor: 1,
-            chi_gain: 1
+            chi_gain: 1,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 82,
@@ -1067,7 +1277,10 @@ define(['can'], function(can) {
             instant: true,
             item: 117640,
             mast_factor: 0.15,
-            chi_gain: 1
+            chi_gain: 1,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 83,
@@ -1082,7 +1295,10 @@ define(['can'], function(can) {
             aoe: true,
             instant: true,
             item: 115098,
-            mast_factor: 0.25
+            mast_factor: 0.25,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 84,
@@ -1098,7 +1314,10 @@ define(['can'], function(can) {
             aoe: true,
             instant: true,
             item: 124081,
-            mast_factor: 0.2
+            mast_factor: 0.2,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 85,
@@ -1113,7 +1332,10 @@ define(['can'], function(can) {
             aoe: true,
             instant: true,
             item: 123986,
-            mast_factor: 0.2
+            mast_factor: 0.2,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
         },
         {
             id: 86,
@@ -1130,7 +1352,10 @@ define(['can'], function(can) {
             item: 157675,
             mast_factor: 0.3,
             mast_factor_tick: 0.02 * 6,
-            chi_use: 2
+            chi_use: 2,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 87,
@@ -1145,7 +1370,10 @@ define(['can'], function(can) {
             aoe: false,
             instant: true,
             item: 157535,
-            mast_factor: 0.2
+            mast_factor: 0.2,
+            cdlong: true,
+            cdshort: false,
+            cdnone: false
         },
    ];
 
@@ -1167,7 +1395,10 @@ define(['can'], function(can) {
             instant: true,
             item: 108557,
             mast_factor: 0.2 + 0.1,  // Eminence and Statue
-            chi_gain: 1
+            chi_gain: 1,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 78,
@@ -1183,7 +1414,10 @@ define(['can'], function(can) {
             instant: true,
             item: 100787,
             mast_factor: 0.2 + 0.1,  // Eminence and Statue
-            chi_use: 1
+            chi_use: 1,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
         {
             id: 79,
@@ -1199,7 +1433,10 @@ define(['can'], function(can) {
             instant: true,
             item: 100784,
             mast_factor: 0.2 + 0.1,  // Eminence and Statue
-            chi_use: 2
+            chi_use: 2,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
         },
     ];
 
@@ -1481,7 +1718,10 @@ define(['can'], function(can) {
     spls.each( function(sp) {
         sp.mask = (1 << sp.specid >> 1) |
                   (1 << (sp.aoe ? 6 : 7)) |
-                  (1 << (sp.instant ? 8 : 9));  // Used for filtering
+                  (1 << (sp.instant ? 8 : 9) |
+                  (1 << (sp.cdlong ? 10 :
+                         sp.cdshort ? 11 : 12))
+                  );  // Used for filtering
         if ( sp.specid == 1 ) {
             // General Disc spell setup
             sp.fbase = sp.fbase_disc;   // To account for Grace

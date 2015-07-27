@@ -1,7 +1,7 @@
 define(['can', 'text!view/filtering.ejs'], function(can, view) {
     can.view.ejs('filterView', view);
     var ALLSPECS = ['disc', 'holy', 'pally', 'druid', 'shaman', 'monk'];
-    var FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime']);
+    var FILTERS = ALLSPECS.concat(['aoe', 'single', 'instant', 'casttime', 'cdlong', 'cdshort', 'cdnone']);
     var Filtering = can.Control({
     init: function(element, options) {
         var self = this;
@@ -11,9 +11,10 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
             allspecs: true,
             disc: true, holy: true, pally: true, druid: true,
             shaman: true, monk: true, aoe: true, single: true,
-            instant: true, casttime: true
+            instant: true, casttime: true,
+            cdlong: true, cdshort: true, cdnone: true
         });
-        self.options.fullmask = (1 << 10) -1;
+        self.options.fullmask = (1 << 13) -1;
         self.options.curr_mask = 0;
         self.element.data('filters', self.options.filters);
         self.element.append(can.view('filterView', self.options));
