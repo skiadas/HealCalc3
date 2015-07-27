@@ -85,5 +85,6 @@ names = [
     'ability_monk_forcesphere',
     'ability_monk_chiwave',
     'ability_monk_chiexplosion',
-    'ability_monk_jadeserpentbreath'
+    'ability_monk_jadeserpentbreath',
+    'spell_monk_revival'
 ];
