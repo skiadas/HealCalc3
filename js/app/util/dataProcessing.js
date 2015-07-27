@@ -54,12 +54,20 @@ define(['./tooltipParams'], function(tooltipParams) {
       var specNo, spec;
       for (var i = 0; i < specs.length; i += 1) {
          if (data.class == specs[i].class) {
-            specNo = (data.talents[0].spec.order == specs[i].tree && (
-               data.talents[0].selected ||
-               (specs[i].class != 5 && data.talents[1].spec.order != specs[i].tree) ||
-               data.talents[1].spec.order == 3 // shadow
-            )) ? 0 : 1;
+            // First find which talent set to consider (specNo)
+            // It is the selected set unless that set is not a healing
+            // spec
+            specNo = data.talents[0].selected ? 0 : 1;
+            if ((specs[i].class == 5 && data.talents[specNo].spec.order > 1) ||
+                (specs[i].class != 5 && data.talents[specNo].spec.order !== specs[i].tree)) {
+               specNo = 1 - specNo;
+            }
+            // Now to pick the spec
             spec = specs[i];
+            // If holy switch
+            if (data.class == 5 && data.talents[specNo].spec.order == specs[1].tree) {
+               spec = specs[1];
+            }
             break;
          }
       }
