@@ -2093,6 +2093,12 @@ define(['can'], function(can) {
         },
     });
 
+    spls.find('Swiftmend').attr({
+        fheal: function(delta) {
+            return ( this.fheal_living_seed(delta) );
+        }
+    });
+
     spls.find('Regrowth').attr({
         fbase: function(delta) {
             return (
