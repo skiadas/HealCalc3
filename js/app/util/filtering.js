@@ -10,7 +10,7 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
         self.options.filters = new can.Observe({
             allspecs: true,
             disc: true, holy: true, pally: true, druid: true,
-            shaman: true, monk: true, aoe: true, single: true, 
+            shaman: true, monk: true, aoe: true, single: true,
             instant: true, casttime: true
         });
         self.options.fullmask = (1 << 10) -1;
@@ -24,20 +24,22 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
         var filters = self.options.filters;
         var cname = 'hidden'
         var splList = $('tr.spell', self.options.table);
+        // console.log(imask)
         for (var i=splList.length; i--; ) {
             // var elm = $(el);
             var elm = $(splList[i]);
-            ((elm.data('spell').mask & imask) == 0) ? 
+            // console.log(elm.data('spell').name, elm.data('spell').mask);
+            ((elm.data('spell').mask & imask) == 0) ?
                 elm.removeClass(cname) :
                 elm.addClass(cname);
         };
-        var specList = $('div.spec', self.options.specs);
-        for (var i=specList.length; i--; ) {
-            var elm = $(specList[i]);
-            filters[elm.data('spec').name.toLowerCase()] ? 
-                elm.removeClass(cname) :
-                elm.addClass(cname);
-        };
+        // var specList = $('.spec', self.options.specs);
+        // for (var i=specList.length; i--; ) {
+        //     var elm = $(specList[i]);
+        //     filters[elm.data('spec').name.toLowerCase()] ?
+        //         elm.removeClass(cname) :
+        //         elm.addClass(cname);
+        // };
     },
     'input change': function(el, ev) {
         var filters = this.options.filters;

@@ -1,104 +1,23 @@
-/*#character div div.haste_bar*/
-.expandOff {
-    background-image: url("../images/arrow-right.png");
-    background-position: 5px 50%;
-    background-size: 10px 10px;
-    background-repeat: no-repeat;
-    display: block;
-    background-color: #42605F;
-}
-/*#character div div.haste_bar*/
-.expandOn {
-    background-image: url("../images/arrow-down.png");
-    background-position: 5px 50%;
-    background-size: 10px 10px;
-    background-repeat: no-repeat;
-    display: block;
-    background-color: #42605F;
-}
-.expandOn:hover, .expandOff:hover { background-color: #374F4E; }
-li > a.expandOn, li > a.expandOff { background-color: #547A78; }
-div.spec > a {
-    background-position: 30px 50%;
-}
-
-.hidden {
-    display: none;
-}
-
-#character div div.haste_bar {
-    clear: both;
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 20px;
-    background-color: #329199;
-}
-#character div div.haste_bar:hover {
-    background-color: #2B8087;
-}
-#character div div.haste_current {
-    clear: both;
-    position: absolute;
-    float: none;
-    left: 50%;
-    top: 1px;
-    width: 4px;
-    height: 18px;
-    background-color: #5F0300;
-    overflow: auto;
-}
-#character div div.haste_current:hover {
-    top: 0;
-    height: 20px;
-    width: 6px;
-}
-#character div.spec div.breakpoint {
-    clear: both;
-    position: absolute;
-    float: none;
-    top: 5px;
-    height: 10px;
-    width: 10px;
-}
-#character div.spec div.breakpoint:hover {
-    top: 2px;
-    height: 14px;
-    width: 14px;
-}
-#character div.spec div.breakpoint img {
-    height: 98%;
-    width: 98%;
-}
-#character div.spec .haste_list table * {
-    font-size: 0.9em;
-}
-#character div.spec .haste_list tr.after {
-    background-color: #76ABA9;
-}
-#character div.spec .mana_regen table * {
-    font-size: 0.95em;
-}
 
 div#deltaView {
-/*    position: fixed;
-    right: 10px;
-    top: 50%;
-*/
-    width: 95%;
-    margin: 2%;
-    padding: 2px;
+    position: fixed;
+    right: 0;
+    top: 5em;
+    width: 11em;
+    margin: 0;
+    padding: 0.5em;
     background-color: #618C8B;
     border: 1px solid #464646;
+    border-radius: 4px;
 }
+
 #deltaView table * {
     font-size: 0.9em;
 }
 #deltaView span {
     float: left;
     display: block;
-    width: 100%;
+    width: 80%;
 }
 #deltaView input {
     width: 20%;
@@ -107,10 +26,6 @@ div#deltaView {
     border: 1px solid #5C5C5C;
     border-top: 1px solid #323232;
     border-left: 1px solid #323232;
-}
-
-#armory select, #armory option {
-    font-size: 0.8em;
 }
 
 .spell_lister {
@@ -134,78 +49,3 @@ table.rotation input { width: 4em; text-align: right; }
 table.rotation .no { width: 5em; }
 table.rotation .name { width: 80em; }
 table.rotation .result { width: 30em; }
-
-#right div {
-    padding: 2px;
-}
-
-body > .modalLink {
-    float: right;
-}
-.modalDialog {
-    position: fixed;
-    font-family: Arial, Helvetica, sans-serif;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 99999;
-    opacity: 0;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
-    pointer-events: none;
-}
-
-.modalDialog:target {
-	opacity:1;
-	pointer-events: auto;
-}
-
-.modalDialog h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 140%;
-    padding: 5px;
-}
-.modalDialog p {
-    margin: 12px;
-}
-
-.modalDialog > div {
-	width: 500px;
-	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
-	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
-}
-
-#right .modalDialog > div {
-    width: 800px;
-}
-
-.close {
-	background: #606061;
-	color: #FFFFFF;
-	line-height: 25px;
-	position: absolute;
-	right: -12px;
-	text-align: center;
-	top: -10px;
-	width: 24px;
-	text-decoration: none;
-	font-weight: bold;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	-moz-box-shadow: 1px 1px 3px #000;
-	-webkit-box-shadow: 1px 1px 3px #000;
-	box-shadow: 1px 1px 3px #000;
-}
-
-.close:hover { background: #00d9ff; }

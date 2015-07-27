@@ -26,10 +26,20 @@ Math.roundn = function(x, d) {
 requirejs(['jquery', 'can', 'app/setup', 'app/util/twitterLoader', 'app/util/wowheadLoader'], function($, can) {
     $(document).ready(function() {
         $('body').delegate('.tab-bar li', 'click', function(ev) {
+            var isSelected = $(ev.target).hasClass('selected');
             var target = $(ev.target).data('target');
-            $(target).addClass('selected').siblings('li').removeClass('selected');
+            $('li.selected').removeClass('selected');
+            if (!isSelected) {
+                $(ev.target).addClass('selected');
+                $(target).addClass('selected');
+            }
         });
-        $('.tab-contents li.selected');
+        $('body').delegate('.tab-contents li.selected', 'mouseleave', function(ev) {
+            $('li.selected').removeClass('selected');
+        });
+        $('body').delegate('#spellsCont td', 'click', function(ev) {
+            // TODO: Fix deltaView so it does not get updated
+        });
     });
 });
 

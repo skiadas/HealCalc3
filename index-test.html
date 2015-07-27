@@ -5,21 +5,30 @@
     <meta charset="UTF-8">
     <meta name="description" content="Healing Calculator for World of Warcraft. Covers all healing specs. Allows comparison between specs.">
     <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/base.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/haste_bar.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   <body>
-    <a href="#openModal" class="modalLink help" title="Learn about HealCalc!"><i class="fa fa-question-circle"></i></a>
-    <div id="openModal" class="modalDialog">
+    <div class='right'>
       <div>
-      		<a href="#close" title="Close" class="close">X</a>
-      		<h2>Welcome to HealCalc!</h2>
-      		<p>If this is your first visit, you may want to <a href="index.html">read our guide</a> first.</p>
-      		<p>If you would like to dive right in, you may want to start with the Armory section in the top left to import your character, and/or use the Filters section on the top to limit the data to specific specs.</p>
-      		<p>When you hover over a spell, a little window on the right will show you gains to that spell from stat increases.</p>
-      		<p>If you would like to bring this window up again, click the link at the top left of the screen.</p>
-      	</div>
+      <a href="#openModal" class="modalLink help" title="Learn about HealCalc!"><i class="fa fa-question-circle"></i></a>
+      </div>
+      <div id="openModal" class="modalDialog">
+        <div>
+        		<a href="#close" title="Close" class="close">X</a>
+        		<h2>Welcome to HealCalc!</h2>
+        		<p>If this is your first visit, you may want to <a href="index.html">read our guide</a> first.</p>
+        		<p>If you would like to dive right in, you may want to start with the Armory section in the top left to import your character, and/or use the Filters section on the top to limit the data to specific specs.</p>
+        		<p>When you hover over a spell, a little window on the right will show you gains to that spell from stat increases.</p>
+        		<p>If you would like to bring this window up again, click the link at the top left of the screen.</p>
+        	</div>
+      </div>
+      <div><a href="https://twitter.com/HealAdinne" class="twitter-follow-button" data-show-count="false">Follow us</a>
+      </div>
+      <div><a href="https://twitter.com/share" class="twitter-share-button" data-text="World of Warcraft Healing Calculator" data-via="HealAdinne" data-hashtags="Wow">Tweet</a>
+      </div>
     </div>
     <div id="header">
       <h1>HealCalc</h1>
@@ -33,45 +42,42 @@
           <li data-target="#armory">Armory</li>
           <li data-target="#stats">Stats</li>
           <li data-target="#buffs">Buffs</li>
-          <li data-target="#specs">Specs</li>
+          <li data-target="#settingsDisc">Disc</li>
+          <li data-target="#settingsHoly">Holy</li>
+          <li data-target="#settingsPally">Pally</li>
+          <li data-target="#settingsDruid">Druid</li>
+          <li data-target="#settingsShaman">Shaman</li>
+          <li data-target="#settingsMonk">Monk</li>
+          <li data-target="#filters">Filters</li>
+          <!-- <li data-target="#rotations">Rotations</li> -->
         </ul>
         <ul class="tab-contents">
-          <li id="armory" class=""></li>
-          <li id="stats" class=""></li>
-          <li id="buffs" class="selected"></li>
-          <li id="specs" class="">
-            <div class="horiz">
+          <li id="armory" class="col1"></li>
+          <li id="stats" class="col2"></li>
+          <li id="buffs" class="col2"></li>
+          <div id="specs" class="">
+            <!-- <div class="horiz"> -->
               <h4>Disc Priest</h4>
               <h4>Holy Priest</h4>
               <h4>Pally</h4>
               <h4>Druid</h4>
               <h4>Shaman</h4>
               <h4>Monk</h4>
-            </div>
-          </li>
+            <!-- </div> -->
+          </div>
+          <li id="filters" class="col2"></li>
+          <!-- <li id="rotations" class="col2"></li> -->
         </ul>
+
       </div>
       <div id="spellsCont">
-        <div id="filters" class="section">
-
-        </div>
-        <div id="rotations" class="section">
-        </div>
-        Click on a column header to sort spells. Click again to change sort order.
+        <p>Click on a column header to sort spells. Click again to change sort order.</p>
         <div id="spells">
 
         </div>
       </div>
       <div id="right">
-        <div>Keep up with updates:
-        <a href="https://twitter.com/HealAdinne" class="twitter-follow-button" data-show-count="false">Follow us</a>
-        </div>
         <div>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-text="World of Warcraft Healing Calculator" data-via="HealAdinne" data-hashtags="Wow">Tweet</a>
-        </div>
-        <div>Suggestions, Bugs? File a ticket at the <a href="https://github.com/skiadas/HealCalc3/issues">Project home page</a> or comment in the <a href="http://www.plusheal.com/forum/m/1833799/viewthread/2917560-introducing-healcalc">PlusHeal thread</a>.</div>
-        <div>
-          <a href="#openRight" class="modalLink">Learn more about the Delta Viewer!</a>
           <div id="openRight" class="modalDialog">
             <div>
             		<a href="#close" title="Close" class="close">X</a>
@@ -87,7 +93,9 @@
           </div>
         </div>
         <div id="deltaView">
-          Hover over a spell's HPS to see how much a stat increase will benefit it.
+          <a href="#openRight" class="modalLink help" title="Learn more about the Delta Viewer!"><i class="fa fa-question-circle"></i></a>
+          <div class="deltaContents">
+          Hover over a spell's HPS to see how much a stat increase will benefit it.</div>
         </div>
       </div>
     </div>
@@ -108,5 +116,6 @@
     </script>
   </body>
   <div id="footer">
+    <p>Suggestions, Bugs? File a ticket at the <a href="https://github.com/skiadas/HealCalc3/issues">Project home page</a> or comment in the <a href="http://howtopriest.com/viewtopic.php?f=74&t=6588">How2Priest thread</a>.</p>
   </div>
 </html>

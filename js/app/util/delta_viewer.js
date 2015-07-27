@@ -3,7 +3,7 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
     var DeltaViewer = can.Control({
         init: function(element, options) {
             var self = this;
-            options.delta = options.delta || 1000;
+            options.delta = options.delta || 100;
             options.double_secondary = options.double_secondary || false;
             var source = options.source;  // The source table where spells are looked up at
         },
@@ -17,10 +17,7 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
             }
         },
         'input#input_delta change': function(el, ev) {
-            this.options.delta = $(el).attr('value') * 1;
-        },
-        'input#chk_secondary change': function(el, ev) {
-            this.options.double_secondary = ($(el).attr('checked') == 'checked');
+            this.options.delta = $(el).val() * 1;
         },
         delta_updater: function() {
             this.scheduled = false;
@@ -86,7 +83,7 @@ define(['can', 'text!view/delta_view.ejs'], function(can, view) {
                 results[stats] = pairOptimizer(stats);
             });
             this.options.results = results;
-            this.element.html(can.view('deltaViewerView', this.options));
+            $('.deltaContents', this.element).html(can.view('deltaViewerView', this.options));
         }
     });
     return DeltaViewer;

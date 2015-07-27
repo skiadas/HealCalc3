@@ -24,10 +24,9 @@ define(['can', 'text!view/specs.ejs',
             });
             specs.val_update();
             self.element.html(can.view('specsView', {specs: specs, buffs: buffs, stats: stats}));
-            $('li', self.element).addClass('expand').children('a').click();
         },
         'select change': function(el, ev) {
-           var spec = el.closest('div.spec').data('spec');
+           var spec = el.closest('.spec').data('spec');
            var val = $(el).val();
            var attrName = $(el).attr('name');
            spec.attr(attrName, val);
@@ -36,7 +35,7 @@ define(['can', 'text!view/specs.ejs',
         'input change': function(el, ev) {
             var attrName = $(el).attr('name'),
                 val = $(el).attr('type') == 'checkbox' ? $(el).prop('checked') : $(el).val();
-            el.closest('div.spec').data('spec').attr(attrName, val);
+            el.closest('.spec').data('spec').attr(attrName, val);
             this.options.specs.val_update();
         },
         '{buffs} change': function() { this.options.specs.val_update(); },

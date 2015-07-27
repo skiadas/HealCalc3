@@ -5,86 +5,97 @@
     <meta charset="UTF-8">
     <meta name="description" content="Healing Calculator for World of Warcraft. Covers all healing specs. Allows comparison between specs.">
     <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/base.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/haste_bar.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   <body>
-    <a href="#openModal" class="modalLink">Tips Window</a>
-    <div id="openModal" class="modalDialog">
+    <div class='right'>
       <div>
-      		<a href="#close" title="Close" class="close">X</a>
-      		<h2>Welcome to HealCalc!</h2>
-      		<p>If this is your first visit, you may want to <a href="index.html">read our guide</a> first.</p>
-      		<p>If you would like to dive right in, you may want to start with the Armory section in the top left to import your character, and/or use the Filters section on the top to limit the data to specific specs.</p>
-      		<p>When you hover over a spell, a little window on the right will show you gains to that spell from stat increases.</p>
-      		<p>If you would like to bring this window up again, click the link at the top left of the screen.</p>
-      	</div>
+      <a href="#openModal" class="modalLink help" title="Learn about HealCalc!"><i class="fa fa-question-circle"></i></a>
+      </div>
+      <div id="openModal" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Welcome to HealCalc!</h2>
+            <p>If this is your first visit, you may want to <a href="index.html">read our guide</a> first.</p>
+            <p>If you would like to dive right in, you may want to start with the Armory section in the top left to import your character, and/or use the Filters section on the top to limit the data to specific specs.</p>
+            <p>When you hover over a spell, a little window on the right will show you gains to that spell from stat increases.</p>
+            <p>If you would like to bring this window up again, click the link at the top left of the screen.</p>
+          </div>
+      </div>
+      <div><a href="https://twitter.com/HealAdinne" class="twitter-follow-button" data-show-count="false">Follow us</a>
+      </div>
+      <div><a href="https://twitter.com/share" class="twitter-share-button" data-text="World of Warcraft Healing Calculator" data-via="HealAdinne" data-hashtags="Wow">Tweet</a>
+      </div>
     </div>
     <div id="header">
-      <h1>Heal Adinne</h1>
-      <h2>home of <em>HealCalc</em></h2>
+      <h1>HealCalc</h1>
+      <h2>by Heal Adinne</h2>
 
       <p>A healing calculator for World of Warcraft.</p>
     </div>
     <div id="main">
-      <div id="subcontainer">
-        <div id="character">
-          <div id="armory" class="section">
+      <div id="character">
+        <ul class="tab-bar">
+          <li data-target="#armory">Armory</li>
+          <li data-target="#stats">Stats</li>
+          <li data-target="#buffs">Buffs</li>
+          <li data-target="#settingsDisc">Disc</li>
+          <li data-target="#settingsHoly">Holy</li>
+          <li data-target="#settingsPally">Pally</li>
+          <li data-target="#settingsDruid">Druid</li>
+          <li data-target="#settingsShaman">Shaman</li>
+          <li data-target="#settingsMonk">Monk</li>
+          <li data-target="#filters">Filters</li>
+          <!-- <li data-target="#rotations">Rotations</li> -->
+        </ul>
+        <ul class="tab-contents">
+          <li id="armory" class="col1"></li>
+          <li id="stats" class="col2"></li>
+          <li id="buffs" class="col2"></li>
+          <div id="specs" class="">
+            <!-- <div class="horiz"> -->
+              <h4>Disc Priest</h4>
+              <h4>Holy Priest</h4>
+              <h4>Pally</h4>
+              <h4>Druid</h4>
+              <h4>Shaman</h4>
+              <h4>Monk</h4>
+            <!-- </div> -->
+          </div>
+          <li id="filters" class="col2"></li>
+          <!-- <li id="rotations" class="col2"></li> -->
+        </ul>
 
-          </div>
-          <div id="stats" class="section">
+      </div>
+      <div id="spellsCont">
+        <p>Click on a column header to sort spells. Click again to change sort order.</p>
+        <div id="spells">
 
-          </div>
-          <div id="buffs" class="section"><h4>Buffs</h4>
-
-          </div>
-          <div id="specs" class="section">
-            <h4>Disc Priest</h4>
-            <h4>Holy Priest</h4>
-            <h4>Pally</h4>
-            <h4>Druid</h4>
-            <h4>Shaman</h4>
-            <h4>Monk</h4>
-          </div>
-        </div>
-        <div id="spellsCont">
-          <div id="filters" class="section">
-
-          </div>
-          <div id="rotations" class="section">
-          </div>
-          Click on a column header to sort spells. Click again to change sort order.
-          <div id="spells">
-
-          </div>
         </div>
       </div>
       <div id="right">
-        <div>Keep up with updates:
-        <a href="https://twitter.com/HealAdinne" class="twitter-follow-button" data-show-count="false">Follow us</a>
-        </div>
         <div>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-text="World of Warcraft Healing Calculator" data-via="HealAdinne" data-hashtags="Wow">Tweet</a>
-        </div>
-        <div>Suggestions, Bugs? File a ticket at the <a href="https://github.com/skiadas/HealCalc3/issues">Project home page</a> or comment in the <a href="http://www.plusheal.com/forum/m/1833799/viewthread/2917560-introducing-healcalc">PlusHeal thread</a>.</div>
-        <div>
-          <a href="#openRight" class="modalLink">Learn more about the Delta Viewer!</a>
           <div id="openRight" class="modalDialog">
             <div>
-            		<a href="#close" title="Close" class="close">X</a>
-            		<h2>The Delta Viewer</h2>
-            		<p>The screen on the right is called the Delta Viewer, and it contains 3 tables.</p>
-            		<p>At the very top you can set a "delta increment". This represents the size of the stat increase you want to consider. By default this is set to 1000, meaning it will try to increase a stat by 1000.</p>
-            		<p>Below it, you can set whether you want it to double the delta amount when considering secondary stats, to account for the extra budget for secondary stats on gems. This setting only applies to the first table.</p>
-            		<p>A small text below that shows you which spell measure you are currently looking at. This is determined by the column that your mouse pointer is over. The HPS column is the one most typically used.</p>
-            		<p>The first table shows you how much an increase in a single spell will benefit you. The second column contains percent values representing how much stronger your spell's measure would be if you had a delta increase in that stat. The third column shows you this increase fares relative to an increase in spellpower. This facilitates the comparison between different stats, and it can be used as stat weights in the various reforging addons and websites.</p>
-            		<p>The second table is useful for examining the effect of reforging. It will show you how much trading one stat for another will benefit or hurt your spell's metric. The "+" column indicates the stat whose amount will increase, while the "-" column indicates the stat whose amount will decrease. The delta amount specified on top is used for Intellect, and double that amount is used for the secondary stats. The percentage in the third column indicates the relative effect to the spell's metric if this change in the stats occurs.</p>
-            		<p>Finally, the third table offers you the optimized changes to a pair of stats, when considered in isolation. For instance the row corresponding to int and crit shows you how much you should increase or decrease your int (and correspondingly adjust your crit) in order to maximize the spell's effect.</p>
-            	</div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>The Delta Viewer</h2>
+                <p>The screen on the right is called the Delta Viewer, and it contains 3 tables.</p>
+                <p>At the very top you can set a "delta increment". This represents the size of the stat increase you want to consider. By default this is set to 1000, meaning it will try to increase a stat by 1000.</p>
+                <p>Below it, you can set whether you want it to double the delta amount when considering secondary stats, to account for the extra budget for secondary stats on gems. This setting only applies to the first table.</p>
+                <p>A small text below that shows you which spell measure you are currently looking at. This is determined by the column that your mouse pointer is over. The HPS column is the one most typically used.</p>
+                <p>The first table shows you how much an increase in a single spell will benefit you. The second column contains percent values representing how much stronger your spell's measure would be if you had a delta increase in that stat. The third column shows you this increase fares relative to an increase in spellpower. This facilitates the comparison between different stats, and it can be used as stat weights in the various reforging addons and websites.</p>
+                <p>The second table is useful for examining the effect of reforging. It will show you how much trading one stat for another will benefit or hurt your spell's metric. The "+" column indicates the stat whose amount will increase, while the "-" column indicates the stat whose amount will decrease. The delta amount specified on top is used for Intellect, and double that amount is used for the secondary stats. The percentage in the third column indicates the relative effect to the spell's metric if this change in the stats occurs.</p>
+                <p>Finally, the third table offers you the optimized changes to a pair of stats, when considered in isolation. For instance the row corresponding to int and crit shows you how much you should increase or decrease your int (and correspondingly adjust your crit) in order to maximize the spell's effect.</p>
+              </div>
           </div>
         </div>
         <div id="deltaView">
-          Hover over a spell's HPS to see how much a stat increase will benefit it.
+          <a href="#openRight" class="modalLink help" title="Learn more about the Delta Viewer!"><i class="fa fa-question-circle"></i></a>
+          <div class="deltaContents">
+          Hover over a spell's HPS to see how much a stat increase will benefit it.</div>
         </div>
       </div>
     </div>
@@ -105,5 +116,6 @@
     </script>
   </body>
   <div id="footer">
+    <p>Suggestions, Bugs? File a ticket at the <a href="https://github.com/skiadas/HealCalc3/issues">Project home page</a> or comment in the <a href="http://howtopriest.com/viewtopic.php?f=74&t=6588">How2Priest thread</a>.</p>
   </div>
 </html>
