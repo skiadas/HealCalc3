@@ -1030,7 +1030,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 6998,
             c: 8.95 * 1.2,
-            img: 'spell_shaman_blessingofeternals',
+            img: 'spell_monk_revival',
             targets: 10,
             aoe: true,
             instant: true,
