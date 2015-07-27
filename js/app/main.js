@@ -37,6 +37,9 @@ requirejs(['jquery', 'can', 'app/setup', 'app/util/twitterLoader', 'app/util/wow
         $('body').delegate('#spellsCont td', 'click', function(ev) {
             // TODO: Fix deltaView so it does not get updated
         });
+        $('body').delegate('.spec .chkbox span', 'click', function(ev) {
+            $(this).siblings('input').click();
+        });
     });
 });
 
