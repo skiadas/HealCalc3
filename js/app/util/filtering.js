@@ -22,24 +22,19 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
     'update': function(self) {
         var imask = self.options.curr_mask;
         var filters = self.options.filters;
-        var cname = 'hidden'
-        var splList = $('tr.spell', self.options.table);
-        // console.log(imask)
-        for (var i=splList.length; i--; ) {
-            // var elm = $(el);
-            var elm = $(splList[i]);
-            // console.log(elm.data('spell').name, elm.data('spell').mask);
+        var cname = 'hidden';
+        $('tr.spell', self.options.table).each(function() {
+            var elm = $(this);
             ((elm.data('spell').mask & imask) == 0) ?
                 elm.removeClass(cname) :
                 elm.addClass(cname);
-        };
-        // var specList = $('.spec', self.options.specs);
-        // for (var i=specList.length; i--; ) {
-        //     var elm = $(specList[i]);
-        //     filters[elm.data('spec').name.toLowerCase()] ?
-        //         elm.removeClass(cname) :
-        //         elm.addClass(cname);
-        // };
+        });
+        $('.tab-bar .spec').each(function() {
+            var elm = $(this);
+            filters[elm.data('spec')] ?
+                elm.show(500) :
+                elm.hide(500);
+        });
     },
     'input change': function(el, ev) {
         var filters = this.options.filters;
