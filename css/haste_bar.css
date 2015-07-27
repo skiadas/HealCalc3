@@ -3,7 +3,7 @@ div#deltaView {
     position: fixed;
     right: 0;
     top: 5em;
-    width: 11em;
+    width: 15em;
     margin: 0;
     padding: 0.5em;
     background-color: #618C8B;
@@ -12,7 +12,7 @@ div#deltaView {
 }
 
 #deltaView table * {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 #deltaView span {
     float: left;
@@ -21,6 +21,7 @@ div#deltaView {
 }
 #deltaView input {
     width: 20%;
+    font-size: 1em;
     text-align: right;
     background-color: #FFFCD1;
     border: 1px solid #5C5C5C;
