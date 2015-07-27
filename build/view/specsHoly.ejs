@@ -1,14 +1,14 @@
-<label for="cascade_range_holy">Avg Cascade Range<input name="cascade_range_holy" type="input" value="<%== spec.attr('cascade_range_holy') %>" title="Maximum effect at 30 yards" /></label>
-<label for="poh_targets_holy">PoH Targets<input name="poh_targets_holy" type="input" value="<%== spec.attr('poh_targets_holy') %>" /></label>
-<label for="lw_charges">LW Charges<input name="lw_charges" type="input" value="<%= spec.attr('lw_charges') %>" /></label>
-<label for="glyph_coh">Glyph of CoH<input name="glyph_coh" type="checkbox" <%= spec.attr('glyph_coh') ? 'checked="checked"' : ''  %>/></label>
-<label for="glyph_pom_holy">Glyph of PoM<input name="glyph_pom_holy" type="checkbox" <%= spec.attr('glyph_pom_holy') ? 'checked="checked"' : ''  %> /></label>
-<label for="glyph_renew_holy">Glyph of Renew<input name="glyph_renew_holy" type="checkbox" <%= spec.attr('glyph_renew_holy') ? 'checked="checked"' : ''  %> /></label>
-<label for="glyph_binding_holy">Glyph of Binding<input name="glyph_binding_holy" type="checkbox" <%= spec.attr('glyph_binding_holy') ? 'checked="checked"' : ''  %> /></label>
-<label for="t17_2p_holy">T17 2piece<input name="t17_2p_holy" type="checkbox" <%= spec.attr('t17_2p_holy') ? 'checked="checked"' : ''  %> /></label>
-<label for="t18_2p_holy">T18 2piece<input name="t18_2p_holy" type="checkbox" <%= spec.attr('t18_2p_holy') ? 'checked="checked"' : ''  %> /></label>
-<label for="t18_4p_holy">T18 4piece<input name="t18_4p_holy" type="checkbox" <%= spec.attr('t18_4p_holy') ? 'checked="checked"' : ''  %> /></label>
-<label>Level 45 talent
+<label for="cascade_range_holy"><span>Avg Cascade Range</span><input name="cascade_range_holy" type="input" value="<%== spec.attr('cascade_range_holy') %>" title="Maximum effect at 30 yards" /></label>
+<label for="poh_targets_holy"><span>PoH Targets</span><input name="poh_targets_holy" type="input" value="<%== spec.attr('poh_targets_holy') %>" /></label>
+<label for="lw_charges"><span>LW Charges</span><input name="lw_charges" type="input" value="<%= spec.attr('lw_charges') %>" /></label>
+<label for="glyph_coh"><span>Glyph of CoH</span><div class="chkbox"><input name="glyph_coh" type="checkbox" <%= spec.attr('glyph_coh') ? 'checked="checked"' : ''  %>/><span></span></div></label>
+<label for="glyph_pom_holy"><span>Glyph of PoM</span><div class="chkbox"><input name="glyph_pom_holy" type="checkbox" <%= spec.attr('glyph_pom_holy') ? 'checked="checked"' : ''  %> /><span></span></div></label>
+<label for="glyph_renew_holy"><span>Glyph of Renew</span><div class="chkbox"><input name="glyph_renew_holy" type="checkbox" <%= spec.attr('glyph_renew_holy') ? 'checked="checked"' : ''  %> /><span></span></div></label>
+<label for="glyph_binding_holy"><span>Glyph of Binding</span><div class="chkbox"><input name="glyph_binding_holy" type="checkbox" <%= spec.attr('glyph_binding_holy') ? 'checked="checked"' : ''  %> /><span></span></div></label>
+<label for="t17_2p_holy"><span>T17 2piece</span><div class="chkbox"><input name="t17_2p_holy" type="checkbox" <%= spec.attr('t17_2p_holy') ? 'checked="checked"' : ''  %> /><span></span></div></label>
+<label for="t18_2p_holy"><span>T18 2piece</span><div class="chkbox"><input name="t18_2p_holy" type="checkbox" <%= spec.attr('t18_2p_holy') ? 'checked="checked"' : ''  %> /><span></span></div></label>
+<label for="t18_4p_holy"><span>T18 4piece</span><div class="chkbox"><input name="t18_4p_holy" type="checkbox" <%= spec.attr('t18_4p_holy') ? 'checked="checked"' : ''  %> /><span></span></div></label>
+<label><span>Level 45 talent</span>
 <select>
   <option value="fdcl" <%= spec.attr('talent45_holy') === 'fdcl' ? 'selected="selected"' : '' %>>FDCL</option>
   <option value="mb" <%= spec.attr('talent45_holy') === 'mb' ? 'selected="selected"' : '' %>>Mindbender</option>

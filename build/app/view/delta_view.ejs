@@ -1,5 +1,4 @@
 <span>Stat Amount: <input id="input_delta" type="input" value="<%= delta %>" /></span>
-<span>2x sec. stats: <input id="chk_secondary" type="checkbox" <%= double_secondary ? checked = "checked" : "" %> /></span>
 <span>Measure: <%= measure %></span>
 
 <table>
@@ -10,38 +9,10 @@
   <tr><td>Int    </td><td><%= results.int %>%</td><td><%= Math.roundn(results.int /results.sp, 2) %></td></tr>
   <tr><td>Sp     </td><td><%= results.sp %>%</td><td><%= Math.roundn(results.sp /results.sp, 2) %></td></tr>
   <tr><td>Crit   </td><td><%= results.crit %>%</td><td><%= Math.roundn(results.crit /results.sp, 2) %></td></tr>
-  <tr><td>Mastery</td><td><%= results.mast %>%</td><td><%= Math.roundn(results.mast /results.sp, 2) %></td></tr>
+  <tr><td>Mast</td><td><%= results.mast %>%</td><td><%= Math.roundn(results.mast /results.sp, 2) %></td></tr>
   <tr><td>Haste  </td><td><%= results.haste %>%</td><td><%= Math.roundn(results.haste /results.sp, 2) %></td></tr>
-  <tr><td>Multistrike</td><td><%= results.multi %>%</td><td><%= Math.roundn(results.multi/results.sp, 2) %></td></tr>
-  <tr><td>Versatility</td><td><%= results.vers %>%</td><td><%= Math.roundn(results.vers /results.sp, 2) %></td></tr>
+  <tr><td>Multi</td><td><%= results.multi %>%</td><td><%= Math.roundn(results.multi/results.sp, 2) %></td></tr>
+  <tr><td>Vers</td><td><%= results.vers %>%</td><td><%= Math.roundn(results.vers /results.sp, 2) %></td></tr>
   <tr><td>Spirit  </td><td><%= results.spi %>%</td><td><%= Math.roundn(results.spi /results.sp, 2) %></td></tr>
-</tbody>
-<thead>
-  <th>+ Stat</th><th>- Stat</th><th>Relative Effect</th>
-</thead>
-<tbody>
-  <tr><td rowspan="3">Int    </td><td>Crit</td><td><%= results['int-crit'] %>%</td></tr>
-  <tr><td>Mastery</td><td><%= results['int-mast'] %>%</td></tr>
-  <tr><td>Haste</td><td><%= results['int-haste'] %>%</td></tr>
-  <tr><td rowspan="3">Crit    </td><td>Int</td><td><%= results['crit-int'] %>%</td></tr>
-  <tr><td>Mastery</td><td><%= results['crit-mast'] %>%</td></tr>
-  <tr><td>Haste</td><td><%= results['crit-haste'] %>%</td></tr>
-  <tr><td rowspan="3">Mastery    </td><td>Int</td><td><%= results['mast-int'] %>%</td></tr>
-  <tr><td>Crit</td><td><%= results['mast-crit'] %>%</td></tr>
-  <tr><td>Haste</td><td><%= results['mast-haste'] %>%</td></tr>
-  <tr><td rowspan="3">Haste    </td><td>Int</td><td><%= results['haste-int'] %>%</td></tr>
-  <tr><td>Crit</td><td><%= results['haste-crit'] %>%</td></tr>
-  <tr><td>Mastery</td><td><%= results['haste-mast'] %>%</td></tr>
-</tbody>
-<thead>
-    <th colspan="2">Optimized Pair</th><th>Relative Effect</th>
-</thead>
-<tbody>
-    <tr><td><%= results['comp-int-crit'].int %> Int</td><td><%= results['comp-int-crit'].crit %> Crit</td><td><%= results['comp-int-crit'].res %>%</td></tr>
-    <tr><td><%= results['comp-int-mast'].int %> Int</td><td><%= results['comp-int-mast'].mast %> Mastery</td><td><%= results['comp-int-mast'].res %>%</td></tr>
-    <tr><td><%= results['comp-int-haste'].int %> Int</td><td><%= results['comp-int-haste'].haste %> Haste</td><td><%= results['comp-int-haste'].res %>%</td></tr>
-    <tr><td><%= results['comp-crit-mast'].crit %> Crit</td><td><%= results['comp-crit-mast'].mast %> Mastery</td><td><%= results['comp-crit-mast'].res %>%</td></tr>
-    <tr><td><%= results['comp-crit-haste'].crit %> Crit</td><td><%= results['comp-crit-haste'].haste %> Haste</td><td><%= results['comp-crit-haste'].res %>%</td></tr>
-    <tr><td><%= results['comp-mast-haste'].mast %> Mastery</td><td><%= results['comp-mast-haste'].haste %> Haste</td><td><%= results['comp-mast-haste'].res %>%</td></tr>
 </tbody>
 </table>
