@@ -39,7 +39,7 @@ define(['can'], function(can) {
             img: 'ability_priest_cascade',
             aoe: true,
             instant: false,
-            item: 120785
+            item: 121148
         },
         {
             id: 4,
@@ -313,7 +313,7 @@ define(['can'], function(can) {
             img: 'inv_misc_herb_felblossom',
             aoe: false,
             instant: true,
-            item: 94447
+            item: 33763
         },
         {
             id: 205,
@@ -359,7 +359,7 @@ define(['can'], function(can) {
             img: 'druid_ability_wildmushroom_b',
             aoe: true,
             instant: true,
-            item: 102792
+            item: 145205
         },
         {
             id: 209,
@@ -505,7 +505,7 @@ define(['can'], function(can) {
             img: 'ability_priest_cascade',
             aoe: true,
             instant: true,
-            item: 120785
+            item: 121148
         },
         {
             id: 25,
@@ -937,7 +937,7 @@ define(['can'], function(can) {
             img: 'ability_monk_soothingmists',
             aoe: false,
             instant: true,
-            item: 125953,
+            item: 115175,
             mast_factor: (0.67 + 0.33) / 2 // Spell and statue
         },
          {
