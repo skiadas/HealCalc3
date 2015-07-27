@@ -34,9 +34,6 @@ requirejs(['jquery', 'can', 'app/setup', 'app/util/twitterLoader', 'app/util/wow
                 $(target).addClass('selected');
             }
         });
-        $('body').delegate('.tab-contents li.selected', 'mouseleave', function(ev) {
-            $('li.selected').removeClass('selected');
-        });
         $('body').delegate('#spellsCont td', 'click', function(ev) {
             // TODO: Fix deltaView so it does not get updated
         });
