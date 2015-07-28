@@ -484,7 +484,10 @@ body > .modalLink {
     font-size: 800%;
     color: gray;
     padding: 25% 0;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
+    transition: opacity 0.3s ease;
+    transition: width 1s ease;
+    transition: height 1s ease;
 }
 
 #spinner.off {
