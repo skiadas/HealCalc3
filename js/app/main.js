@@ -40,6 +40,7 @@ requirejs(['jquery', 'can', 'app/setup', 'app/util/twitterLoader', 'app/util/wow
         $('body').delegate('.spec .chkbox span', 'click', function(ev) {
             $(this).siblings('input').click();
         });
+        $('#spinner').addClass('off');
     });
 });
 

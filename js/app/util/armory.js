@@ -1,14 +1,7 @@
-define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 'text!./sampleData.json', './dataProcessing'], function(can, Spinner, $, view, _, sampleData, dataProcessing) {
+define(['can', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 'text!./sampleData.json', './dataProcessing'], function(can, $, view, _, sampleData, dataProcessing) {
     can.view.ejs('armoryView', view);
     // sampleData = dataProcessing(JSON.parse(sampleData));
     // console.log(sampleData);
-    var spin_opts = {
-      lines: 13, length: 2, width: 3, radius: 4, corners: 1,
-      rotate: 34, color: '#000', speed: 0.9, trail: 50,
-      shadow: false, hwaccel: false,
-      className: 'spinner', zIndex: 2e9, // The z-index (defaults to 2000000000)
-      top: '20', left: '30' // Left position relative to parent in px
-    };
     var _from_str = function(str) {
         var s1 = str.split("@");
         var s2 = s1[1].split("-");
@@ -20,7 +13,6 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 
     };
     var Armory = can.Control({
         init: function(element, options) {
-            this.options.spinner = new Spinner(spin_opts);
             this.options.character = new can.Observe({armory_name: '', armory_realm: '', armory_region: 'US'});
             var searches = $.cookie('armory_searches');
             this.options.past_searches = (searches == null) ? [] : searches.split('&');
@@ -40,9 +32,7 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 
             this.options.character.attr(_from_str($(el).val()));
         },
         readArmory: function() {
-            var spinner = this.options.spinner;
-            spinner.spin();
-            $("#armory_btn").append(spinner.el).children('input').hide();
+            $('#spinner').removeClass('off');
             var character = this.options.character;
             var past_searches = this.options.past_searches;
             var self=this
@@ -63,11 +53,12 @@ define(['can', 'spin', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 
                 $('#filters').data('controls')[0].setSpec(armory_stats.spec);
                 $('div', $('#stats')).data('stat').attr(armory_stats);
                 can.Observe.stopBatch();
-                // Change filter to the appropriate spec
+                 $('#spinner').addClass('off');
+               // Change filter to the appropriate spec
                 self.element.html(can.view('armoryView', self.options));
             }).error(function(json, a, b) {
                 console.log("Error in loading from armory:", json, a, b);
-                spinner.stop();
+                $('#spinner').addClass('off');
                 $("#armory_btn").children('input').show();
                 alert("There was a problem accessing armory. Armory may be down, or the character name or realm are incorrect. More information in the console.")
             });
