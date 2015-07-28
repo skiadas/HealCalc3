@@ -2805,57 +2805,5 @@ define(['can'], function(can) {
         }
     });
 
-/*
-
-    $.each(['Jab', 'TigerPalm', 'BlackoutKick'], function(i, spname) {
-        spls.find(spname).attr({
-            fbase: function(delta) {
-                return ( this.fbase_monk_melee(delta) );
-            }
-        });
-    });
-
-
-
-
-
-    spls.find('Jab').attr({
-        fmana: function(delta) {
-            return (
-                this.fmana_monk(delta) -
-                (this.spec.muscle_memory ? 0.04 * this.spec.mana_pool : 0)
-            );
-        }
-    });
-    spls.find('TigerPalm').attr({
-        fbase: function(delta) {
-            return (
-                this.fbase_monk_melee(delta) *
-                (this.spec.muscle_memory ? 2.5 : 1)
-            );
-        },
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
-
-    spls.find('BlackoutKick').attr({
-        fbase: function(delta) {
-            return (
-                this.fbase_monk_melee(delta) *
-                (this.spec.muscle_memory ? 2.5 : 1) *
-                (1 + 0.5 * this.spec.blackoutkick_extra * 1)
-            );
-        },
-        ftargets: function(delta) {
-            return (
-                (1 + this.spec.blackoutkick_extra * 1)
-            );
-        },
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
-*/
     return spls;
 });
