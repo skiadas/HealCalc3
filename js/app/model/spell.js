@@ -454,6 +454,22 @@ define(['can'], function(can) {
             cdshort: false,
             cdnone: false
         },
+        {
+            id: 210,
+            code: 'HealingTouchLB',
+            name: 'Healing Touch on LB',
+            specid: 4,
+            base_ct: 2.5,
+            base_mana: 3312,
+            c: 3.6,
+            img: 'spell_nature_healingtouch',
+            aoe: false,
+            instant: false,
+            item: 5185,
+            cdlong: false,
+            cdshort: false,
+            cdnone: true
+        },
         // {
         //     id: 202,
         //     code: 'ForceOfNature',
@@ -2128,6 +2144,41 @@ define(['can'], function(can) {
         },
         fheal: function(delta) {
             return ( this.fheal_living_seed(delta) );
+        },
+    });
+
+    spls.find('HealingTouchLB').attr({
+        fct: function(delta) {
+            return (
+                ( this.spec.attr('healing_touch_with_ns') ?
+                    1.5 :
+                    (
+                        this.base_ct *
+                        (this.spec.attr('glyph_rejuv') ? 0.9 : 1)
+                    )
+                ) /
+                ( 1 + this.spec.fhastep(delta) )
+            );
+        },
+        fmana: function(delta) {
+            return ( this.spec.attr('healing_touch_with_ns') ? 0 : this.base_mana )
+        },
+        fbase: function(delta) {
+            return (
+                this.fdirect(delta) *
+                ( 1 + this.spec.fmastp(delta) ) *
+                ( 1 + 1 * this.spec.fversp(delta) ) *
+                1.1 *
+                ( this.spec.attr('healing_touch_with_ns') ? 1.5 : 1 )
+            );
+        },
+        fheal: function(delta) {
+            var crit = Math.min(this.spec.fcritp(delta) + 0.2, 1);
+            return (
+                this.fbase(delta) *
+                ( 1 + 2 * crit ) *
+                ( 1 + 0.6 * this.spec.fmultip(delta) )
+            );
         },
     });
 
