@@ -790,7 +790,8 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 2.5,
             base_mana: 11405,
-            c: 1.5131 * 1.25,
+            B: 57.5 * 1.25,  // Yes, it needs a B!!!
+            c: 1.51319 * 1.25,
             targets: 1 + 6 * 0.5,
             img: 'spell_paladin_divinecircle',
             aoe: true,
@@ -2566,20 +2567,10 @@ define(['can'], function(can) {
                 (1 + this.spec.fhastep(delta))
             );
         },
-        fheal: function(delta) {
+        fdirect: function(delta) {
             return (
-                this.fbase(delta) *
-                (
-                    1 +
-                        ( -1 + 2 * (1 + (this.spec.critmeta ? 0.03 : 0) + (this.spec.stat_trinket ? 0.07 : 0) ) ) *
-                        this.spec.fcritp(delta)
-                ) *
-                (
-                    1 +
-                    (this.spec.bol ? 0.15 : 0) *
-                    (this.spec.t18_2p_pally ? 1.25 : 1) +
-                    this.spec.fmastp(delta)
-                )
+                ( this.B + this.c * this.spec.fsp(delta) ) *
+                this.ftargets(delta)
             );
         }
     });
