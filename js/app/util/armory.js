@@ -53,13 +53,14 @@ define(['can', 'jquery', 'text!view/armory.ejs', 'jquerypp/dom/cookie', 'text!./
                 $('#filters').data('controls')[0].setSpec(armory_stats.spec);
                 $('div', $('#stats')).data('stat').attr(armory_stats);
                 can.Observe.stopBatch();
+                $('.selected').removeClass('selected');
                  $('#spinner').addClass('off');
                // Change filter to the appropriate spec
                 self.element.html(can.view('armoryView', self.options));
             }).error(function(json, a, b) {
                 console.log("Error in loading from armory:", json, a, b);
+                $('.selected').removeClass('selected');
                 $('#spinner').addClass('off');
-                $("#armory_btn").children('input').show();
                 alert("There was a problem accessing armory. Armory may be down, or the character name or realm are incorrect. More information in the console.")
             });
         }
