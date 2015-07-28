@@ -1698,10 +1698,8 @@ define(['can'], function(can) {
             return ( this.fheal(delta) / this.fct(delta) );
         },
         fhpm: function(delta) {
-            return ( this.fheal(delta) / this.fmana(delta) );
-        },
-        fhpm_nomana: function(delta) {
-            return ( 0 );
+            var mana = this.fmana(delta);
+            return mana === 0 ? 0 : this.fheal(delta) / mana;
         },
         fmps: function(delta) {
             return ( this.fmana(delta) / this.fct(delta) );
@@ -2587,9 +2585,6 @@ define(['can'], function(can) {
     });
 
     spls.find('WoG').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
         fheal: function(delta) {
             return (
                 this.fbase(delta) *
@@ -2609,9 +2604,6 @@ define(['can'], function(can) {
     });
 
     spls.find('LoD').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
         ftargets: function(delta) {
             return ( this.targets - (this.spec.attr('glyph_lod') ? 2 : 0) )
         },
@@ -2625,9 +2617,6 @@ define(['can'], function(can) {
     });
 
     spls.find('EternalFlame').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
         fbase: function(delta) {
             return (
                 ( this.fhot(delta) + this.fdirect(delta) ) *
@@ -2720,12 +2709,6 @@ define(['can'], function(can) {
     // END PALLY Spells setup
 
     // MONK Spells setup
-    spls.find('EnvelopingMist').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        }
-    });
-
     spls.find('RenewingMist').attr({
         fbase: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
@@ -2743,9 +2726,6 @@ define(['can'], function(can) {
     });
 
     spls.find('Uplift').attr({
-        fhpm: function(delta) {
-            return ( this.fhpm_nomana(delta) );
-        },
         ftargets: function(delta) {
             return this.spec.uplift_targets;
         }
@@ -2774,16 +2754,7 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('ChiWave').attr({
-        fhpm: function(delta) {
-            return this.fhpm_nomana(delta);
-        }
-    });
-
     spls.find('ZenSphere').attr({
-        fhpm: function(delta) {
-            return this.fhpm_nomana(delta);
-        },
         fbase: function(delta) {
             return (
                 ( this.c + 6 * this.c_det ) *
@@ -2803,16 +2774,7 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('ChiBurst').attr({
-        fhpm: function(delta) {
-            return this.fhpm_nomana(delta);
-        }
-    });
-
     spls.find('ChiExplosion').attr({
-        fhpm: function(delta) {
-            return this.fhpm_nomana(delta);
-        },
         fbase: function(delta) {
             var chi = 1 * this.spec.chi_expl_monk;
             return this.fdirect(delta) *
@@ -2840,12 +2802,6 @@ define(['can'], function(can) {
             return ( this.fbase(delta) + proc_chance * sphere ) *
                 ( 1 + this.spec.fcritp(delta) ) *
                 ( 1 + 0.6 * this.spec.fmultip(delta) );
-        }
-    });
-
-    spls.find('BreathSerpent').attr({
-        fhpm: function(delta) {
-            return this.fhpm_nomana(delta);
         }
     });
 
