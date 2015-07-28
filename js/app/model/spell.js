@@ -1280,6 +1280,29 @@ define(['can'], function(can) {
             cdnone: false
         },
         {
+            id: 77,
+            code: 'RenewingMistTFT',
+            name: 'Renewing Mist (TFT)',
+            specid: 6,
+            base_ct: 1.5,
+            base_mana: 6400,
+            ctick: 0.13748 * 10 * 1.2,
+            nticks: 10,
+            duration: 20,
+            time_tick: 2,
+            targets: 5,
+            img: 'ability_monk_renewingmists',
+            aoe: true,
+            instant: true,
+            item: 119611,
+            mast_factor: 0.25,
+            chi_gain: 1,
+            cooldown: 45,
+            cdlong: false,
+            cdshort: true,
+            cdnone: false
+        },
+        {
             id: 82,
             code: 'SCK',
             name: 'Spinning Crane Kick',
@@ -2704,6 +2727,14 @@ define(['can'], function(can) {
     });
 
     spls.find('RenewingMist').attr({
+        fbase: function(delta) {
+            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+                ( this.spec.pool_mists_monk ? 1.15 : 1 ) *
+                ( 1 + 1 * this.spec.fversp(delta) );
+        }
+    });
+
+    spls.find('RenewingMistTFT').attr({
         fbase: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
                 ( this.spec.pool_mists_monk ? 1.15 : 1 ) *
