@@ -86,5 +86,6 @@ names = [
     'ability_monk_chiwave',
     'ability_monk_chiexplosion',
     'spell_monk_revival',
+    'spell_holy_divinehymn',
     'ability_monk_jadeserpentbreath'
 ];

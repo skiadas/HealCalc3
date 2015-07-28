@@ -651,7 +651,7 @@ define(['can'], function(can) {
             base_mana: 7040,
             targets: 5,
             c: 1.4 * 1.1,
-            img: 'spell_holy_circleofrenewal',
+            img: 'spell_holy_divinehymn',
             aoe: true,
             instant: false,
             item: 64843,
