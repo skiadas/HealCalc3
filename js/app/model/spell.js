@@ -9,7 +9,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2.5,
             base_mana: 3200,
-            c: 3.3264 * 1.25 * 1.1,
+            c: 3.3264 * 1.25 * 1.1 * 1.3,
             img: 'spell_holy_greaterheal',
             aoe: false,
             instant: false,
@@ -25,7 +25,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 6624,
-            c: 3.32657 * 1.25 * 1.1,
+            c: 3.32657 * 1.25 * 1.1 * 1.3,
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
@@ -41,7 +41,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 3840,
-            c: 0.432 * 1.1,
+            c: 0.432 * 1.1 * 1.3,
             img: 'ability_priest_cascade',
             aoe: true,
             instant: false,
@@ -58,7 +58,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 3200,
             targets: 6 * 2,
-            c:  0.6518,
+            c:  0.6518 * 1.3,
             img: 'spell_priest_divinestar',
             aoe: true,
             instant: true,
@@ -75,7 +75,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 5760,
             targets: 6,
-            c:  2.874,
+            c:  2.874 * 1.3,
             img: 'ability_priest_halo',
             aoe: true,
             instant: false,
@@ -91,7 +91,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 3840,
-            c: 4.59,
+            cshield: 4.59 * 1.3,
             img: 'spell_holy_powerwordshield',
             aoe: false,
             instant: true,
@@ -108,7 +108,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 3840,
             targets: 5,
-            c: 0.666 * 1.25 * 1.25,
+            c: 0.666 * 1.25 * 1.25 * 1.3,
             img: 'spell_holy_prayerofmendingtga',
             aoe: true,
             instant: true,
@@ -125,7 +125,7 @@ define(['can'], function(can) {
             base_ct: 2.5,
             base_mana: 11405,
             targets: 5,
-            c: 2.21664,
+            c: 2.21664 * 1.3,
             img: 'spell_holy_prayerofhealing02',
             aoe: true,
             instant: false,
@@ -212,7 +212,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2,
             base_mana: 1920,
-            c: 2.64,
+            c: 2.64 * 1.3,
             targets: 3,
             img: 'spell_holy_penance',
             aoe: false,
@@ -229,7 +229,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 2.5,
             base_mana: 5040,
-            c: 6.6,
+            cshield: 6.6 * 1.3,
             img: 'ability_priest_clarityofwill',
             aoe: false,
             instant: false,
@@ -245,7 +245,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 4800,
-            c: 6.3,
+            c: 6.3 * 1.3,
             img: 'ability_priest_savinggrace',
             aoe: false,
             instant: false,
@@ -262,7 +262,7 @@ define(['can'], function(can) {
             base_ct: 2.5,
             base_mana: 11405,
             targets: 5,
-            c: 2.21664,
+            c: 2.21664 * 1.3,
             img: 'spell_holy_prayerofhealing02',
             aoe: true,
             instant: false,
@@ -278,7 +278,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 6560,
-            c: 3.32657 * 1.25 * 1.1,
+            c: 3.32657 * 1.25 * 1.1 * 1.3,
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
@@ -295,7 +295,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 2560,
             targets: 5,
-            c: 1.125 / 2,
+            c: 1.125 / 2 * 1.3,
             img: 'spell_holy_holynova',
             aoe: true,
             instant: true,
@@ -550,7 +550,8 @@ define(['can'], function(can) {
             base_mana: 2400,
             nticks: 5,
             time_tick: 3,
-            ctick: 0.44 * 1.25 * 1.15 * 1.1,
+            ctick: 5 * 0.44 * 1.25 * 1.15 * 1.1,
+            c: 0.5 * 0.44 * 1.25 * 1.15 * 1.1,
             img: 'spell_holy_renew',
             aoe: false,
             instant: true,
@@ -566,7 +567,7 @@ define(['can'], function(can) {
             specid: 2,
             base_ct: 1.5,
             base_mana: 3840,
-            c: 4.59,
+            cshield: 4.59,
             img: 'spell_holy_powerwordshield',
             aoe: false,
             instant: true,
@@ -1519,63 +1520,193 @@ define(['can'], function(can) {
         ftargets: function(delta) {
             return ( this.targets || 1 );
         },
-        fdirect: function(delta) {
+        fmultip: function(delta) {
+            return this.spec.fmultip(delta);
+        },
+        fcritp: function(delta) {
+            return this.spec.fcritp(delta);
+        },
+        fspec_mixed_factor: function(delta) {
+            return 1;
+        },
+
+        fbasedirect: function(delta) {
             return (
-                this.c * this.spec.fsp(delta) * this.ftargets(delta)
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
-        fnticks_shaman_aoe: function(delta) {
+        fbasehot: function(delta) {
             return (
-                1 +
-                Math.ceiln(
-                    this.duration *
-                    (1 + this.spec.fhastep(delta)) /
-                    this.time_tick
-                )
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
-        fhot: function(delta) {
+        fbaseshield: function(delta) {
             return (
-                this.ctick * this.spec.fsp(delta) * this.ftargets(delta) *
+                (this.cshield || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
+            );
+        },
+        fbaseother: function(delta) {
+            return (
+                (this.cother || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
+            );
+        },
+        fbaseheal: function(delta) {
+            return this.fbasedirect(delta) + this.fbasehot(delta) +
+                   this.fbaseshield(delta) + this.fbaseother(delta);
+        },
+
+        fmixeddirect: function(delta) {
+            return this.fbasedirect(delta) *
+                   (1 + 2 * (this.spec.multi_factor || 0.3) *
+                   this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta);
+        },
+        fmixedhot: function(delta) {
+            return this.fbasehot(delta) *
+                   (1 + 2 * (this.spec.multi_factor || 0.3) *
+                   this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta);
+        },
+        fmixedshield: function(delta) {
+            return this.fbaseshield(delta) *
+                   (1 + 2 * (this.spec.multi_factor || 0.3) *
+                   this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta);
+        },
+        fmixedother: function(delta) {
+            return this.fbaseother(delta) *
+                   (1 + 2 * (this.spec.multi_factor || 0.3) *
+                   this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta);
+        },
+        fmixedheal: function(delta) {
+            return this.fmixeddirect(delta) + this.fmixedhot(delta) +
+                   this.fmixedshield(delta) + this.fmixedother(delta);
+        },
+
+        fcritdirect: function(delta) {
+            return this.fmixeddirect(delta) * 2;
+        },
+        fcrithot: function(delta) {
+            return this.fmixedhot(delta) * 2;
+        },
+        fcritshield: function(delta) {
+            return this.fmixedshield(delta) * 2;
+        },
+        fcritother: function(delta) {
+            return this.fmixedother(delta) * 2;
+        },
+        fcritheal: function(delta) {
+            return this.fcritdirect(delta) + this.fcrithot(delta) +
+                   this.fcritshield(delta) + this.fcritother(delta);
+        },
+
+        favgdirect: function(delta) {
+            return (1 - this.fcritp(delta)) * this.fmixeddirect(delta) +
+                   this.fcritp(delta) * this.fcritdirect(delta);
+        },
+        favghot: function(delta) {
+            return (1 - this.fcritp(delta)) * this.fmixedhot(delta) +
+                   this.fcritp(delta) * this.fcrithot(delta);
+        },
+        favgshield: function(delta) {
+            return (1 - this.fcritp(delta)) * this.fmixedshield(delta) +
+                   this.fcritp(delta) * this.fcritshield(delta);
+        },
+        favgother: function(delta) {
+            return (1 - this.fcritp(delta)) * this.fmixedother(delta) +
+                   this.fcritp(delta) * this.fcritother(delta);
+        },
+        favgheal: function(delta) {
+            return this.favgdirect(delta) + this.favghot(delta) +
+                   this.favgshield(delta) + this.favgother(delta);
+        },
+
+        fbasedirect_no_mast: function(delta) {
+            return (
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta))
+            );
+        },
+        fbasehot_no_mast: function(delta) {
+            return (
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
                 (1 + this.spec.fhastep(delta))
             );
         },
-        fbase: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 1 * this.spec.fmastp(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
-        },
-        fbase_offensive_disc: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
-        },
-        fbase_shield: function(delta) {
-            return this.fdirect(delta) *
-                   ( 1 + 1 * this.spec.fmastp(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) ) *
-                   ( 1 + 1 * this.spec.attr('aa_uptime') *
-                             this.spec.attr('aa_stacks') * 0.05 ) *
-                   1.3;
-        },
-        fbase_disc: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 0.5 * this.spec.fmastp(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) ) *
-                   ( 1 + 1 * this.spec.attr('aa_uptime') *
-                             this.spec.attr('aa_stacks') * 0.05 ) *
-                   1.3;  // Grace
-        },
-        fbase_druid: function(delta) {
-            return (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                   ( 1 + this.spec.fmastp(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) ) *
-                   1.1;
-        },
-        fbase_holy: function(delta) {
+
+        // Disc additions
+        fbasedirect_disc: function(delta) {
             return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                ( 1 + 1 * this.spec.fversp(delta) )
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + 0.5 * this.spec.fmastp(delta))
             );
+        },
+        fbasehot_disc: function(delta) {
+            return (
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + 0.5 * this.spec.fmastp(delta))
+            );
+        },
+        fspec_mixed_factor_disc: function(delta) {
+             return ( 1 + 1 * this.spec.attr('aa_uptime') *
+                        this.spec.attr('aa_stacks') * 0.05 );
+        },
+        fcritdirect_disc: function(delta) {
+            return this.fmixeddirect(delta);
+        },
+        fcrithot_disc: function(delta) {
+            return this.fmixedhot(delta);
+        },
+        fcritshield_da: function(delta) {
+            return (this.fmixeddirect(delta) + this.fmixedhot(delta)) *
+                   (1 + this.spec.fmastp(delta));
+        },
+
+        // Holy additions
+
+        // Adds EoL
+        fmixedhot_holy: function(delta) {
+            return (
+                        this.fbasehot(delta) +
+                        this.fbasedirect(delta) * this.spec.fmastp(delta)
+                   ) *
+                   (1 + 2 * (this.spec.multi_factor || 0.3) *
+                        this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta);
+        },
+        // fheal_holy: function(delta) {
+        //     return (
+        //         this.fbase(delta) *
+        //         ( 1 + this.spec.fcritp(delta) ) *
+        //         ( 1 + (1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) ) *
+        //         ( 1 + 0.72 * this.spec.fmultip(delta) )
+        //     );
+        // },
+
+
+
+
+        // Druid additions
+        fcritother_living_seed: function(delta) {
+            return this.fcritdirect(delta);
         },
         fbase_pally: function(delta) {
             return (
@@ -1617,30 +1748,7 @@ define(['can'], function(can) {
                 )
             );
         },
-        fheal: function(delta) {
-            // The average heal amount, including crits and multistrike.
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) )
-            );
-        },
-        fheal_disc: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fcritp(delta) *
-                    ( 1 + this.spec.fmastp(delta) )
-                )
-            );
-        },
-        fheal_shield: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fcritp(delta) )
-            );
-        },
+
         fheal_pally: function(delta) {
             return (
                 this.fbase(delta) *
@@ -1665,21 +1773,6 @@ define(['can'], function(can) {
                 this.spec.fmast_factor(delta)
             );
         },
-        fheal_holy: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + (1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) ) *
-                ( 1 + 0.72 * this.spec.fmultip(delta) )
-            );
-        },
-        fheal_living_seed: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + 2 * this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) )
-            );
-        },
         fheal_monk: function(delta) {
             var sphere = this.spec.fsp(delta) * this.spec.mast_c *
                          (1 + this.spec.fversp(delta));
@@ -1695,12 +1788,42 @@ define(['can'], function(can) {
                 ( 1 + this.spec.fcritp(delta) ) *
                 ( 1 + 0.6 * this.spec.fmultip(delta) );
         },
-        fhps: function(delta) {
-            return ( this.fheal(delta) / this.fct(delta) );
+
+
+        fdirectps: function(delta) {
+            return ( this.favgdirect(delta) / this.fct(delta) );
         },
-        fhpm: function(delta) {
+        fhotps: function(delta) {
+            return ( this.favghot(delta) / this.fct(delta) );
+        },
+        fshieldps: function(delta) {
+            return ( this.favgshield(delta) / this.fct(delta) );
+        },
+        fotherps: function(delta) {
+            return ( this.favgother(delta) / this.fct(delta) );
+        },
+        fhealps: function(delta) {
+            return ( this.favgheal(delta) / this.fct(delta) );
+        },
+        fdirectpm: function(delta) {
             var mana = this.fmana(delta);
-            return mana === 0 ? 0 : this.fheal(delta) / mana;
+            return mana === 0 ? 0 : this.favgdirect(delta) / mana;
+        },
+        fhotpm: function(delta) {
+            var mana = this.fmana(delta);
+            return mana === 0 ? 0 : this.favghot(delta) / mana;
+        },
+        fshieldpm: function(delta) {
+            var mana = this.fmana(delta);
+            return mana === 0 ? 0 : this.favgshield(delta) / mana;
+        },
+        fotherpm: function(delta) {
+            var mana = this.fmana(delta);
+            return mana === 0 ? 0 : this.favgother(delta) / mana;
+        },
+        fhealpm: function(delta) {
+            var mana = this.fmana(delta);
+            return mana === 0 ? 0 : this.favgheal(delta) / mana;
         },
         fmps: function(delta) {
             return ( this.fmana(delta) / this.fct(delta) );
@@ -1709,10 +1832,36 @@ define(['can'], function(can) {
             this.attr({
                 'ct': Math.roundn(this.fct(), 2),
                 'mana': Math.roundn(this.fmana()),
-                'base_heal': Math.roundn(this.fbase()),
-                'heal': Math.roundn(this.fheal()),
-                'hps': Math.roundn(this.fhps()),
-                'hpm': Math.roundn(this.fhpm(), 2),
+                'basedirect': Math.roundn(this.fbasedirect()),
+                'basehot': Math.roundn(this.fbasehot()),
+                'baseshield': Math.roundn(this.fbaseshield()),
+                'baseother': Math.roundn(this.fbaseother()),
+                'baseheal': Math.roundn(this.fbaseheal()),
+                'mixeddirect': Math.roundn(this.fmixeddirect()),
+                'mixedhot': Math.roundn(this.fmixedhot()),
+                'mixedshield': Math.roundn(this.fmixedshield()),
+                'mixedother': Math.roundn(this.fmixedother()),
+                'mixedheal': Math.roundn(this.fmixedheal()),
+                'critdirect': Math.roundn(this.fcritdirect()),
+                'crithot': Math.roundn(this.fcrithot()),
+                'critshield': Math.roundn(this.fcritshield()),
+                'critother': Math.roundn(this.fcritother()),
+                'critheal': Math.roundn(this.fcritheal()),
+                'avgdirect': Math.roundn(this.favgdirect()),
+                'avghot': Math.roundn(this.favghot()),
+                'avgshield': Math.roundn(this.favgshield()),
+                'avgother': Math.roundn(this.favgother()),
+                'avgheal': Math.roundn(this.favgheal()),
+                'directps': Math.roundn(this.fdirectps()),
+                'hotps': Math.roundn(this.fhotps()),
+                'shieldps': Math.roundn(this.fshieldps()),
+                'otherps': Math.roundn(this.fotherps()),
+                'healps': Math.roundn(this.fhealps()),
+                'directpm': Math.roundn(this.fdirectpm(), 2),
+                'hotpm': Math.roundn(this.fhotpm(), 2),
+                'shieldpm': Math.roundn(this.fshieldpm(), 2),
+                'otherpm': Math.roundn(this.fotherpm(), 2),
+                'healpm': Math.roundn(this.fhealpm(), 2),
                 'mps': Math.roundn(this.fmps())
             });
         }
@@ -1769,11 +1918,15 @@ define(['can'], function(can) {
                   );  // Used for filtering
         if ( sp.specid == 1 ) {
             // General Disc spell setup
-            sp.fbase = sp.fbase_disc;   // To account for Grace
-            sp.fheal = sp.fheal_disc;   // To account for DA formula
+            sp.fbasedirect = sp.fbasedirect_disc;
+            sp.fbasehot = sp.fbasehot_disc;
+            sp.fcritdirect = sp.fcritdirect_disc;
+            sp.fcrithot = sp.fcrithot_disc;
+            sp.fspec_mixed_factor = sp.fspec_mixed_factor_disc;
         } else if (sp.specid == 2) {
-            sp.fbase = sp.fbase_holy;
-            sp.fheal = sp.fheal_holy;
+            sp.fbasedirect = sp.fbasedirect_no_mast;
+            sp.fbasehot = sp.fbasehot_no_mast;
+            sp.fmixedhot = sp.fmixedhot_holy;
         } else if ( sp.specid == 3 ) {
             // General Pally spell setup
             sp.fbase = sp.fbase_pally;
@@ -1798,13 +1951,28 @@ define(['can'], function(can) {
     //
     //
     // DISC Spells setup
+
+    ['HealDisc', 'FhealDisc', 'EmpFhealDisc',
+     'CascadeDisc', 'DivineStarDisc', 'HaloDisc',
+     'PoMDisc', 'PoHDisc', 'EmpPoHDisc',
+     'HolyFireDisc', 'SolaceDisc', 'SmiteDisc',
+     'PenanceDisc', 'PenanceHealDisc',
+     'SavingGrace', 'HolyNova'].forEach(function(spell) {
+        spls.find(spell).attr({
+            fcritshield: function(delta) {
+                return this.fcritshield_da(delta);
+            }
+        });
+    });
+
     spls.find('EmpFhealDisc').attr({
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 2 + this.spec.fmastp(delta) * 1 )
-            );
+        fcritp: function(delta) {
+             return 1;
+        }
+    });
+    spls.find('EmpPoHDisc').attr({
+        fcritp: function(delta) {
+             return 1;
         }
     });
 
@@ -1818,23 +1986,6 @@ define(['can'], function(can) {
                 )
             );
         }
-    });
-
-    spls.find('PWSDisc').attr({
-        fbase: function(delta) {
-            return ( this.fbase_shield(delta) );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_shield(delta) );
-        },
-    });
-    spls.find('ClarityOfWill').attr({
-        fbase: function(delta) {
-            return ( this.fbase_shield(delta) );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_shield(delta) );
-        },
     });
 
     spls.find('PoMDisc').attr({
@@ -1853,95 +2004,18 @@ define(['can'], function(can) {
         ftargets: function(delta) {
             return ( 1 * this.spec.poh_targets_disc );
         },
-        fheal: function(delta) {
-            var crit = Math.min(this.spec.fcritp(delta) + 0.1, 1);
-            return (
-                this.fbase(delta) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + crit *
-                    ( 1 + this.spec.fmastp(delta) )
-                )
-            );
+        fcritp: function(delta) {
+            return Math.min(this.spec.fcritp(delta) + 0.1, 1);
         }
     });
+
     spls.find('EmpPoHDisc').attr({
         fmana: function(delta) {
             return this.base_mana * (this.spec.t17_4p_disc ? 0.5 : 1);
         },
         ftargets: function(delta) {
             return ( 1 * this.spec.poh_targets_disc );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 2 + this.spec.fmastp(delta) * 1 )
-            );
         }
-    });
-
-    spls.find('HolyFireDisc').attr({
-        fbase: function(delta) {
-            return (
-                (this.fhot(delta) + this.fdirect(delta)) *
-                 ( 1 + 1 * this.spec.fversp(delta) )
-            );
-        },
-    });
-    spls.find('SolaceDisc').attr({
-        fbase: function(delta) {
-            return (
-                (this.fhot(delta) + this.fdirect(delta)) *
-                 ( 1 + 1 * this.spec.fversp(delta) )
-            );
-        },
-    });
-
-    spls.find('PenanceDisc').attr({
-        fct: function(delta) {
-            return (
-                (
-                    this.base_ct +
-                    (this.spec.t17_2p_disc ? 1 : 0)
-                ) /
-                (1 + this.spec.fhastep(delta))
-            );
-        },
-        ftargets: function(delta) {
-            return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
-        },
-        fbase: function(delta) {
-            return (
-                this.fbase_offensive_disc(delta) *
-                ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0))
-            );
-        },
-        fmana: function(delta) {
-            return (
-                this.base_mana *
-                (this.spec.glyph_penance ? 1.2 : 1)
-            )
-        },
-        fheal: function(delta) {
-            var healPenance = spls.find('PenanceHealDisc');
-            return (
-                (
-                    this.fbase(delta) +
-                    healPenance.fbase(delta) *
-                    (this.spec.t18_4p_disc ? 0.5 : 0)
-                ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fcritp(delta) *
-                    ( 1 + this.spec.fmastp(delta) )
-                )
-            );
-        }
-    });
-
-    spls.find('SmiteDisc').attr({
-        fbase: function(delta) {
-            return this.fbase_offensive_disc(delta);
-        },
     });
 
     spls.find('PenanceHealDisc').attr({
@@ -1958,28 +2032,71 @@ define(['can'], function(can) {
             return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
         },
         fmana: function(delta) {
+            return this.base_mana *
+                   (this.spec.glyph_penance ? 1.2 : 1);
+        },
+        fmixeddirect: function(delta) {
+            return this.fbasedirect(delta) *
+                   (1 + 2 * 0.3 * this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta) *
+                   ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0)) *
+                   (this.spec.t18_4p_disc ? 1.5 : 1);
+        }
+    });
+
+    ['PenanceDisc', 'SmiteDisc', 'SolaceDisc', 'HolyFireDisc'].forEach(function(spell) {
+        spls.find(spell).attr({
+            fspec_mixed_factor: function(delta) {
+                return 1;
+            },
+            fbasedirect: function(delta) {
+                return this.fbasedirect_no_mast(delta);
+            },
+            fbasehot: function(delta) {
+                return this.fbasehot_no_mast(delta);
+            }
+        });
+    });
+
+    spls.find('PenanceDisc').attr({
+        fct: function(delta) {
+            return (
+                (
+                    this.base_ct +
+                    (this.spec.t17_2p_disc ? 1 : 0)
+                ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        },
+        ftargets: function(delta) {
+            return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
+        },
+        fbasedirect: function(delta) {
+            return (
+                this.fbasedirect_no_mast(delta)
+            );
+        },
+        fmana: function(delta) {
             return (
                 this.base_mana *
                 (this.spec.glyph_penance ? 1.2 : 1)
             )
         },
-        fbase: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 0.5 * this.spec.fmastp(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) ) *
-                   ( 1 + 1 * this.spec.attr('aa_uptime') *
-                             this.spec.attr('aa_stacks') * 0.05 ) *
-                   ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0)) *
-                   1.3;  // Grace
-        },
-        fheal: function(delta) {
+        fmixeddirect: function(delta) {
+            var healPenance = spls.find('PenanceHealDisc');
             return (
-                this.fbase(delta) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 + this.spec.fcritp(delta) *
-                    ( 1 + this.spec.fmastp(delta) )
+                (
+                    this.fbasedirect(delta) *
+                    this.fspec_mixed_factor(delta) +
+                    healPenance.fbasedirect(delta) *
+                    healPenance.fspec_mixed_factor(delta) *
+                    (this.spec.t18_4p_disc ? 0.5 : 0)
+
                 ) *
-                (this.spec.t18_4p_disc ? 1.5 : 1)
+                (1 + 2 * 0.3 * this.fmultip(delta)) *
+                ( 1 + (this.spec.t18_2p_disc ? 6 * 0.12 : 0)) *
+                this.ftargets(delta)
             );
         }
     });
@@ -2000,21 +2117,6 @@ define(['can'], function(can) {
         }
     });
 
-    // Does not benefit from mastery
-    spls.find('HWSanctuaryHoly').attr({
-        // fbase: function(delta) {
-        //     return this.fhot(delta) *
-        //            ( 1 + 1 * this.spec.fversp(delta) );
-        // }
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.72 * this.spec.fmultip(delta) )
-            );
-        }
-    });
-
     spls.find('PoHHoly').attr({
         ftargets: function(delta) {
             return ( 1 * this.spec.poh_targets_holy );
@@ -2030,39 +2132,59 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('RenewHoly').attr({
-        fdirect: function(delta) {
+    spls.find('DHHoly').attr({
+        ftargets: function(delta) {
+            return ( this.spec.buffs.raid_size * (4 + 3 * 0.1) );
+        }
+    });
+
+    spls.find('CascadeHoly').attr({
+        ftargets: function(delta) {
             return (
-                this.ctick * 0.5 *
-                this.spec.fsp(delta) * this.ftargets(delta)
-            );
-        }, // direct heal does not benefit from glyph
-        fhot: function(delta) {
-            return (
-                this.spec.fsp(delta) * this.ftargets(delta) *
-                this.ctick *
-                (this.spec.attr('glyph_renew_holy') ? 4 : 5) *
-                (1 + this.spec.fhastep(delta))
-            ) * (this.spec.attr('glyph_renew_holy') ? 1.25 : 1);
-        },
-        fbase: function(delta) {
-            return (
-                this.fhot(delta) +
-                this.fdirect(delta)
-            ) * ( 1 + 1 * this.spec.fversp(delta) );
-        },
-        fheal: function(delta) {
-            return (
+                31 *
                 (
-                    this.fbase(delta) +
-                    this.fdirect(delta) * // mastery on direct part
-                    ((1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) )
-                ) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.72 * this.spec.fmultip(delta) )
+                    0.4 +
+                    Math.min( this.spec.cascade_range_holy, 30 ) * 0.02
+                )
             );
         }
     });
+
+    spls.find('PoMHoly').attr({
+        ftargets: function(delta) {
+            return (
+                this.targets -
+                (this.spec.attr('glyph_pom_holy') ? 0.4 : 0) +
+                (this.spec.t17_2p_holy ? 4 : 0)
+            );
+        },
+        fmixeddirect: function(delta) {
+            return this.fbasedirect(delta) *
+                (1 + 2 * (this.spec.multi_factor || 0.3) *
+                    this.fmultip(delta)) *
+                this.ftargets(delta) *
+                this.fspec_mixed_factor(delta) *
+                (this.spec.t18_4p_holy ? 1.1 : 1);
+        }
+    });
+
+    spls.find('PWSHoly').attr({
+        fbaseshield: function(delta) {
+            return (this.cshield || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta));
+
+        }
+        // fheal: function(delta) {
+        //     return (
+        //         this.fbase(delta) *
+        //         ( 1 + this.spec.fcritp(delta) ) *
+        //         ( 1 + 0.72 * this.spec.fmultip(delta) )
+        //     );
+        // }
+    });
+
+/***************
+
 
     spls.find('LWCastHoly').attr({
         // fbase: function(delta) {
@@ -2085,57 +2207,8 @@ define(['can'], function(can) {
         },
     });
 
-    spls.find('DHHoly').attr({
-        ftargets: function(delta) {
-            return ( this.spec.buffs.raid_size * (4 + 3 * 0.1) );
-        }
-    });
 
-    spls.find('CascadeHoly').attr({
-        ftargets: function(delta) {
-            return (
-                31 *
-                (
-                    0.4 +
-                    Math.min( this.spec.cascade_range_holy, 30 ) * 0.02
-                )
-            );
-        }
-    });
 
-    spls.find('PWSHoly').attr({
-        fbase: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.72 * this.spec.fmultip(delta) )
-            );
-        }
-    });
-
-    spls.find('PoMHoly').attr({
-        ftargets: function(delta) {
-            return (
-                this.targets -
-                (this.spec.attr('glyph_pom_holy') ? 0.4 : 0) +
-                (this.spec.t17_2p_holy ? 4 : 0)
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + (1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) ) *
-                ( 1 + 0.72 * this.spec.fmultip(delta) ) *
-                (this.spec.t18_4p_holy ? 1.1 : 1)
-            );
-        },
-
-    });
     //END HOLY Spells setup
 
     //DRUID Spells setup

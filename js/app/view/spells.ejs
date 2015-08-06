@@ -4,10 +4,28 @@
     <th id="th_name" class="name">Name</th>
     <th id="th_ct">Cast Time</th>
     <th id="th_mana">Mana</th>
-    <th id="th_base">Base Heal</th>
-    <th id="th_heal">Average Heal</th>
-    <th id="th_hps" class="sort_desc">HPS</th>
-    <th id="th_hpm">HPM</th>
+    <th id="th_basedirect">Base Direct</th>
+    <th id="th_basehot">Base Hot</th>
+    <th id="th_baseshield">Base Shield</th>
+    <th id="th_baseother">Base Other</th>
+    <th id="th_baseheal">Base Heal</th>
+    <th id="th_mixeddirect">Mixed Direct</th>
+    <th id="th_mixedhot">Mixed Hot</th>
+    <th id="th_mixedshield">Mixed Shield</th>
+    <th id="th_mixedother">Mixed Other</th>
+    <th id="th_mixedheal">Mixed Heal</th>
+    <th id="th_critdirect">Critical Direct</th>
+    <th id="th_crithot">Critical Hot</th>
+    <th id="th_critshield">Critical Shield</th>
+    <th id="th_critother">Critical Other</th>
+    <th id="th_critheal">Critical Heal</th>
+    <th id="th_avgdirect">Average Direct</th>
+    <th id="th_avghot">Average Hot</th>
+    <th id="th_avgshield">Average Shield</th>
+    <th id="th_avgother">Average Other</th>
+    <th id="th_avgheal">Average Heal</th>
+    <th id="th_healps" class="sort_desc">HPS</th>
+    <th id="th_healpm">HPM</th>
     <th id="th_mps">MPS</th>
   </thead>
   <tbody>
@@ -18,10 +36,28 @@
       <a href="http://www.wowhead.com/spell=<%= spell.item %>" target="_blank"><%= spell.name %></a></td>
     <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fct', name: 'Cast Time'}) %>><%= spell.attr('ct') %></td>
     <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmana', name: 'Mana Cost'}) %>><%= spell.attr('mana') %></td>
-    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbase', name: 'Base Heal'}) %>><%= spell.attr('base_heal') %></td>
-    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fheal', name: 'Average Heal'}) %>><%= spell.attr('heal') %></td>
-    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhps', name: 'HPS'}) %>><%= spell.attr('hps') %></td>
-    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhpm', name: 'HPM'}) %>><%= spell.attr('hpm') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbasedirect', name: 'Base Direct'}) %>><%= spell.attr('basedirect') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbasehot', name: 'Base Hot'}) %>><%= spell.attr('basehot') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbaseshield', name: 'Base Shield'}) %>><%= spell.attr('baseshield') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbaseother', name: 'Base Other'}) %>><%= spell.attr('baseother') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fbaseheal', name: 'Base Heal'}) %>><%= spell.attr('baseheal') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmixeddirect', name: 'Mixed Direct'}) %>><%= spell.attr('mixeddirect') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmixedhot', name: 'Mixed Hot'}) %>><%= spell.attr('mixedhot') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmixedshield', name: 'Mixed Shield'}) %>><%= spell.attr('mixedshield') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmixedother', name: 'Mixed Other'}) %>><%= spell.attr('mixedother') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmixedheal', name: 'Mixed Heal'}) %>><%= spell.attr('mixedheal') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fcritdirect', name: 'Critical Direct'}) %>><%= spell.attr('critdirect') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fcrithot', name: 'Critical Hot'}) %>><%= spell.attr('crithot') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fcritshield', name: 'Critical Shield'}) %>><%= spell.attr('critshield') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fcritother', name: 'Critical Other'}) %>><%= spell.attr('critother') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fcritheal', name: 'Critical Heal'}) %>><%= spell.attr('critheal') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'favgdirect', name: 'Average Direct'}) %>><%= spell.attr('avgdirect') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'favghot', name: 'Average Hot'}) %>><%= spell.attr('avghot') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'favgshield', name: 'Average Shield'}) %>><%= spell.attr('avgshield') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'favgother', name: 'Average Other'}) %>><%= spell.attr('avgother') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'favgheal', name: 'Average Heal'}) %>><%= spell.attr('avgheal') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhealps', name: 'HPS'}) %>><%= spell.attr('healps') %></td>
+    <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fhealpm', name: 'HPM'}) %>><%= spell.attr('healpm') %></td>
     <td <%= (el) -> can.data(el, 'colinfo', {fun: 'fmps', name: 'MPS'}) %>><%= spell.attr('mps') %></td>
   </tr>
 <% }) %>

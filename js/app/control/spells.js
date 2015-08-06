@@ -13,7 +13,7 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
                     }
                 });
             });
-            self.options.sort = {attr: 'hps', dir: 'desc'};
+            self.options.sort = {attr: 'healps', dir: 'desc'};
             this.options.spells.val_update();
             this.sort();
             // Call View
@@ -22,8 +22,8 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
         sorter: function() {
             var spells = this.options.spells,
                 attr = this.options.sort.attr,
-                comp_fun = (this.options.sort.dir == 'desc') ? 
-                    function(a,b) {return a[attr] >= b[attr] } : 
+                comp_fun = (this.options.sort.dir == 'desc') ?
+                    function(a,b) {return a[attr] >= b[attr] } :
                     function(a,b) {return a[attr] <= b[attr] };
             _sort(spells, comp_fun);
             // spells = spells.slice();

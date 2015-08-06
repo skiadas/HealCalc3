@@ -578,7 +578,7 @@ define(['can'], function(can) {
         halo_targets_disc: 15,
         cascade_range_disc: 25,
         poh_targets_disc: 5,
-        glyph_pom_disc: true,
+        glyph_pom_disc: false,
         glyph_penance: true,
         hfpm: 6,   // Holy fires per minute
         talent45_disc: 'solace',
@@ -590,6 +590,7 @@ define(['can'], function(can) {
 
     // HOLY
     spcs[1].attr({
+        multi_factor: 0.36,
         mastery_factor: 1.3,
         cascade_range_holy: 25,
         divinestar_targets_holy: 8,
@@ -613,10 +614,10 @@ define(['can'], function(can) {
         poh_targets_holy: 5,
         lw_charges: 15,
         eol_overheal: 40,   // Overheal percent
-        glyph_coh: false,
-        glyph_pom_holy: true,
-        glyph_renew_holy: false,
-        glyph_binding_holy: false,
+        glyph_coh: true,
+        glyph_pom_holy: false,
+        glyph_renew_holy: true,
+        glyph_binding_holy: true,
         talent45_holy: 'mb',
         t17_2p_holy: false,
         t18_2p_holy: false,
