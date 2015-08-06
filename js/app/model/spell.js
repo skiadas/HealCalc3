@@ -2174,16 +2174,14 @@ define(['can'], function(can) {
                    (1 + this.spec.fversp(delta));
 
         }
-        // fheal: function(delta) {
-        //     return (
-        //         this.fbase(delta) *
-        //         ( 1 + this.spec.fcritp(delta) ) *
-        //         ( 1 + 0.72 * this.spec.fmultip(delta) )
-        //     );
-        // }
     });
 
 /***************
+    spls.find('LWCastHoly').attr({
+        ftargets: function(delta) {
+            return this.spec.lw_charges;
+        }
+    });
 
 
     spls.find('LWCastHoly').attr({
