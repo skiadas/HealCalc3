@@ -2328,6 +2328,13 @@ define(['can'], function(can) {
                 (1 + this.spec.fmastp(delta))
             );
         },
+        fnticks: function(delta) {
+            return Math.ceil(
+                (this.nticks - (this.spec.attr('glyph_blooming') ? 5 : 0)) *
+                (1 + this.spec.fhastep(delta))
+
+            );
+        },
         fbaseother: function(delta) {
             return this.spec.t18_2p_druid ?
                 this.fnticks(delta) * 0.3 * this.fbasedirect(delta) :
