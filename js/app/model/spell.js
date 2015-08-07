@@ -2222,39 +2222,12 @@ define(['can'], function(can) {
                 (1 + this.spec.fhastep(delta)) *
                 (1 + this.spec.fmastp(delta))
             );
-            // return (
-            //     (
-            //         this.fdirect(delta) +
-            //         (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta))
-            //     ) *
-            //     ( 1 + this.spec.fmastp(delta) ) *
-            //     ( 1 + 1 * this.spec.fversp(delta) ) *
-            //     1.1
-            // );
         },
         fcritp: function(delta) {
             return this.spec.attr('glyph_regrowth') ?
                    1 :
                    Math.min(this.spec.fcritp(delta) + 0.6, 1);
-        },
-        // fheal: function(delta) {
-        //     var crit = (
-        //         this.spec.attr('glyph_regrowth') ?
-        //         1 :
-        //         ( Math.min(this.spec.fcritp(delta) + 0.6, 1) )
-        //     );
-        //     return (
-        //         (
-        //             this.fdirect(delta) * ( 1 + 2 * crit ) + // Living seed on direct
-        //                 (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta)) *
-        //                 ( 1 + this.spec.fcritp(delta) )
-        //         ) *
-        //         ( 1 + this.spec.fmastp(delta) ) *
-        //         ( 1 + 1 * this.spec.fversp(delta) ) *
-        //         ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-        //         1.1
-        //     );
-        // },
+        }
     });
 
     ['HealingTouch', 'HealingTouchLB'].forEach(function(sp) {
