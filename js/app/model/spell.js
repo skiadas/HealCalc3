@@ -304,8 +304,6 @@ define(['can'], function(can) {
             cdshort: false,
             cdnone: true
         },
-
-
         //
         // DRUID
         //
@@ -316,7 +314,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 2.5,
             base_mana: 3312,
-            c: 3.6,
+            c: 3.6 * 1.1,
             img: 'spell_nature_healingtouch',
             aoe: false,
             instant: false,
@@ -332,8 +330,8 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 5962,
-            c: 2.1784,
-            ctick: 0.546264,
+            c: 2.1784 * 1.1,
+            ctick: 0.546264 * 1.1,
             nticks: 6,
             time_tick: 2,
             img: 'spell_nature_resistnature',
@@ -351,7 +349,8 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 3024,
-            ctick: 0.542, // Actual coef per tick, not total
+            c: 0.542 * 1.1,
+            ctick: 5 * 0.542 * 1.1,
             nticks: 5,
             time_tick: 3,
             img: 'spell_nature_rejuvenation',
@@ -369,8 +368,8 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 1440,
-            c: 2.011,
-            ctick: 5.52,
+            c: 2.011 * 1.1,
+            ctick: 5.52 * 1.1,
             nticks: 15,
             time_tick: 1,
             img: 'inv_misc_herb_felblossom',
@@ -388,7 +387,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 12080,
-            ctick: 3.2535,
+            ctick: 3.2535 * 1.1,
             nticks: 7,
             time_tick: 1,
             targets: 5,
@@ -407,7 +406,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 4160,
-            c: 3.5,
+            c: 3.5 * 1.1,
             targets: 1,
             img: 'inv_relics_idolofrejuvenation',
             aoe: false,
@@ -424,7 +423,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 1.5,
             base_mana: 6912,
-            ctick: 7.15,
+            ctick: 7.15 * 1.1,
             time_tick: 2,
             nticks: 15,
             targets: 3,
@@ -443,7 +442,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 8,
             base_mana: 5888,
-            ctick: 2.502,
+            ctick: 4 * 2.502 * 1.1,
             nticks: 4,
             time_tick: 2,
             img: 'spell_nature_tranquility',
@@ -461,7 +460,7 @@ define(['can'], function(can) {
             specid: 4,
             base_ct: 2.5,
             base_mana: 3312,
-            c: 3.6,
+            c: 3.6 * 1.1,
             img: 'spell_nature_healingtouch',
             aoe: false,
             instant: false,
@@ -488,7 +487,6 @@ define(['can'], function(can) {
         //     instant: true,
         //     item: 106737
         // },
-
         //
         // HOLY
         //
@@ -749,6 +747,7 @@ define(['can'], function(can) {
             cdshort: true,
             cdnone: false
         },
+/******
         //
         // PALLY
         //
@@ -1416,6 +1415,8 @@ define(['can'], function(can) {
             cdshort: false,
             cdnone: false
         },
+********/
+
    ];
 
     var FIXME = [
@@ -1520,6 +1521,9 @@ define(['can'], function(can) {
         ftargets: function(delta) {
             return ( this.targets || 1 );
         },
+        fnticks: function(delta) {
+            return Math.ceil(this.nticks * (1 + this.spec.fhastep(delta)));
+        },
         fmultip: function(delta) {
             return this.spec.fmultip(delta);
         },
@@ -1567,14 +1571,14 @@ define(['can'], function(can) {
         fmixeddirect: function(delta) {
             return this.fbasedirect(delta) *
                    (1 + 2 * (this.spec.multi_factor || 0.3) *
-                   this.fmultip(delta)) *
+                        this.fmultip(delta)) *
                    this.ftargets(delta) *
                    this.fspec_mixed_factor(delta);
         },
         fmixedhot: function(delta) {
             return this.fbasehot(delta) *
                    (1 + 2 * (this.spec.multi_factor || 0.3) *
-                   this.fmultip(delta)) *
+                        this.fmultip(delta)) *
                    this.ftargets(delta) *
                    this.fspec_mixed_factor(delta);
         },
@@ -1692,22 +1696,13 @@ define(['can'], function(can) {
                    this.ftargets(delta) *
                    this.fspec_mixed_factor(delta);
         },
-        // fheal_holy: function(delta) {
-        //     return (
-        //         this.fbase(delta) *
-        //         ( 1 + this.spec.fcritp(delta) ) *
-        //         ( 1 + (1 - this.spec.eol_overheal / 100) * this.spec.fmastp(delta) ) *
-        //         ( 1 + 0.72 * this.spec.fmultip(delta) )
-        //     );
-        // },
-
-
-
 
         // Druid additions
         fcritother_living_seed: function(delta) {
-            return this.fcritdirect(delta);
+            return 0.5 * this.fcritdirect(delta);
         },
+
+
         fbase_pally: function(delta) {
             return (
                 (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
@@ -2176,190 +2171,36 @@ define(['can'], function(can) {
         }
     });
 
-/***************
     spls.find('LWCastHoly').attr({
         ftargets: function(delta) {
             return this.spec.lw_charges;
         }
     });
 
-
-    spls.find('LWCastHoly').attr({
-        // fbase: function(delta) {
-        //     return this.fhot(delta) *
-        //          ( 1 + 1 * this.spec.fversp(delta) ); // No mastery
-        // },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.72 * this.spec.fmultip(delta) )
-            );
-        },
-        fhot: function(delta) {
-            return (
-                this.ctick * this.spec.fsp(delta) *
-                this.spec.lw_charges *
-                (1 + this.spec.fhastep(delta))
-            );
-        },
-    });
-
-
-
     //END HOLY Spells setup
 
     //DRUID Spells setup
-    spls.find('HealingTouch').attr({
-        fct: function(delta) {
-            return (
-                ( this.spec.attr('healing_touch_with_ns') ?
-                    1.5 :
-                    (
-                        this.base_ct *
-                        (this.spec.attr('glyph_rejuv') ? 0.9 : 1)
-                    )
-                ) /
-                ( 1 + this.spec.fhastep(delta) )
-            );
-        },
-        fmana: function(delta) {
-            return ( this.spec.attr('healing_touch_with_ns') ? 0 : this.base_mana )
-        },
-        fbase: function(delta) {
-            return (
-                this.fdirect(delta) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                1.1 *
-                ( this.spec.attr('healing_touch_with_ns') ? 1.5 : 1 )
-            );
-        },
-        fheal: function(delta) {
-            return ( this.fheal_living_seed(delta) );
-        },
+
+    [
+        'Regrowth', 'HealingTouch', 'HealingTouchLB', 'Swiftmend'
+    ].forEach(function(sp) {
+        spls.find(sp).attr({
+            fcritother: function(delta) {
+                return this.fcritother_living_seed(delta);
+            }
+        });
     });
 
-    spls.find('HealingTouchLB').attr({
-        fct: function(delta) {
+    spls.find('Tranquility').attr({
+        fbasehot: function(delta) {
             return (
-                ( this.spec.attr('healing_touch_with_ns') ?
-                    1.5 :
-                    (
-                        this.base_ct *
-                        (this.spec.attr('glyph_rejuv') ? 0.9 : 1)
-                    )
-                ) /
-                ( 1 + this.spec.fhastep(delta) )
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
-        fmana: function(delta) {
-            return ( this.spec.attr('healing_touch_with_ns') ? 0 : this.base_mana )
-        },
-        fbase: function(delta) {
-            return (
-                this.fdirect(delta) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                1.1 *
-                ( this.spec.attr('healing_touch_with_ns') ? 1.5 : 1 )
-            );
-        },
-        fheal: function(delta) {
-            var crit = Math.min(this.spec.fcritp(delta) + 0.2, 1);
-            return (
-                this.fbase(delta) *
-                ( 1 + 2 * crit ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) )
-            );
-        },
-    });
-
-    spls.find('Swiftmend').attr({
-        fheal: function(delta) {
-            return ( this.fheal_living_seed(delta) );
-        }
-    });
-
-    spls.find('Regrowth').attr({
-        fbase: function(delta) {
-            return (
-                (
-                    this.fdirect(delta) +
-                    (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta))
-                ) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                1.1
-            );
-        },
-        fheal: function(delta) {
-            var crit = (
-                this.spec.attr('glyph_regrowth') ?
-                1 :
-                ( Math.min(this.spec.fcritp(delta) + 0.6, 1) )
-            );
-            return (
-                (
-                    this.fdirect(delta) * ( 1 + 2 * crit ) + // Living seed on direct
-                        (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta)) *
-                        ( 1 + this.spec.fcritp(delta) )
-                ) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                1.1
-            );
-        },
-    });
-
-    spls.find('Lifebloom').attr({
-        fhot: function(delta) {
-            return (
-                this.ctick *
-                (
-                    this.nticks -
-                    (this.spec.attr('glyph_blooming') ? 5 : 0)
-                ) / this.nticks *
-                 this.spec.fsp(delta) * this.ftargets(delta) *
-                (1 + this.spec.fhastep(delta))
-            );
-        },
-        fdirect: function(delta) {
-            return (
-                this.c * this.spec.fsp(delta) * this.ftargets(delta) *
-                (this.spec.attr('glyph_blooming') ? 1.5 : 1)
-            );
-        },
-        fbase: function(delta) {
-            return (
-                (
-                    this.fdirect(delta) +
-                    this.fhot(delta)
-                ) *
-                ( 1 + this.spec.fmastp(delta) ) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                1.1
-            );
-        },
-        fheal: function(delta) {
-            var bloom = this.c * this.spec.fsp(delta) * this.ftargets(delta) *
-                        ( 1 + this.spec.fmastp(delta) ) *
-                        ( 1 + 1 * this.spec.fversp(delta) ) *
-                        1.1;
-            return (
-                (
-                    this.fbase(delta) +
-                    (this.spec.t18_2p_druid ? 0.3 : 0) *
-                    bloom *
-                    Math.ceiln(
-                        this.nticks *
-                        (1 + this.spec.fhastep(delta))
-                    )
-                ) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) )
-            );
+        ftargets: function(delta) {
+            return this.spec.buffs.raid_size * 1;
         }
     });
 
@@ -2372,33 +2213,131 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('Tranquility').attr({
-        fhot: function(delta) {
+    spls.find('Regrowth').attr({
+        fbasehot: function(delta) {
             return (
-                this.ctick *
-                this.nticks *
-                this.spec.fsp(delta) * this.ftargets(delta)
+                (this.spec.attr('glyph_regrowth') ? 0 : this.ctick) *
+                this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
+            // return (
+            //     (
+            //         this.fdirect(delta) +
+            //         (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta))
+            //     ) *
+            //     ( 1 + this.spec.fmastp(delta) ) *
+            //     ( 1 + 1 * this.spec.fversp(delta) ) *
+            //     1.1
+            // );
         },
-        ftargets: function(delta) {
-            return this.spec.buffs.raid_size * 1;
+        fcritp: function(delta) {
+            return this.spec.attr('glyph_regrowth') ?
+                   1 :
+                   Math.min(this.spec.fcritp(delta) + 0.6, 1);
+        },
+        // fheal: function(delta) {
+        //     var crit = (
+        //         this.spec.attr('glyph_regrowth') ?
+        //         1 :
+        //         ( Math.min(this.spec.fcritp(delta) + 0.6, 1) )
+        //     );
+        //     return (
+        //         (
+        //             this.fdirect(delta) * ( 1 + 2 * crit ) + // Living seed on direct
+        //                 (this.spec.attr('glyph_regrowth') ? 0 : this.fhot(delta)) *
+        //                 ( 1 + this.spec.fcritp(delta) )
+        //         ) *
+        //         ( 1 + this.spec.fmastp(delta) ) *
+        //         ( 1 + 1 * this.spec.fversp(delta) ) *
+        //         ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+        //         1.1
+        //     );
+        // },
+    });
+
+    ['HealingTouch', 'HealingTouchLB'].forEach(function(sp) {
+        spls.find(sp).attr({
+            fct: function(delta) {
+                return (
+                    ( this.spec.attr('healing_touch_with_ns') ?
+                        1.5 :
+                        (
+                            this.base_ct *
+                            (this.spec.attr('glyph_rejuv') ? 0.9 : 1)
+                        )
+                    ) /
+                    ( 1 + this.spec.fhastep(delta) )
+                );
+            },
+            fmana: function(delta) {
+                return this.spec.attr('healing_touch_with_ns') ? 0 : this.base_mana;
+            },
+            fbasedirect: function(delta) {
+                return (
+                    (this.c || 0) * this.spec.fsp(delta) *
+                    (1 + this.spec.fversp(delta)) *
+                    (1 + this.spec.fmastp(delta)) *
+                    ( this.spec.attr('healing_touch_with_ns') ? 1.5 : 1 )
+                );
+            }
+        });
+    });
+
+    spls.find('HealingTouchLB').attr({
+        fcritp: function(delta) {
+            return Math.min(this.spec.fcritp(delta) + 0.2, 1);
         }
     });
 
     spls.find('Rejuv').attr({
-        fhot: function(delta) {
+        fbasehot: function(delta) {
             return (
-                this.ctick * this.spec.fsp(delta) * this.ftargets(delta) *
-            // Initial tick must not contribute to computation
-            // of extra ticks from haste
-                (1 +
-                    (this.nticks + (this.spec.attr('germination') ? 1 : 0)) *
-                    (1 + this.spec.fhastep(delta))
-                )
+                (this.ctick || 0) *
+                (this.spec.attr('germination') ?
+                    (this.nticks + 1) / this.nticks : 1
+                ) *
+                this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
     });
+
+    spls.find('Lifebloom').attr({
+        fbasehot: function(delta) {
+            return (
+                this.ctick *
+                (
+                    this.nticks -
+                    (this.spec.attr('glyph_blooming') ? 5 : 0)
+                ) / this.nticks *
+                this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta)) *
+                (1 + this.spec.fhastep(delta))
+            );
+        },
+        fbasedirect: function(delta) {
+            return (
+                this.c * this.spec.fsp(delta) *
+                (this.spec.attr('glyph_blooming') ? 1.5 : 1) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
+            );
+        },
+        fbaseother: function(delta) {
+            return this.spec.t18_2p_druid ?
+                this.fnticks(delta) * 0.3 * this.fbasedirect(delta) :
+                0;
+        }
+    });
+
     //END DRUID Spells setup
+
+/***************
 
     // SHAMAN Spells setup
 
@@ -2866,6 +2805,9 @@ define(['can'], function(can) {
                 ( 1 + 0.6 * this.spec.fmultip(delta) );
         }
     });
+
+***************/
+
 
     return spls;
 });
