@@ -747,7 +747,6 @@ define(['can'], function(can) {
             cdshort: true,
             cdnone: false
         },
-/******
         //
         // PALLY
         //
@@ -758,7 +757,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 2.5,
             base_mana: 3300,
-            c: 3 * 1.25,
+            c: 3 * 1.25 * 1.05,
             img: 'spell_holy_surgeoflight',
             aoe: false,
             instant: false,
@@ -774,7 +773,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 6400,
-            c: 3 * 1.25,
+            c: 3 * 1.25 * 1.05,
             img: 'spell_holy_flashheal',
             aoe: false,
             instant: false,
@@ -790,8 +789,8 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 2.5,
             base_mana: 11405,
-            B: 57.5 * 1.25,  // Yes, it needs a B!!!
-            c: 1.51319 * 1.25,
+            B: 57.5 * 1.25 * 1.05,  // Yes, it needs a B!!!
+            c: 1.51319 * 1.25 * 1.05,
             targets: 1 + 6 * 0.5,
             img: 'spell_paladin_divinecircle',
             aoe: true,
@@ -809,7 +808,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 2352,
-            c: 1.4 * 1.25,
+            c: 1.4 * 1.25 * 1.05,
             img: 'spell_holy_searinglight',
             aoe: false,
             instant: true,
@@ -825,7 +824,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 0,
-            c: 1.1 * 3 * 1.2,
+            c: 1.1 * 3 * 1.2 * 1.05,
             img: 'inv_helmet_96',
             aoe: false,
             instant: false,
@@ -841,7 +840,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 0,
-            c: 0.245 * 3 * 1.5,
+            c: 0.245 * 3 * 1.5 * 1.05,
             targets: 6,
             img: 'spell_paladin_lightofdawn',
             beaconPercent: 0.15,
@@ -859,7 +858,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 5440,
-            c: 4 * 1.25, // In-game tooltip value misses the 25% factor
+            c: 4 * 1.25 * 1.05, // In-game tooltip value misses the 25% factor
             img: 'spell_paladin_holyprism',
             beaconPercent: 0.15,
             aoe: false,
@@ -876,7 +875,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 5440,
-            c: 3 * 1.25, // In-game tooltip value misses the 25% factor
+            c: 3 * 1.25 * 1.05, // In-game tooltip value misses the 25% factor
             targets: 5,
             img: 'spell_paladin_holyprism',
             beaconPercent: 0.15,
@@ -892,7 +891,7 @@ define(['can'], function(can) {
             code: 'LightsHammer',
             name: 'Light\'s Hammer',
             specid: 3,
-            base_ct: 1.5,
+            base_ct: 1.5 * 1.05,
             base_mana: 16608,
             ctick: 0.67 * 7 * 1.25, // All ticks. Tooltip includes 25%
             nticks: 7,
@@ -915,7 +914,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 4096,
-            c: 0.594 * 27.906 * 1.25,
+            c: 0.594 * 27.906 * 1.25 * 1.05,
             img: 'spell_paladin_executionsentence',
             aoe: false,
             instant: true,
@@ -932,7 +931,7 @@ define(['can'], function(can) {
             base_ct: 1.5,
             base_mana: 0,
             c: 1.1 * 3 * 1.2,
-            ctick: 0.1 * 1.25 * 1.2 * 15,  // all 15 ticks
+            ctick: 0.1 * 1.25 * 1.2 * 15 * 1.05,  // all 15 ticks
             nticks: 15,
             time_tick: 2,
             img: 'inv_torch_thrown',
@@ -950,7 +949,7 @@ define(['can'], function(can) {
             specid: 3,
             base_ct: 1.5,
             base_mana: 3040,
-            ctick: 0.995 * 5, // All 5 ticks
+            cshield: 0.995 * 5, // All 5 ticks // Not benefitting from SoI
             nticks: 5,
             time_tick: 6,
             img: 'ability_paladin_blessedmending',
@@ -961,7 +960,7 @@ define(['can'], function(can) {
             cdshort: true,
             cdnone: false
         },
-
+/******
         //
         // SHAMAN
         //
@@ -1702,14 +1701,36 @@ define(['can'], function(can) {
             return 0.5 * this.fcritdirect(delta);
         },
 
-
-        fbase_pally: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                1.05 // Seal of Insight
-            );
+        // Pally additions
+        fbaseshield_pally_mast: function(delta) {
+            return this.spec.fmastp(delta) * this.fbasedirect(delta);
         },
+
+        fbaseother_pally_beacon: function(delta) {
+            return (this.fbasedirect(delta) + this.fbasehot(delta)) *
+                (
+                    (this.spec.bol ? 1 : 0) +
+                    (this.spec.bof ? 1 : 0)
+                ) * (this.beaconPercent || 0.5) *
+                (this.spec.t18_2p_pally ? 1.25 : 1);
+        },
+        fbaseother_pally_sth_beacon: function(delta) {
+            return (this.fbasedirect(delta) + this.fbasehot(delta)) *
+                (
+                    (this.spec.bol && !this.spec.beacon_heals ? 1 : 0) +
+                    (this.spec.bof ? 1 : 0)
+                ) * (this.beaconPercent || 0.5) *
+                (this.spec.t18_2p_pally ? 1.25 : 1);
+        },
+        fbasedirect_sth_pally: function(delta) {
+            return (this.c || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta)) *
+                   (this.spec.bol && this.spec.beacon_heals ? 1.1 : 1);
+        },
+
+
+
+
         fbase_shaman: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
                    ( 1 + 1 * this.spec.fversp(delta) );
@@ -1744,21 +1765,6 @@ define(['can'], function(can) {
             );
         },
 
-        fheal_pally: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 +
-                  this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (
-                    (this.spec.bol ? (this.beaconPercent || 0.5) : 0) +
-                    (this.spec.bof ? (this.beaconPercent || 0.5) : 0)
-                  ) *
-                  (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        },
         fheal_shaman: function(delta) {
             // The average heal amount, including crits and multistrike.
             return (
@@ -1924,8 +1930,10 @@ define(['can'], function(can) {
             sp.fmixedhot = sp.fmixedhot_holy;
         } else if ( sp.specid == 3 ) {
             // General Pally spell setup
-            sp.fbase = sp.fbase_pally;
-            sp.fheal = sp.fheal_pally;
+            sp.fbasedirect = sp.fbasedirect_no_mast;
+            sp.fbasehot = sp.fbasehot_no_mast;
+            sp.fbaseshield = sp.fbaseshield_pally_mast;
+            sp.fbaseother = sp.fbaseother_pally_beacon;
         } else if ( sp.specid == 5 ) {
             // General Shaman spell setup
             sp.fbase = sp.fbase_shaman;
@@ -2317,6 +2325,98 @@ define(['can'], function(can) {
 
     //END DRUID Spells setup
 
+    // PALLY Spells setup
+    ['HolyLight', 'FlashLight'].forEach(function(sp) {
+        spls.find(sp).attr({
+            fmana: function(delta) {
+                return (
+                    this.base_mana *
+                    ( this.spec.bol && this.spec.beacon_heals ? 0.6 : 1 )
+                );
+            },
+            fbaseother: sp.fbaseother_pally_sth_beacon
+        })
+    });
+
+    ['HolyLight', 'WoG', 'HolyShock', 'EternalFlame'].forEach(function(sp) {
+        spls.find(sp).attr({
+            fbasedirect: this.fbasedirect_sth_pally,
+            fbaseother: function(delta) {
+                return this.fbaseother_pally_sth_beacon(delta);
+            }
+        });
+    });
+
+    spls.find('HolyLight').attr({
+        fct: function(delta) {
+            return (
+                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        }
+    });
+
+    spls.find('FlashLight').attr({
+        fbasedirect: function(delta) {
+            return this.fbasedirect_sth_pally(delta) *
+                   (this.spec.infusion_of_light ? 1.5 : 1);
+        }
+    });
+
+    // If healing beacon target gets 10% more
+    // Translates to daybreak
+    // Daybreak: Heal 30% for 6 other targets
+    // TODO: Add option for 2 stacks of it
+    // Daybreak heal does not transfer to beacon
+    spls.find('HolyShock').attr({
+        fcritp: function(delta) {
+            return Math.min(2 * this.spec.fcritp(delta), 1);
+        },
+        fmixeddirect: function(delta) {
+            return this.fbasedirect(delta) *
+                   (1 + 2 * (this.spec.multi_factor || 0.3) *
+                        this.fmultip(delta)) *
+                   this.ftargets(delta) *
+                   this.fspec_mixed_factor(delta) *
+                   (this.spec.daybreak ? 1 + 6 * 0.3 : 1);
+        }
+    });
+
+    spls.find('HolyRadiance').attr({
+        fct: function(delta) {
+            return (
+                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
+                (1 + this.spec.fhastep(delta))
+            );
+        }
+    });
+
+    spls.find('LightsHammer').attr({
+        fbaseshield: function(delta) {
+            return this.spec.fmastp(delta) * this.fbasehot(delta);
+        }
+    });
+
+    spls.find('LoD').attr({
+        ftargets: function(delta) {
+            return ( this.targets - (this.spec.attr('glyph_lod') ? 2 : 0) )
+        },
+        fbasedirect: function(delta) {
+            return this.fbasedirect_no_mast(delta) *
+                   (this.spec.attr('glyph_lod') ? 1.25 : 1);
+        }
+    });
+
+    spls.find('SacredShield').attr({
+        fbaseshield: function(delta) {
+            return (this.cshield || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta)) *
+                   (1 + this.spec.fhastep(delta));
+        }
+    });
+
+    // END PALLY Spells setup
+
 /***************
 
     // SHAMAN Spells setup
@@ -2463,231 +2563,6 @@ define(['can'], function(can) {
     });
 
     //END SHAMAN Spells Setup
-
-    // PALLY Spells setup
-    spls.find('HolyLight').attr({
-        fct: function(delta) {
-            return (
-                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
-                (1 + this.spec.fhastep(delta))
-            );
-        },
-        fmana: function(delta) {
-            return (
-                this.base_mana *
-                ( this.spec.bol && this.spec.beacon_heals ? 0.6 : 1 )
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
-                ( 1 +
-                  this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (
-                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                    ( this.spec.bof ? 0.5 : 0 )
-                  ) *
-                  (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        }
-    });
-    spls.find('FlashLight').attr({
-        fmana: function(delta) {
-            return (
-                this.base_mana *
-                ( this.spec.bol && this.spec.beacon_heals ? 0.6 : 1 )
-            );
-        },
-        fbase: function(delta) {
-            return (
-                (this.nticks ? this.fhot(delta) : this.fdirect(delta)) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                (this.spec.infusion_of_light ? 1.5 : 1) *
-                1.05 // Seal of Insight
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
-                ( 1 +
-                  this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (
-                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                    ( this.spec.bof ? 0.5 : 0 )
-                  ) *
-                  (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        }
-    });
-
-    spls.find('HolyShock').attr({
-        fheal: function(delta) {
-            var crit = Math.min(2 * this.spec.fcritp(delta), 1);
-            return (
-                this.fbase(delta) *
-                ( 1 + crit ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
-                ( (
-                    ( 1 + this.spec.fmastp(delta) ) *
-                    (this.spec.daybreak ? 1 + 6 * 0.3 : 1)
-                  ) +  // Mastery not on beacon
-                  (
-                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                    ( this.spec.bof ? 0.5 : 0 )
-                  ) *
-                  (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        }
-    });
-
-    spls.find('HolyRadiance').attr({
-        fct: function(delta) {
-            return (
-                ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
-                (1 + this.spec.fhastep(delta))
-            );
-        },
-        fdirect: function(delta) {
-            return (
-                ( this.B + this.c * this.spec.fsp(delta) ) *
-                this.ftargets(delta)
-            );
-        }
-    });
-
-    spls.find('WoG').attr({
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
-                ( 1 +
-                  this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (
-                    ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                    ( this.spec.bof ? 0.5 : 0 )
-                  ) *
-                  (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        }
-    });
-
-    spls.find('LoD').attr({
-        ftargets: function(delta) {
-            return ( this.targets - (this.spec.attr('glyph_lod') ? 2 : 0) )
-        },
-        fdirect: function(delta) {
-            return (
-                this.c * this.spec.fsp(delta) *
-                this.ftargets(delta) *
-                (this.spec.attr('glyph_lod') ? 1.25 : 1)
-            );
-        }
-    });
-
-    spls.find('EternalFlame').attr({
-        fbase: function(delta) {
-            return (
-                ( this.fhot(delta) + this.fdirect(delta) ) *
-                ( 1 + 1 * this.spec.fversp(delta) ) *
-                1.05 // Seal of Insight
-            );
-        },
-        fheal: function(delta) {
-            return (
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( this.spec.bol && this.spec.beacon_heals ? 1.1 : 1 ) *
-                (
-                    this.fbase(delta) *
-                    ( 1 + // Only direct heal has mastery
-                        (
-                            ( this.spec.bol && !this.spec.beacon_heals ? 0.5 : 0 ) +
-                            ( this.spec.bof ? 0.5 : 0 )
-                        ) *
-                        (this.spec.t18_2p_pally ? 1.25 : 1)
-                    ) +
-                    this.fdirect(delta) * // The direct heal adds mastery
-                    ( 1 + 1 * this.spec.fversp(delta) ) *
-                    this.spec.fmastp(delta) *
-                    1.05
-                )
-            );
-        }
-    });
-    spls.find('SacredShield').attr({
-        fbase: function(delta) {
-            return (
-                this.fhot(delta) *
-                ( 1 + 1 * this.spec.fversp(delta) )
-            );
-        },
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) )
-            );
-        }
-    });
-
-    spls.find('HolyPrismAoE').attr({
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 +
-                  this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (
-                    this.targets -
-                    ( this.spec.bol ? 1 : 0 ) -
-                    ( this.spec.bof ? 1 : 0 )
-                  ) / this.targets * // Percent of non-beaconed targets
-                    this.beaconPercent *
-                    (this.spec.bol ? 1 : 0) * // Only apply if bol on
-                    (this.spec.bof ? 2 : 1) *
-                    (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        }
-    });
-
-    spls.find('LightsHammer').attr({
-        fheal: function(delta) {
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                ( 1 +
-                  this.spec.fmastp(delta) +  // Mastery not on beacon
-                  (
-                    this.targets -
-                    ( this.spec.bol ? 1 : 0 ) -
-                    ( this.spec.bof ? 1 : 0 )
-                  ) / this.targets * // Percent of non-beaconed targets
-                    this.beaconPercent *
-                    (this.spec.bol ? 1 : 0) * // Only apply if bol on
-                    (this.spec.bof ? 2 : 1) *
-                    (this.spec.t18_2p_pally ? 1.25 : 1)
-                )
-            );
-        }
-    });
-
-    // END PALLY Spells setup
 
     // MONK Spells setup
     spls.find('RenewingMist').attr({
