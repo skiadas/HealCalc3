@@ -960,7 +960,6 @@ define(['can'], function(can) {
             cdshort: true,
             cdnone: false
         },
-/******
         //
         // SHAMAN
         //
@@ -1060,7 +1059,7 @@ define(['can'], function(can) {
             specid: 5,
             base_ct: 1.5,
             base_mana: 2752,
-            ctick: 0.525 * 1.5 * 1.4,  // Per tick
+            ctick: 15 / 2 * 0.525 * 1.5 * 1.4,
             nticks: 15 / 2,   // But there is an initial tick
             time_tick: 2,
             img: 'inv_spear_04',
@@ -1078,7 +1077,7 @@ define(['can'], function(can) {
             specid: 5,
             base_ct: 1.5,
             base_mana: 1792,
-            ctick: 0.6 * 1.5 * 1.4,   // Per tick
+            ctick: 5 * 0.6 * 1.5 * 1.4,
             targets: 5,
             nticks: 10 / 2,
             time_tick: 2,
@@ -1097,7 +1096,7 @@ define(['can'], function(can) {
             specid: 5,
             base_ct: 2,
             base_mana: 6912,
-            ctick: 0.163882 * 1.4 * 2, // Each tick
+            ctick: 10 / 2 * 0.163882 * 1.4 * 2,
             targets: 6,
             nticks: 10 / 2,
             time_tick: 2,
@@ -1127,6 +1126,7 @@ define(['can'], function(can) {
             cdshort: false,
             cdnone: true
         },
+/******
         {
             id: 64,
             code: 'SoothingMist',
@@ -1728,13 +1728,25 @@ define(['can'], function(can) {
                    (this.spec.bol && this.spec.beacon_heals ? 1.1 : 1);
         },
 
-
-
-
-        fbase_shaman: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
+        // Shaman changes
+        fspec_mixed_factor_shaman: function(delta) {
+            return this.spec.fmast_factor(delta);
         },
+
+        // fbase_shaman: function(delta) {
+        //     return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
+        //            ( 1 + 1 * this.spec.fversp(delta) );
+        // },
+        // fheal_shaman: function(delta) {
+        //     // The average heal amount, including crits and multistrike.
+        //     return (
+        //         this.fbase(delta) *
+        //         ( 1 + this.spec.fcritp(delta) ) *
+        //         ( 1 + 0.6 * this.spec.fmultip(delta) ) *
+        //         this.spec.fmast_factor(delta)
+        //     );
+        // },
+
         fbase_monk: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
                    ( 1 + 1 * this.spec.fversp(delta) );
@@ -1765,15 +1777,6 @@ define(['can'], function(can) {
             );
         },
 
-        fheal_shaman: function(delta) {
-            // The average heal amount, including crits and multistrike.
-            return (
-                this.fbase(delta) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                this.spec.fmast_factor(delta)
-            );
-        },
         fheal_monk: function(delta) {
             var sphere = this.spec.fsp(delta) * this.spec.mast_c *
                          (1 + this.spec.fversp(delta));
@@ -1936,8 +1939,9 @@ define(['can'], function(can) {
             sp.fbaseother = sp.fbaseother_pally_beacon;
         } else if ( sp.specid == 5 ) {
             // General Shaman spell setup
-            sp.fbase = sp.fbase_shaman;
-            sp.fheal = sp.fheal_shaman;
+            sp.fbasedirect = sp.fbasedirect_no_mast;
+            sp.fbasehot = sp.fbasehot_no_mast;
+            sp.fspec_mixed_factor = sp.fspec_mixed_factor_shaman;
         } else if (sp.specid == 4) {
             // General Druid setup
             sp.fbase = sp.fbase_druid;
@@ -2417,9 +2421,33 @@ define(['can'], function(can) {
 
     // END PALLY Spells setup
 
-/***************
 
     // SHAMAN Spells setup
+    spls.find('HW').attr({
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        },
+        fct: function(delta) {
+            return (
+                this.base_ct *
+                ( this.spec.attr('tidal_waves') ? 0.8 : 1) /
+                ( 1 + this.spec.fhastep(delta) )
+            );
+        }
+    });
+
+    spls.find('HSurge').attr({
+        fcritp: function(delta) {
+            return Math.min(
+                this.spec.fcritp(delta) +
+                (this.spec.attr('tidal_waves') ? 0.3 : 0),
+                1
+            );
+        },
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        }
+    });
 
     spls.find('ChainHeal').attr({
         fmana: function(delta) {
@@ -2437,47 +2465,30 @@ define(['can'], function(can) {
         },
     });
 
-    spls.find('HW').attr({
-        fmana: function(delta) {
-            return ( this.fmana_shaman_resurgence(delta) );
-        },
-        fct: function(delta) {
-            return (
-                this.base_ct *
-                ( this.spec.attr('tidal_waves') ? 0.8 : 1) /
-                ( 1 + this.spec.fhastep(delta) )
-            );
+    ['HST', 'HTT', 'HealingRain'].forEach(function(sp) {
+        spls.find(sp).attr({
+            fbasehot: function(delta) {
+                return (
+                    (
+                        this.ctick / this.nticks +
+                        (this.ctick || 0) * (1 + this.spec.fhastep(delta))
+                    ) *
+                    this.spec.fsp(delta) *
+                    (1 + this.spec.fversp(delta))
+                );
+            }
+        });
+    });
+
+    spls.find('HTT').attr({
+        ftargets: function(delta) {
+            return ( this.spec.buffs.raid_size );
         }
     });
 
-    spls.find('HSurge').attr({
-        fmana: function(delta) {
-            var crit = Math.min(
-                this.spec.fcritp(delta) +
-                (this.spec.attr('tidal_waves') ? 0.3 : 0),
-                1
-            );
-            return Math.roundn(
-                this.base_mana -
-                (
-                    crit *
-                    this.res_factor *
-                    (this.spec.resurgence ? 1 : 0)
-                )
-            );
-        },
-        fheal: function(delta) {
-            var crit = Math.min(
-                this.spec.fcritp(delta) +
-                (this.spec.attr('tidal_waves') ? 0.3 : 0),
-                1
-            );
-            return (
-                this.fbase(delta) *
-                ( 1 + crit ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                this.spec.fmast_factor(delta)
-            );
+    spls.find('HST').attr({
+        ftargets: function(delta) {
+            return ( this.spec.rushing_streams ? 1.15 * 2 : 1 );
         }
     });
 
@@ -2487,82 +2498,35 @@ define(['can'], function(can) {
         }
     });
 
-    spls.find('Riptide').attr({
-        fmana: function(delta) {
-            return ( this.fmana_shaman_resurgence(delta) );
-        },
-        fdirect: function(delta) {
-            return (
-                ( this.c * this.spec.fsp(delta) ) *
-                (this.spec.attr('glyph_riptide') ? 0.25 : 1)
-            );
-        },
-        fbase: function(delta) {
-            return (
-                this.fhot(delta) + this.fdirect(delta)
-            );
-        },
-        fheal: function(delta) {
-            var crit = Math.min(
-                (this.spec.t18_2p_shaman ? 0.25 : 0) +
-                 this.spec.fcritp(delta),
-                1
-            );
-
-            return (
-                this.fbase(delta) *
-                ( 1 + crit ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-                this.spec.fmast_factor(delta)
-            );
-        }
-    });
-
-    spls.find('HST').attr({
-        fhot: function(delta) {
-            return (
-                this.spec.fsp(delta) * this.ftargets(delta) *
-                (1 +
-                    this.ctick * this.nticks *
-                    (1 + this.spec.fhastep(delta))
-                )
-            );
-        },
-        ftargets: function(delta) {
-            return ( this.spec.rushing_streams ? 1.15 * 2 : 1 );
-        }
-    });
-    spls.find('HTT').attr({
-        fhot: function(delta) {
-            return (
-                this.spec.fsp(delta) * this.ftargets(delta) *
-                (1 +
-                    this.ctick * this.nticks *
-                    (1 + this.spec.fhastep(delta))
-                )
-            );
-        },
-        ftargets: function(delta) {
-            return ( this.spec.buffs.raid_size );
-        }
-    });
-
     spls.find('HealingRain').attr({
-        fhot: function(delta) {
-            return (
-                this.spec.fsp(delta) * this.ftargets(delta) *
-                (1 +
-                    this.ctick * this.nticks *
-                    (1 + this.spec.fhastep(delta))
-                )
-            );
-        },
         ftargets: function(delta) {
             return ( Math.min(1 * this.spec.hr_targets, this.targets) );
         }
     });
 
+    spls.find('Riptide').attr({
+        fmana: function(delta) {
+            return ( this.fmana_shaman_resurgence(delta) );
+        },
+        fbasedirect: function(delta) {
+            return (
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (this.spec.attr('glyph_riptide') ? 0.25 : 1)
+            );
+        },
+        fcritp: function(delta) {
+            return Math.min(
+                (this.spec.t18_2p_shaman ? 0.25 : 0) +
+                 this.spec.fcritp(delta),
+                1
+            );
+        }
+    });
+
     //END SHAMAN Spells Setup
+
+/***************
 
     // MONK Spells setup
     spls.find('RenewingMist').attr({
