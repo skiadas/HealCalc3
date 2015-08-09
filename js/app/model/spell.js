@@ -1533,11 +1533,15 @@ define(['can'], function(can) {
             return 1;
         },
 
+        fbasefactor: function(delta) {
+            return 1;
+        },
         fbasedirect: function(delta) {
             return (
                 (this.c || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
-                (1 + this.spec.fmastp(delta))
+                (1 + this.spec.fmastp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fbasehot: function(delta) {
@@ -1545,21 +1549,24 @@ define(['can'], function(can) {
                 (this.ctick || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
                 (1 + this.spec.fhastep(delta)) *
-                (1 + this.spec.fmastp(delta))
+                (1 + this.spec.fmastp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fbaseshield: function(delta) {
             return (
                 (this.cshield || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
-                (1 + this.spec.fmastp(delta))
+                (1 + this.spec.fmastp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fbaseother: function(delta) {
             return (
                 (this.cother || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
-                (1 + this.spec.fmastp(delta))
+                (1 + this.spec.fmastp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fbaseheal: function(delta) {
@@ -1641,14 +1648,16 @@ define(['can'], function(can) {
         fbasedirect_no_mast: function(delta) {
             return (
                 (this.c || 0) * this.spec.fsp(delta) *
-                (1 + this.spec.fversp(delta))
+                (1 + this.spec.fversp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fbasehot_no_mast: function(delta) {
             return (
                 (this.ctick || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
-                (1 + this.spec.fhastep(delta))
+                (1 + this.spec.fhastep(delta)) *
+                this.fbasefactor(delta)
             );
         },
 
@@ -1657,14 +1666,16 @@ define(['can'], function(can) {
             return (
                 (this.c || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
-                (1 + 0.5 * this.spec.fmastp(delta))
+                (1 + 0.5 * this.spec.fmastp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fbasehot_disc: function(delta) {
             return (
                 (this.ctick || 0) * this.spec.fsp(delta) *
                 (1 + this.spec.fversp(delta)) *
-                (1 + 0.5 * this.spec.fmastp(delta))
+                (1 + 0.5 * this.spec.fmastp(delta)) *
+                this.fbasefactor(delta)
             );
         },
         fspec_mixed_factor_disc: function(delta) {
@@ -1703,7 +1714,9 @@ define(['can'], function(can) {
 
         // Pally additions
         fbaseshield_pally_mast: function(delta) {
-            return this.spec.fmastp(delta) * this.fbasedirect(delta);
+            return this.spec.fmastp(delta) *
+                   this.fbasedirect(delta) *
+                   this.fbasefactor(delta);
         },
 
         fbaseother_pally_beacon: function(delta) {
@@ -1712,7 +1725,8 @@ define(['can'], function(can) {
                     (this.spec.bol ? 1 : 0) +
                     (this.spec.bof ? 1 : 0)
                 ) * (this.beaconPercent || 0.5) *
-                (this.spec.t18_2p_pally ? 1.25 : 1);
+                (this.spec.t18_2p_pally ? 1.25 : 1) *
+                this.fbasefactor(delta);
         },
         fbaseother_pally_sth_beacon: function(delta) {
             return (this.fbasedirect(delta) + this.fbasehot(delta)) *
@@ -1720,12 +1734,14 @@ define(['can'], function(can) {
                     (this.spec.bol && !this.spec.beacon_heals ? 1 : 0) +
                     (this.spec.bof ? 1 : 0)
                 ) * (this.beaconPercent || 0.5) *
-                (this.spec.t18_2p_pally ? 1.25 : 1);
+                (this.spec.t18_2p_pally ? 1.25 : 1) *
+                this.fbasefactor(delta);
         },
         fbasedirect_sth_pally: function(delta) {
             return (this.c || 0) * this.spec.fsp(delta) *
                    (1 + this.spec.fversp(delta)) *
-                   (this.spec.bol && this.spec.beacon_heals ? 1.1 : 1);
+                   (this.spec.bol && this.spec.beacon_heals ? 1.1 : 1) *
+                   this.fbasefactor(delta);
         },
 
         // Shaman changes
@@ -1733,19 +1749,6 @@ define(['can'], function(can) {
             return this.spec.fmast_factor(delta);
         },
 
-        // fbase_shaman: function(delta) {
-        //     return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-        //            ( 1 + 1 * this.spec.fversp(delta) );
-        // },
-        // fheal_shaman: function(delta) {
-        //     // The average heal amount, including crits and multistrike.
-        //     return (
-        //         this.fbase(delta) *
-        //         ( 1 + this.spec.fcritp(delta) ) *
-        //         ( 1 + 0.6 * this.spec.fmultip(delta) ) *
-        //         this.spec.fmast_factor(delta)
-        //     );
-        // },
 
         fbase_monk: function(delta) {
             return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
@@ -2080,9 +2083,7 @@ define(['can'], function(can) {
             return this.targets + (this.spec.t17_2p_disc ? 1 : 0);
         },
         fbasedirect: function(delta) {
-            return (
-                this.fbasedirect_no_mast(delta)
-            );
+            return this.fbasedirect_no_mast(delta);
         },
         fmana: function(delta) {
             return (
@@ -2259,13 +2260,8 @@ define(['can'], function(can) {
             fmana: function(delta) {
                 return this.spec.attr('healing_touch_with_ns') ? 0 : this.base_mana;
             },
-            fbasedirect: function(delta) {
-                return (
-                    (this.c || 0) * this.spec.fsp(delta) *
-                    (1 + this.spec.fversp(delta)) *
-                    (1 + this.spec.fmastp(delta)) *
-                    ( this.spec.attr('healing_touch_with_ns') ? 1.5 : 1 )
-                );
+            fbasefactor: function(delta) {
+                return this.spec.attr('healing_touch_with_ns') ? 1.5 : 1;
             }
         });
     });
@@ -2361,9 +2357,8 @@ define(['can'], function(can) {
     });
 
     spls.find('FlashLight').attr({
-        fbasedirect: function(delta) {
-            return this.fbasedirect_sth_pally(delta) *
-                   (this.spec.infusion_of_light ? 1.5 : 1);
+        fbasefactor: function(delta) {
+            return this.spec.infusion_of_light ? 1.5 : 1;
         }
     });
 
@@ -2405,9 +2400,8 @@ define(['can'], function(can) {
         ftargets: function(delta) {
             return ( this.targets - (this.spec.attr('glyph_lod') ? 2 : 0) )
         },
-        fbasedirect: function(delta) {
-            return this.fbasedirect_no_mast(delta) *
-                   (this.spec.attr('glyph_lod') ? 1.25 : 1);
+        fbasefactor: function(delta) {
+            return this.spec.attr('glyph_lod') ? 1.25 : 1;
         }
     });
 
