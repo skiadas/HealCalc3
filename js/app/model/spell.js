@@ -1126,7 +1126,6 @@ define(['can'], function(can) {
             cdshort: false,
             cdnone: true
         },
-/******
         {
             id: 64,
             code: 'SoothingMist',
@@ -1213,7 +1212,7 @@ define(['can'], function(can) {
             specid: 6,
             base_ct: 1.5,
             base_mana: 3840,
-            c: 31.164,
+            cshield: 31.164,
             img: 'ability_monk_chicocoon',
             aoe: false,
             instant: true,
@@ -1347,8 +1346,8 @@ define(['can'], function(can) {
             base_ct: 1,
             base_mana: 0,
             targets: 1,
-            c: 8 * 0.095 * 1.2,
-            c_det: 1.25 * 1.2, // Tooltip does not show the 1.2 factor
+            cticks: 8 * 0.095 * 1.2,
+            c: 6 * 1.25 * 1.2, // Tooltip does not show the 1.2 factor
             img: 'ability_monk_forcesphere',
             aoe: true,
             instant: true,
@@ -1414,7 +1413,6 @@ define(['can'], function(can) {
             cdshort: false,
             cdnone: false
         },
-********/
 
    ];
 
@@ -1749,38 +1747,8 @@ define(['can'], function(can) {
             return this.spec.fmast_factor(delta);
         },
 
-
-        fbase_monk: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                   ( 1 + 1 * this.spec.fversp(delta) );
-        },
-        fbase_monk_melee: function(delta) {
-            return (
-                1.2 *
-                (0.25 + 0.25) *    // Eminence and statue
-                this.melee_coeff *
-                this.spec.fmonk_melee_factor(delta) *
-                this.ftargets(delta) *
-                this.ftarget_armor_dr(delta)
-            );
-        },
-        ftarget_armor_dr: function(delta) {
-            return (
-                1 -
-                1 /
-                (
-                    1 +
-                    (4037.5*90 - 317117.5) /
-                    (
-                        24835 *
-                        (this.spec.tiger_power ? 0.7 : 1) *
-                        (this.spec.armor ? 0.88 : 1)
-                    )
-                )
-            );
-        },
-
-        fheal_monk: function(delta) {
+        // Monk changes
+        fbaseother_monk: function(delta) {
             var sphere = this.spec.fsp(delta) * this.spec.mast_c *
                          (1 + this.spec.fversp(delta));
             var nticks = Math.ceiln(
@@ -1789,12 +1757,37 @@ define(['can'], function(can) {
             );
             var proc_chance = this.mast_factor *
                 (this.ctick ? nticks : 1) *
-                (this.ftargets(delta) || 1) *
                 this.spec.fmastp(delta);
-            return ( this.fbase(delta) + proc_chance * sphere ) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) );
+            return proc_chance * sphere;
         },
+
+
+        // fbase_monk_melee: function(delta) {
+        //     return (
+        //         1.2 *
+        //         (0.25 + 0.25) *    // Eminence and statue
+        //         this.melee_coeff *
+        //         this.spec.fmonk_melee_factor(delta) *
+        //         this.ftargets(delta) *
+        //         this.ftarget_armor_dr(delta)
+        //     );
+        // },
+        // ftarget_armor_dr: function(delta) {
+        //     return (
+        //         1 -
+        //         1 /
+        //         (
+        //             1 +
+        //             (4037.5*90 - 317117.5) /
+        //             (
+        //                 24835 *
+        //                 (this.spec.tiger_power ? 0.7 : 1) *
+        //                 (this.spec.armor ? 0.88 : 1)
+        //             )
+        //         )
+        //     );
+        // },
+
 
 
         fdirectps: function(delta) {
@@ -1952,7 +1945,9 @@ define(['can'], function(can) {
            // General Monk setup
            sp.fct = sp.fct_monk;
            sp.fmana = sp.fmana_monk;
-           sp.fbase = sp.fbase_monk;
+           sp.fbasedirect = sp.fbasedirect_no_mast;
+           sp.fbasehot = sp.fbasehot_no_mast;
+           sp.fbaseother = sp.fbaseother_monk;
            sp.fheal = sp.fheal_monk;
         }
     });
@@ -2517,28 +2512,9 @@ define(['can'], function(can) {
             );
         }
     });
-
     //END SHAMAN Spells Setup
 
-/***************
-
     // MONK Spells setup
-    spls.find('RenewingMist').attr({
-        fbase: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                ( this.spec.pool_mists_monk ? 1.15 : 1 ) *
-                ( 1 + 1 * this.spec.fversp(delta) );
-        }
-    });
-
-    spls.find('RenewingMistTFT').attr({
-        fbase: function(delta) {
-            return ( this.nticks ? this.fhot(delta) : this.fdirect(delta) ) *
-                ( this.spec.pool_mists_monk ? 1.15 : 1 ) *
-                ( 1 + 1 * this.spec.fversp(delta) );
-        }
-    });
-
     spls.find('Uplift').attr({
         ftargets: function(delta) {
             return this.spec.uplift_targets;
@@ -2551,58 +2527,79 @@ define(['can'], function(can) {
         }
     });
 
+    ['RenewingMist', 'RenewingMistTFT'].forEach(function(sp) {
+        spls.find(sp).attr({
+            fbasefactor: function(delta) {
+                return this.spec.pool_mists_monk ? 1.15 : 1;
+            }
+        });
+    });
+
     spls.find('LifeCocoon').attr({
-        fheal: function(delta) {
-            return this.fbase(delta);
+        fbaseother: function(delta) {
+            return 0;
+        },
+        fcritp: function(delta) {
+            return 0;
+        },
+        fbaseshield: function(delta) {
+            return (this.cshield || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta));
+        },
+        fmixedshield: function(delta) {
+            return this.fbaseshield(delta);
         }
     });
 
     spls.find('ExpelHarm').attr({
-        fbase: function(delta) {
+        fbasedirect: function(delta) {
             return (
-                (
-                    this.fdirect(delta) +
-                    1.2 * this.spec.stats.bwdam
-                ) * (this.spec.expelHarm_other ? 0.5 : 1)
-            );
+                this.c * this.spec.fsp(delta) +
+                1.2 * this.spec.stats.bwdam
+            ) * (1 + this.spec.fversp(delta));
+        },
+        fspec_mixed_factor: function(delta) {
+            return this.spec.expelHarm_other ? 0.5 : 1;
         }
     });
 
     spls.find('ZenSphere').attr({
-        fbase: function(delta) {
+        fbasehot: function(delta) {
             return (
-                ( this.c + 6 * this.c_det ) *
+                this.cticks *
                 this.spec.fsp(delta) *
                 ( 1 + 1 * this.spec.fversp(delta) )
             );
         },
-        fheal: function(delta) {
+        fbaseother: function(delta) {
             var sphere = this.spec.fsp(delta) * this.spec.mast_c *
                          (1 + this.spec.fversp(delta));
             var proc_chance = this.mast_factor *
                 ( 8 + 6 ) *
                 this.spec.fmastp(delta);
-            return ( this.fbase(delta) + proc_chance * sphere ) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) );
+            return proc_chance * sphere;
         }
     });
 
     spls.find('ChiExplosion').attr({
-        fbase: function(delta) {
+        fbasedirect: function(delta) {
+            return this.c * this.spec.fsp(delta) *
+                   (1 +  this.spec.chi_expl_monk) *
+                   (1 + 1 * this.spec.fversp(delta));
+        },
+        fbasehot: function(delta) {
             var chi = 1 * this.spec.chi_expl_monk;
-            return this.fdirect(delta) *
-                   (
-                    ( 1 + chi ) +
-                    ( // hots seem to get double vers
+            return this.c * this.spec.fsp(delta) *
+                   ( // hots seem to get double vers
                         chi === 4 ? 3.5 :
                         chi === 3 ? 2 :
                         chi === 2 ? 1 :
                         0
-                    ) * ( 1 + 1 * this.spec.fversp(delta) )
-                   ) * ( 1 + 1 * this.spec.fversp(delta) );
+                   ) *
+                   (1 + 1 * this.spec.fversp(delta)) *
+                   (1 + 1 * this.spec.fversp(delta));
         },
-        fheal: function(delta) {
+        fbaseother: function(delta) {
             var sphere = this.spec.fsp(delta) * this.spec.mast_c *
                          (1 + this.spec.fversp(delta));
             var chi = 1 * this.spec.chi_expl_monk;
@@ -2613,13 +2610,9 @@ define(['can'], function(can) {
                     (chi >= 2 ? this.mast_factor_tick : 0)
                 ) *
                 this.spec.fmastp(delta);
-            return ( this.fbase(delta) + proc_chance * sphere ) *
-                ( 1 + this.spec.fcritp(delta) ) *
-                ( 1 + 0.6 * this.spec.fmultip(delta) );
+            return proc_chance * sphere;
         }
     });
-
-***************/
 
 
     return spls;
