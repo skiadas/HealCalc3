@@ -59,12 +59,14 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
     'change': function() {
         imask = 0;
         var filters = this.options.filters;
+        var self = this;
         $.each(FILTERS, function(i, filter) {
             if (filters.attr(filter)) { imask += (1 << i); }
         });
         imask = ~imask & this.options.fullmask;
         this.options.curr_mask = imask;
-        // this.update(this);
+        console.log("here!")
+        setTimeout(function() { self.update(self); }, 40);
     },
 });
 return Filtering;
