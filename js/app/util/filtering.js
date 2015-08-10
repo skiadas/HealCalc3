@@ -65,7 +65,6 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
         });
         imask = ~imask & this.options.fullmask;
         this.options.curr_mask = imask;
-        console.log("here!")
         setTimeout(function() { self.update(self); }, 40);
     },
 });
