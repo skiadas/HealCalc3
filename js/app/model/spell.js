@@ -1482,11 +1482,11 @@ define(['can'], function(can) {
      //
     var spec_specific = {
         fct: function(delta) {
-            return ( this.base_ct / (1+this.spec.hastep) );
+            return ( this.base_ct / (1+this.spec.fhastep(delta)) );
         },
         fct_monk: function(delta) {
             return (
-                (this.base_ct / (1 + this.spec.hastep)) +
+                (this.base_ct / (1 + this.spec.fhastep(delta))) +
                 (this.spec.mana_tea_monk ? (this.chi_gain || 0) * 0.25 * 0.5 : 0)
             );
         },
@@ -1498,7 +1498,7 @@ define(['can'], function(can) {
                 Math.roundn(
                     this.base_mana -
                     (
-                        this.spec.critp *
+                        this.spec.fcritp(delta) *
                         this.res_factor *
                         (this.spec.resurgence ? 1 : 0)
                     )
@@ -1519,13 +1519,13 @@ define(['can'], function(can) {
             return ( this.targets || 1 );
         },
         fnticks: function(delta) {
-            return Math.ceil(this.nticks * (1 + this.spec.hastep));
+            return Math.ceil(this.nticks * (1 + this.spec.fhastep(delta)));
         },
         fmultip: function(delta) {
-            return this.spec.multip;
+            return this.spec.fmultip(delta);
         },
         fcritp: function(delta) {
-            return this.spec.critp;
+            return this.spec.fcritp(delta);
         },
         fspec_mixed_factor: function(delta) {
             return 1;
@@ -1536,34 +1536,34 @@ define(['can'], function(can) {
         },
         fbasedirect: function(delta) {
             return (
-                (this.c || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.mastp) *
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta)) *
                 this.fbasefactor(delta)
             );
         },
         fbasehot: function(delta) {
             return (
-                (this.ctick || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.hastep) *
-                (1 + this.spec.mastp) *
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
+                (1 + this.spec.fmastp(delta)) *
                 this.fbasefactor(delta)
             );
         },
         fbaseshield: function(delta) {
             return (
-                (this.cshield || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.mastp) *
+                (this.cshield || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta)) *
                 this.fbasefactor(delta)
             );
         },
         fbaseother: function(delta) {
             return (
-                (this.cother || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.mastp) *
+                (this.cother || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta)) *
                 this.fbasefactor(delta)
             );
         },
@@ -1653,16 +1653,16 @@ define(['can'], function(can) {
 
         fbasedirect_no_mast: function(delta) {
             return (
-                (this.c || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
                 this.fbasefactor(delta)
             );
         },
         fbasehot_no_mast: function(delta) {
             return (
-                (this.ctick || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.hastep) *
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
                 this.fbasefactor(delta)
             );
         },
@@ -1670,17 +1670,17 @@ define(['can'], function(can) {
         // Disc additions
         fbasedirect_disc: function(delta) {
             return (
-                (this.c || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + 0.5 * this.spec.mastp) *
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + 0.5 * this.spec.fmastp(delta)) *
                 this.fbasefactor(delta)
             );
         },
         fbasehot_disc: function(delta) {
             return (
-                (this.ctick || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + 0.5 * this.spec.mastp) *
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + 0.5 * this.spec.fmastp(delta)) *
                 this.fbasefactor(delta)
             );
         },
@@ -1696,7 +1696,7 @@ define(['can'], function(can) {
         },
         fcritshield_da: function(delta) {
             return (this.fmixeddirect(delta) + this.fmixedhot(delta)) *
-                   (1 + this.spec.mastp);
+                   (1 + this.spec.fmastp(delta));
         },
 
         // Holy additions
@@ -1705,7 +1705,7 @@ define(['can'], function(can) {
         fmixedhot_holy: function(delta) {
             return (
                         this.fbasehot(delta) +
-                        this.fbasedirect(delta) * this.spec.mastp
+                        this.fbasedirect(delta) * this.spec.fmastp(delta)
                    ) *
                    (1 + 2 * (this.spec.multi_factor || 0.3) *
                         this.fmultip(delta)) *
@@ -1720,7 +1720,7 @@ define(['can'], function(can) {
 
         // Pally additions
         fbaseshield_pally_mast: function(delta) {
-            return this.spec.mastp *
+            return this.spec.fmastp(delta) *
                    this.fbasedirect(delta) *
                    this.fbasefactor(delta);
         },
@@ -1744,8 +1744,8 @@ define(['can'], function(can) {
                 this.fbasefactor(delta);
         },
         fbasedirect_sth_pally: function(delta) {
-            return (this.c || 0) * this.spec.sp *
-                   (1 + this.spec.versp) *
+            return (this.c || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta)) *
                    (this.spec.bol && this.spec.beacon_heals ? 1.1 : 1) *
                    this.fbasefactor(delta);
         },
@@ -1757,15 +1757,15 @@ define(['can'], function(can) {
 
         // Monk changes
         fbaseother_monk: function(delta) {
-            var sphere = this.spec.sp * this.spec.mast_c *
-                         (1 + this.spec.versp);
+            var sphere = this.spec.fsp(delta) * this.spec.mast_c *
+                         (1 + this.spec.fversp(delta));
             var nticks = Math.ceiln(
                 this.duration *
-                (1 + this.spec.hastep) / this.time_tick
+                (1 + this.spec.fhastep(delta)) / this.time_tick
             );
             var proc_chance = this.mast_factor *
                 (this.ctick ? nticks : 1) *
-                this.spec.mastp;
+                this.spec.fmastp(delta);
             return proc_chance * sphere;
         },
 
@@ -2019,7 +2019,7 @@ define(['can'], function(can) {
             return ( 1 * this.spec.poh_targets_disc );
         },
         fcritp: function(delta) {
-            return Math.min(this.spec.critp + 0.1, 1);
+            return Math.min(this.spec.fcritp(delta) + 0.1, 1);
         }
     });
 
@@ -2039,7 +2039,7 @@ define(['can'], function(can) {
                     this.base_ct +
                     (this.spec.t17_2p_disc ? 1 : 0)
                 ) /
-                (1 + this.spec.hastep)
+                (1 + this.spec.fhastep(delta))
             );
         },
         ftargets: function(delta) {
@@ -2080,7 +2080,7 @@ define(['can'], function(can) {
                     this.base_ct +
                     (this.spec.t17_2p_disc ? 1 : 0)
                 ) /
-                (1 + this.spec.hastep)
+                (1 + this.spec.fhastep(delta))
             );
         },
         ftargets: function(delta) {
@@ -2182,8 +2182,8 @@ define(['can'], function(can) {
 
     spls.find('PWSHoly').attr({
         fbaseshield: function(delta) {
-            return (this.cshield || 0) * this.spec.sp *
-                   (1 + this.spec.versp);
+            return (this.cshield || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta));
 
         }
     });
@@ -2211,9 +2211,9 @@ define(['can'], function(can) {
     spls.find('Tranquility').attr({
         fbasehot: function(delta) {
             return (
-                (this.ctick || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.mastp)
+                (this.ctick || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
         ftargets: function(delta) {
@@ -2234,16 +2234,16 @@ define(['can'], function(can) {
         fbasehot: function(delta) {
             return (
                 (this.spec.attr('glyph_regrowth') ? 0 : this.ctick) *
-                this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.hastep) *
-                (1 + this.spec.mastp)
+                this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
         fcritp: function(delta) {
             return this.spec.attr('glyph_regrowth') ?
                    1 :
-                   Math.min(this.spec.critp + 0.6, 1);
+                   Math.min(this.spec.fcritp(delta) + 0.6, 1);
         }
     });
 
@@ -2258,7 +2258,7 @@ define(['can'], function(can) {
                             (this.spec.attr('glyph_rejuv') ? 0.9 : 1)
                         )
                     ) /
-                    ( 1 + this.spec.hastep )
+                    ( 1 + this.spec.fhastep(delta) )
                 );
             },
             fmana: function(delta) {
@@ -2272,7 +2272,7 @@ define(['can'], function(can) {
 
     spls.find('HealingTouchLB').attr({
         fcritp: function(delta) {
-            return Math.min(this.spec.critp + 0.2, 1);
+            return Math.min(this.spec.fcritp(delta) + 0.2, 1);
         }
     });
 
@@ -2283,10 +2283,10 @@ define(['can'], function(can) {
                 (this.spec.attr('germination') ?
                     (this.nticks + 1) / this.nticks : 1
                 ) *
-                this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.hastep) *
-                (1 + this.spec.mastp)
+                this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fhastep(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
     });
@@ -2299,24 +2299,24 @@ define(['can'], function(can) {
                     this.nticks -
                     (this.spec.attr('glyph_blooming') ? 5 : 0)
                 ) / this.nticks *
-                this.spec.sp *
-                (1 + this.spec.versp) *
-                (1 + this.spec.mastp) *
-                (1 + this.spec.hastep)
+                this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta)) *
+                (1 + this.spec.fhastep(delta))
             );
         },
         fbasedirect: function(delta) {
             return (
-                this.c * this.spec.sp *
+                this.c * this.spec.fsp(delta) *
                 (this.spec.attr('glyph_blooming') ? 1.5 : 1) *
-                (1 + this.spec.versp) *
-                (1 + this.spec.mastp)
+                (1 + this.spec.fversp(delta)) *
+                (1 + this.spec.fmastp(delta))
             );
         },
         fnticks: function(delta) {
             return Math.ceil(
                 (this.nticks - (this.spec.attr('glyph_blooming') ? 5 : 0)) *
-                (1 + this.spec.hastep)
+                (1 + this.spec.fhastep(delta))
 
             );
         },
@@ -2355,7 +2355,7 @@ define(['can'], function(can) {
         fct: function(delta) {
             return (
                 ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
-                (1 + this.spec.hastep)
+                (1 + this.spec.fhastep(delta))
             );
         }
     });
@@ -2373,7 +2373,7 @@ define(['can'], function(can) {
     // Daybreak heal does not transfer to beacon
     spls.find('HolyShock').attr({
         fcritp: function(delta) {
-            return Math.min(2 * this.spec.critp, 1);
+            return Math.min(2 * this.spec.fcritp(delta), 1);
         },
         fmixeddirect: function(delta) {
             return this.fbasedirect(delta) *
@@ -2389,14 +2389,14 @@ define(['can'], function(can) {
         fct: function(delta) {
             return (
                 ( this.base_ct - (this.spec.infusion_of_light ? 1.5 : 0) ) /
-                (1 + this.spec.hastep)
+                (1 + this.spec.fhastep(delta))
             );
         }
     });
 
     spls.find('LightsHammer').attr({
         fbaseshield: function(delta) {
-            return this.spec.mastp * this.fbasehot(delta);
+            return this.spec.fmastp(delta) * this.fbasehot(delta);
         }
     });
 
@@ -2411,9 +2411,9 @@ define(['can'], function(can) {
 
     spls.find('SacredShield').attr({
         fbaseshield: function(delta) {
-            return (this.cshield || 0) * this.spec.sp *
-                   (1 + this.spec.versp) *
-                   (1 + this.spec.hastep);
+            return (this.cshield || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta)) *
+                   (1 + this.spec.fhastep(delta));
         }
     });
 
@@ -2429,7 +2429,7 @@ define(['can'], function(can) {
             return (
                 this.base_ct *
                 ( this.spec.attr('tidal_waves') ? 0.8 : 1) /
-                ( 1 + this.spec.hastep )
+                ( 1 + this.spec.fhastep(delta) )
             );
         }
     });
@@ -2437,7 +2437,7 @@ define(['can'], function(can) {
     spls.find('HSurge').attr({
         fcritp: function(delta) {
             return Math.min(
-                this.spec.critp +
+                this.spec.fcritp(delta) +
                 (this.spec.attr('tidal_waves') ? 0.3 : 0),
                 1
             );
@@ -2469,10 +2469,10 @@ define(['can'], function(can) {
                 return (
                     (
                         this.ctick / this.nticks +
-                        (this.ctick || 0) * (1 + this.spec.hastep)
+                        (this.ctick || 0) * (1 + this.spec.fhastep(delta))
                     ) *
-                    this.spec.sp *
-                    (1 + this.spec.versp)
+                    this.spec.fsp(delta) *
+                    (1 + this.spec.fversp(delta))
                 );
             }
         });
@@ -2508,15 +2508,15 @@ define(['can'], function(can) {
         },
         fbasedirect: function(delta) {
             return (
-                (this.c || 0) * this.spec.sp *
-                (1 + this.spec.versp) *
+                (this.c || 0) * this.spec.fsp(delta) *
+                (1 + this.spec.fversp(delta)) *
                 (this.spec.attr('glyph_riptide') ? 0.25 : 1)
             );
         },
         fcritp: function(delta) {
             return Math.min(
                 (this.spec.t18_2p_shaman ? 0.25 : 0) +
-                 this.spec.critp,
+                 this.spec.fcritp(delta),
                 1
             );
         }
@@ -2552,8 +2552,8 @@ define(['can'], function(can) {
             return 0;
         },
         fbaseshield: function(delta) {
-            return (this.cshield || 0) * this.spec.sp *
-                   (1 + this.spec.versp);
+            return (this.cshield || 0) * this.spec.fsp(delta) *
+                   (1 + this.spec.fversp(delta));
         },
         fmixedshield: function(delta) {
             return this.fbaseshield(delta);
@@ -2563,9 +2563,9 @@ define(['can'], function(can) {
     spls.find('ExpelHarm').attr({
         fbasedirect: function(delta) {
             return (
-                this.c * this.spec.sp +
+                this.c * this.spec.fsp(delta) +
                 1.2 * this.spec.stats.bwdam
-            ) * (1 + this.spec.versp);
+            ) * (1 + this.spec.fversp(delta));
         },
         fspec_mixed_factor: function(delta) {
             return this.spec.expelHarm_other ? 0.5 : 1;
@@ -2576,41 +2576,41 @@ define(['can'], function(can) {
         fbasehot: function(delta) {
             return (
                 this.cticks *
-                this.spec.sp *
-                ( 1 + 1 * this.spec.versp )
+                this.spec.fsp(delta) *
+                ( 1 + 1 * this.spec.fversp(delta) )
             );
         },
         fbaseother: function(delta) {
-            var sphere = this.spec.sp * this.spec.mast_c *
-                         (1 + this.spec.versp);
+            var sphere = this.spec.fsp(delta) * this.spec.mast_c *
+                         (1 + this.spec.fversp(delta));
             var proc_chance = this.mast_factor *
                 ( 8 + 6 ) *
-                this.spec.mastp;
+                this.spec.fmastp(delta);
             return proc_chance * sphere;
         }
     });
 
     spls.find('ChiExplosion').attr({
         fbasedirect: function(delta) {
-            return this.c * this.spec.sp *
+            return this.c * this.spec.fsp(delta) *
                    (1 +  this.spec.chi_expl_monk) *
-                   (1 + 1 * this.spec.versp);
+                   (1 + 1 * this.spec.fversp(delta));
         },
         fbasehot: function(delta) {
             var chi = 1 * this.spec.chi_expl_monk;
-            return this.c * this.spec.sp *
+            return this.c * this.spec.fsp(delta) *
                    ( // hots seem to get double vers
                         chi === 4 ? 3.5 :
                         chi === 3 ? 2 :
                         chi === 2 ? 1 :
                         0
                    ) *
-                   (1 + 1 * this.spec.versp) *
-                   (1 + 1 * this.spec.versp);
+                   (1 + 1 * this.spec.fversp(delta)) *
+                   (1 + 1 * this.spec.fversp(delta));
         },
         fbaseother: function(delta) {
-            var sphere = this.spec.sp * this.spec.mast_c *
-                         (1 + this.spec.versp);
+            var sphere = this.spec.fsp(delta) * this.spec.mast_c *
+                         (1 + this.spec.fversp(delta));
             var chi = 1 * this.spec.chi_expl_monk;
             var proc_chance =
                 (chi >= 3 ? 7 : 1) * // Assuming 7 targets hardcoded
@@ -2618,7 +2618,7 @@ define(['can'], function(can) {
                     this.mast_factor +
                     (chi >= 2 ? this.mast_factor_tick : 0)
                 ) *
-                this.spec.mastp;
+                this.spec.fmastp(delta);
             return proc_chance * sphere;
         }
     });
