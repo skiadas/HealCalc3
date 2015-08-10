@@ -245,7 +245,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 4800,
-            c: 6.3 * 1.3,
+            c: 6.3 * 1.5 * 1.3,
             img: 'ability_priest_savinggrace',
             aoe: false,
             instant: false,
