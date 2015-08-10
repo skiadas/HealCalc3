@@ -13,7 +13,11 @@ define(['can'], function(can) {
             bweapon: 956,
             bwdam: 1000,
             bwspeed: 3,
-            bwdps: 115
+            bwdps: 115,
+            overhealdirect: 0.1,
+            overhealhot: 0.3,
+            overhealshield: 0,
+            overhealother: 0.4
         }
     ],
         stat = new can.Observe(STATS[0]);

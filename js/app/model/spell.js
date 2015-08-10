@@ -1568,8 +1568,10 @@ define(['can'], function(can) {
             );
         },
         fbaseheal: function(delta) {
-            return this.fbasedirect(delta) + this.fbasehot(delta) +
-                   this.fbaseshield(delta) + this.fbaseother(delta);
+            return (1 - this.spec.stats.overhealdirect) * this.fbasedirect(delta) +
+                   (1 - this.spec.stats.overhealhot) * this.fbasehot(delta) +
+                   (1 - this.spec.stats.overhealshield) * this.fbaseshield(delta) +
+                   (1 - this.spec.stats.overhealother) * this.fbaseother(delta);
         },
 
         fmixeddirect: function(delta) {
@@ -1601,8 +1603,10 @@ define(['can'], function(can) {
                    this.fspec_mixed_factor(delta);
         },
         fmixedheal: function(delta) {
-            return this.fmixeddirect(delta) + this.fmixedhot(delta) +
-                   this.fmixedshield(delta) + this.fmixedother(delta);
+            return (1 - this.spec.stats.overhealdirect) * this.fmixeddirect(delta) +
+                   (1 - this.spec.stats.overhealhot) * this.fmixedhot(delta) +
+                   (1 - this.spec.stats.overhealshield) * this.fmixedshield(delta) +
+                   (1 - this.spec.stats.overhealother) * this.fmixedother(delta);
         },
 
         fcritdirect: function(delta) {
@@ -1618,8 +1622,10 @@ define(['can'], function(can) {
             return this.fmixedother(delta) * 2;
         },
         fcritheal: function(delta) {
-            return this.fcritdirect(delta) + this.fcrithot(delta) +
-                   this.fcritshield(delta) + this.fcritother(delta);
+            return (1 - this.spec.stats.overhealdirect) * this.fcritdirect(delta) +
+                   (1 - this.spec.stats.overhealhot) * this.fcrithot(delta) +
+                   (1 - this.spec.stats.overhealshield) * this.fcritshield(delta) +
+                   (1 - this.spec.stats.overhealother) * this.fcritother(delta);
         },
 
         favgdirect: function(delta) {
@@ -1639,8 +1645,10 @@ define(['can'], function(can) {
                    this.fcritp(delta) * this.fcritother(delta);
         },
         favgheal: function(delta) {
-            return this.favgdirect(delta) + this.favghot(delta) +
-                   this.favgshield(delta) + this.favgother(delta);
+            return (1 - this.spec.stats.overhealdirect) * this.favgdirect(delta) +
+                   (1 - this.spec.stats.overhealhot) * this.favghot(delta) +
+                   (1 - this.spec.stats.overhealshield) * this.favgshield(delta) +
+                   (1 - this.spec.stats.overhealother) * this.favgother(delta);
         },
 
         fbasedirect_no_mast: function(delta) {

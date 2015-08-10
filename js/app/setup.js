@@ -5,7 +5,7 @@ define(['jquery', 'can',
             'app/model/spell', 'app/control/spells',
             'app/util/filtering', 'app/util/delta_viewer',
             'app/util/armory', 'app/util/haste_bar', 'app/control/rotations',
-            'app/util/image_loader'
+            'app/util/image_loader', 'app/util/columns'
             ], function($, can,
             stats, Stats,
             buffs, Buffs,
@@ -13,7 +13,7 @@ define(['jquery', 'can',
             spells, Spells,
             Filter, Delta,
             Armory, HasteBar, Rotations,
-            ImageLoader) {
+            ImageLoader, Columns) {
     $(document).ready(function() {
         can.EJS.Helpers.prototype.ImageLoader = ImageLoader;
         new Stats('#stats', {stats: stats});
@@ -24,6 +24,7 @@ define(['jquery', 'can',
         // new Delta('#deltaView', {source: $('#spellTable')});
         new Delta('#deltaView', {source: $('body')});
         new Armory('#armory');
+        new Columns('#columns', { table: $('#spellTable') });
         // specs.each(function(spec) {
         //     var name = 'haste_bar_' + spec.name;
         //     new HasteBar('#'+name, {spec: spec});
