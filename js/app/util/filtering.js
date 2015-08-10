@@ -18,7 +18,9 @@ define(['can', 'text!view/filtering.ejs'], function(can, view) {
         self.options.curr_mask = 0;
         self.element.data('filters', self.options.filters);
         self.element.append(can.view('filterView', self.options));
-        setInterval(function() {self.update(self);}, 100);
+        $('body').on('spellsChanged', function() {
+            self.update(self);
+        });
     },
     'update': function(self) {
         var imask = self.options.curr_mask;

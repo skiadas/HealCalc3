@@ -31,7 +31,9 @@ define(['can', 'text!view/columns.ejs'], function(can, view) {
         });
         self.element.data('columns', self.options.filters);
         self.element.append(can.view('columnsView', self.options));
-        setInterval(function() { self.update(self);}, 200);
+        $('body').on('spellsChanged', function() {
+            self.update(self);
+        });
     },
     'update': function(self) {
         var columns = self.options.columns;

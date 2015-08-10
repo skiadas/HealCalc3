@@ -1900,6 +1900,7 @@ define(['can'], function(can) {
         );
         // can.Observe.stopBatch();
         this.updating = false;
+        $('body').trigger('spellsChanged');
     };
 
     // Search for spell by code or id

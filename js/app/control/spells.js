@@ -32,6 +32,7 @@ define(['can', 'app/util/sorter', 'text!view/spells.ejs'], function(can, _sort, 
             spells.pop();
             can.Observe.stopBatch();
             this.sort_scheduled = false;
+            $('body').trigger('spellsChanged');
         },
         sort: function(ev) {
             if (!this.sort_scheduled) {
