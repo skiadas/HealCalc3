@@ -41,7 +41,7 @@ define(['can'], function(can) {
             specid: 1,
             base_ct: 1.5,
             base_mana: 3840,
-            c: 0.432 * 1.1 * 1.3,
+            c: 0.432 * 1.3,
             img: 'ability_priest_cascade',
             aoe: true,
             instant: false,
