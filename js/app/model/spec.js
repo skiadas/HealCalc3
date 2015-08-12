@@ -613,7 +613,6 @@ define(['can'], function(can) {
         },
         poh_targets_holy: 5,
         lw_glyph: 'deep wells',
-        eol_overheal: 40,   // Overheal percent
         glyph_coh: true,
         glyph_pom_holy: false,
         glyph_renew_holy: true,
