@@ -2190,7 +2190,10 @@ define(['can'], function(can) {
 
     spls.find('LWCastHoly').attr({
         ftargets: function(delta) {
-            return this.spec.lw_charges;
+            return 15 + (this.spec.lw_glyph === 'deep_wells' ? 2 : 0);
+        },
+        fbasefactor: function(delta) {
+            return this.spec.lw_glyph === 'lightwell' ? 1.5 : 1;
         }
     });
 
